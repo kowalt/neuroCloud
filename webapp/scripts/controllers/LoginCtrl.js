@@ -8,6 +8,6 @@
  * Controller of the nncloud
  */
 angular.module('nncloud')
-  .controller('LoginCtrl', function ($scope) {
+  .controller('LoginCtrl', ['$scope', function ($scope) {
     //TODO
-  });
+  }]);
