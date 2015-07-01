@@ -44,11 +44,11 @@ angular
 	controller: 'SettingsCtrl'
       })
       .when('/core/load', {
-	templateUrl: 'views/workplace.html',
+	templateUrl: 'views/core/load.html',
 	controller: 'WorkplaceCtrl'
       })
       .when('/core/saveas', {
-	templateUrl: 'views/saveas.html',
+	templateUrl: 'views/core/saveas.html',
 	controller: 'WorkplaceCtrl'
       })
       .when('/core/logout', {
