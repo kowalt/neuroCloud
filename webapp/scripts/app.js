@@ -45,11 +45,11 @@ angular
       })
       .when('/core/load', {
 	templateUrl: 'views/core/load.html',
-	controller: 'WorkplaceCtrl'
+	controller: 'LoadCtrl'
       })
       .when('/core/saveas', {
 	templateUrl: 'views/core/saveas.html',
-	controller: 'WorkplaceCtrl'
+	controller: 'SaveAsCtrl'
       })
       .when('/core/logout', {
 	templateUrl: 'views/login.html',
