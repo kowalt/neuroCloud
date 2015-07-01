@@ -9,7 +9,7 @@
  * Main module of the application.
  */
 angular
-  .module('webappApp', [
+  .module('nncloud', [
     'ngAnimate',
     'ngCookies',
     'ngResource',
