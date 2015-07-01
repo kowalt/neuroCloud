@@ -5,7 +5,9 @@
     "log4js": "~0.6.26",
     "debug": "~2.2.0",
     "path-is-absolute": "~1.0.0",
-    "escape-html": "~1.0.2"
+    "escape-html": "~1.0.2",
+    "karma": "~0.12.37",
+    "grunt-karma": "~0.11.2"
   },
   "repository": {},
   "devDependencies": {
@@ -31,7 +33,7 @@
     "grunt-usemin": "^3.0.0",
     "grunt-wiredep": "^2.0.0",
     "jshint-stylish": "^1.0.0",
-    "karma-jasmine": "*",
+    "karma-jasmine": "~0.3.6",
     "karma-phantomjs-launcher": "*",
     "load-grunt-tasks": "^3.1.0",
     "time-grunt": "^1.0.0"
