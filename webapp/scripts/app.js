@@ -19,7 +19,7 @@ var app = angular
   ])
   .config(function ($routeProvider) {
     $routeProvider
-      .when('/', {
+      .when('/login', {
         templateUrl: 'views/login.html',
         controller: 'LoginCtrl'
       })
@@ -56,6 +56,8 @@ var app = angular
 	controller: 'LogoutCtrl'
       })
       .otherwise({
-        redirectTo: '/'
+        redirectTo: '/login'
       });
   });
+
+app.run();
