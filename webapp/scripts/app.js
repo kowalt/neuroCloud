@@ -8,16 +8,8 @@
  *
  * Main module of the application.
  */
-var app = angular
-  .module('nncloud', [
-    'ngAnimate',
-    'ngCookies',
-    'ngResource',
-    'ngRoute',
-    'ngSanitize',
-    'ngTouch'
-  ])
-  .config(function ($routeProvider) {
+var app = angular.module('nncloud', ['ngRoute']);
+  app.config(function ($routeProvider) {
     $routeProvider
       .when('/login', {
         templateUrl: 'views/login.html',
@@ -59,5 +51,3 @@ var app = angular
         redirectTo: '/login'
       });
   });
-
-app.run();
