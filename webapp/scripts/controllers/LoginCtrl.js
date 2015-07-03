@@ -9,5 +9,5 @@
  */
 angular.module('nncloud')
   .controller('LoginCtrl', ['$scope', function ($scope) {
-    //TODO
+    $scope.user = true;
   }]);
