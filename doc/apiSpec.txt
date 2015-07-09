@@ -1,0 +1,340 @@
+FORMAT: 1A
+HOST: http://polls.apiblueprint.org/
+
+# nnCloud API
+
+# Group Authentication and autorization
+
+## login [/login]
+
+Checks credentials and establish the session when they are OK.
+
+### Send credentials to the server [POST]
+
+Password is not encrypted! Use HTTPS.
+
++ Request (application/json)
+
+    + Body
+    
+            {
+                "login": "kowalt",
+                "password": "Secret123"
+            }
+
++ Response 200 (application/json)
+
+    + Headers
+
+            Set-Cookie: nazwa="sessionid"; path=/; domain=DOMENA
+
++ Response 401 (application/json)
+
+## logout [/logout]
+
+Terminates the opened session.
+
+### Session termination request [GET]
+
++ Response 200
+
+## register [/register]
+
+Register new user
+
+### Send the new user data [POST]
+
++ Request (application/json)
+
+        {
+            "login": "kowalt",
+            "password": "Secret123",
+            "email": "iwontgiveyou@example.com",
+            "info_to_admin": "Give me an access please!"
+        }
+
++ Response 201
+        
++ Response 422
+
+        {
+            "error": "User kowalt already exists"
+        }
+
+# Group Accessing networks
+
+## Access single network [/network/{id}]
+        
+### Send the new network [POST]
+
++ Request (application/xml)
+
+        <?xml version="1.1" encoding="UTF-8"?>
+        <neuralnetwork id="3" name="MyNetworkForClassification">
+            <synapse id="5" weight="0.2" to="5512"/>
+            <synapse id="7" weight="0.3" to="6125"/>
+            <synapse id="51" weight="0.78" to="7785"/>
+            <synapse id="225" weight="0.7" to="412"/>
+            <layer relative_number="1">
+                <neuron id="5512" activation="5*x+4"/>
+                <neuron id="6125" activation="5*x+4"/>
+                <neuron id="7785" activation="5*x+4"/>
+                <neuron id="412" activation="-1<=>x<=-1;x<=>x>-1,x<1;1<=>x>=1"/>
+            </layer>
+            <synapse id="332" weight="0.5" from="6125" to="9001"/> 
+            <synapse id="255" weight="0.6" from="6125" to="9001"/>
+            <synapse id="9001" weight="-0.2" from="412" to="21"/>
+            <layer relative_number="2">
+                <neuron id="21" activation="-1<=>x<=-1;x<=>x>-1,x<1;1<=>x>=1"/>
+                <neuron id="9001" activation="-1<=>x<=-1;x<=>x>-1,x<1;1<=>x>=1"/>
+                <neuron id="55612" activation="-1<=>x<=-1;x<=>x>-1,x<1;1<=>x>=1"/>
+            </layer>
+            <synapse id="1" weight="0.1" from="21" to="57612"/>
+            <synapse id="4" weight="0.1" from="21" to="5612"/>
+            <synapse id="333" weight="-0.1" from="9001" to="5612"/>
+            <synapse weight="0.9999" from="55612" to="5612"/>
+            <layer relative_number="3">
+                <neuron id="57612" activation="-1<=>x<=-1;x<=>x>-1,x<1;1<=>x>=1"/>
+                <neuron id="5612" activation="-1<=>x<=-1;x<=>x>-1,x<1;1<=>x>=1"/>
+            </layer>
+            <synapse id="274" weight="0.3" from="57612" to="515"/>
+            <synapse id="519" weight="-0.444" from="5612" to="515"/>
+            <layer relative_number="4">
+                <neuron id="515" activation="-1<=>x<=-1;x<=>x>-1,x<1;1<=>x>=1"/>
+            </layer>
+            <synapse id="179" weight="0.2256" from="515"/>
+        </neuralnetwork>
+            
++ Response 201
+
+
+### Get the particular network [GET]
+
+Network will be set as active after this operation.
+
++ Response 200 (application/xml)
+
+        <?xml version="1.1" encoding="UTF-8"?>
+        <neuralnetwork id="3" name="MyNetworkForClassification">
+            <synapse id="5" weight="0.2" to="5512"/>
+            <synapse id="7" weight="0.3" to="6125"/>
+            <synapse id="51" weight="0.78" to="7785"/>
+            <synapse id="225" weight="0.7" to="412"/>
+            <layer relative_number="1">
+                <neuron id="5512" activation="5*x+4"/>
+                <neuron id="6125" activation="5*x+4"/>
+                <neuron id="7785" activation="5*x+4"/>
+                <neuron id="412" activation="-1<=>x<=-1;x<=>x>-1,x<1;1<=>x>=1"/>
+            </layer>
+            <synapse id="332" weight="0.5" from="6125" to="9001"/> 
+            <synapse id="255" weight="0.6" from="6125" to="57612"/>
+            <synapse id="9001" weight="-0.2" from="412" to="21"/>
+            <layer relative_number="2">
+                <neuron id="21" activation="-1<=>x<=-1;x<=>x>-1,x<1;1<=>x>=1"/>
+                <neuron id="9001" activation="-1<=>x<=-1;x<=>x>-1,x<1;1<=>x>=1"/>
+                <neuron id="55612" activation="-1<=>x<=-1;x<=>x>-1,x<1;1<=>x>=1"/>
+            </layer>
+            <synapse id="1" weight="0.1" from="21" to="57612"/>
+            <synapse id="4" weight="0.1" from="21" to="5612"/>
+            <synapse id="333" weight="-0.1" from="9001" to="5612"/>
+            <synapse weight="0.9999" from="55612" to="5612"/>
+            <layer relative_number="3">
+                <neuron id="57612" activation="-1<=>x<=-1;x<=>x>-1,x<1;1<=>x>=1"/>
+                <neuron id="5612" activation="-1<=>x<=-1;x<=>x>-1,x<1;1<=>x>=1"/>
+            </layer>
+            <synapse id="274" weight="0.3" from="57612" to="515"/>
+            <synapse id="519" weight="-0.444" from="5612" to="515"/>
+            <layer relative_number="4">
+                <neuron id="515" activation="-1<=>x<=-1;x<=>x>-1,x<1;1<=>x>=1"/>
+            </layer>
+            <synapse id="179" weight="0.2256" from="515"/>
+        </neuralnetwork>
+
+### Delete the particular network [DELETE]
+
++ Response 204
+
+### Alter an existing network [PUT]
+
+The message should contain only the elements that need to be changed, with respective id's and the desired values.
+    
++ Request (application/xml)
+
+        <?xml version="1.1" encoding="UTF-8"?>
+        <synapse id="274" weight="0.7" from="57612" to="515"/>
+        <neuron id="515" activation="2*x+1"/>
+        
++ Response 204
+
+## Access the list of networks [/networks]
+
+### Download the list of networks [GET]
+
++ Response 200 (application/json)
+
+        [
+            {
+                "id": 3,
+                "name": "MyNetworkForClassification",
+                "creation-date":  1436397724,
+            },
+            {
+                "id": 1,
+                "name": "MyNetworkForPrediction",
+                "creation-date":  1379997127,
+            }
+        ]
+        
+## Generate network [/generate]
+
+### Generate network [POST]
+
++ Request (application/json)
+
+        {
+            "name": "MyNetworkForClassification",
+            "1stlayer": 4,
+            "2ndlayer": 3,
+            "3rdlayer": 2,
+            "4thlayer": 1
+            "activationFunction": "-1<=>x<=-1;x<=>x>-1,x<1;1<=>x>=1"
+        }
+            
+        
++ Response 200 (application/xml)
+
+        <?xml version="1.1" encoding="UTF-8"?>
+        <neuralnetwork id="3" name="MyNetworkForClassification">
+            <synapse id="5" weight="0.2" to="5512"/>
+            <synapse id="7" weight="0.3" to="6125"/>
+            <synapse id="51" weight="0.78" to="7785"/>
+            <synapse id="225" weight="0.7" to="412"/>
+            <layer relative_number="1">
+                <neuron id="5512" activation="-1<=>x<=-1;x<=>x>-1,x<1;1<=>x>=1"/>
+                <neuron id="6125" activation="-1<=>x<=-1;x<=>x>-1,x<1;1<=>x>=1"/>
+                <neuron id="7785" activation="-1<=>x<=-1;x<=>x>-1,x<1;1<=>x>=1"/>
+                <neuron id="412" activation="-1<=>x<=-1;x<=>x>-1,x<1;1<=>x>=1"/>
+            </layer>
+            <synapse id="332" weight="0.5" from="6125" to="9001"/> 
+            <synapse id="255" weight="0.6" from="6125" to="57612"/>
+            <synapse id="9001" weight="-0.2" from="412" to="21"/>
+            <layer relative_number="2">
+                <neuron id="21" activation="-1<=>x<=-1;x<=>x>-1,x<1;1<=>x>=1"/>
+                <neuron id="9001" activation="-1<=>x<=-1;x<=>x>-1,x<1;1<=>x>=1"/>
+                <neuron id="55612" activation="-1<=>x<=-1;x<=>x>-1,x<1;1<=>x>=1"/>
+            </layer>
+            <synapse id="1" weight="0.1" from="21" to="57612"/>
+            <synapse id="4" weight="0.1" from="21" to="5612"/>
+            <synapse id="333" weight="-0.1" from="9001" to="5612"/>
+            <synapse weight="0.9999" from="55612" to="5612"/>
+            <layer relative_number="3">
+                <neuron id="57612" activation="-1<=>x<=-1;x<=>x>-1,x<1;1<=>x>=1"/>
+                <neuron id="5612" activation="-1<=>x<=-1;x<=>x>-1,x<1;1<=>x>=1"/>
+            </layer>
+            <synapse id="274" weight="0.3" from="57612" to="515"/>
+            <synapse id="519" weight="-0.444" from="5612" to="515"/>
+            <layer relative_number="4">
+                <neuron id="515" activation="-1<=>x<=-1;x<=>x>-1,x<1;1<=>x>=1"/>
+            </layer>
+            <synapse id="179" weight="0.2256" from="515"/>
+        </neuralnetwork>
+
++ Response 400
+
+## Run network [/run]
+
+### Run the active network [GET]
+
++ Response 202
+
+## Set the input vector [/upload_inputs]
+
+### Upload the input vector to the active network [PUT]
+
++ Request (application/json)
+
+        [1.0,0.22,0.161,-0.521]
+
++ Response 204
+
++ Response 400 (application/json)
+
+        {
+            "error": "The number of inputs must be the same as the number of input synapses."
+        }
+
+## Download output vector [/download_outputs]
+
+### Download the output vector of the active network [GET]
+
++ Response 200 (application/json)
+
+        [0.2]
+
+# Group Settings
+
+## Set visibility [/settings/visibility]
+
+### Set visibility [PUT]
+
+Determine if the user wants to visualise the current network
+
++ Request (application/json)
+
+        { "visibility": true }
+
++ Response 204
+
+## Set a new login [/settings/newlogin]
+
+### Set a new login [PUT]
+
++ Request (application/json)
+
+        { "login": "kowalt" }
+
++ Response 204
+
+
+## Set a new email [/settings/email]
+
+### Set a new email [PUT]
+
++ Request (application/json)
+
+        { "email": "mynewmail@example.com" }
+        
++ Response 204
+
++ Response 400
+
+        { "error": "email already exists" }
+
+## Obtain the list of servers [/settings/serverList]
+
+### List available servers [GET]
+
++ Response 200 (application/json)
+
+        [ 
+            {
+                "id": 1,
+                "label": "Nvidia titan"
+            },
+            {
+                "id": 2,
+                "label": "Geforce 750Ti Tom's computer"
+            }
+        ]
+
+## Use different server [/settings/newServer/{id}]
+
+### Set active server [GET]
+
++ Response 204
+
++ Response 400 (application/json)
+
+        {
+            "error": "Wrong id"
+        }
