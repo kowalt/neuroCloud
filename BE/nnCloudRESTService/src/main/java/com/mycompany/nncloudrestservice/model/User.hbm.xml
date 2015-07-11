@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+  <class name="com.mycompany.restservice.model.User" table="users">
+      <meta attribute="class-description">
+          Description under construction
+      </meta>
+      <id name="id" column="id_user" type="int">
+          <generator class="native"/>
+      </id>
+      <property name="login" column="login" type="string"/>
+      <property name="email" column="email" type="string"/>
+      <property name="password" column="password" type="string"/>
+      <--! type alert -->
+      <property name="activated" column="activated" type="boolean"/> 
+      <property name="info_to_admin" column="info_to_admin" type="string"/>
+      <property name="session_id" column="session_id" type="string"/>
+      <property name="registered" column="registered" type="date"/>
+  </class>
+</hibernate-mapping>
