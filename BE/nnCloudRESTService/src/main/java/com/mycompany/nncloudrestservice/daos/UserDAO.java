@@ -6,6 +6,7 @@
 package com.mycompany.nncloudrestservice.daos;
 
 import com.mycompany.nncloudrestservice.model.User;
+import org.json.JSONObject;
 
 /**
  *
@@ -13,5 +14,7 @@ import com.mycompany.nncloudrestservice.model.User;
  */
 public interface UserDAO 
 {
-    public User getUser(String login, String pasword);
+    public User getUser(String login, String password) throws LoginException; 
+    public void saveSession(String uuid);
+    public void registerNewUser(JSONObject regData) throws UserExistsException;
 }

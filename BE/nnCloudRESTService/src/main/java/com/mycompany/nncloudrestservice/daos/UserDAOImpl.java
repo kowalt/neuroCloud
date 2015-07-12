@@ -6,12 +6,15 @@
 package com.mycompany.nncloudrestservice.daos;
 
 import com.mycompany.nncloudrestservice.model.User;
+import java.util.Calendar;
 import java.util.List;
+import org.apache.commons.codec.digest.DigestUtils;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.json.JSONObject;
 
 /**
  *
@@ -19,24 +22,31 @@ import org.hibernate.Transaction;
  */
 public class UserDAOImpl implements UserDAO 
 {
+    private User user;
+    
     private static SessionFactory factory;
     @Override
-    public User getUser(String login, String pasword)
+    public User getUser(String login, String password) throws LoginException
     {
         Session session = factory.openSession();
         Transaction tx = null;
-        User u = null;
+        user = null;
         try
         {
             tx = session.beginTransaction();
-            Query query = session.createQuery("FROM users u WHERE u.login = :login");
-            
+            Query query = session.createQuery("FROM users u WHERE u.login = :login AND u.password = :password");     
             query.setParameter("login", login);
-            
+            query.setParameter("password", password);
             List results = query.list();
+
+            if(results.size() == 0)
+                throw new LoginException("Incorrect credentials");
             
-            u = (User)results.get(0);
+            user = (User)results.get(0);
             
+            if(!user.isActivated())
+                throw new LoginException("Incorrect login");
+               
             tx.commit();
         }
         catch(HibernateException e)
@@ -48,6 +58,78 @@ public class UserDAOImpl implements UserDAO
         {
             session.close();
         }
-        return u;
+        return user;
+    }
+    
+    @Override
+    public void registerNewUser(JSONObject regData) throws UserExistsException
+    {
+        user = new User();
+        user.setActivated(false);
+        user.setEmail(regData.getString("email"));
+        user.setLogin(regData.getString("login"));
+        user.setInfo_to_admin(regData.getString("info_to_admin"));
+        //set password
+        String givenPassword = regData.getString("password");
+        String salt = givenPassword.substring(0,2);
+        String givenEncryptedPassword = DigestUtils.sha256Hex(salt+givenPassword);
+        user.setPassword(givenEncryptedPassword);
+        user.setRegistered(Calendar.getInstance().getTime());
+        
+        Session session = factory.openSession();
+        Transaction tx = null;
+                
+        try
+        {
+            tx = session.beginTransaction();
+            Query query = session.createQuery("FROM users u WHERE u.login = :login");      
+            query.setParameter("login", user.getLogin());
+            List results = query.list();
+            
+            if(results.size() > 0)
+                throw new UserExistsException("User with this login already exists");
+            
+            query = session.createQuery("FROM users u WHERE u.email = :email");
+            query.setParameter("email", user.getEmail());
+            
+            if(results.size() > 0)
+                throw new UserExistsException("User with this email already exists");
+            
+            session.save(user);
+            
+            tx.commit();
+        }
+        catch(HibernateException he)
+        {
+            if (tx != null) tx.rollback();
+            he.printStackTrace();
+        }
+        finally
+        {
+            session.close();
+        }
+    }
+    
+    @Override
+    public void saveSession(String uuid)
+    {
+        Session session = factory.openSession();
+        Transaction tx = null;
+        user.setSession_id(uuid);
+        try
+        {
+            tx = session.beginTransaction();
+            session.save(user);
+            tx.commit();
+        }
+        catch(HibernateException he)
+        {
+            if (tx!=null) tx.rollback();
+            he.printStackTrace();
+        }
+        finally
+        {
+            session.close();
+        }
     }
 }
