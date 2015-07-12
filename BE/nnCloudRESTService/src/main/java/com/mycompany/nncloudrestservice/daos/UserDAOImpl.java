@@ -14,6 +14,9 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
+import org.hibernate.cfg.Configuration;
+import org.hibernate.service.ServiceRegistry;
 import org.json.JSONObject;
 
 /**
@@ -25,6 +28,18 @@ public class UserDAOImpl implements UserDAO
     private User user;
     
     private static SessionFactory factory;
+    private static ServiceRegistry serviceRegistry;
+
+    static //TODO refactorization!
+    {
+        Configuration configuration = new Configuration();
+        configuration.configure();
+        serviceRegistry = new StandardServiceRegistryBuilder().applySettings(
+            configuration.getProperties()).build();
+        factory = configuration.buildSessionFactory(serviceRegistry);
+    }
+    
+    
     @Override
     public User getUser(String login, String password) throws LoginException
     {
