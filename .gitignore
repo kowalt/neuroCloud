@@ -1,2 +1,5 @@
+*.bak
+*.jar
 *.cfg.xml
 *.swp
+/BE/nnCloudRESTService/target/
