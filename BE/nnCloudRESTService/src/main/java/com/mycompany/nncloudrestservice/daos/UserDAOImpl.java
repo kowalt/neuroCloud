@@ -96,14 +96,14 @@ public class UserDAOImpl implements UserDAO
         try
         {
             tx = session.beginTransaction();
-            Query query = session.createQuery("FROM users u WHERE u.login = :login");      
+            Query query = session.createQuery("FROM User u WHERE u.login = :login");      
             query.setParameter("login", user.getLogin());
             List results = query.list();
             
             if(results.size() > 0)
                 throw new UserExistsException("User with this login already exists");
             
-            query = session.createQuery("FROM users u WHERE u.email = :email");
+            query = session.createQuery("FROM User u WHERE u.email = :email");
             query.setParameter("email", user.getEmail());
             
             if(results.size() > 0)
