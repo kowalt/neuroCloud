@@ -38,8 +38,7 @@ public class UserDAOImpl implements UserDAO
             configuration.getProperties()).build();
         factory = configuration.buildSessionFactory(serviceRegistry);
     }
-    
-    
+      
     @Override
     public User getUser(String login, String password) throws LoginException
     {
@@ -49,7 +48,7 @@ public class UserDAOImpl implements UserDAO
         try
         {
             tx = session.beginTransaction();
-            Query query = session.createQuery("FROM users u WHERE u.login = :login AND u.password = :password");     
+            Query query = session.createQuery("FROM com.mycompany.nncloudrestservice.model.User u WHERE u.login = :login AND u.password = :password");     
             query.setParameter("login", login);
             query.setParameter("password", password);
             List results = query.list();
