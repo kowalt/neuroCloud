@@ -6,6 +6,7 @@
 package com.mycompany.nncloudrestservice.daos;
 
 import com.mycompany.nncloudrestservice.model.User;
+import com.mycompany.nncloudrestservice.utils.SessionContainer;
 import java.util.Calendar;
 import java.util.List;
 import org.apache.commons.codec.digest.DigestUtils;
@@ -14,9 +15,6 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
-import org.hibernate.cfg.Configuration;
-import org.hibernate.service.ServiceRegistry;
 import org.json.JSONObject;
 
 /**
@@ -27,26 +25,13 @@ public class UserDAOImpl implements UserDAO
 {
     private User user;
     
-    private static SessionFactory factory;
-    private static ServiceRegistry serviceRegistry;
-
-    static //TODO refactorization!
+    private SessionFactory factory;
+    
+    public UserDAOImpl()
     {
-        try
-        {
-            Configuration configuration = new Configuration();
-
-            configuration.configure();
-            serviceRegistry = new StandardServiceRegistryBuilder().applySettings(
-                configuration.getProperties()).build();
-            factory = configuration.buildSessionFactory(serviceRegistry);
-        }
-        catch(HibernateException he)
-        {
-            he.printStackTrace();
-        }
+        this.factory = SessionContainer.factory;
     }
-      
+          
     @Override
     public User getUser(String login, String password) throws LoginException
     {
