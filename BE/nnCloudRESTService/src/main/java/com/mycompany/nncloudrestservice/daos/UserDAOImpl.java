@@ -32,11 +32,19 @@ public class UserDAOImpl implements UserDAO
 
     static //TODO refactorization!
     {
-        Configuration configuration = new Configuration();
-        configuration.configure();
-        serviceRegistry = new StandardServiceRegistryBuilder().applySettings(
-            configuration.getProperties()).build();
-        factory = configuration.buildSessionFactory(serviceRegistry);
+        try
+        {
+            Configuration configuration = new Configuration();
+
+            configuration.configure();
+            serviceRegistry = new StandardServiceRegistryBuilder().applySettings(
+                configuration.getProperties()).build();
+            factory = configuration.buildSessionFactory(serviceRegistry);
+        }
+        catch(HibernateException he)
+        {
+            he.printStackTrace();
+        }
     }
       
     @Override
@@ -110,7 +118,6 @@ public class UserDAOImpl implements UserDAO
                 throw new UserExistsException("User with this email already exists");
             
             session.save(user);
-            
             tx.commit();
         }
         catch(HibernateException he)

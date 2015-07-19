@@ -58,7 +58,7 @@ public class Login
             error.put("error", le.getMessage());
             uuid = String.valueOf(0);
             c1 = new Cookie("session_id", uuid);
-            return Response.status(401).cookie(new NewCookie(c1)).entity(error).build();
+            return Response.status(401).cookie(new NewCookie(c1)).entity(error.toString()).build();
         }
         
         uuid = UUID.randomUUID().toString();

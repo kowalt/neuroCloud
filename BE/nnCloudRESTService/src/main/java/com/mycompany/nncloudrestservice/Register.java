@@ -39,7 +39,7 @@ public class Register
         {
             JSONObject error_response = new JSONObject();
             error_response.put("error", ex.getMessage());
-            return Response.status(400).entity(error_response).build();
+            return Response.status(400).entity(error_response.toString()).build();
         }
         
         return Response.status(201).build();
