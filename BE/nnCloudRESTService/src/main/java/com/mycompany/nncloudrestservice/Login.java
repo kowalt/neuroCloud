@@ -49,7 +49,7 @@ public class Login
         String uuid;
         
         try
-        {    
+        {
             User u = udao.getUser(givenLogin, givenEncryptedPassword);
         }
         catch(LoginException le)
