@@ -14,7 +14,7 @@ import java.net.URI;
  */
 public class Main {
     // Base URI the Grizzly HTTP server will listen on
-    public static final String BASE_URI = "http://localhost:8080/nncloudAPI/";
+    public static final String BASE_URI = "http://178.62.119.189:80/nncloudAPI/";
 
     /**
      * Starts Grizzly HTTP server exposing JAX-RS resources defined in this application.
@@ -44,4 +44,3 @@ public class Main {
         server.stop();
     }
 }
-
