@@ -1,7 +1,6 @@
 'use strict';
 
-angular.module('nncloud')
-  .controller('LoginCtrl', ['$scope', '$http', '$injector', '$rootScope', '$location', function ($scope) {
+angular.module('nncloud').controller('LoginCtrl', ['$scope', '$http', '$injector', '$rootScope', '$location', function ($scope) {
     if($rootScope.authorized)
 	$location.href('/workbench');
 
@@ -9,7 +8,7 @@ angular.module('nncloud')
   
     $scope.login = function()
     {
-	credentials = { "login": user.login, "password": user.password }
+	credentials = { "login": user.login, "password": user.password };
 	$http.post(API['AUTH_LOGIN'], credentials).success(function(data, status, headers, config)
 	{	
 		$rootScope.authorized = true;
