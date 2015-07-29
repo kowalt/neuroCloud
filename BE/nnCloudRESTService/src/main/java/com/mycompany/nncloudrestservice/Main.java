@@ -14,7 +14,7 @@ import java.net.URI;
  */
 public class Main {
     // Base URI the Grizzly HTTP server will listen on
-    public static final String BASE_URI = "http://178.62.119.189:8080/nncloudAPI/";
+    public static String base_uri = "http://localhost:8080/nncloudAPI/";
 
     /**
      * Starts Grizzly HTTP server exposing JAX-RS resources defined in this application.
@@ -27,7 +27,7 @@ public class Main {
 
         // create and start a new instance of grizzly http server
         // exposing the Jersey application at BASE_URI
-        return GrizzlyHttpServerFactory.createHttpServer(URI.create(BASE_URI), rc);
+        return GrizzlyHttpServerFactory.createHttpServer(URI.create(base_uri), rc);
     }
 
     /**
@@ -37,10 +37,12 @@ public class Main {
      */
     public static void main(String[] args) throws IOException 
     {        
+        if(args.length != 0)
+            base_uri = args[0];
         final HttpServer server = startServer();
         System.out.println(String.format("Jersey app started with WADL available at "
-                + "%sapplication.wadl\nHit enter to stop it...", BASE_URI));
+                + "%sapplication.wadl\nHit enter to stop it...", base_uri));
         System.in.read();
-        server.stop();
+//        server.stop();
     }
 }
