@@ -29,7 +29,7 @@ public class Login
      * Method handling HTTP GET requests. The returned object will be sent
      * to the client as "text/plain" media type.
      *
-
+     * @param origin
      * @return String that will be returned as a text/plain response.
      */
     @POST
@@ -38,6 +38,7 @@ public class Login
     public Response loginUser(@HeaderParam("Origin") String origin, String x) 
     {
         JSONObject request = new JSONObject(x);
+        
         String givenLogin = request.get("login").toString();
         
         // DigestUtils.sha256Hex(password + "salt");

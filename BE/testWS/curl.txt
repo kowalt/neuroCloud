@@ -1,0 +1,1 @@
+curl --header "Content-type: application/json" --header "Origin: http://localhost:80" --request POST -d @login.json http://localhost:8080/nncloudAPI/login
