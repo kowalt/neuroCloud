@@ -22,6 +22,7 @@ public class TrustedOrigins
         trustedOrigins = new ArrayList<>();
         trustedOrigins.add("http://localhost:80");
         trustedOrigins.add("http://178.62.119.189:80");
+        trustedOrigins.add("http://178.62.119.189");
         trustedOrigins.add("chrome-extension://hgmloofddffdnphfgcellkdfbfbjeloo");
     }
     

@@ -38,7 +38,7 @@ public class Login
     public Response loginUser(@HeaderParam("Origin") String origin, String x) 
     {
         JSONObject request = new JSONObject(x);
-        
+        // TODO: Too boilerplate. Take advantage of ResponseBuilder!
         String givenLogin = request.get("login").toString();
         
         // DigestUtils.sha256Hex(password + "salt");
