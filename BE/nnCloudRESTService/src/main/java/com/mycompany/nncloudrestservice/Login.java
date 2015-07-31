@@ -4,7 +4,6 @@ import com.mycompany.nncloudrestservice.daos.LoginException;
 import com.mycompany.nncloudrestservice.daos.UserDAO;
 import com.mycompany.nncloudrestservice.daos.UserDAOImpl;
 import com.mycompany.nncloudrestservice.model.User;
-import com.mycompany.nncloudrestservice.utils.TrustedOrigins;
 import java.util.UUID;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.HeaderParam;
@@ -14,7 +13,6 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.Cookie;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.NewCookie;
-import javax.ws.rs.core.Request;
 import javax.ws.rs.core.Response;
 import org.json.JSONObject;
 import org.apache.commons.codec.digest.*;
@@ -52,30 +50,21 @@ public class Login
         String uuid;
         
         try
-        {
-            if(!TrustedOrigins.check(origin))
-                throw new UntrustedOriginException();
-            
+        {            
             User u = udao.getUser(givenLogin, givenEncryptedPassword);
-        }
-        catch(UntrustedOriginException uoe)
-        {
-            JSONObject error = new JSONObject();
-            error.put("error", uoe.getMessage());
-            return Response.status(401).header("Access-Control-Allow-Origin", origin).entity(error.toString()).build();//TODO try without toString   
-        }    
+        } 
         catch(LoginException le)
         {
             JSONObject error = new JSONObject();
             error.put("error", le.getMessage());
             uuid = String.valueOf(0); //TODO save to database
             c1 = new Cookie("session_id", uuid);
-            return Response.status(401).header("Access-Control-Allow-Origin", origin).cookie(new NewCookie(c1)).entity(error.toString()).build();
+            return Response.status(401).cookie(new NewCookie(c1)).entity(error.toString()).build();
         }
         
         uuid = UUID.randomUUID().toString();
         udao.saveSession(uuid);
         c1 = new Cookie("session_id", uuid);
-        return Response.status(200).header("Access-Control-Allow-Origin", origin).cookie(new NewCookie(c1)).build();
+        return Response.status(200).cookie(new NewCookie(c1)).build();
     }
 }
