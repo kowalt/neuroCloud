@@ -6,6 +6,8 @@ import org.glassfish.jersey.server.ResourceConfig;
 
 import java.io.IOException;
 import java.net.URI;
+import java.util.HashMap;
+import java.util.Map;
 
 
 /**
@@ -24,7 +26,10 @@ public class Main {
         // create a resource config that scans for JAX-RS resources and providers
         // in com.mycompany.nncloudrestservice package
         final ResourceConfig rc = new ResourceConfig().packages("com.mycompany.nncloudrestservice");
-
+        
+        Map<String, Object> customProperties = new HashMap<>();   
+        customProperties.put("jersey.config.server.wadl.disableWadl", "true");
+        rc.addProperties(customProperties);
         // create and start a new instance of grizzly http server
         // exposing the Jersey application at BASE_URI
         return GrizzlyHttpServerFactory.createHttpServer(URI.create(base_uri), rc);
@@ -40,8 +45,7 @@ public class Main {
         if(args.length != 0)
             base_uri = args[0];
         final HttpServer server = startServer();
-        System.out.println(String.format("Jersey app started with WADL available at "
-                + "%sapplication.wadl\nHit enter to stop it...", base_uri));
+        System.out.println(String.format("Jersey app started at %s\nHit enter to stop it"));
         System.in.read();
         server.stop();
     }

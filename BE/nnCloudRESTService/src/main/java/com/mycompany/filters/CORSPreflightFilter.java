@@ -22,6 +22,6 @@ public class CORSPreflightFilter implements ContainerRequestFilter
     public void filter(ContainerRequestContext requestContext) throws IOException
     {
         if(requestContext.getMethod().matches("OPTIONS"))
-             requestContext.setRequestUri(URI.create(Main.base_uri + "preflight"));
+            requestContext.setRequestUri(URI.create(Main.base_uri + "preflight"));
     }
 }
