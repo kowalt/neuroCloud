@@ -10,7 +10,6 @@ import java.io.IOException;
 import java.net.URI;
 import javax.ws.rs.container.ContainerRequestContext;
 import javax.ws.rs.container.ContainerRequestFilter;
-import org.glassfish.jersey.server.Uri;
 
 /**
  *
@@ -20,7 +19,7 @@ public class CORSPreflightFilter implements ContainerRequestFilter
 {
     @Override
     public void filter(ContainerRequestContext requestContext) throws IOException
-    {
+    {   
         if(requestContext.getMethod().matches("OPTIONS"))
             requestContext.setRequestUri(URI.create(Main.base_uri + "preflight"));
     }
