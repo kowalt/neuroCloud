@@ -4,3 +4,4 @@
 *.cfg.xml
 *.swp
 /BE/nnCloudRESTService/target/
+/BE/JavaApplication27/nbproject/private/

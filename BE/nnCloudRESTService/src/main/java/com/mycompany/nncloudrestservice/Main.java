@@ -1,5 +1,8 @@
 package com.mycompany.nncloudrestservice;
 
+import com.mycompany.nncloudrestservice.filters.AuthorizationRequestFilter;
+import com.mycompany.nncloudrestservice.filters.CORSFilter;
+import com.mycompany.nncloudrestservice.filters.CORSPreflightFilter;
 import org.glassfish.grizzly.http.server.HttpServer;
 import org.glassfish.jersey.grizzly2.httpserver.GrizzlyHttpServerFactory;
 import org.glassfish.jersey.server.ResourceConfig;
@@ -25,11 +28,14 @@ public class Main {
     public static HttpServer startServer() {
         // create a resource config that scans for JAX-RS resources and providers
         // in com.mycompany.nncloudrestservice package
-        final ResourceConfig rc = new ResourceConfig().packages("com.mycompany.nncloudrestservice");
-        
+        final ResourceConfig rc = new ResourceConfig().packages(true, "com.mycompany.nncloudrestservice");
+
         Map<String, Object> customProperties = new HashMap<>();   
         customProperties.put("jersey.config.server.wadl.disableWadl", "true");
         rc.addProperties(customProperties);
+        rc.register(new AuthorizationRequestFilter());
+        rc.register(new CORSFilter());
+        rc.register(new CORSPreflightFilter());
         // create and start a new instance of grizzly http server
         // exposing the Jersey application at BASE_URI
         return GrizzlyHttpServerFactory.createHttpServer(URI.create(base_uri), rc);
@@ -45,7 +51,7 @@ public class Main {
         if(args.length != 0)
             base_uri = args[0];
         final HttpServer server = startServer();
-        System.out.println(String.format("Jersey app started at %s\nHit enter to stop it"));
+        System.out.println(String.format("Jersey app started at %s\nHit enter to stop it",base_uri));
         System.in.read();
         server.stop();
     }
