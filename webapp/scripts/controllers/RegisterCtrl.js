@@ -1,6 +1,7 @@
 'use strict';
 
 angular.module('nncloud')
-  .controller('RegisterCtl', function ($scope) {
+  .controller('RegisterCtrl',['$scope', function ($scope) {
+	
 
-  });
+  }]);
