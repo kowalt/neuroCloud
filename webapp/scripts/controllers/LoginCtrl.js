@@ -2,7 +2,7 @@
 
 angular.module('nncloud').controller('LoginCtrl', ['$scope', '$http', '$injector', '$rootScope', '$location', function ($scope, $http, $injector, $rootScope, $location) {
     if($rootScope.authorized)
-	$location.path('/workbench');
+	$location.path('/core/workbench');
 
     var TOAST_DURATION = 5000;
   
@@ -23,7 +23,7 @@ angular.module('nncloud').controller('LoginCtrl', ['$scope', '$http', '$injector
 	{	
 		$rootScope.authorized = true;
 
-		$location.path('/workbench');
+		$location.path('/core/workbench');
     	})
 	.error(function(data, status, headers, config)
 	{
