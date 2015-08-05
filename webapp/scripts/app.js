@@ -18,7 +18,7 @@ var app = angular.module('nncloud', ['ngRoute']);
         controller: 'RegisterCtrl'
       })
       .when('/core/workbench', {
-	templateUrl: 'views/workbench.html',
+	templateUrl: 'views/core/workbench.html',
 	controller: 'WorkbenchCtrl'
       })
       .when('/core/generate', {
