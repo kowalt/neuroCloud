@@ -1,4 +1,4 @@
-var API_ROOT = '172.62.119.189:8080/nncloudAPI';
+var API_ROOT = 'http://178.62.119.189:8080/nncloudAPI';
 var API = 
 {
 	'AUTH_LOGIN': API_ROOT + '/login',

@@ -7,7 +7,7 @@
  * Main module of the application.
  */
 var app = angular.module('nncloud', ['ngRoute']);
-  app.config(function ($routeProvider) {
+  app.config(['$routeProvider', '$httpProvider', function ($routeProvider, $httpProvider) {
     $routeProvider
       .when('/login', {
         templateUrl: 'views/login.html',
@@ -41,11 +41,14 @@ var app = angular.module('nncloud', ['ngRoute']);
 	templateUrl: 'views/core/saveas.html',
 	controller: 'SaveAsCtrl'
       })
-      .when('/core/logout', {
+      .when('/logout', {
 	templateUrl: 'views/login.html',
 	controller: 'LogoutCtrl'
       })
       .otherwise({
         redirectTo: '/login'
-      });
-  });
+      })
+  }]).run(['$rootScope', function($rootScope){
+	$rootScope.authorized = false;
+}]);
+
