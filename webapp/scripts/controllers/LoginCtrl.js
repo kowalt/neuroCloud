@@ -1,10 +1,8 @@
 'use strict';
 
-angular.module('nncloud').controller('LoginCtrl', ['$scope', '$http', '$injector', '$rootScope', '$location', function ($scope, $http, $injector, $rootScope, $location) {
+angular.module('nncloud').controller('LoginCtrl', ['$scope', '$http', '$alert', '$rootScope', '$location', function ($scope, $http, $alert, $rootScope, $location) {
 	if($rootScope.authorized)
 	$location.path('/core/workbench');
-
-	var TOAST_DURATION = 5000;
 
 	$scope.login = function()
 	{
@@ -27,10 +25,12 @@ angular.module('nncloud').controller('LoginCtrl', ['$scope', '$http', '$injector
 				})
 			.error(function(data, status, headers, config)
 			{
+				var msg;
 				if(data != null)
-					Materialize.toast(data.error, TOAST_DURATION);
+					msg = data.error;
 				else
-					Materialize.toast(status.toString(), TOAST_DURATION);
+					msg = "Untypical error. Code: " + status.toString();
+				$alert({title: 'Unable to sign in:', content: msg, placement: 'top', type: 'danger', show: true});
 			});
 			
 			$scope.user.password = '';
