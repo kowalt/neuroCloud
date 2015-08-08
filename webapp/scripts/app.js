@@ -6,7 +6,7 @@
  *
  * Main module of the application.
  */
-var app = angular.module('nncloud', ['ngRoute']);
+var app = angular.module('nncloud', ['ngRoute','mgcrea.ngStrap', 'mgcrea.ngStrap.tooltip']);
   app.config(['$routeProvider', '$httpProvider', function ($routeProvider, $httpProvider) {
     $routeProvider
       .when('/login', {
