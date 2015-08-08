@@ -1,3 +1,8 @@
+body .container
+{
+	padding-top: 60px;
+}
+
 div.banner_container
 {
 	width: 100%;
@@ -8,4 +13,14 @@ img.banner
 {
 	display: block;
 	margin: 0 auto;
+}
+
+.navbar-brand 
+{
+	float: left;
+	height: 50px;
+	padding: 15px 15px;
+	font-size: 18px;
+	line-height: 20px;
+	width: 50px;
 }

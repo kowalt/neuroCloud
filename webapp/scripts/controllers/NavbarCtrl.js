@@ -15,7 +15,8 @@ angular.module('nncloud')
                         "href": "#"
                 },
                 {
-                        "text": "Save as..."
+                        "text": "Save as...",
+			"href": "#"
                 },
                 {
                         "divider": true
