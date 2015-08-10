@@ -5,7 +5,9 @@
  */
 package com.mycompany.nncloudrestservice.daos;
 
+import com.mycompany.nncloudrestservice.LogoutException;
 import com.mycompany.nncloudrestservice.model.User;
+import com.mycompany.nncloudrestservice.utils.SafeHashUtil;
 import com.mycompany.nncloudrestservice.utils.SessionContainer;
 import java.util.Calendar;
 import java.util.List;
@@ -46,7 +48,7 @@ public class UserDAOImpl implements UserDAO
             query.setParameter("password", password);
             List results = query.list();
 
-            if(results.size() == 0)
+            if(results.isEmpty())
                 throw new LoginException("Incorrect credentials");
             
             user = (User)results.get(0);
@@ -121,7 +123,7 @@ public class UserDAOImpl implements UserDAO
     {
         Session session = factory.openSession();
         Transaction tx = null;
-        user.setSession_id(uuid);
+        user.setSession_id(SafeHashUtil.getHash(uuid));
         try
         {
             tx = session.beginTransaction();
@@ -137,5 +139,49 @@ public class UserDAOImpl implements UserDAO
         {
             session.close();
         }
+    }
+    
+    @Override
+    public void destroySession(String token) throws LogoutException
+    {
+        Session session = factory.openSession();
+        Transaction tx = null;
+        
+        
+        try
+        {   
+            //Find user with this session id
+            tx = session.beginTransaction();
+            Query query = session.createQuery("FROM com.mycompany.nncloudrestservice.model.User u WHERE u.session_id = :session_id");
+            query.setParameter("session_id", SafeHashUtil.getHash(token));
+            List results = query.list();
+            
+            if(results.isEmpty())
+                throw new LogoutException("No session associated with this ID.");
+           
+            user = (User)results.get(0);
+            user.setSession_id("0");
+            session.saveOrUpdate(user);
+            tx.commit();
+            
+        }
+        catch(HibernateException he)
+        {
+            if (tx != null) tx.rollback();
+            he.printStackTrace();
+        }
+        finally
+        {
+            session.close();
+        }
+        
+        user.setSession_id("0");
+        
+    }
+
+    @Override
+    public boolean checkIfTokenIsCorrect(String token) 
+    {
+        return false; //TODO ;)
     }
 }

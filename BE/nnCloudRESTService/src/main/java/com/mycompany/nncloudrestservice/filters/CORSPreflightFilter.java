@@ -8,6 +8,7 @@ package com.mycompany.nncloudrestservice.filters;
 import com.mycompany.nncloudrestservice.Main;
 import java.io.IOException;
 import java.net.URI;
+import javax.annotation.Priority;
 import javax.ws.rs.container.ContainerRequestContext;
 import javax.ws.rs.container.ContainerRequestFilter;
 import javax.ws.rs.container.PreMatching;
@@ -16,6 +17,7 @@ import javax.ws.rs.container.PreMatching;
  *
  * @author Tomasz
  */
+@Priority(1)
 @PreMatching
 public class CORSPreflightFilter implements ContainerRequestFilter 
 {
