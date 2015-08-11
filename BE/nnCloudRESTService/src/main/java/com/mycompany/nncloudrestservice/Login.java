@@ -59,13 +59,13 @@ public class Login
             error.put("error", le.getMessage());
             uuid = String.valueOf(0);
 
-            c1 = new NewCookie("session_id", uuid, "/", DomainFromURLUtil.getDomain(Main.base_uri), null, COOKIE_MAX_AGE, false); //TODO: Set to true after implementing HTTPS!
+            c1 = new NewCookie("session_id", uuid, "/", null, null, COOKIE_MAX_AGE, false); //TODO: Set to true after implementing HTTPS!
             return Response.status(401).cookie(c1).entity(error.toString()).build();
         }
         
         uuid = UUID.randomUUID().toString();
         udao.saveSession(uuid);
-        c1 = new NewCookie("session_id", uuid, "/", DomainFromURLUtil.getDomain(Main.base_uri), null, COOKIE_MAX_AGE, false);
+        c1 = new NewCookie("session_id", uuid, "/", null, null, COOKIE_MAX_AGE, false);
 
         return Response.status(200).cookie(c1).build();
     }

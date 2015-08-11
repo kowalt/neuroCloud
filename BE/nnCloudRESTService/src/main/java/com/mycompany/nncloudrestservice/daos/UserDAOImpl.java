@@ -168,7 +168,7 @@ public class UserDAOImpl implements UserDAO
         catch(HibernateException he)
         {
             if (tx != null) tx.rollback();
-            he.printStackTrace();
+                he.printStackTrace();
         }
         finally
         {
