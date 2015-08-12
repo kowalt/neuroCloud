@@ -15,7 +15,7 @@ angular.module('nncloud').controller('LoginCtrl', ['$scope', '$http', '$alert', 
 					"Content-Type": "application/json"
 				},
 				data: { "login": $scope.user.login, "password": $scope.user.password }
-			}
+			};
 
 			$http(request).success(function(data, status, headers, config)
 			{	
