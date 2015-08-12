@@ -26,6 +26,5 @@ public class CORSFilter implements ContainerResponseFilter
         {    
             responseContext.getHeaders().add("Access-Control-Allow-Origin", origin);
         }
-       
     }        
 }
