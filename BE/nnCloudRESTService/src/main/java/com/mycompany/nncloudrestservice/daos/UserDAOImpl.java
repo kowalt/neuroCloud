@@ -54,7 +54,7 @@ public class UserDAOImpl implements UserDAO
             user = (User)results.get(0);
             
             if(!user.isActivated())
-                throw new LoginException("Incorrect login");
+                throw new LoginException("User has not been activated yet.");
                
             tx.commit();
         }
@@ -182,6 +182,32 @@ public class UserDAOImpl implements UserDAO
     @Override
     public boolean checkIfTokenIsCorrect(String token) 
     {
-        return false; //TODO ;)
+        Session session = factory.openSession();
+        
+        Transaction tx = null;
+        
+        boolean r=false;
+        
+        try
+        {
+            tx = session.beginTransaction();
+            Query query = session.createQuery("FROM com.mycompany.nncloudrestservice.model.User u WHERE u.session_id = :session_id");     
+            query.setParameter("session_id", SafeHashUtil.getHash(token));
+            List results = query.list();
+            if(!results.isEmpty())
+                r=true;
+            tx.commit();
+        }
+        catch(HibernateException he)
+        {
+            if (tx != null) tx.rollback();
+                he.printStackTrace();
+        }
+        finally
+        {
+            session.close();
+        }
+        
+        return r;
     }
 }

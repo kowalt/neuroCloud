@@ -36,7 +36,7 @@ public class AuthorizationRequestFilter implements ContainerRequestFilter
         UserDAO udao = new UserDAOImpl();
         
         // check if cookie contains a valid token 
-        if(c.getValue() != null && udao.checkIfTokenIsCorrect(c.getValue()))
+        if(c != null && c.getValue() != null && udao.checkIfTokenIsCorrect(c.getValue()))
             return;
         
         //Dismiss
