@@ -8,6 +8,7 @@ angular.module('nncloud').controller('LoginCtrl', ['$scope', '$http', '$alert', 
 	{
 			var request = 
 			{	
+				withCredentials: true,
 				method: "POST",
 				url: API['AUTH_LOGIN'],
 				headers:

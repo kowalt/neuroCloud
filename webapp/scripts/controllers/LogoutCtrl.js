@@ -1,11 +1,12 @@
 'use strict';
 
 angular.module('nncloud')
-  .controller('LogoutCtrl',['$scope', '$http', '$alert','$location', function($scope, $http, $alert, $location) {
+  .controller('LogoutCtrl',['$scope', '$http', '$alert','$location', '$rootScope', function($scope, $http, $alert, $location, $rootScope) {
 	$scope.logout = function()
 	{
 		var request =
-		{
+		{	
+			withCredentials: true,
 			method: "GET",
 			url: API['AUTH_LOGOUT']
 		};
