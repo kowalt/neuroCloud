@@ -16,5 +16,10 @@
       <property name="info_to_admin" column="info_to_admin" type="string"/>
       <property name="session_id" column="session_id" type="string"/>
       <property name="registered" column="registered" type="date"/>
+      <set name="networks" cascade="all">
+          <key column="id_user"/>
+          <one-to-many class="Network"/>
+      </set>
+      <one-to-one name="performance_settings" cascade="all" class="PerformanceSettings"/>
   </class>
 </hibernate-mapping>
