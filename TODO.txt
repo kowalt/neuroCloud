@@ -1,0 +1,2 @@
+1) WS: Refactoring- Use DAO pattern correctly! Also include controllers
+2) FE: Fix own style loading in Firefox
