@@ -6,6 +6,7 @@
 package com.mycompany.nncloudrestservice.model;
 
 import java.util.Date;
+import java.util.Set;
 
 /**
  *
@@ -21,7 +22,25 @@ public class User
     private String info_to_admin;
     private String session_id;
     private Date registered;
-  
+    private Set<Network> networks;
+    private PerformanceSettings performance_settings;
+
+    public PerformanceSettings getPerformance_settings() {
+        return performance_settings;
+    }
+
+    public void setPerformance_settings(PerformanceSettings performance_settings) {
+        this.performance_settings = performance_settings;
+    }
+    
+    public Set<Network> getNetworks() {
+        return networks;
+    }
+
+    public void setNetworks(Set<Network> networks) {
+        this.networks = networks;
+    }
+    
     public int getId() 
     {
         return id;

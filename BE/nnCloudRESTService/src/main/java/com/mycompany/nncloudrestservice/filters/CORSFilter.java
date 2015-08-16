@@ -25,7 +25,7 @@ public class CORSFilter implements ContainerResponseFilter
         if(TrustedOrigins.check(origin))
         {    
             responseContext.getHeaders().add("Access-Control-Allow-Origin", origin);
+            responseContext.getHeaders().add("Access-Control-Allow-Credentials", "true");
         }
-       
     }        
 }

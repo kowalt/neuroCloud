@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.mycompany.nncloudrestservice.model">
+  <class name="Layer" table="layers">
+      <property name="relative_number" column="relative_number"/>
+      <id name="id" column="id_layer" type="int">
+          <column name="id_layer"/>
+          <generator class="native"/>
+      </id>
+      <set name="neurons" cascade="all" table="neurons">
+          <key>
+              <column name="id_layer" not-null="true"/>
+          </key>
+          <one-to-many class="Neuron"/>
+      </set>
+      <many-to-one name="network" class="Network" cascade="all">
+          <column name="id_network" not-null="true"/>
+      </many-to-one>
+  </class>
+</hibernate-mapping>

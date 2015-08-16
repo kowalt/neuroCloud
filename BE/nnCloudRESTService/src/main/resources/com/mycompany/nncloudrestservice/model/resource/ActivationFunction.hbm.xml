@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.mycompany.nncloudrestservice.model">
+  <class name="ActivationFunction" table="activation_functions">
+      <id name="id" type="int">
+          <column name="id_activation_function" not-null="true"/>
+          <generator class="native"/>
+      </id>
+      <many-to-one name="neuron" class="Neuron" cascade="all">
+          <column name="id_neuron" not-null="true"/>
+      </many-to-one>
+      <property name="function" column="function" type="string"/>
+      <property name="domain_rule" column="domain_rule" type="string"/>      
+  </class>
+</hibernate-mapping>

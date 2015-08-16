@@ -13,6 +13,7 @@ import javax.ws.rs.container.ContainerRequestContext;
 import javax.ws.rs.container.ContainerRequestFilter;
 import javax.ws.rs.container.PreMatching;
 import javax.ws.rs.core.Cookie;
+import javax.ws.rs.core.Response;
 
 /**
  *
@@ -27,7 +28,7 @@ public class AuthorizationRequestFilter implements ContainerRequestFilter
     {
         // don't check the credentials if not Login or Register request or OPTIONS method
         String path = requestContext.getUriInfo().getPath();
-        if(requestContext.getMethod().matches("OPTIONS") || path.matches("[login|register]"))
+        if(requestContext.getMethod().matches("OPTIONS") || path.matches("(login|register)"))
             return;
 
         Cookie c = requestContext.getCookies().get("session_id");
@@ -35,9 +36,10 @@ public class AuthorizationRequestFilter implements ContainerRequestFilter
         UserDAO udao = new UserDAOImpl();
         
         // check if cookie contains a valid token 
-        if(udao.checkIfTokenIsCorrect(c.getValue()))
+        if(c != null && c.getValue() != null && udao.checkIfTokenIsCorrect(c.getValue()))
             return;
-            
+        
         //Dismiss
+        requestContext.abortWith(Response.status(401).build());
     }
 }

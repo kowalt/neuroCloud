@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.mycompany.nncloudrestservice.model">
+  <class name="Synapse" table="synapses">
+      <id name="id" type="int">
+          <column name="id_synapse" not-null="true" />
+          <generator class="native"/>
+      </id>
+      <set name="neurons" table="connections">
+          <key>
+              <column name="id_synapse"/>
+          </key>
+          <many-to-many entity-name="Neuron">
+              <column name="id_neuron" not-null="true"/>
+          </many-to-many> 
+      </set>
+      <property name="weight" type="int">
+          <column name="weight" />
+      </property>
+  </class>   
+</hibernate-mapping>

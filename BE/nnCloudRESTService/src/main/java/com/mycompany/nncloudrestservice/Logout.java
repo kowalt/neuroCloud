@@ -39,7 +39,7 @@ public class Logout
             return Response.status(401).entity(error).build();
         }
         
-        NewCookie killer = new NewCookie("session_id","0", "/",DomainFromURLUtil.getDomain(Main.base_uri),null,0,false);
+        NewCookie killer = new NewCookie("session_id","0", "/",null,null,0,false);
 
         return Response.status(204).cookie(killer).build();
     }      

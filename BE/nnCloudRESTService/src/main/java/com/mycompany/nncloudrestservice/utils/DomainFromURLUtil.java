@@ -7,8 +7,6 @@ package com.mycompany.nncloudrestservice.utils;
 
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -18,15 +16,21 @@ public class DomainFromURLUtil
 {
     public static String getDomain(String url)
     {
-        URI uri = null;
-        try 
-        {
-            uri = new URI(url);
-        } 
-        catch (URISyntaxException ex) 
-        {
-            ex.printStackTrace();
-        }
-        return uri.getHost();
+        if(url == null || url.length() == 0)
+            return "";
+
+        int doubleslash = url.indexOf("//");
+        if(doubleslash == -1)
+            doubleslash = 0;
+        else
+            doubleslash += 2;
+
+        int end = url.indexOf('/', doubleslash);
+        end = end >= 0 ? end : url.length();
+
+        int port = url.indexOf(':', doubleslash);
+        end = (port > 0 && port < end) ? port : end;
+
+        return url.substring(doubleslash, end);
     }
 }

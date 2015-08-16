@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.mycompany.nncloudrestservice.model">
+  <class name="Neuron" table="neurons">
+      <id name="id" column="id_neuron" type="int">
+          <generator class="native"/>
+      </id>
+      <many-to-one name="layer" class="Layer" cascade="all">
+          <column name="id_layer" not-null="true"/>
+      </many-to-one>
+      
+      <set name="synapses" table="synapses">
+          <key>
+              <column name="id_layer" not-null="true"/>
+          </key>
+          <many-to-many entity-name="Synapse">
+              <column name="id_layer" not-null="true" />
+          </many-to-many>
+      </set>
+      <set name="activation_functions" table="activation_functions" cascade="all">
+          <key>
+              <column name="id_layer" not-null="true"/>
+          </key>
+          <one-to-many class="ActivationFunction"/>
+      </set>
+      
+  </class>
+</hibernate-mapping>
