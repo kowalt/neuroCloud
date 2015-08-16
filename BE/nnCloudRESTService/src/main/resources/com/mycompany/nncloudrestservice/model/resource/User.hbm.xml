@@ -5,7 +5,8 @@
       <meta attribute="class-description">
           Description under construction
       </meta>
-      <id name="id" column="id_user" type="int">
+      <id name="id" type="int">
+          <column name="id_user" not-null="true"/>
           <generator class="native"/>
       </id>
       <property name="login" column="login" type="string"/>
@@ -16,10 +17,12 @@
       <property name="info_to_admin" column="info_to_admin" type="string"/>
       <property name="session_id" column="session_id" type="string"/>
       <property name="registered" column="registered" type="date"/>
-      <set name="networks" cascade="all">
-          <key column="id_user"/>
+      <set name="networks" cascade="all" table="networks">
+          <key>
+              <column name="id_user" not-null="true" />
+          </key>
           <one-to-many class="Network"/>
       </set>
-      <one-to-one name="performance_settings" cascade="all" class="PerformanceSettings"/>
+      <one-to-one name="performance_settings" cascade="all" class="PerformanceSettings"></one-to-one>
   </class>
 </hibernate-mapping>

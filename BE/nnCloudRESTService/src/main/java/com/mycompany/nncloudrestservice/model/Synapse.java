@@ -5,14 +5,34 @@
  */
 package com.mycompany.nncloudrestservice.model;
 
+import java.util.Set;
+
 /**
  *
  * @author Tomasz
  */
-public class Synapse {
+public class Synapse 
+{
+    private int id;
     private double weight;
-    private int from;
-    private int to;
+    private Set<Neuron> neurons;
+    
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+
+    public Set<Neuron> getNeurons() {
+        return neurons;
+    }
+
+    public void setNeurons(Set<Neuron> neurons) {
+        this.neurons = neurons;
+    }
     
     public double getWeight() {
         return weight;
@@ -20,23 +40,5 @@ public class Synapse {
 
     public void setWeight(double weight) {
         this.weight = weight;
-    }
-
-    public int getFrom() {
-        return from;
-    }
-
-    public void setFrom(int from) {
-        this.from = from;
-    }
-
-    public int getTo() {
-        return to;
-    }
-
-    public void setTo(int to) {
-        this.to = to;
-    }
-
-    
+    }    
 }

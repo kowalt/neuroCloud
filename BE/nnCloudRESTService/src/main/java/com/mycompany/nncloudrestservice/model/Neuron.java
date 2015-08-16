@@ -13,10 +13,9 @@ import java.util.Set;
  */
 public class Neuron 
 {
-    private int id_neuron;
-    private int id_layer;
-    private Set synapses;
-    private Set activation_functions;
+    private int id;
+    private Set<Synapse> synapses;
+    private Set<ActivationFunction> activation_functions;
     
     public Set getSynapses() {
         return synapses;
@@ -27,26 +26,18 @@ public class Neuron
     }
 
     public int getId_neuron() {
-        return id_neuron;
+        return id;
     }
 
     public void setId_neuron(int id_neuron) {
-        this.id_neuron = id_neuron;
+        this.id = id_neuron;
     }
-
-    public int getId_layer() {
-        return id_layer;
-    }
-
-    public void setId_layer(int id_layer) {
-        this.id_layer = id_layer;
-    }
-
-    public Set getActivation_functions() {
+    
+    public Set<ActivationFunction> getActivation_functions() {
         return activation_functions;
     }
 
-    public void setActivation_functions(Set activation_functions) {
+    public void setActivation_functions(Set<ActivationFunction> activation_functions) {
         this.activation_functions = activation_functions;
     }
 

@@ -6,7 +6,6 @@
 package com.mycompany.nncloudrestservice.model;
 
 import java.util.Date;
-import java.util.Objects;
 import java.util.Set;
 
 /**
@@ -16,56 +15,10 @@ import java.util.Set;
 public class Network
 {
     private int id;
-    private int id_user;
-
-
     private String name;
     private Date creation;
-    private Set layers;
-    
-    @Override
-    public int hashCode() {
-        int hash = 7;
-        hash = 59 * hash + this.id;
-        hash = 59 * hash + Objects.hashCode(this.name);
-        hash = 59 * hash + Objects.hashCode(this.creation);
-        hash = 59 * hash + Objects.hashCode(this.layers);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Network other = (Network) obj;
-        if (this.id != other.id) {
-            return false;
-        }
-        if (!Objects.equals(this.name, other.name)) {
-            return false;
-        }
-        if (!Objects.equals(this.creation, other.creation)) {
-            return false;
-        }
-        if (!Objects.equals(this.layers, other.layers)) {
-            return false;
-        }
-        return true;
-    }
-
-    public int getId_user() {
-        return id_user;
-    }
-
-    public void setId_user(int id_user) {
-        this.id_user = id_user;
-    }
-    
-    
+    private Set<Layer> layers;
+        
     public int getId() {
         return id;
     }
@@ -90,11 +43,11 @@ public class Network
         this.creation = creation;
     }
 
-    public Set getLayers() {
+    public Set<Layer> getLayers() {
         return layers;
     }
 
-    public void setLayers(Set layers) {
+    public void setLayers(Set<Layer> layers) {
         this.layers = layers;
     }
 

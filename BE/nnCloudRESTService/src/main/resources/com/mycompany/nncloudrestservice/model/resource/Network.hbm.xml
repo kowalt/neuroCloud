@@ -2,14 +2,20 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping package="com.mycompany.nncloudrestservice.model">
   <class name="Network" table="networks">
-      <id name="id" type="int" column="id_network">
+      <id name="id" type="int">
+          <column name="id_network"/>
           <generator class="native"/>
       </id>
       <property name="name" column="name" type="string"/>
       <property name="creation" column="creation" type="date"/>
-      <set name="layers" cascade="all">
-          <key column="id_network"/>
+      <set name="layers" cascade="all" table="layers">
+          <key>
+              <column name="id_network" not-null="true" />
+          </key>
           <one-to-many class="Layer"/>
       </set>
+      <many-to-one name="user" class="User" cascade="all">
+        <column name="id_user" not-null="true"/>
+      </many-to-one>
   </class>
 </hibernate-mapping>

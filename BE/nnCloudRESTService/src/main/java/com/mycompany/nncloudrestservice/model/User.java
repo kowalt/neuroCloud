@@ -22,7 +22,7 @@ public class User
     private String info_to_admin;
     private String session_id;
     private Date registered;
-    private Set networks;
+    private Set<Network> networks;
     private PerformanceSettings performance_settings;
 
     public PerformanceSettings getPerformance_settings() {
@@ -33,11 +33,11 @@ public class User
         this.performance_settings = performance_settings;
     }
     
-    public Set getNetworks() {
+    public Set<Network> getNetworks() {
         return networks;
     }
 
-    public void setNetworks(Set networks) {
+    public void setNetworks(Set<Network> networks) {
         this.networks = networks;
     }
     

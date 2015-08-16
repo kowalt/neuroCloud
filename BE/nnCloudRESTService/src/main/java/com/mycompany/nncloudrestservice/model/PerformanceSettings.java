@@ -11,6 +11,26 @@ package com.mycompany.nncloudrestservice.model;
  */
 public class PerformanceSettings 
 {
-    private int id_user;
     private boolean visualisation;
+    private User user;
+
+    public boolean isVisualisation() 
+    {
+        return visualisation;
+    }
+
+    public void setVisualisation(boolean visualisation) 
+    {
+        this.visualisation = visualisation;
+    }
+
+    public User getUser() 
+    {
+        return user;
+    }
+
+    public void setUser(User user) 
+    {
+        this.user = user;
+    }
 }
