@@ -5,8 +5,7 @@
  */
 package com.mycompany.nncloudrestservice.filters;
 
-import com.mycompany.nncloudrestservice.daos.UserDAO;
-import com.mycompany.nncloudrestservice.daos.UserDAOImpl;
+import com.mycompany.nncloudrestservice.controllers.LoginController;
 import java.io.IOException;
 import javax.annotation.Priority;
 import javax.ws.rs.container.ContainerRequestContext;
@@ -33,10 +32,10 @@ public class AuthorizationRequestFilter implements ContainerRequestFilter
 
         Cookie c = requestContext.getCookies().get("session_id");
         
-        UserDAO udao = new UserDAOImpl();
+        LoginController lc = new LoginController();
         
         // check if cookie contains a valid token 
-        if(c != null && c.getValue() != null && udao.checkIfTokenIsCorrect(c.getValue()))
+        if(c != null && c.getValue() != null && lc.checkIfTokenIsCorrect(c.getValue()))
             return;
         
         //Dismiss

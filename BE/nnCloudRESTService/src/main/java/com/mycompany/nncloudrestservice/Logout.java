@@ -5,9 +5,8 @@
  */
 package com.mycompany.nncloudrestservice;
 
+import com.mycompany.nncloudrestservice.controllers.LoginController;
 import com.mycompany.nncloudrestservice.daos.UserDAO;
-import com.mycompany.nncloudrestservice.daos.UserDAOImpl;
-import com.mycompany.nncloudrestservice.utils.DomainFromURLUtil;
 import javax.ws.rs.CookieParam;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -26,11 +25,11 @@ public class Logout
     @GET
     public Response logoutUser(@CookieParam("session_id") Cookie cookie)
     {
-        UserDAO udao = new UserDAOImpl();
-      
+        LoginController lc = new LoginController();
+        
         try
         {
-            udao.destroySession(cookie.getValue());
+            lc.destroySession(cookie.getValue());
         }
         catch(LogoutException le)
         {

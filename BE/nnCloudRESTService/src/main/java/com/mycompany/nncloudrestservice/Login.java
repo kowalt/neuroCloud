@@ -1,17 +1,12 @@
 package com.mycompany.nncloudrestservice;
 
-import com.mycompany.nncloudrestservice.daos.LoginException;
-import com.mycompany.nncloudrestservice.daos.UserDAO;
-import com.mycompany.nncloudrestservice.daos.UserDAOImpl;
-import com.mycompany.nncloudrestservice.model.User;
-import com.mycompany.nncloudrestservice.utils.DomainFromURLUtil;
-import com.mycompany.nncloudrestservice.utils.SafeHashUtil;
+import com.mycompany.nncloudrestservice.controllers.LoginController;
+import com.mycompany.nncloudrestservice.controllers.LoginException;
 import java.util.UUID;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
-import javax.ws.rs.core.Cookie;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.NewCookie;
 import javax.ws.rs.core.Response;
@@ -36,22 +31,15 @@ public class Login
     @Produces(MediaType.APPLICATION_JSON)
     public Response loginUser(String x) 
     {
+        LoginController lc = new LoginController();
         JSONObject request = new JSONObject(x);
-        // TODO: Too boilerplate. Take advantage of ResponseBuilder!
-        String givenLogin = request.get("login").toString();
-        
-        // DigestUtils.sha256Hex(password + "salt");
-        
-        String givenEncryptedPassword = SafeHashUtil.getHash(request.get("password").toString());
-        
-        UserDAO udao = new UserDAOImpl();
-        
+                
         NewCookie c1;
         String uuid;
         
         try
         {            
-            User u = udao.getUser(givenLogin, givenEncryptedPassword);
+            lc.loginUser(request);
         } 
         catch(LoginException le)
         {
@@ -64,7 +52,7 @@ public class Login
         }
         
         uuid = UUID.randomUUID().toString();
-        udao.saveSession(uuid);
+        lc.saveSession(request, uuid);
         c1 = new NewCookie("session_id", uuid, "/", null, null, COOKIE_MAX_AGE, false);
 
         return Response.status(200).cookie(c1).build();

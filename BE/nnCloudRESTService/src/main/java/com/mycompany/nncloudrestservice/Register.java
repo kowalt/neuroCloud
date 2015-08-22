@@ -5,7 +5,7 @@
  */
 package com.mycompany.nncloudrestservice;
 
-import com.mycompany.nncloudrestservice.daos.UserDAOImpl;
+import com.mycompany.nncloudrestservice.controllers.RegisterController;
 import com.mycompany.nncloudrestservice.daos.UserExistsException;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
@@ -28,12 +28,11 @@ public class Register
     public Response register(String x)
     {
         JSONObject request = new JSONObject(x);
-        
-        UserDAOImpl udao = new UserDAOImpl();
+        RegisterController rc = new RegisterController();
         
         try
         {
-            udao.registerNewUser(request);
+            rc.registerNewUser(request);
         }
         catch(UserExistsException ex)
         {
