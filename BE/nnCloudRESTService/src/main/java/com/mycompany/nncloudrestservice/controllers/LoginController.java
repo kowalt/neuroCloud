@@ -37,6 +37,7 @@ public class LoginController
     {
         UserDAO udao = new UserDAO();
         User user = null;
+        
         try
         {
             user = udao.getItem(creds.getString("login"), SafeHashUtil.getHash(creds.getString("password")));

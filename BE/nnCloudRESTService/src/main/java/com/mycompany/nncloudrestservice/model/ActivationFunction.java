@@ -13,7 +13,6 @@ public class ActivationFunction
 {
     private int id;
 
-
     private String function;
     private String domain_rule;
     private Neuron neuron;

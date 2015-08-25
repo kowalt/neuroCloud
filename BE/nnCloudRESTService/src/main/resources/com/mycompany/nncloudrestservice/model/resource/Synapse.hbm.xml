@@ -6,11 +6,11 @@
           <column name="id_synapse" not-null="true" />
           <generator class="native"/>
       </id>
-      <set name="neurons" table="connections">
+      <set name="neurons" table="connections" cascade="all">
           <key>
               <column name="id_synapse"/>
           </key>
-          <many-to-many entity-name="Neuron">
+          <many-to-many class="Neuron" >
               <column name="id_neuron" not-null="true"/>
           </many-to-many> 
       </set>

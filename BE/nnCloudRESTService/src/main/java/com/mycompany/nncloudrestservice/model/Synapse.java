@@ -5,6 +5,7 @@
  */
 package com.mycompany.nncloudrestservice.model;
 
+import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -15,7 +16,7 @@ public class Synapse
 {
     private int id;
     private double weight;
-    private Set<Neuron> neurons;
+    private Set<Neuron> neurons = new HashSet<>();
     
     public int getId() {
         return id;

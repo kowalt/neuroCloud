@@ -23,7 +23,7 @@ import org.hibernate.Transaction;
  */
 public class UserDAO implements DAO<User>
 {    
-    private SessionFactory factory;
+    private final SessionFactory factory;
     
     public UserDAO()
     {

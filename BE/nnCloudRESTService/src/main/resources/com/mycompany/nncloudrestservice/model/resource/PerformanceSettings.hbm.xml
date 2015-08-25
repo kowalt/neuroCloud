@@ -2,7 +2,15 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping package="com.mycompany.nncloudrestservice.model">
     <class name="PerformanceSettings" table="performance_settings">
+        <id name="id_user" type="int">
+            <column name="id_user" />
+            <generator class="foreign">
+                <param name="property">stock</param>
+            </generator>
+        </id>
         <one-to-one name="user" class="User" constrained="true"></one-to-one>
-        <property name="visualisation" type="boolean"/>
+        <property name="visualisation" type="boolean">
+            <column name="visualisation"/>
+        </property>
     </class>
 </hibernate-mapping>

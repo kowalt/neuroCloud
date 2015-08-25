@@ -2,27 +2,26 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping package="com.mycompany.nncloudrestservice.model">
   <class name="Neuron" table="neurons">
-      <id name="id" column="id_neuron" type="int">
+      <id name="id" type="int">
+          <column name="id_neuron" not-null="true"/>
           <generator class="native"/>
       </id>
       <many-to-one name="layer" class="Layer" cascade="all">
           <column name="id_layer" not-null="true"/>
       </many-to-one>
-      
-      <set name="synapses" table="synapses">
+      <set name="synapses" table="connections" inverse="true">
           <key>
-              <column name="id_layer" not-null="true"/>
+              <column name="id_neuron" not-null="true"/>
           </key>
-          <many-to-many entity-name="Synapse">
-              <column name="id_layer" not-null="true" />
+          <many-to-many class="Synapse">
+              <column name="id_synapse" not-null="true" />
           </many-to-many>
       </set>
       <set name="activation_functions" table="activation_functions" cascade="all">
           <key>
-              <column name="id_layer" not-null="true"/>
+              <column name="id_activation_function" not-null="true"/>
           </key>
           <one-to-many class="ActivationFunction"/>
       </set>
-      
   </class>
 </hibernate-mapping>

@@ -6,6 +6,7 @@
 package com.mycompany.nncloudrestservice.model;
 
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -22,7 +23,7 @@ public class User
     private String info_to_admin;
     private String session_id;
     private Date registered;
-    private Set<Network> networks;
+    private Set<Network> networks = new HashSet<>();
     private PerformanceSettings performance_settings;
 
     public PerformanceSettings getPerformance_settings() {

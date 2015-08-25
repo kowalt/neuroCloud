@@ -9,10 +9,6 @@ import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
-import org.hibernate.SessionFactory;
-import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
-import org.hibernate.cfg.Configuration;
-import org.hibernate.service.ServiceRegistry;
 
 /**
  *
@@ -24,11 +20,19 @@ public class SessionContainer
     
     static
     {
-        Configuration configuration = new Configuration();
-        configuration.configure();
-        ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder().applySettings(
-        configuration.getProperties()).build();
+        try
+        {
+            Configuration configuration = new Configuration();
+            configuration.configure();
+            ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder().applySettings(
+            configuration.getProperties()).build();
 
-        factory = configuration.buildSessionFactory(serviceRegistry);
+            factory = configuration.buildSessionFactory(serviceRegistry);
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+            System.out.println(e.getMessage());
+        }
     }
 }

@@ -5,6 +5,7 @@
  */
 package com.mycompany.nncloudrestservice.model;
 
+import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -14,17 +15,26 @@ import java.util.Set;
 public class Neuron 
 {
     private int id;
-    private Set<Synapse> synapses;
-    private Set<ActivationFunction> activation_functions;
+    private Set<Synapse> synapses = new HashSet<>();
+    private Set<ActivationFunction> activation_functions = new HashSet<>();
+    private Layer layer;
     
-    public Set getSynapses() {
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public Set<Synapse> getSynapses() {
         return synapses;
     }
 
-    public void setSynapses(Set synapses) {
+    public void setSynapses(Set<Synapse> synapses) {
         this.synapses = synapses;
     }
-
+    
     public int getId_neuron() {
         return id;
     }
@@ -40,5 +50,15 @@ public class Neuron
     public void setActivation_functions(Set<ActivationFunction> activation_functions) {
         this.activation_functions = activation_functions;
     }
+    
+    public Layer getLayer() 
+    {
+        return layer;
+    }
 
+    public void setLayer(Layer layer) 
+    {
+        this.layer = layer;
+    }
+    
 }
