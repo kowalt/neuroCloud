@@ -43,13 +43,15 @@ public class UserDAO implements DAO<User>
             query.setParameter("login", user.getLogin());
             List results = query.list();
             
-            if(results.size() > 0)
+            if(!results.isEmpty())
                 throw new UserExistsException("User with this login already exists");
             
             query = session.createQuery("FROM User u WHERE u.email = :email");
             query.setParameter("email", user.getEmail());
             
-            if(results.size() > 0)
+            results = query.list();
+            
+            if(!results.isEmpty())
                 throw new UserExistsException("User with this email already exists");
             
             session.save(user);

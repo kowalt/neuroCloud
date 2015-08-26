@@ -13,6 +13,7 @@ public class PerformanceSettings
 {
     private boolean visualisation;
     private User user;
+    private int id_user;
 
     public boolean isVisualisation() 
     {
@@ -32,5 +33,13 @@ public class PerformanceSettings
     public void setUser(User user) 
     {
         this.user = user;
+    }
+
+    public int getId_user() {
+        return id_user;
+    }
+
+    public void setId_user(int id_user) {
+        this.id_user = id_user;
     }
 }
