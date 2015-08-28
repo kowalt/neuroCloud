@@ -31,6 +31,7 @@ public class RegisterController
         String givenEncryptedPassword = SafeHashUtil.getHash(givenPassword);
         user.setPassword(givenEncryptedPassword);
         user.setRegistered(Calendar.getInstance().getTime());
+        user.setNetworks(null);
         
         UserDAO udao = new UserDAO();
         udao.addItem(user);

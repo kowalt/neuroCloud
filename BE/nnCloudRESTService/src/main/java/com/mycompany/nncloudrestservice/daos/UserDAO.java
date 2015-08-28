@@ -77,7 +77,7 @@ public class UserDAO implements DAO<User>
         try
         {
             tx = session.beginTransaction();
-            session.save(user);
+            session.update(user);
             tx.commit();
         }
         catch(HibernateException he)
