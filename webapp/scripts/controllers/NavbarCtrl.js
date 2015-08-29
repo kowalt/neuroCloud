@@ -1,11 +1,11 @@
 'use strict';
 
 angular.module('nncloud')
-  .controller('NavbarCtrl',['$scope', function ($scope) {
+  .controller('NavbarCtrl',['$scope','$location', function ($scope,$location) {
 	$scope.networks_dropdown = [
                 {
                         "text": "Load...",
-                        "href": "#"
+                        "href": "/core/load"
                 },
                 {
                         "divider": true
@@ -16,7 +16,7 @@ angular.module('nncloud')
                 },
                 {
                         "text": "Save as...",
-			"href": "#"
+			"href": "/core/saveas"
                 },
                 {
                         "divider": true
@@ -25,4 +25,10 @@ angular.module('nncloud')
                         "text": "Delete",
                         "href": "#"
                 }
-]}]);
+	]	
+	
+	$scope.isActive = function(viewLocation)
+	{
+		return viewLocation === $location.path();	
+	}
+}]);

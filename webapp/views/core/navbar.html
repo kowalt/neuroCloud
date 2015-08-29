@@ -20,20 +20,20 @@
 						Networks
 					</button>
 				</li>		
-				<li class="active">
-					<a href="#">Workplace</a>
+				<li ng-class="{ active: isActive('/core/workplace')}">
+					<a href="#/core/workplace">Workplace</a>
 				</li>
-				<li>
-					<a href="#">Generate</a>
+				<li ng-class="{ active: isActive('/core/generate')}">
+					<a href="#/core/generate">Generate</a>
 				</li>
-				<li>
-					<a href="#">Export</a>
+				<li ng-class="{ active: isActive('/core/export')}">
+					<a href="#/core/export">Export</a>
 				</li>
-				<li>
-					<a href="#">Training</a>
+				<li ng-class="{active isActive('/core/training')}">
+					<a href="#/core/training">Training</a>
 				</li>
-				<li>
-					<a href="#">Settings</a>
+				<li ng-class="{active isActive('/core/settings')}">
+					<a href="#/core/settings">Settings</a>
 				</li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
@@ -42,3 +42,4 @@
 		</div>
 	</div>
 </nav>
+

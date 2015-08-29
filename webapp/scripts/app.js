@@ -22,12 +22,16 @@ var app = angular.module('nncloud', ['ngRoute','mgcrea.ngStrap', 'mgcrea.ngStrap
 	controller: 'WorkbenchCtrl'
       })
       .when('/core/generate', {
-	templateUrl: 'views/generate.html',
+	templateUrl: 'views/core/generate.html',
 	controller: 'GenerateCtrl'
       })
       .when('/core/export', {
 	templateUrl: 'views/core/export.html',
 	controller: 'ExportCtrl'
+      })
+      .when('/core/training', {
+	templateUrl: 'views/core/training.html',
+	controller: 'TrainingCtrl'
       })
       .when('/core/settings', {
 	templateUrl: 'views/core/settings.html',
