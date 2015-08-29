@@ -3,15 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.mycompany.nncloudrestservice;
+package com.mycompany.nncloudrestservice.exceptions;
 
 /**
  *
  * @author Tomasz
  */
-public class LogoutException extends Exception 
+public class UserExistsException extends Exception 
 {
-    public LogoutException(String message)
+    public UserExistsException(String message)
     {
         super(message);
     }

@@ -5,6 +5,7 @@
  */
 package com.mycompany.nncloudrestservice;
 
+import com.mycompany.nncloudrestservice.exceptions.LogoutException;
 import com.mycompany.nncloudrestservice.controllers.LoginController;
 import com.mycompany.nncloudrestservice.daos.UserDAO;
 import javax.ws.rs.CookieParam;

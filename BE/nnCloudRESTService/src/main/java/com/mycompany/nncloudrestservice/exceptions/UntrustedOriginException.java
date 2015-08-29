@@ -3,16 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.mycompany.nncloudrestservice.controllers;
+package com.mycompany.nncloudrestservice.exceptions;
 
 /**
  *
  * @author Tomasz
  */
-public class LoginException extends Exception
+public class UntrustedOriginException extends Exception
 {
-    public LoginException(String message)
+    public UntrustedOriginException()
     {
-        super(message);
-    }   
+        super("This origin is not supported.");
+    }
 }

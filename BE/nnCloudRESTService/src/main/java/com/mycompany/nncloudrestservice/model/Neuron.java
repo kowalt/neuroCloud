@@ -17,8 +17,7 @@ public class Neuron
     private int id;
     private Set<Synapse> synapses = new HashSet<>();
     private Set<ActivationFunction> activation_functions = new HashSet<>();
-    private Layer layer;
-    
+
     public int getId() {
         return id;
     }
@@ -49,16 +48,5 @@ public class Neuron
 
     public void setActivation_functions(Set<ActivationFunction> activation_functions) {
         this.activation_functions = activation_functions;
-    }
-    
-    public Layer getLayer() 
-    {
-        return layer;
-    }
-
-    public void setLayer(Layer layer) 
-    {
-        this.layer = layer;
-    }
-    
+    }  
 }

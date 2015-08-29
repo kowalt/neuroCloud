@@ -3,12 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.mycompany.nncloudrestservice.daos;
+package com.mycompany.nncloudrestservice.exceptions;
 
 /**
  *
  * @author Tomasz
  */
-public class NetworkDAOImpl {
-    
+public class LoginException extends Exception
+{
+    public LoginException(String message)
+    {
+        super(message);
+    }   
 }

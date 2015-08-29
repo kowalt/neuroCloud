@@ -6,9 +6,6 @@
           <column name="id_neuron" not-null="true"/>
           <generator class="native"/>
       </id>
-      <many-to-one name="layer" class="Layer" cascade="all">
-          <column name="id_layer" not-null="true"/>
-      </many-to-one>
       <set name="synapses" table="connections" inverse="true">
           <key>
               <column name="id_neuron" not-null="true"/>

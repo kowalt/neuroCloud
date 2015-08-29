@@ -1,7 +1,7 @@
 package com.mycompany.nncloudrestservice;
 
 import com.mycompany.nncloudrestservice.controllers.LoginController;
-import com.mycompany.nncloudrestservice.controllers.LoginException;
+import com.mycompany.nncloudrestservice.exceptions.LoginException;
 import java.util.UUID;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;

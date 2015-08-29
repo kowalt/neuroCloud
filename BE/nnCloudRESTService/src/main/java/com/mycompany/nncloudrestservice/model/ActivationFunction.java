@@ -15,7 +15,6 @@ public class ActivationFunction
 
     private String function;
     private String domain_rule;
-    private Neuron neuron;
 
     public int getId() {
         return id;
@@ -24,15 +23,7 @@ public class ActivationFunction
     public void setId(int id) {
         this.id = id;
     }
-
-    public Neuron getNeuron() {
-        return neuron;
-    }
-
-    public void setNeuron(Neuron neuron) {
-        this.neuron = neuron;
-    }
-    
+  
     public String getFunction() {
         return function;
     }

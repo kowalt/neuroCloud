@@ -5,7 +5,8 @@
  */
 package com.mycompany.nncloudrestservice.controllers;
 
-import com.mycompany.nncloudrestservice.LogoutException;
+import com.mycompany.nncloudrestservice.exceptions.LoginException;
+import com.mycompany.nncloudrestservice.exceptions.LogoutException;
 import com.mycompany.nncloudrestservice.daos.UserDAO;
 import com.mycompany.nncloudrestservice.model.User;
 import com.mycompany.nncloudrestservice.utils.SafeHashUtil;

@@ -17,17 +17,6 @@ public class Layer
     private int id;
     private int relative_number;
     private Set<Neuron> neurons = new HashSet<>();
-    private Network network;
-
-    public Network getNetwork() 
-    {
-        return network;
-    }
-
-    public void setNetwork(Network network) 
-    {
-        this.network = network;
-    }
     
     public Set<Neuron> getNeurons() {
         return neurons;

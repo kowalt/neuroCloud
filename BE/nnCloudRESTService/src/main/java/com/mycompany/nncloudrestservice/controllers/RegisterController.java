@@ -6,7 +6,7 @@
 package com.mycompany.nncloudrestservice.controllers;
 
 import com.mycompany.nncloudrestservice.daos.UserDAO;
-import com.mycompany.nncloudrestservice.daos.UserExistsException;
+import com.mycompany.nncloudrestservice.exceptions.UserExistsException;
 import com.mycompany.nncloudrestservice.model.User;
 import com.mycompany.nncloudrestservice.utils.SafeHashUtil;
 import java.util.Calendar;

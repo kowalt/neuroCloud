@@ -6,7 +6,7 @@
 package com.mycompany.nncloudrestservice;
 
 import com.mycompany.nncloudrestservice.controllers.RegisterController;
-import com.mycompany.nncloudrestservice.daos.UserExistsException;
+import com.mycompany.nncloudrestservice.exceptions.UserExistsException;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;

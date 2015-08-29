@@ -3,15 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.mycompany.nncloudrestservice.daos;
+package com.mycompany.nncloudrestservice.exceptions;
 
 /**
  *
  * @author Tomasz
  */
-public class UserExistsException extends Exception 
+public class GenerationException extends Exception 
 {
-    public UserExistsException(String message)
+    public GenerationException(String message)
     {
         super(message);
     }
