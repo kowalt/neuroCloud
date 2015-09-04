@@ -6,6 +6,8 @@
 package com.mycompany.nncloudrestservice.misc;
 
 import com.mycompany.nncloudrestservice.model.ActivationFunction;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.StringTokenizer;
 
 /**
@@ -20,12 +22,13 @@ public class ActivationFunctionParser
 
     }
     
-    public ActivationFunction parse(String raw)
+    public List<ActivationFunction> parse(String raw)
     {
         StringTokenizer rulesTok = new StringTokenizer(raw, ";");
         String rule,function,domain;
         
-        ActivationFunction af = new ActivationFunction();
+        List<ActivationFunction> af = new ArrayList<>();
+        ActivationFunction afun;
         
         while(rulesTok.hasMoreElements())
         {
@@ -34,9 +37,14 @@ public class ActivationFunctionParser
             function = innerTok.nextToken();
             domain = innerTok.nextToken();
             
-            af.setFunction(function);
-            af.setDomain_rule(domain);
+            afun = new ActivationFunction();
+            
+            afun.setFunction(function);
+            afun.setDomain_rule(domain);
+            
+            af.add(afun);
         }
+        
         return af;
     }
 }

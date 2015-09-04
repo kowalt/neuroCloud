@@ -5,9 +5,9 @@
  */
 package com.mycompany.nncloudrestservice.model;
 
+import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
 
 /**
  *
@@ -23,7 +23,7 @@ public class User
     private String info_to_admin;
     private String session_id;
     private Date registered;
-    private Set<Network> networks = new HashSet<>();
+    private List<Network> networks = new ArrayList<>();
     private PerformanceSettings performance_settings;
 
     public PerformanceSettings getPerformance_settings() {
@@ -34,11 +34,11 @@ public class User
         this.performance_settings = performance_settings;
     }
     
-    public Set<Network> getNetworks() {
+    public List<Network> getNetworks() {
         return networks;
     }
 
-    public void setNetworks(Set<Network> networks) {
+    public void setNetworks(List<Network> networks) {
         this.networks = networks;
     }
     

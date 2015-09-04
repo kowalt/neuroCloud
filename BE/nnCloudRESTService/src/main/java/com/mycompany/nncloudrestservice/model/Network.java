@@ -5,9 +5,9 @@
  */
 package com.mycompany.nncloudrestservice.model;
 
+import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
 
 /**
  *
@@ -18,7 +18,7 @@ public class Network
     private int id;
     private String name;
     private Date creation;
-    private Set<Layer> layers = new HashSet<>();
+    private List<Layer> layers = new ArrayList<>();
 
     
     public int getId() {
@@ -45,11 +45,11 @@ public class Network
         this.creation = creation;
     }
 
-    public Set<Layer> getLayers() {
+    public List<Layer> getLayers() {
         return layers;
     }
 
-    public void setLayers(Set<Layer> layers) {
+    public void setLayers(List<Layer> layers) {
         this.layers = layers;
     }
 }

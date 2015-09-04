@@ -5,32 +5,26 @@
  */
 package com.mycompany.nncloudrestservice;
 
-import com.mycompany.nncloudrestservice.controllers.GenerateController;
+import com.mycompany.nncloudrestservice.model.Network;
 import javax.ws.rs.Consumes;
-import javax.ws.rs.POST;
+import javax.ws.rs.GET;
 import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-
-import org.json.JSONObject;
 
 /**
  *
  * @author Tomasz
  */
-@Path("generate")
-public class Generate 
+@Path("networks")
+public class Networks
 {
-    @POST
+    @GET
+    @Path("/{id : \\\\d+}")
     @Consumes(MediaType.APPLICATION_JSON)
-    @Produces(MediaType.APPLICATION_XML)
-    public Response generate(String x)
+    public Response loadNetwork()
     {
-        GenerateController gc = new GenerateController();
-       
-        gc.generateNetwork(new JSONObject(x));
         
-        return Response.status(204).build();
+        return null;
     }
 }

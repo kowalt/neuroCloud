@@ -7,11 +7,11 @@
           <generator class="native"/>
       </id>
       <property name="relative_number" column="relative_number" type="int"/>
-      <set name="neurons" cascade="all" table="neurons">
+      <list name="neurons" cascade="all" table="neurons">
           <key>
               <column name="id_layer" not-null="true"/>
           </key>
           <one-to-many class="Neuron"/>
-      </set>
+      </list>
   </class>
 </hibernate-mapping>

@@ -5,18 +5,19 @@
  */
 package com.mycompany.nncloudrestservice.model;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
  * @author Tomasz
  */
+
 public class Synapse 
 {
     private int id;
     private double weight;
-    private Set<Neuron> neurons = new HashSet<>();
+    private List<Neuron> neurons = new ArrayList<>();
     
     public int getId() {
         return id;
@@ -26,12 +27,11 @@ public class Synapse
         this.id = id;
     }
 
-
-    public Set<Neuron> getNeurons() {
+    public List<Neuron> getNeurons() {
         return neurons;
     }
 
-    public void setNeurons(Set<Neuron> neurons) {
+    public void setNeurons(List<Neuron> neurons) {
         this.neurons = neurons;
     }
     

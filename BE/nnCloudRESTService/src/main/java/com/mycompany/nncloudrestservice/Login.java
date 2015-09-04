@@ -16,7 +16,7 @@ import org.json.JSONObject;
  * Root resource (exposed at "myresource" path)
  */
 @Path("login")
-public class Login 
+public class Login
 {
     private static final int COOKIE_MAX_AGE=1209600; //Two weeks ;)
     /**
@@ -29,7 +29,7 @@ public class Login
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response loginUser(String x) 
+    public Response loginUser(String x)
     {
         LoginController lc = new LoginController();
         JSONObject request = new JSONObject(x);

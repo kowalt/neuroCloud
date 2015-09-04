@@ -5,14 +5,17 @@
  */
 package com.mycompany.nncloudrestservice.controllers;
 
+import com.mycompany.nncloudrestservice.daos.NetworkDAO;
 import com.mycompany.nncloudrestservice.misc.ActivationFunctionParser;
 import com.mycompany.nncloudrestservice.model.ActivationFunction;
 import com.mycompany.nncloudrestservice.model.Layer;
 import com.mycompany.nncloudrestservice.model.Network;
 import com.mycompany.nncloudrestservice.model.Neuron;
+import com.mycompany.nncloudrestservice.model.Synapse;
+import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
+import java.util.Random;
 import org.json.JSONObject;
 
 /**
@@ -21,8 +24,7 @@ import org.json.JSONObject;
  */
 public class GenerateController 
 {   
-    
-    public Network generateNetwork(JSONObject parameters)
+    public void generateNetwork(JSONObject parameters)
     {
         Network network = new Network();
         String name = parameters.getString("name");
@@ -36,29 +38,91 @@ public class GenerateController
         String activationFunctionRaw = parameters.getString("activationFunction");
         
         ActivationFunctionParser afp = new ActivationFunctionParser();
-        ActivationFunction af = afp.parse(activationFunctionRaw);
+        List<ActivationFunction> af = afp.parse(activationFunctionRaw);
         
         network.setCreation(Calendar.getInstance().getTime());
         network.setName(name);
         
-        Set<Layer> layers = new HashSet<>();
+        List<Layer> layers = new ArrayList<>();
         
         for(int i=0;i<4;i++)
         {   
             Layer l = generateLayer(i, neuronsPerLayer[i], af);
             layers.add(l);
         }
-                
-        return network;
+        
+        connectLayers(layers);
+        
+        NetworkDAO ndao = new NetworkDAO();
+        ndao.addItem(network);
     }
     
-    private Layer generateLayer(int relativeNumber, int nOfNeurons, ActivationFunction af)
+    private void connectLayers(List<Layer> l)
+    {
+        Layer in = l.get(0);
+        
+        List<Neuron> inNeurons = in.getNeurons();
+        Random r = new Random();
+        List<Synapse> lsyn = null;
+        Synapse s;
+        Layer out;
+        List<Neuron> outNeurons;
+        
+        for(Neuron n: inNeurons)
+        {
+            s = new Synapse();
+            s.setWeight(r.nextDouble());
+            
+            (lsyn = new ArrayList<>()).add(s);            
+            n.setSynapses(lsyn);
+        }
+        
+        lsyn = null;
+        
+        //inner layers
+        for(int i=1;i<3;i++)
+        {
+            out = in;
+            in = l.get(i);
+            
+            inNeurons = in.getNeurons();
+            outNeurons = out.getNeurons();
+            
+            for(Neuron no: outNeurons)
+            {
+                for(Neuron ni: inNeurons)
+                {
+                    lsyn = new ArrayList<>();
+                    s = new Synapse();                 
+                    s.setWeight(r.nextDouble());
+                    
+                    lsyn.add(s);
+                }
+                no.setSynapses(lsyn);
+            }
+        }
+        
+        //output layer
+        out = in;
+        outNeurons = out.getNeurons();
+        
+        for(Neuron n: outNeurons)
+        {
+            s = new Synapse();
+            s.setWeight(r.nextDouble());
+            (lsyn = new ArrayList<>()).add(s);
+            
+            n.setSynapses(lsyn);
+        } 
+    }
+    
+    private Layer generateLayer(int relativeNumber, int nOfNeurons, List<ActivationFunction> af)
     {
         Layer l = new Layer();
         
         l.setRelative_number(relativeNumber);
         
-        Set<Neuron> neurons = new HashSet<Neuron>();
+        List<Neuron> neurons = new ArrayList<>();
         
         while(nOfNeurons-- > 0)
             neurons.add(generateNeuron(af));
@@ -68,12 +132,10 @@ public class GenerateController
         return l;
     }
     
-    private Neuron generateNeuron(ActivationFunction af)
+    private Neuron generateNeuron(List<ActivationFunction> af)
     {
-        Neuron n = new Neuron();
-        
-        // TODO need to sleep;
+        Neuron n = new Neuron();    
+        n.setActivation_functions(af);        
         return n;
     }
-      
 }

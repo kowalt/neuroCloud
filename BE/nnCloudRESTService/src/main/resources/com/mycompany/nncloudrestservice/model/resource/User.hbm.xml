@@ -17,12 +17,12 @@
       <property name="info_to_admin" column="info_to_admin" type="string"/>
       <property name="session_id" column="session_id" type="string"/>
       <property name="registered" column="registered" type="date"/>
-      <set name="networks" cascade="all" table="networks">
+      <list name="networks" cascade="all" table="networks">
           <key>
               <column name="id_user" not-null="true" />
           </key>
           <one-to-many class="Network"/>
-      </set>
+      </list>
       <one-to-one name="performance_settings" cascade="all" class="PerformanceSettings"></one-to-one>
   </class>
 </hibernate-mapping>

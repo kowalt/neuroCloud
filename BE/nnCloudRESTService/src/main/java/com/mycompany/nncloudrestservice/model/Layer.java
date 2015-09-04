@@ -5,8 +5,9 @@
  */
 package com.mycompany.nncloudrestservice.model;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
+
 
 /**
  *
@@ -16,13 +17,13 @@ public class Layer
 {
     private int id;
     private int relative_number;
-    private Set<Neuron> neurons = new HashSet<>();
+    private List<Neuron> neurons = new ArrayList<>();
     
-    public Set<Neuron> getNeurons() {
+    public List<Neuron> getNeurons() {
         return neurons;
     }
 
-    public void setNeurons(Set<Neuron> neurons) {
+    public void setNeurons(List<Neuron> neurons) {
         this.neurons = neurons;
     }
 

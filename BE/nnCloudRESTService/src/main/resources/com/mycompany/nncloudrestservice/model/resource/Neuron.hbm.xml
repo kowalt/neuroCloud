@@ -6,19 +6,19 @@
           <column name="id_neuron" not-null="true"/>
           <generator class="native"/>
       </id>
-      <set name="synapses" table="connections" inverse="true">
+      <list name="synapses" table="connections" inverse="true">
           <key>
               <column name="id_neuron" not-null="true"/>
           </key>
           <many-to-many class="Synapse">
               <column name="id_synapse" not-null="true" />
           </many-to-many>
-      </set>
-      <set name="activation_functions" table="activation_functions" cascade="all">
+      </list>
+      <list name="activation_functions" table="activation_functions" cascade="all">
           <key>
               <column name="id_activation_function" not-null="true"/>
           </key>
           <one-to-many class="ActivationFunction"/>
-      </set>
+      </list>
   </class>
 </hibernate-mapping>

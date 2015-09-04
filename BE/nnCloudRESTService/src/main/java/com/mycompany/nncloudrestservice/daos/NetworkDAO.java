@@ -7,7 +7,12 @@ package com.mycompany.nncloudrestservice.daos;
 
 import com.mycompany.nncloudrestservice.model.Network;
 import com.mycompany.nncloudrestservice.utils.SessionContainer;
+import java.util.List;
+import org.hibernate.HibernateException;
+import org.hibernate.Query;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 
 /**
  *
@@ -23,22 +28,100 @@ public class NetworkDAO implements DAO<Network>
     }
     
     @Override
-    public void addItem(Network item) throws Exception {
+    public void addItem(Network item) 
+    {
+        Session session = factory.openSession();
+        Transaction tx = null;
+        
+        try
+        {
+            tx = session.beginTransaction();
+            session.save(item);
+            tx.commit();
+        }
+        catch(HibernateException he)
+        {
+            if (tx != null) tx.rollback();
+            he.printStackTrace();
+        }
+        finally
+        {
+            session.close();
+        }
         
     }
 
     @Override
     public void updateItem(Network item) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Session session = factory.openSession();
+        Transaction tx = null;
+        
+        try
+        {
+            tx = session.beginTransaction();
+            session.update(item);
+            tx.commit();
+        }
+        catch(HibernateException he)
+        {
+            if (tx != null) tx.rollback();
+            he.printStackTrace();
+        }
+        finally
+        {
+            session.close();
+        }
     }
 
     @Override
     public void removeItem(Network item) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Session session = factory.openSession();
+        Transaction tx = null;
+        
+        try
+        {
+            tx = session.beginTransaction();
+            session.delete(item);
+            tx.commit();
+        }
+        catch(HibernateException he)
+        {
+            if (tx != null) tx.rollback();
+            he.printStackTrace();
+        }
+        finally
+        {
+            session.close();
+        }
     }
 
     @Override
     public Network getItem(String... keys) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Session session = factory.openSession();
+        Transaction tx = null;
+        
+        String id_network = keys[0];
+        
+        Network n = null;
+        
+        try
+        {
+            tx = session.beginTransaction();
+            Query query = session.createQuery("FROM Network n WHERE n.id_network = :id_network");
+            query.setParameter("id_network", id_network);
+            List results = query.list();    
+            n = (Network)results.get(0);
+            tx.commit();
+        }
+        catch(HibernateException he)
+        {
+            if (tx != null) tx.rollback();
+            he.printStackTrace();
+        }
+        finally
+        {
+            session.close();
+        }
+        return n;
     }
 }
