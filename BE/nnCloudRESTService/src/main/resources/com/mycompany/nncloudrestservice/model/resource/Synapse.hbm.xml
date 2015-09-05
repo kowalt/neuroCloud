@@ -2,6 +2,7 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping package="com.mycompany.nncloudrestservice.model">
   <class name="Synapse" table="synapses">
+        <!--
         <id name="id_neuron_out" type="int">
             <column name="id_neuron_out" />
             <generator class="foreign">
@@ -14,7 +15,9 @@
                 <param name="property">id_neuron_in</param>
             </generator>
         </id>
-        <one-to-one name="neuron" class="Neuron" constrained="true"></one-to-one>
+
+        <many-to-one name="neuron" class="Neuron" constrained="true"></one-to-one>
+        -->
         <property name="weight" type="int">
             <column name="weight" />
         </property>

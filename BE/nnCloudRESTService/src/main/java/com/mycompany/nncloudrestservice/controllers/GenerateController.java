@@ -59,61 +59,58 @@ public class GenerateController
     
     private void connectLayers(List<Layer> l)
     {
-        Layer in = l.get(0);
-        
-        List<Neuron> inNeurons = in.getNeurons();
-        Random r = new Random();
-        List<Synapse> lsyn = null;
-        Synapse s;
-        Layer out;
-        List<Neuron> outNeurons;
-        
-        for(Neuron n: inNeurons)
+        Random random = new Random();
+        //input
+        Layer inputLayer = l.get(0);
+        List<Neuron> neuronsIn = inputLayer.getNeurons();
+        for(Neuron n: neuronsIn)
         {
-            s = new Synapse();
-            s.setWeight(r.nextDouble());
-            
-            (lsyn = new ArrayList<>()).add(s);            
-            n.setSynapses(lsyn);
+            Synapse s = new Synapse();
+            s.setWeight(random.nextDouble());
+            addSynapse_in(n,s);
         }
-        
-        lsyn = null;
-        
         //inner layers
         for(int i=1;i<3;i++)
         {
-            out = in;
-            in = l.get(i);
+            Layer outputLayer = l.get(i-1);
+            inputLayer = l.get(i);
+            List<Neuron> neuronsOut = outputLayer.getNeurons();
+            neuronsIn = inputLayer.getNeurons();
             
-            inNeurons = in.getNeurons();
-            outNeurons = out.getNeurons();
-            
-            for(Neuron no: outNeurons)
+            for(Neuron no: neuronsOut)
             {
-                for(Neuron ni: inNeurons)
+                for(Neuron ni: neuronsIn)
                 {
-                    lsyn = new ArrayList<>();
-                    s = new Synapse();                 
-                    s.setWeight(r.nextDouble());
-                    
-                    lsyn.add(s);
+                    Synapse s = new Synapse();
+                    s.setWeight(random.nextDouble());
+                    addSynapse_in(ni,s);
+                    addSynapse_out(no,s);
                 }
-                no.setSynapses(lsyn);
             }
         }
         
-        //output layer
-        out = in;
-        outNeurons = out.getNeurons();
+        //output
+        Layer outputLayer = l.get(3);
+        List<Neuron> neuronsOut = outputLayer.getNeurons();
         
-        for(Neuron n: outNeurons)
+        for(Neuron n: neuronsOut)
         {
-            s = new Synapse();
-            s.setWeight(r.nextDouble());
-            (lsyn = new ArrayList<>()).add(s);
-            
-            n.setSynapses(lsyn);
-        } 
+            Synapse s = new Synapse();
+            s.setWeight(random.nextDouble());
+            addSynapse_out(n,s);
+        }
+    }
+    
+    private void addSynapse_in(Neuron n,Synapse input)
+    {
+        List<Synapse> currentSynapses = n.getSynapses_in();
+        currentSynapses.add(input);
+    }
+    
+    private void addSynapse_out(Neuron n, Synapse output)
+    {
+        List<Synapse> currentSynapses = n.getSynapses_out();
+        currentSynapses.add(output);
     }
     
     private Layer generateLayer(int relativeNumber, int nOfNeurons, List<ActivationFunction> af)

@@ -15,31 +15,13 @@ import java.util.List;
 
 public class Synapse 
 {
-    private int id;
     private double weight;
-    private List<Neuron> neurons = new ArrayList<>();
-    
-    public int getId() {
-        return id;
-    }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public List<Neuron> getNeurons() {
-        return neurons;
-    }
-
-    public void setNeurons(List<Neuron> neurons) {
-        this.neurons = neurons;
-    }
-    
     public double getWeight() {
         return weight;
     }
 
     public void setWeight(double weight) {
         this.weight = weight;
-    }    
+    }
 }
