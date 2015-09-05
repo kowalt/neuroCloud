@@ -5,7 +5,7 @@
         <id name="id_user" type="int">
             <column name="id_user" />
             <generator class="foreign">
-                <param name="property">stock</param>
+                <param name="property">user</param>
             </generator>
         </id>
         <one-to-one name="user" class="User" constrained="true"></one-to-one>

@@ -2,20 +2,21 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping package="com.mycompany.nncloudrestservice.model">
   <class name="Synapse" table="synapses">
-      <id name="id" type="int">
-          <column name="id_synapse" not-null="true" />
-          <generator class="native"/>
-      </id>
-      <list name="neurons" table="connections" cascade="all">
-          <key>
-              <column name="id_synapse"/>
-          </key>
-          <many-to-many class="Neuron" >
-              <column name="id_neuron" not-null="true"/>
-          </many-to-many> 
-      </list>
-      <property name="weight" type="int">
-          <column name="weight" />
-      </property>
+        <id name="id_neuron_out" type="int">
+            <column name="id_neuron_out" />
+            <generator class="foreign">
+                <param name="property">id_neuron_out</param>
+            </generator>
+        </id>
+        <id name="id_neuron_in" type="int">
+            <column name="id_neuron_in" />
+            <generator class="foreign">
+                <param name="property">id_neuron_in</param>
+            </generator>
+        </id>
+        <one-to-one name="neuron" class="Neuron" constrained="true"></one-to-one>
+        <property name="weight" type="int">
+            <column name="weight" />
+        </property>
   </class>   
 </hibernate-mapping>
