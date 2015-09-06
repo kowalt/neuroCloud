@@ -5,9 +5,6 @@
  */
 package com.mycompany.nncloudrestservice.utils;
 
-import java.net.URI;
-import java.net.URISyntaxException;
-
 /**
  *
  * @author Tomasz

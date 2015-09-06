@@ -28,7 +28,7 @@ public class GenerateController
     {
         Network network = new Network();
         String name = parameters.getString("name");
-        int[] neuronsPerLayer = new int[3]; 
+        int[] neuronsPerLayer = new int[4]; 
                              
         neuronsPerLayer[0] = parameters.getInt("1stlayer");
         neuronsPerLayer[1] = parameters.getInt("2ndlayer");

@@ -25,17 +25,17 @@ public class ActivationFunctionParser
     public List<ActivationFunction> parse(String raw)
     {
         StringTokenizer rulesTok = new StringTokenizer(raw, ";");
-        String rule,function,domain;
+
         
         List<ActivationFunction> af = new ArrayList<>();
         ActivationFunction afun;
         
         while(rulesTok.hasMoreElements())
         {
-            rule = rulesTok.nextToken();
-            StringTokenizer innerTok = new StringTokenizer(rule, "<=>");
-            function = innerTok.nextToken();
-            domain = innerTok.nextToken();
+            String[] rule = rulesTok.nextToken().split("<=>");
+            String function,domain;            
+            function = rule[0];
+            domain = rule[1];
             
             afun = new ActivationFunction();
             

@@ -38,6 +38,6 @@ public class Generate
         {
             return Response.status(400).build();
         }
-        return Response.status(204).build();
+        return Response.status(201).build();
     }
 }
