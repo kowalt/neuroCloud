@@ -29,11 +29,11 @@ public class GenerateController
         Network network = new Network();
         String name = parameters.getString("name");
         int[] neuronsPerLayer = new int[3]; 
-        
-        neuronsPerLayer[0] = Integer.parseInt(parameters.getString("1stlayer"));
-        neuronsPerLayer[1] = Integer.parseInt(parameters.getString("2ndlayer"));
-        neuronsPerLayer[2] = Integer.parseInt(parameters.getString("3rdlayer"));
-        neuronsPerLayer[3] = Integer.parseInt(parameters.getString("4thlayer"));
+                             
+        neuronsPerLayer[0] = parameters.getInt("1stlayer");
+        neuronsPerLayer[1] = parameters.getInt("2ndlayer");
+        neuronsPerLayer[2] = parameters.getInt("3rdlayer");
+        neuronsPerLayer[3] = parameters.getInt("4thlayer");
         
         String activationFunctionRaw = parameters.getString("activationFunction");
         

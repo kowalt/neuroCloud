@@ -149,10 +149,11 @@ DEFAULT CHARACTER SET = utf8;
 -- Table `nncloud`.`synapses`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `nncloud`.`synapses` (
+  `id_synapse` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `weight` DOUBLE NULL,
   `id_neuron_out` INT(10) UNSIGNED NOT NULL,
   `id_neuron_in` INT(10) UNSIGNED NOT NULL,
-  PRIMARY KEY (`id_neuron_out`, `id_neuron_in`),
+  PRIMARY KEY (`id_synapse`, `id_neuron_out`, `id_neuron_in`),
   INDEX `fk_synapses_neurons1_idx` (`id_neuron_out` ASC),
   INDEX `fk_synapses_neurons2_idx` (`id_neuron_in` ASC),
   CONSTRAINT `fk_synapses_neurons1`

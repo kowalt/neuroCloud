@@ -5,9 +5,6 @@
  */
 package com.mycompany.nncloudrestservice.model;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  *
  * @author Tomasz
@@ -15,13 +12,22 @@ import java.util.List;
 
 public class Synapse 
 {
+    private int id;
     private double weight;
-
+    
     public double getWeight() {
         return weight;
     }
 
     public void setWeight(double weight) {
         this.weight = weight;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }

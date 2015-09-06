@@ -12,6 +12,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import org.json.JSONException;
 
 import org.json.JSONObject;
 
@@ -29,8 +30,14 @@ public class Generate
     {
         GenerateController gc = new GenerateController();
        
-        gc.generateNetwork(new JSONObject(x));
-        
+        try
+        {
+            gc.generateNetwork(new JSONObject(x));
+        }
+        catch(JSONException je)
+        {
+            return Response.status(400).build();
+        }
         return Response.status(204).build();
     }
 }
