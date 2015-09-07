@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package expcalclib;
+package com.mycompany.nncloudrestservice.misc.expcalc;
 
 import java.lang.Math;
 import java.util.Stack;

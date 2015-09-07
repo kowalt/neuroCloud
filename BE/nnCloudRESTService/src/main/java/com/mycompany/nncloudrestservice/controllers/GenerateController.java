@@ -6,12 +6,15 @@
 package com.mycompany.nncloudrestservice.controllers;
 
 import com.mycompany.nncloudrestservice.daos.NetworkDAO;
+import com.mycompany.nncloudrestservice.daos.UserDAO;
 import com.mycompany.nncloudrestservice.misc.ActivationFunctionParser;
+import com.mycompany.nncloudrestservice.utils.CurrentUserContainer;
 import com.mycompany.nncloudrestservice.model.ActivationFunction;
 import com.mycompany.nncloudrestservice.model.Layer;
 import com.mycompany.nncloudrestservice.model.Network;
 import com.mycompany.nncloudrestservice.model.Neuron;
 import com.mycompany.nncloudrestservice.model.Synapse;
+import com.mycompany.nncloudrestservice.model.User;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -50,11 +53,15 @@ public class GenerateController
             Layer l = generateLayer(i, neuronsPerLayer[i], af);
             layers.add(l);
         }
+        connectLayers(layers);       
+        network.setLayers(layers);
         
-        connectLayers(layers);
-        
-        NetworkDAO ndao = new NetworkDAO();
-        ndao.addItem(network);
+        UserDAO udao = new UserDAO();
+        CurrentUserContainer cus = new CurrentUserContainer();
+        User currentUser = CurrentUserContainer.getInstance();
+        // currentUser.setNetworks();
+        // udao.addItem();
+        // ndao.addItem(network);
     }
     
     private void connectLayers(List<Layer> l)
