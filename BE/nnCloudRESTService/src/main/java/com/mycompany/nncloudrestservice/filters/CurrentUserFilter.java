@@ -5,9 +5,8 @@
  */
 package com.mycompany.nncloudrestservice.filters;
 
-import com.mycompany.nncloudrestservice.Main;
+import com.mycompany.nncloudrestservice.utils.CurrentUserContainer;
 import java.io.IOException;
-import java.net.URI;
 import javax.annotation.Priority;
 import javax.ws.rs.container.ContainerRequestContext;
 import javax.ws.rs.container.ContainerRequestFilter;
@@ -17,21 +16,14 @@ import javax.ws.rs.container.PreMatching;
  *
  * @author Tomasz
  */
-@Priority(3)
 @PreMatching
-public class CORSPreflightFilter implements ContainerRequestFilter 
-{
+@Priority(1)
+public class CurrentUserFilter implements ContainerRequestFilter {
+
     @Override
-    public void filter(ContainerRequestContext requestContext) throws IOException
-    {   
-        try
-        {
-            if(requestContext.getMethod().matches("OPTIONS"))
-                requestContext.setRequestUri(URI.create(Main.base_uri + "preflight"));
-        }
-        catch(Exception e)
-        {
-            e.printStackTrace();
-        }
+    public void filter(ContainerRequestContext requestContext) throws IOException {
+        String token = requestContext.getCookies().get("session_id").getValue();
+        CurrentUserContainer.loadInstance(token);
     }
+
 }

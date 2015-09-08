@@ -3,6 +3,7 @@ package com.mycompany.nncloudrestservice;
 import com.mycompany.nncloudrestservice.filters.AuthorizationRequestFilter;
 import com.mycompany.nncloudrestservice.filters.CORSFilter;
 import com.mycompany.nncloudrestservice.filters.CORSPreflightFilter;
+import com.mycompany.nncloudrestservice.filters.CurrentUserFilter;
 import org.glassfish.grizzly.http.server.HttpServer;
 import org.glassfish.jersey.grizzly2.httpserver.GrizzlyHttpServerFactory;
 import org.glassfish.jersey.server.ResourceConfig;
@@ -36,6 +37,7 @@ public class Main {
         rc.register(new AuthorizationRequestFilter());
         rc.register(new CORSFilter());
         rc.register(new CORSPreflightFilter());
+        rc.register(new CurrentUserFilter());
         // create and start a new instance of grizzly http server
         // exposing the Jersey application at BASE_URI
         return GrizzlyHttpServerFactory.createHttpServer(URI.create(base_uri), rc);

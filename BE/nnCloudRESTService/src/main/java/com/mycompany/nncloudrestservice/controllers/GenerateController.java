@@ -56,12 +56,8 @@ public class GenerateController
         connectLayers(layers);       
         network.setLayers(layers);
         
-        UserDAO udao = new UserDAO();
-        CurrentUserContainer cus = new CurrentUserContainer();
-        User currentUser = CurrentUserContainer.getInstance();
-        // currentUser.setNetworks();
-        // udao.addItem();
-        // ndao.addItem(network);
+        NetworkDAO ndao = new NetworkDAO();
+        ndao.addItem(network);
     }
     
     private void connectLayers(List<Layer> l)

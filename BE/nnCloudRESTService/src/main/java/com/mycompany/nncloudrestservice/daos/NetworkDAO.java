@@ -6,6 +6,8 @@
 package com.mycompany.nncloudrestservice.daos;
 
 import com.mycompany.nncloudrestservice.model.Network;
+import com.mycompany.nncloudrestservice.model.User;
+import com.mycompany.nncloudrestservice.utils.CurrentUserContainer;
 import com.mycompany.nncloudrestservice.utils.SessionContainer;
 import java.util.List;
 import org.hibernate.HibernateException;
@@ -29,26 +31,13 @@ public class NetworkDAO implements DAO<Network>
     
     @Override
     public void addItem(Network item) 
-    {
-        Session session = factory.openSession();
-        Transaction tx = null;
-        
-        try
-        {
-            tx = session.beginTransaction();
-            session.save(item);
-            tx.commit();
-        }
-        catch(HibernateException he)
-        {
-            if (tx != null) tx.rollback();
-            he.printStackTrace();
-        }
-        finally
-        {
-            session.close();
-        }
-        
+    {        
+        User u = CurrentUserContainer.getInstance();
+        List<Network> ln = u.getNetworks();
+        ln.add(item); // TODO: Fix bug- Networks non existent after closing session
+        u.setNetworks(ln);
+        UserDAO udao = new UserDAO();
+        udao.updateItem(u);
     }
 
     @Override
