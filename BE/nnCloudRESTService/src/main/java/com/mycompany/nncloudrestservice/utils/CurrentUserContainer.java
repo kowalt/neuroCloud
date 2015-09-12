@@ -25,7 +25,7 @@ public class CurrentUserContainer
     public static void loadInstance(String encToken)
     {
         String raw = SafeHashUtil.getHash(encToken);
-        UserDAO udao = new UserDAO();
+        UserDAO udao = new UserDAO(true);
         instance = udao.getItem(raw);
     }
 }

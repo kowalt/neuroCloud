@@ -6,15 +6,12 @@
 package com.mycompany.nncloudrestservice.controllers;
 
 import com.mycompany.nncloudrestservice.daos.NetworkDAO;
-import com.mycompany.nncloudrestservice.daos.UserDAO;
 import com.mycompany.nncloudrestservice.misc.ActivationFunctionParser;
-import com.mycompany.nncloudrestservice.utils.CurrentUserContainer;
 import com.mycompany.nncloudrestservice.model.ActivationFunction;
 import com.mycompany.nncloudrestservice.model.Layer;
 import com.mycompany.nncloudrestservice.model.Network;
 import com.mycompany.nncloudrestservice.model.Neuron;
 import com.mycompany.nncloudrestservice.model.Synapse;
-import com.mycompany.nncloudrestservice.model.User;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;

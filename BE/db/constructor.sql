@@ -51,8 +51,8 @@ CREATE TABLE IF NOT EXISTS `nncloud`.`networks` (
   CONSTRAINT `fk_networks_users`
     FOREIGN KEY (`id_user`)
     REFERENCES `nncloud`.`users` (`id_user`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
 
@@ -69,8 +69,8 @@ CREATE TABLE IF NOT EXISTS `nncloud`.`layers` (
   CONSTRAINT `fk_layers_networks1`
     FOREIGN KEY (`id_network`)
     REFERENCES `nncloud`.`networks` (`id_network`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
 
@@ -86,8 +86,8 @@ CREATE TABLE IF NOT EXISTS `nncloud`.`neurons` (
   CONSTRAINT `fk_neurons_layers1`
     FOREIGN KEY (`id_layer`)
     REFERENCES `nncloud`.`layers` (`id_layer`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
 
@@ -105,8 +105,8 @@ CREATE TABLE IF NOT EXISTS `nncloud`.`activation_functions` (
   CONSTRAINT `fk_activation_functions_neurons1`
     FOREIGN KEY (`id_neuron`)
     REFERENCES `nncloud`.`neurons` (`id_neuron`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
 
@@ -139,8 +139,8 @@ CREATE TABLE IF NOT EXISTS `nncloud`.`performance_settings` (
   CONSTRAINT `fk_performance_settings_users2`
     FOREIGN KEY (`id_user`)
     REFERENCES `nncloud`.`users` (`id_user`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
 
@@ -159,13 +159,13 @@ CREATE TABLE IF NOT EXISTS `nncloud`.`synapses` (
   CONSTRAINT `fk_synapses_neurons1`
     FOREIGN KEY (`id_neuron_out`)
     REFERENCES `nncloud`.`neurons` (`id_neuron`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
   CONSTRAINT `fk_synapses_neurons2`
     FOREIGN KEY (`id_neuron_in`)
     REFERENCES `nncloud`.`neurons` (`id_neuron`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
 

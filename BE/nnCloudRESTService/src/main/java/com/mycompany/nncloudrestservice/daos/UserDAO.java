@@ -29,6 +29,11 @@ public class UserDAO implements DAO<User>
     public UserDAO()
     {
         this.factory = SessionContainer.factory;
+    }        
+            
+    public UserDAO(boolean withSubObjects)
+    {
+        this.factory = SessionContainer.factory;
     }
     
     @Override

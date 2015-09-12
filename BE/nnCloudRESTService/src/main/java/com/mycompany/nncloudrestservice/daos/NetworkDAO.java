@@ -32,12 +32,36 @@ public class NetworkDAO implements DAO<Network>
     @Override
     public void addItem(Network item) 
     {        
-        User u = CurrentUserContainer.getInstance();
-        List<Network> ln = u.getNetworks();
-        ln.add(item); // TODO: Fix bug- Networks non existent after closing session
-        u.setNetworks(ln);
-        UserDAO udao = new UserDAO();
-        udao.updateItem(u);
+        Session session = factory.openSession();
+        Transaction tx = null;
+        
+        try
+        {
+            tx = session.beginTransaction();
+            
+            Query query = session.createQuery("FROM com.mycompany.nncloudrestservice.model.User u WHERE u.id = :id_user");
+            
+            query.setParameter("id_user", CurrentUserContainer.getInstance().getId());
+            List results = query.list();
+            User u = (User)results.get(0);
+            
+            List<Network> finalList = u.getNetworks();
+            finalList.add(item);
+            u.setNetworks(finalList);
+            
+            session.update(u);
+            
+            tx.commit();
+        }
+        catch(HibernateException he)
+        {
+            if (tx != null) tx.rollback();
+            he.printStackTrace();
+        }
+        finally
+        {
+            session.close();
+        }
     }
 
     @Override

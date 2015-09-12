@@ -3,5 +3,6 @@
 *.jar
 *.cfg.xml
 *.swp
+*.log
 /BE/nnCloudRESTService/target/
 /BE/JavaApplication27/nbproject/private/
