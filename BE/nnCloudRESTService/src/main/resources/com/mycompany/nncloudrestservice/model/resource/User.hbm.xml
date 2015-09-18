@@ -17,9 +17,9 @@
       <property name="info_to_admin" column="info_to_admin" type="string"/>
       <property name="session_id" column="session_id" type="string"/>
       <property name="registered" column="registered" type="date"/>
-      <bag name="networks" cascade="all" table="networks">
+      <bag name="networks" cascade="all" table="networks" inverse="true">
           <key>
-              <column name="id_user" not-null="true" />
+            <column name="id_user" not-null="true"/>
           </key>
           <one-to-many class="Network"/>
       </bag>

@@ -18,11 +18,12 @@
           </key>
           <one-to-many class="Synapse"/>
       </bag>
-      <bag name="activation_functions" table="activation_functions" cascade="all">
+      <bag name="activation_functions" table="activation_functions" cascade="all" inverse="true">
           <key>
               <column name="id_activation_function" not-null="true"/>
           </key>
           <one-to-many class="ActivationFunction"/>
       </bag>
+      <many-to-one name="layer" class="Layer" column="id_layer" not-null="true"></many-to-one>
   </class>
 </hibernate-mapping>

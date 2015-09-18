@@ -18,6 +18,7 @@ public class Layer
     private int id;
     private int relative_number;
     private List<Neuron> neurons = new ArrayList<>();
+    private Network network;
     
     public List<Neuron> getNeurons() {
         return neurons;
@@ -41,5 +42,13 @@ public class Layer
 
     public void setRelative_number(int relative_number) {
         this.relative_number = relative_number;
+    }
+
+    public Network getNetwork() {
+        return network;
+    }
+
+    public void setNetwork(Network network) {
+        this.network = network;
     }
 }

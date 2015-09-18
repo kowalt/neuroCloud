@@ -48,9 +48,10 @@ public class GenerateController
         for(int i=0;i<4;i++)
         {   
             Layer l = generateLayer(i, neuronsPerLayer[i], af);
+            l.setNetwork(network);
             layers.add(l);
         }
-        connectLayers(layers);       
+        connectLayers(layers); 
         network.setLayers(layers);
         
         NetworkDAO ndao = new NetworkDAO();
@@ -67,6 +68,8 @@ public class GenerateController
         {
             Synapse s = new Synapse();
             s.setWeight(random.nextDouble());
+            s.setNeuron_in(n);
+            s.setNeuron_out(n);
             addSynapse_in(n,s);
         }
         //inner layers
@@ -83,6 +86,8 @@ public class GenerateController
                 {
                     Synapse s = new Synapse();
                     s.setWeight(random.nextDouble());
+                    s.setNeuron_in(ni);
+                    s.setNeuron_out(no);
                     addSynapse_in(ni,s);
                     addSynapse_out(no,s);
                 }
@@ -97,6 +102,7 @@ public class GenerateController
         {
             Synapse s = new Synapse();
             s.setWeight(random.nextDouble());
+            s.setNeuron_out(n);
             addSynapse_out(n,s);
         }
     }
@@ -115,24 +121,24 @@ public class GenerateController
     
     private Layer generateLayer(int relativeNumber, int nOfNeurons, List<ActivationFunction> af)
     {
-        Layer l = new Layer();
-        
+        Layer l = new Layer();      
         l.setRelative_number(relativeNumber);
-        
         List<Neuron> neurons = new ArrayList<>();
         
         while(nOfNeurons-- > 0)
-            neurons.add(generateNeuron(af));
-        
+        {
+            Neuron neu = generateNeuron(af);
+            neu.setLayer(l);
+            neurons.add(neu);
+        }
         l.setNeurons(neurons);
-        
         return l;
     }
     
     private Neuron generateNeuron(List<ActivationFunction> af)
     {
         Neuron n = new Neuron();    
-        n.setActivation_functions(af);        
+        n.setActivation_functions(af);
         return n;
     }
 }

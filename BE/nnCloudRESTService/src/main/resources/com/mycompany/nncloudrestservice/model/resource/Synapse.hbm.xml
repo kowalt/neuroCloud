@@ -20,8 +20,9 @@
                 <param name="property">id_neuron_in</param>
             </generator>
         </id>
-        <many-to-one name="neuron" class="Neuron" constrained="true"></many-to-one>
         -->
+        <many-to-one name="neuron_in" class="Neuron" column="id_neuron_in"></many-to-one> <!-- Neuron which gets value from synapse -->
+        <many-to-one name="neuron_out" class="Neuron" column="id_neuron_out"></many-to-one> <!-- Neuron which sets value on synapse -->
         <property name="weight" type="int">
             <column name="weight" />
         </property>

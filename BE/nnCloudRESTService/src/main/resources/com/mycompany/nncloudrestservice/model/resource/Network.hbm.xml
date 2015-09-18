@@ -8,11 +8,12 @@
       </id>
       <property name="name" column="name" type="string"/>
       <property name="creation" column="creation" type="date"/>
-      <bag name="layers" cascade="all" table="layers">
+      <bag name="layers" cascade="all" table="layers" inverse="true">
           <key>
-              <column name="id_network" not-null="true" />
+              <column name="id_network"/>
           </key>
           <one-to-many class="Layer"/>
       </bag>
+      <many-to-one name="user" class="User" column="id_user" not-null="true"></many-to-one>
   </class>
 </hibernate-mapping>

@@ -7,6 +7,7 @@
           <generator class="native"/>
       </id>
       <property name="function" column="function" type="string"/>
-      <property name="domain_rule" column="domain_rule" type="string"/>      
+      <property name="domain_rule" column="domain_rule" type="string"/>
+      <many-to-one name="neuron" column="id_neuron" not-null="true"></many-to-one>
   </class>
 </hibernate-mapping>

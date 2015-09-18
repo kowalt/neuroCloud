@@ -46,6 +46,7 @@ public class NetworkDAO implements DAO<Network>
             User u = (User)results.get(0);
             
             List<Network> finalList = u.getNetworks();
+            item.setUser(u);
             finalList.add(item);
             u.setNetworks(finalList);
             

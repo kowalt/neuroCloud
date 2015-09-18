@@ -19,7 +19,7 @@ public class Network
     private String name;
     private Date creation;
     private List<Layer> layers = new ArrayList<>();
-
+    private User user;
     
     public int getId() {
         return id;
@@ -51,5 +51,13 @@ public class Network
 
     public void setLayers(List<Layer> layers) {
         this.layers = layers;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

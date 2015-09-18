@@ -18,7 +18,8 @@ public class Neuron
     private List<ActivationFunction> activation_functions = new ArrayList<>();
     transient private List<Synapse> synapses_in = new ArrayList<>();
     transient private List<Synapse> synapses_out = new ArrayList<>();
-        
+    private Layer layer;
+    
     public int getId() {
         return id;
     }
@@ -50,5 +51,12 @@ public class Neuron
     public void setSynapses_out(List<Synapse> synapses_out) {
         this.synapses_out = synapses_out;
     }
-    
+
+    public Layer getLayer() {
+        return layer;
+    }
+
+    public void setLayer(Layer layer) {
+        this.layer = layer;
+    }
 }
