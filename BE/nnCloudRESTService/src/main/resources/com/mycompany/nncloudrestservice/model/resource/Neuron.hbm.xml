@@ -6,13 +6,13 @@
           <column name="id_neuron" not-null="true"/>
           <generator class="native"/>
       </id>
-      <bag name="synapses_out" cascade="all" table="synapses">
+      <bag name="synapses_out" cascade="all" table="synapses" inverse="true">
           <key>
               <column name="id_neuron_out"/>
           </key>
           <one-to-many class="Synapse"/>
       </bag>
-      <bag name="synapses_in" cascade="all" table="synapses">
+      <bag name="synapses_in" cascade="all" table="synapses" inverse="true">
           <key>
               <column name="id_neuron_in"/>
           </key>

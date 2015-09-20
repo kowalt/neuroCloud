@@ -68,28 +68,28 @@ public class GenerateController
         {
             Synapse s = new Synapse();
             s.setWeight(random.nextDouble());
-            s.setNeuron_in(n);
+            s.setNeuron_in(null);
             s.setNeuron_out(n);
             addSynapse_in(n,s);
         }
         //inner layers
-        for(int i=1;i<3;i++)
+        for(int i=1;i<4;i++)
         {
-            Layer outputLayer = l.get(i-1);
-            inputLayer = l.get(i);
-            List<Neuron> neuronsOut = outputLayer.getNeurons();
-            neuronsIn = inputLayer.getNeurons();
+            Layer previousLayer = l.get(i-1);
+            Layer currentLayer = l.get(i);
+            List<Neuron> neuronsPrevious = previousLayer.getNeurons();
+            List<Neuron> neuronsCurrent = currentLayer.getNeurons();
             
-            for(Neuron no: neuronsOut)
+            for(Neuron nc: neuronsCurrent)
             {
-                for(Neuron ni: neuronsIn)
+                for(Neuron np: neuronsPrevious)
                 {
                     Synapse s = new Synapse();
                     s.setWeight(random.nextDouble());
-                    s.setNeuron_in(ni);
-                    s.setNeuron_out(no);
-                    addSynapse_in(ni,s);
-                    addSynapse_out(no,s);
+                    s.setNeuron_in(np);
+                    s.setNeuron_out(nc);
+                    addSynapse_out(np,s);
+                    addSynapse_in(nc,s);
                 }
             }
         }
@@ -102,7 +102,8 @@ public class GenerateController
         {
             Synapse s = new Synapse();
             s.setWeight(random.nextDouble());
-            s.setNeuron_out(n);
+            s.setNeuron_out(null);
+            s.setNeuron_in(n);
             addSynapse_out(n,s);
         }
     }
@@ -129,7 +130,7 @@ public class GenerateController
         {
             Neuron neu = new Neuron();
             neu.setLayer(l);
-            List<ActivationFunction> afc = new ArrayList<ActivationFunction>();
+            List<ActivationFunction> afc = new ArrayList<>();
             for(ActivationFunction a: af)
                 afc.add(a.cloneFunctionAndDomainRule());
             
