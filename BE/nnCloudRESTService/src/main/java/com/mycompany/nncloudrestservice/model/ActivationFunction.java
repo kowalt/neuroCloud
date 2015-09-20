@@ -48,4 +48,14 @@ public class ActivationFunction
     public void setNeuron(Neuron neuron) {
         this.neuron = neuron;
     }
+
+    public ActivationFunction cloneFunctionAndDomainRule()
+    {
+        ActivationFunction instance = new ActivationFunction();
+        
+        instance.setFunction(function);
+        instance.setDomain_rule(domain_rule);
+        
+        return instance;
+    }
 }

@@ -127,21 +127,20 @@ public class GenerateController
         
         while(nOfNeurons-- > 0)
         {
-            Neuron neu = generateNeuron(af);
+            Neuron neu = new Neuron();
             neu.setLayer(l);
-            neu.setActivation_functions(af);
+            List<ActivationFunction> afc = new ArrayList<ActivationFunction>();
             for(ActivationFunction a: af)
+                afc.add(a.cloneFunctionAndDomainRule());
+            
+            for(ActivationFunction a: afc)
                 a.setNeuron(neu);
+            
+            neu.setActivation_functions(afc);  
             neurons.add(neu);
         }
         l.setNeurons(neurons);
         return l;
     }
     
-    private Neuron generateNeuron(List<ActivationFunction> af)
-    {
-        Neuron n = new Neuron();    
-        n.setActivation_functions(af);
-        return n;
-    }
 }
