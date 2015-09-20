@@ -30,7 +30,7 @@ public class NetworkDAO implements DAO<Network>
     }
     
     @Override
-    public void addItem(Network item) 
+    public void addItem(Network item)
     {        
         Session session = factory.openSession();
         Transaction tx = null;
@@ -59,9 +59,22 @@ public class NetworkDAO implements DAO<Network>
             if (tx != null) tx.rollback();
             he.printStackTrace();
         }
+        catch(Exception e)
+        {
+            tx.rollback();
+            e.printStackTrace();
+        }
         finally
         {
-            session.close();
+            try
+            {
+                session.close();
+            }
+            catch(HibernateException he)
+            {
+                he.printStackTrace();
+            }    
+            System.out.println("Session closed");
         }
     }
 

@@ -33,6 +33,7 @@ public class Generate
         try
         {
             gc.generateNetwork(new JSONObject(x));
+            System.out.println("Network generated");
         }
         catch(JSONException je)
         {

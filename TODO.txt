@@ -1,3 +1,4 @@
-1) WS: Refactoring- Use DAO pattern correctly! Also include controllers
+1) [DONE] WS: Refactoring- Use DAO pattern correctly! Also include controllers 
 2) FE: Fix own style loading in Firefox
 3) DB: Add constraint on networks- there shouldn't be multiple networks with the same name for one user.
+4) WS: Do not load full networks when it's not needed

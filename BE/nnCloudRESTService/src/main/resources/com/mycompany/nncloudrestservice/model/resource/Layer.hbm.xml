@@ -8,9 +8,7 @@
       </id>
       <property name="relative_number" column="relative_number" type="int"/>
       <bag name="neurons" cascade="all" table="neurons" inverse="true">
-          <key>
-              <column name="id_layer" not-null="true"/>
-          </key>
+          <key column="id_layer" not-null="true"/>
           <one-to-many class="Neuron"/>
       </bag>
       <many-to-one name="network" class="Network" not-null="true" column="id_network"></many-to-one>

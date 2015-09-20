@@ -9,9 +9,7 @@
       <property name="name" column="name" type="string"/>
       <property name="creation" column="creation" type="date"/>
       <bag name="layers" cascade="all" table="layers" inverse="true">
-          <key>
-              <column name="id_network"/>
-          </key>
+          <key column="id_network" not-null="true"/>
           <one-to-many class="Layer"/>
       </bag>
       <many-to-one name="user" class="User" column="id_user" not-null="true"></many-to-one>

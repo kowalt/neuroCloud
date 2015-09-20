@@ -23,7 +23,7 @@
         -->
         <many-to-one name="neuron_in" class="Neuron" column="id_neuron_in"></many-to-one> <!-- Neuron which gets value from synapse -->
         <many-to-one name="neuron_out" class="Neuron" column="id_neuron_out"></many-to-one> <!-- Neuron which sets value on synapse -->
-        <property name="weight" type="int">
+        <property name="weight" type="double">
             <column name="weight" />
         </property>
   </class>   

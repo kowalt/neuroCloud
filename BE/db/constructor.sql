@@ -34,7 +34,7 @@ CREATE TABLE IF NOT EXISTS `nncloud`.`users` (
   UNIQUE INDEX `email_UNIQUE` (`email` ASC),
   UNIQUE INDEX `session_id_UNIQUE` (`session_id` ASC))
 ENGINE = InnoDB
-AUTO_INCREMENT = 3
+AUTO_INCREMENT = 1
 DEFAULT CHARACTER SET = utf8;
 
 
@@ -112,23 +112,6 @@ DEFAULT CHARACTER SET = utf8;
 
 
 -- -----------------------------------------------------
--- Table `nncloud`.`connections`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `nncloud`.`connections` (
-  `id_neuron` INT(10) UNSIGNED NOT NULL,
-  `id_synapse` INT(10) UNSIGNED NOT NULL,
-  PRIMARY KEY (`id_neuron`, `id_synapse`),
-  INDEX `fk_neurons_has_synapses_neurons1_idx` (`id_neuron` ASC),
-  CONSTRAINT `fk_neurons_has_synapses_neurons1`
-    FOREIGN KEY (`id_neuron`)
-    REFERENCES `nncloud`.`neurons` (`id_neuron`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8;
-
-
--- -----------------------------------------------------
 -- Table `nncloud`.`performance_settings`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `nncloud`.`performance_settings` (
@@ -151,9 +134,9 @@ DEFAULT CHARACTER SET = utf8;
 CREATE TABLE IF NOT EXISTS `nncloud`.`synapses` (
   `id_synapse` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `weight` DOUBLE NULL,
-  `id_neuron_out` INT(10) UNSIGNED NOT NULL,
-  `id_neuron_in` INT(10) UNSIGNED NOT NULL,
-  PRIMARY KEY (`id_synapse`, `id_neuron_out`, `id_neuron_in`),
+  `id_neuron_out` INT(10) UNSIGNED NULL,
+  `id_neuron_in` INT(10) UNSIGNED NULL,
+  PRIMARY KEY (`id_synapse`),
   INDEX `fk_synapses_neurons1_idx` (`id_neuron_out` ASC),
   INDEX `fk_synapses_neurons2_idx` (`id_neuron_in` ASC),
   CONSTRAINT `fk_synapses_neurons1`

@@ -129,6 +129,9 @@ public class GenerateController
         {
             Neuron neu = generateNeuron(af);
             neu.setLayer(l);
+            neu.setActivation_functions(af);
+            for(ActivationFunction a: af)
+                a.setNeuron(neu);
             neurons.add(neu);
         }
         l.setNeurons(neurons);
