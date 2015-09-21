@@ -5,6 +5,8 @@
  */
 package com.mycompany.nncloudrestservice.controllers;
 
+import com.mycompany.nncloudrestservice.daos.DAO;
+import com.mycompany.nncloudrestservice.daos.NetworkDAO;
 import com.mycompany.nncloudrestservice.model.Network;
 import com.mycompany.nncloudrestservice.utils.SessionContainer;
 import java.util.List;
@@ -39,27 +41,8 @@ public class GetListOfNetworksController
     
     private List<Network> getFromDatabase()
     {
-        SessionFactory factory = SessionContainer.factory;
-        Session session = factory.openSession();
-        Transaction tx = null;
-        List<Network> networks = null;
-        try
-        {
-            tx = session.beginTransaction();
-            Query query = session.createQuery("FROM networks");
-            networks = query.list();
-            tx.commit();
-        }
-        catch(HibernateException he)
-        {
-            if (tx != null) tx.rollback();
-            he.printStackTrace();
-        }    
-        finally
-        {
-            session.close();
-        }
-        return networks;
+        NetworkDAO ndao = new NetworkDAO();
+        return ndao.getNetworksForCurrentUser();
     }
 }
 

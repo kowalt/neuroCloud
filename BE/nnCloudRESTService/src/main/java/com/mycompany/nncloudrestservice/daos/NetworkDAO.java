@@ -151,4 +151,30 @@ public class NetworkDAO implements DAO<Network>
         }
         return n;
     }
+    
+    public List<Network> getNetworksForCurrentUser()
+    {
+        SessionFactory factory = SessionContainer.factory;
+        Session session = factory.openSession();
+        Transaction tx = null;
+        List<Network> networks = null;
+        try
+        {
+            tx = session.beginTransaction();
+            Query query = session.createQuery("SELECT n.* FROM com.mycompany.nncloudrestservice.model.Network n JOIN n.user user WHERE user.id = :userid");
+            query.setParameter("userid", CurrentUserContainer.getInstance().getId());
+            networks = query.list();
+            tx.commit();
+        }
+        catch(HibernateException he)
+        {
+            if (tx != null) tx.rollback();
+            he.printStackTrace();
+        }    
+        finally
+        {
+            session.close();
+        }
+        return networks;
+    }
 }
