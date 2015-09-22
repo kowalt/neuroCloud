@@ -24,19 +24,19 @@ import org.json.JSONObject;
  */
 public class GetListOfNetworksController 
 {
-    public JSONObject getListOfNetworks()
+    public JSONArray getListOfNetworks()
     {
         List<Network> list = getFromDatabase();
-        JSONArray r = new JSONArray();
+        JSONArray rarrNetworks = new JSONArray();
         for(Network n: list)
         {
             JSONObject singleNetwork = new JSONObject();
             singleNetwork.put("id", n.getId());
             singleNetwork.put("name", n.getName());
             singleNetwork.put("creation-date", n.getCreation());
-            r.put(singleNetwork);
+            rarrNetworks.put(singleNetwork);
         }
-        return new JSONObject(r);
+        return rarrNetworks;
     }
     
     private List<Network> getFromDatabase()
