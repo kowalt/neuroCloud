@@ -23,8 +23,7 @@ import javax.ws.rs.core.Response;
 public class Networks
 {
     @GET
-    @Path("/{id : \\\\d+}")
-    @Consumes(MediaType.APPLICATION_JSON)
+    @Path("/{id: \\d+}")
     @Produces(MediaType.APPLICATION_XML)
     public Response loadNetwork(@PathParam("id") String id)
     {
