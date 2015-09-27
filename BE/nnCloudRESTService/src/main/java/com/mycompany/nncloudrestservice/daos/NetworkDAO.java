@@ -5,9 +5,13 @@
  */
 package com.mycompany.nncloudrestservice.daos;
 
+import com.mycompany.nncloudrestservice.model.ActivationFunction;
+import com.mycompany.nncloudrestservice.model.Layer;
 import com.mycompany.nncloudrestservice.model.Network;
+import com.mycompany.nncloudrestservice.model.Neuron;
 import com.mycompany.nncloudrestservice.model.User;
 import com.mycompany.nncloudrestservice.utils.CurrentUserContainer;
+import com.mycompany.nncloudrestservice.utils.HibUtils;
 import com.mycompany.nncloudrestservice.utils.SessionContainer;
 import java.util.List;
 import org.hibernate.HibernateException;
@@ -23,6 +27,7 @@ import org.hibernate.Transaction;
 public class NetworkDAO implements DAO<Network>
 {
     private final SessionFactory factory;
+    private boolean lazyLoadMode = true;
     
     public NetworkDAO()
     {
@@ -49,7 +54,7 @@ public class NetworkDAO implements DAO<Network>
             item.setUser(u);
             finalList.add(item);
             u.setNetworks(finalList);
-            
+
             session.update(u);
             
             tx.commit();
@@ -134,10 +139,37 @@ public class NetworkDAO implements DAO<Network>
         try
         {
             tx = session.beginTransaction();
-            Query query = session.createQuery("FROM Network n WHERE n.id_network = :id_network");
-            query.setParameter("id_network", id_network);
-            List results = query.list();    
+            
+            Query query = session.createQuery("SELECT n FROM com.mycompany.nncloudrestservice.model.Network n JOIN n.user user WHERE user.id = :id_user AND n.id = :id_network");
+            
+            query.setParameter("id_user", CurrentUserContainer.getInstance().getId());
+            query.setParameter("id_network", Integer.parseInt(id_network));
+            
+            List results = query.list();
             n = (Network)results.get(0);
+            n.setUser(CurrentUserContainer.getInstance());
+           
+            if(!lazyLoadMode)
+            {
+                HibUtils.initializeAndUnproxy(n);
+                List<Layer> ll = n.getLayers();
+                // Layers
+                ll.forEach(HibUtils::initializeAndUnproxy);
+                
+                // Neurons
+                ll.forEach(l -> 
+                {
+                    List<Neuron> neul = l.getNeurons();
+                    HibUtils.initializeAndUnproxy(neul);
+                    neul.forEach( neu -> 
+                    {
+                        neu.getActivation_functions().forEach(HibUtils::initializeAndUnproxy);
+                        neu.getSynapses_in().forEach(HibUtils::initializeAndUnproxy);
+                        neu.getSynapses_out().forEach(HibUtils::initializeAndUnproxy);
+                    });
+                });
+            }
+            
             tx.commit();
         }
         catch(HibernateException he)
@@ -176,5 +208,9 @@ public class NetworkDAO implements DAO<Network>
             session.close();
         }
         return networks;
+    }
+
+    public void setLazyLoadMode(boolean lazyLoadMode) {
+        this.lazyLoadMode = lazyLoadMode;
     }
 }

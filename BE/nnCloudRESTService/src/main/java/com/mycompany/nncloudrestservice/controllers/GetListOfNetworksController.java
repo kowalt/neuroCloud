@@ -5,16 +5,9 @@
  */
 package com.mycompany.nncloudrestservice.controllers;
 
-import com.mycompany.nncloudrestservice.daos.DAO;
 import com.mycompany.nncloudrestservice.daos.NetworkDAO;
 import com.mycompany.nncloudrestservice.model.Network;
-import com.mycompany.nncloudrestservice.utils.SessionContainer;
 import java.util.List;
-import org.hibernate.HibernateException;
-import org.hibernate.Query;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
 import org.json.JSONArray;
 import org.json.JSONObject;
 

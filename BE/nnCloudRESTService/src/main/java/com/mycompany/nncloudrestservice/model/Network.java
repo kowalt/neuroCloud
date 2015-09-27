@@ -8,22 +8,36 @@ package com.mycompany.nncloudrestservice.model;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlElementWrapper;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
  * @author Tomasz
  */
+@XmlRootElement
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Network
 {
+    @XmlAttribute
     private int id;
     private String name;
     private Date creation;
+    @XmlElementWrapper
+    @XmlElement(name="layer")
     private List<Layer> layers = new ArrayList<>();
+    @XmlTransient
     private User user;
     
     public int getId() {
         return id;
     }
+    
 
     public void setId(int id) {
         this.id = id;
@@ -32,6 +46,7 @@ public class Network
     public String getName() {
         return name;
     }
+
 
     public void setName(String name) {
         this.name = name;

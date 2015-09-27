@@ -9,6 +9,7 @@ package com.mycompany.nncloudrestservice.model;
  *
  * @author Tomasz
  */
+
 public class PerformanceSettings 
 {
     private boolean visualisation;

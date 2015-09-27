@@ -5,7 +5,6 @@
  */
 package com.mycompany.nncloudrestservice.controllers;
 
-import com.mycompany.nncloudrestservice.daos.DAO;
 import com.mycompany.nncloudrestservice.daos.NetworkDAO;
 import com.mycompany.nncloudrestservice.model.Network;
 import java.io.StringWriter;
@@ -23,7 +22,8 @@ public class LoadController
     {
         String r = null;
         StringWriter sw = new StringWriter();
-        DAO ndao = new NetworkDAO();
+        NetworkDAO ndao = new NetworkDAO();
+        ndao.setLazyLoadMode(false);
         
         try
         {
@@ -34,7 +34,7 @@ public class LoadController
             marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
             marshaller.setProperty(Marshaller.JAXB_ENCODING, "UTF-8");
             marshaller.marshal(network, sw);
-            sw.toString();
+            r = sw.toString();
         }
         catch(JAXBException e)
         {
