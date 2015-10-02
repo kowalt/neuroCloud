@@ -1,26 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping package="com.mycompany.nncloudrestservice.model">
   <class name="Synapse" table="synapses">
         <id name="id" type="int">
             <column name="id_synapse"/>
             <generator class="native"/>
         </id>
-        <!--
-        <id name="id_neuron_out" type="int">
-            <column name="id_neuron_out" />
-            <generator class="foreign">
-                <param name="property">id_neuron_out</param>
-            </generator>
-        </id>
-
-        <id name="id_neuron_in" type="int">
-            <column name="id_neuron_in" />
-            <generator class="foreign">
-                <param name="property">id_neuron_in</param>
-            </generator>
-        </id>
-        -->
         <many-to-one name="neuron_in" class="Neuron" column="id_neuron_out"></many-to-one> <!-- Neuron which gets value from synapse -->
         <many-to-one name="neuron_out" class="Neuron" column="id_neuron_in"></many-to-one> <!-- Neuron which sets value on synapse -->
         <property name="weight" type="double">

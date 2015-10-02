@@ -1,29 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping package="com.mycompany.nncloudrestservice.model">
   <class name="Neuron" table="neurons">
-      <id name="id" type="int">
-          <column name="id_neuron" not-null="true"/>
-          <generator class="native"/>
-      </id>
-      <bag name="synapses_out" cascade="all" table="synapses" inverse="true">
-          <key>
-              <column name="id_neuron_out"/>
-          </key>
-          <one-to-many class="Synapse"/>
-      </bag>
-      <bag name="synapses_in" cascade="all" table="synapses" inverse="true">
-          <key>
-              <column name="id_neuron_in"/>
-          </key>
-          <one-to-many class="Synapse"/>
-      </bag>
-      <bag name="activation_functions" table="activation_functions" cascade="all" inverse="true">
-          <key>
-              <column name="id_activation_function" not-null="true"/>
-          </key>
-          <one-to-many class="ActivationFunction"/>
-      </bag>
-      <many-to-one name="layer" class="Layer" column="id_layer" not-null="true"></many-to-one>
+        <id name="id" type="int">
+            <column name="id_neuron" not-null="true"/>
+            <generator class="native"/>
+        </id>
+        <bag name="synapses_out" cascade="all" table="synapses" inverse="true" lazy="true">
+            <key>
+                <column name="id_neuron_out"/>
+            </key>
+            <one-to-many class="Synapse"/>
+        </bag>
+        <fetch-profile name="neuron-with-synapses_out">
+            <fetch association="synapses_out" style="join"/>
+        </fetch-profile>
+        <bag name="synapses_in" cascade="all" table="synapses" inverse="true" lazy="true"> 
+            <key>
+                <column name="id_neuron_in"/>
+            </key>
+            <one-to-many class="Synapse"/>
+        </bag>
+        <fetch-profile name="neuron-with-synapses_in">
+            <fetch association="synapses_in" style="join"/>
+        </fetch-profile>
+        <bag name="activation_functions" table="activation_functions" cascade="all" inverse="true" lazy="true">
+            <key>
+                <column name="id_activation_function" not-null="true"/>
+            </key>
+            <one-to-many class="ActivationFunction"/>
+        </bag>
+        <fetch-profile name="neuron-with-activation_functions">
+            <fetch association="activation_functions" style="join"/>
+        </fetch-profile>
+        <many-to-one name="layer" class="Layer" column="id_layer" not-null="true"></many-to-one>
   </class>
 </hibernate-mapping>

@@ -13,6 +13,7 @@ import com.mycompany.nncloudrestservice.model.User;
 import com.mycompany.nncloudrestservice.utils.CurrentUserContainer;
 import com.mycompany.nncloudrestservice.utils.HibUtils;
 import com.mycompany.nncloudrestservice.utils.SessionContainer;
+import java.util.ArrayList;
 import java.util.List;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
@@ -130,6 +131,10 @@ public class NetworkDAO implements DAO<Network>
     @Override
     public Network getItem(String... keys) throws Exception {
         Session session = factory.openSession();
+        
+        if(lazyLoadMode)    
+            HibUtils.enableEagerFetching(session);
+ 
         Transaction tx = null;
         
         String id_network = keys[0];
@@ -148,28 +153,7 @@ public class NetworkDAO implements DAO<Network>
             List results = query.list();
             n = (Network)results.get(0);
             n.setUser(CurrentUserContainer.getInstance());
-           
-            if(!lazyLoadMode)
-            {
-                HibUtils.initializeAndUnproxy(n);
-                List<Layer> ll = n.getLayers();
-                // Layers
-                ll.forEach(HibUtils::initializeAndUnproxy);
-                
-                // Neurons
-                ll.forEach(l -> 
-                {
-                    List<Neuron> neul = l.getNeurons();
-                    HibUtils.initializeAndUnproxy(neul);
-                    neul.forEach( neu -> 
-                    {
-                        neu.getActivation_functions().forEach(HibUtils::initializeAndUnproxy);
-                        neu.getSynapses_in().forEach(HibUtils::initializeAndUnproxy);
-                        neu.getSynapses_out().forEach(HibUtils::initializeAndUnproxy);
-                    });
-                });
-            }
-            
+                       
             tx.commit();
         }
         catch(HibernateException he)

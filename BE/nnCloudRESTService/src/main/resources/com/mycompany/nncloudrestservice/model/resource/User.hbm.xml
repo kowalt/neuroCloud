@@ -2,25 +2,27 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping package="com.mycompany.nncloudrestservice.model">
   <class name="User" table="users">
-      <meta attribute="class-description">
-          Description under construction
-      </meta>
-      <id name="id" type="int">
-          <column name="id_user" not-null="true"/>
-          <generator class="native"/>
-      </id>
-      <property name="login" column="login" type="string"/>
-      <property name="email" column="email" type="string"/>
-      <property name="password" column="password" type="string"/>
-      <!-- type alert -->
-      <property name="activated" column="activated" type="boolean"/> 
-      <property name="info_to_admin" column="info_to_admin" type="string"/>
-      <property name="session_id" column="session_id" type="string"/>
-      <property name="registered" column="registered" type="date"/>
-      <bag name="networks" cascade="all" table="networks" inverse="true">
-          <key column="id_user" not-null="true"/>
-          <one-to-many class="Network"/>
-      </bag>
-      <one-to-one name="performance_settings" cascade="all" class="PerformanceSettings"></one-to-one>
+    <meta attribute="class-description">
+        Description under construction
+    </meta>
+    <id name="id" type="int">
+        <column name="id_user" not-null="true"/>
+        <generator class="native"/>
+    </id>
+    <property name="login" column="login" type="string"/>
+    <property name="email" column="email" type="string"/>
+    <property name="password" column="password" type="string"/>
+    <property name="activated" column="activated" type="boolean"/> 
+    <property name="info_to_admin" column="info_to_admin" type="string"/>
+    <property name="session_id" column="session_id" type="string"/>
+    <property name="registered" column="registered" type="date"/>
+    <bag name="networks" cascade="all" table="networks" inverse="true" lazy="true">
+        <key column="id_user" not-null="true"/>
+        <one-to-many class="Network"/>
+    </bag>
+    <fetch-profile name="user-with-networks">
+      <fetch entity="User" association="networks" style="join"/>
+    </fetch-profile>
+    <one-to-one name="performance_settings" cascade="all" class="PerformanceSettings"></one-to-one>
   </class>
 </hibernate-mapping>

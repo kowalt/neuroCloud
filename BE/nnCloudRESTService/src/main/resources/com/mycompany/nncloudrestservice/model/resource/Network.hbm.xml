@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping package="com.mycompany.nncloudrestservice.model">
   <class name="Network" table="networks">
       <id name="id" type="int">
@@ -8,10 +8,13 @@
       </id>
       <property name="name" column="name" type="string"/>
       <property name="creation" column="creation" type="date"/>
-      <bag name="layers" cascade="all" table="layers" inverse="true">
+      <bag name="layers" cascade="all" table="layers" inverse="true" lazy="true">
           <key column="id_network" not-null="true"/>
           <one-to-many class="Layer"/>
       </bag>
+      <fetch-profile name="network-with-layers">
+        <fetch association="layers" style="join"/>
+      </fetch-profile>
       <many-to-one name="user" class="User" column="id_user" not-null="true"></many-to-one>
   </class>
 </hibernate-mapping>
