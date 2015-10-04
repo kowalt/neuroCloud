@@ -11,10 +11,13 @@ import nncgpuserver.model.Network;
  *
  * @author Tomasz
  */
-public class Server implements RunNetwork{    
+public class Server implements RunNetwork
+{    
     @Override
     public int[] run(Network n) 
     {
+
+        
         return null;
     }
 }
