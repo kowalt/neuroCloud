@@ -21,7 +21,7 @@
         <one-to-many class="Network"/>
     </bag>
     <fetch-profile name="user-with-networks">
-      <fetch entity="User" association="networks" style="join"/>
+        <fetch association="networks" style="join"/>
     </fetch-profile>
     <one-to-one name="performance_settings" cascade="all" class="PerformanceSettings"></one-to-one>
   </class>

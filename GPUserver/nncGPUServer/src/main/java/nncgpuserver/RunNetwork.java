@@ -6,6 +6,7 @@
 package nncgpuserver;
 
 import java.rmi.Remote;
+import java.rmi.RemoteException;
 import nncgpuserver.model.Network;
 
 /**
@@ -13,5 +14,8 @@ import nncgpuserver.model.Network;
  * @author Tomasz
  */
 public interface RunNetwork extends Remote {
-    public int[] run(Network n);
+    
+    public void loadNetworkIntoGPU(Network n);
+    
+    public int[] run(int[] input) throws RemoteException;
 }

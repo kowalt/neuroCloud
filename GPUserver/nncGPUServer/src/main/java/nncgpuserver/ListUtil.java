@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import static org.jocl.CL.*;
 import org.jocl.Pointer;
+import org.jocl.cl_device_id;
 import org.jocl.cl_platform_id;
 
 /**
@@ -42,7 +43,7 @@ public class ListUtil {
         
         for(int i=0;i<platforms.length;i++)
         {
-            System.out.println("--------Platform number " + i + " --------");
+            System.out.println("--------Platform " + i + " --------");
             for(int pa: platformAttributes)
             {    
                 long paramValueSizeArray[] = new long[1];
@@ -55,12 +56,37 @@ public class ListUtil {
                 
                 System.out.println(info);
             }
+            listDevices(platforms[i]);
         }
     }
     
-    public static void listDevices()
+    private static void listDevices(cl_platform_id platform)
     {  
-        System.out.println("Listing all available devices:");
+        System.out.println("Listing all available devices for this platform:");
         final long deviceType = CL_DEVICE_TYPE_GPU;
+        
+        int numDevicesArray[] = new int[1];
+        clGetDeviceIDs(platform, deviceType, 0, null, numDevicesArray);
+        int numDevices = numDevicesArray[0];
+        
+        cl_device_id devices[] = new cl_device_id[numDevices];
+        clGetDeviceIDs(platform, deviceType, numDevices, devices, null);
+        
+        System.out.println("---Devices---");
+        
+        for(int i=0;i < devices.length;i++)
+        {
+            long paramValueSizeArray[] = new long[1];
+            clGetDeviceInfo(devices[i], CL_DEVICE_NAME, 0, null, paramValueSizeArray);
+            long paramValueSize = paramValueSizeArray[0];
+            
+            byte[] infoBuffer = new byte[(int) paramValueSize];
+            clGetDeviceInfo(devices[i], CL_DEVICE_NAME, paramValueSize, Pointer.to(infoBuffer),null);
+            
+            String info = new String(infoBuffer, 0, infoBuffer.length-1);
+ 
+            System.out.println("--- Device "+i+" ---");
+            System.out.println(info);
+        }
     }
 }

@@ -5,7 +5,9 @@
  */
 package nncgpuserver;
 
+import java.rmi.RemoteException;
 import nncgpuserver.model.Network;
+import static org.jocl.CL.CL_DEVICE_TYPE_ALL;
 
 /**
  *
@@ -14,10 +16,15 @@ import nncgpuserver.model.Network;
 public class Server implements RunNetwork
 {    
     @Override
-    public int[] run(Network n) 
+    public int[] run(int[] input) 
     {
-
+        
         
         return null;
+    }
+
+    @Override
+    public void loadNetworkIntoGPU(Network n) {
+        
     }
 }

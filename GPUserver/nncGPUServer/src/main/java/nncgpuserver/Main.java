@@ -20,26 +20,28 @@ import static org.jocl.CL.*;
  * @author Tomasz
  */
 public class Main {
-    final static String REGISTRY_HOST = "178.62.119.189";
-    
+
     @Parameter(names = {"-l","--list"}, description="List mode")
-    private static boolean listMode = false;
+    private boolean listMode = false;
     
-    @Parameter(names = {"-p","--platform"}, description="Platform id")
-    private static Integer platform_id = 0;
+    @Parameter(names = {"-p","--platform"}, description="Platform index")
+    private Integer platform_index = 0;
     
-    @Parameter(names = {"-d","--device"}, description="Device id")
-    private static Integer device_id = 0;
+    @Parameter(names = {"-d","--device"}, description="Device index")
+    private Integer device_index = 0;
+        
+    @Parameter(names = {"-n", "--name"}, description="Server's name")
+    private String name;
     
     public void initializeRMI()
     {
         try 
         {
             Server s = new Server();   
-            RunNetwork rn_stub = (Server)UnicastRemoteObject.exportObject(s, 0);
-            Registry registry = LocateRegistry.getRegistry(REGISTRY_HOST);
+            RunNetwork rn_stub = (RunNetwork)UnicastRemoteObject.exportObject(s, 0);
+            Registry registry = LocateRegistry.getRegistry();
             registry.bind("RunNetwork", rn_stub);
-            
+
             System.out.println("RMI Initialized successfully");
         } 
         catch (RemoteException ex) 
@@ -59,29 +61,31 @@ public class Main {
                         + "Print available devices and platforms:\n"
                         + "nncs -l\n"
                         + "Start server on particular platform and device. Default id's are 0.\n"
-                        + "nncs -s -p [PLATFORM_ID] -d [DEVICE_ID]\n"
+                        + "nncs start -p [PLATFORM_ID] -d [DEVICE_ID] -n [SERVER_NAME]\n"
         );
     }
 
     public static void main(String[] args)
     {
         Main main = new Main();
-        main.initializeRMI();
-    
+
         if(args.length == 0)
         {    
             main.printHelp();
             return;
         }
-    
-        setExceptionsEnabled(true);
-        
+   
         new JCommander(main, args);
         
-        if(listMode)
+        if(main.listMode)
         {
             ListUtil.listPlatforms();
             return;
-        }  
+        }
+        
+        setExceptionsEnabled(true);
+        main.initializeRMI();
+        
+        
     }
 }
