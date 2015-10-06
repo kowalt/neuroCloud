@@ -11,25 +11,27 @@ package nncgpuserver;
  */
 public class KernelManager 
 {
-    private String kernelSource;
-
-    public String getKernelSource() {
-        return kernelSource;
-    }
-
-    public void setKernelSource(String kernelSource) {
-        this.kernelSource = kernelSource;
-    }
-
-    public void createKernelCode(String activation_function)
-    {
-        activation_function = activation_function.replaceAll("x", "input[gid]");
-        
-        this.kernelSource = "__kernel float "+
-        "calculateNeuronOutputKernel(__global const float *input)" +
+    private final String INPUT_KERNEL_SOURCE= "__kernel void "+
+        "calculateNeuronOutputKernel(__global const float *weights, __global const float *values, __global float* sum)" +
         "{"+
         "    int gid = get_global_id(0);"+
-        "    return " + activation_function + ";" +   
+        "    sum += values[gid]*weights[gid];"+   
         "}";
+    
+    private final String OUTPUT_KERNEL_SOURCE = "__kernel float "+
+        "calculateNeuronOutputKernel(__global const float af_value,__global const float *weights)" +
+        "{"+
+        "    int gid = get_global_id(0);"+
+        "    return sum*weights[gid];" +   
+        "}";
+            
+
+    public String getOutputKernelSource() {
+        return OUTPUT_KERNEL_SOURCE;
+    }
+    
+    public String getInputKernelCode()
+    {
+        return INPUT_KERNEL_SOURCE;
     }
 }
