@@ -33,11 +33,14 @@ public class Main {
     @Parameter(names = {"-n", "--name"}, description="Server's name")
     private String name;
     
-    public void initializeRMI()
+    private void initializeRMIServer()
     {
         try 
         {
-            Server s = new Server();   
+            Server s = new Server();
+            DeviceInitializer di = new DeviceInitializer();
+            di.initialize(platform_index, device_index);
+            s.setInitializer(di);
             RunNetwork rn_stub = (RunNetwork)UnicastRemoteObject.exportObject(s, 0);
             Registry registry = LocateRegistry.getRegistry();
             registry.bind("RunNetwork", rn_stub);
@@ -54,7 +57,7 @@ public class Main {
         }
     }
     
-    public void printHelp()
+    private void printHelp()
     {
         System.out.println(
                 "NNCLOUD SERVER usage:\n"
@@ -64,7 +67,7 @@ public class Main {
                         + "nncs start -p [PLATFORM_ID] -d [DEVICE_ID] -n [SERVER_NAME]\n"
         );
     }
-
+    
     public static void main(String[] args)
     {
         Main main = new Main();
@@ -84,8 +87,6 @@ public class Main {
         }
         
         setExceptionsEnabled(true);
-        main.initializeRMI();
-        
-        
+        main.initializeRMIServer();
     }
 }

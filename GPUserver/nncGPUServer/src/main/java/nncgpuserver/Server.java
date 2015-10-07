@@ -5,9 +5,12 @@
  */
 package nncgpuserver;
 
-import java.rmi.RemoteException;
 import nncgpuserver.model.Network;
-import static org.jocl.CL.CL_DEVICE_TYPE_ALL;
+import org.jocl.cl_kernel;
+import org.jocl.cl_mem;
+import static org.jocl.CL.*;
+import org.jocl.Sizeof;
+import org.jocl.cl_context;
 
 /**
  *
@@ -15,9 +18,22 @@ import static org.jocl.CL.CL_DEVICE_TYPE_ALL;
  */
 public class Server implements RunNetwork
 {    
+    private DeviceInitializer initializer;
+
+    public DeviceInitializer getInitializer() {
+        return initializer;
+    }
+
+    public void setInitializer(DeviceInitializer initializer) {
+        this.initializer = initializer;
+    }
+    
     @Override
     public int[] run(int[] input) 
     {
+        cl_kernel kernel_input = initializer.getKernel_input();
+        cl_kernel kernel_output = initializer.getKernel_output();
+        
         
         
         return null;
@@ -25,6 +41,11 @@ public class Server implements RunNetwork
 
     @Override
     public void loadNetworkIntoGPU(Network n) {
+        cl_context context = initializer.getContext();
         
+//        cl_mem todo[] = new cl_mem[3];
+//        memObjects[0] = clCreateBuffer(context, 
+//        CL_MEM_READ_ONLY | CL_MEM_COPY_HOST_PTR,
+//        Sizeof.cl_float * n, srcA, null);
     }
 }

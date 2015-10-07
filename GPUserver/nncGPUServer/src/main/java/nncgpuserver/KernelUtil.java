@@ -9,16 +9,16 @@ package nncgpuserver;
  *
  * @author Tomasz
  */
-public class KernelManager 
+public class KernelUtil 
 {
-    private final String INPUT_KERNEL_SOURCE= "__kernel void "+
-        "calculateNeuronOutputKernel(__global const float *weights, __global const float *values, __global float* sum)" +
+    private static final String INPUT_KERNEL_SOURCE= "__kernel void "+
+        "calculateNeuronInputKernel(__global const float *weights, __global const float *values, __global float* sum)" +
         "{"+
         "    int gid = get_global_id(0);"+
         "    sum += values[gid]*weights[gid];"+   
         "}";
     
-    private final String OUTPUT_KERNEL_SOURCE = "__kernel float "+
+    private static final String OUTPUT_KERNEL_SOURCE = "__kernel float "+
         "calculateNeuronOutputKernel(__global const float af_value,__global const float *weights)" +
         "{"+
         "    int gid = get_global_id(0);"+
@@ -26,11 +26,11 @@ public class KernelManager
         "}";
             
 
-    public String getOutputKernelSource() {
+    public static String getOutputKernelSource() {
         return OUTPUT_KERNEL_SOURCE;
     }
     
-    public String getInputKernelCode()
+    public static String getInputKernelSource()
     {
         return INPUT_KERNEL_SOURCE;
     }

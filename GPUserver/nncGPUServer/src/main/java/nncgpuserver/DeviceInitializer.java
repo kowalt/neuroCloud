@@ -10,6 +10,7 @@ import org.jocl.cl_command_queue;
 import org.jocl.cl_context;
 import org.jocl.cl_context_properties;
 import org.jocl.cl_device_id;
+import org.jocl.cl_kernel;
 import org.jocl.cl_platform_id;
 import org.jocl.cl_program;
 
@@ -18,7 +19,11 @@ import org.jocl.cl_program;
  * @author Tomasz
  */
 public class DeviceInitializer {
-        
+    
+    private cl_kernel kernel_input;
+    private cl_kernel kernel_output;
+    private cl_context context;
+    
     public void initialize(int platformIndex, int deviceIndex)
     {
         final long deviceType = CL_DEVICE_TYPE_GPU;
@@ -47,7 +52,7 @@ public class DeviceInitializer {
         cl_device_id device = devices[deviceIndex];
 
         // Create a context for the selected device
-        cl_context context = clCreateContext(
+        context = clCreateContext(
             contextProperties, 1, new cl_device_id[]{device}, 
             null, null, null);
         
@@ -55,12 +60,45 @@ public class DeviceInitializer {
         cl_command_queue commandQueue = 
             clCreateCommandQueue(context, device, 0, null);
         
-//        // Create the program from the source code
-//        cl_program program = clCreateProgramWithSource(context,
-//            1, new String[]{ programSource }, null, null);
-//        
-//        // Build the program
-//        clBuildProgram(program, 0, null, null, null, null);
+        //Create the programs from the source code
+        cl_program program_input = clCreateProgramWithSource(context,
+            1, new String[]{ KernelUtil.getOutputKernelSource() }, null, null);
         
+        // Build the program
+        clBuildProgram(program_input, 0, null, null, null, null);
+        
+        cl_program program_output = clCreateProgramWithSource(context,
+            1, new String[]{ KernelUtil.getOutputKernelSource() }, null, null);
+        
+        // Build the program
+        clBuildProgram(program_output, 0, null, null, null, null);
+        
+        // Create the kernels
+        kernel_input = clCreateKernel(program_input, "calculateNeuronInputKernel",null);
+        kernel_output = clCreateKernel(program_output, "calculateNeuronOutputKernel", null);
+    }
+
+    public cl_kernel getKernel_input() {
+        return kernel_input;
+    }
+
+    public void setKernel_input(cl_kernel kernel_input) {
+        this.kernel_input = kernel_input;
+    }
+
+    public cl_kernel getKernel_output() {
+        return kernel_output;
+    }
+
+    public void setKernel_output(cl_kernel kernel_output) {
+        this.kernel_output = kernel_output;
+    }
+
+    public cl_context getContext() {
+        return context;
+    }
+
+    public void setContext(cl_context context) {
+        this.context = context;
     }
 }
