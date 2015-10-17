@@ -6,14 +6,11 @@
 package com.mycompany.nncloudrestservice.daos;
 
 import com.mycompany.nncloudrestservice.model.ActivationFunction;
-import com.mycompany.nncloudrestservice.model.Layer;
 import com.mycompany.nncloudrestservice.model.Network;
-import com.mycompany.nncloudrestservice.model.Neuron;
 import com.mycompany.nncloudrestservice.model.User;
 import com.mycompany.nncloudrestservice.utils.CurrentUserContainer;
 import com.mycompany.nncloudrestservice.utils.HibUtils;
 import com.mycompany.nncloudrestservice.utils.SessionContainer;
-import java.util.ArrayList;
 import java.util.List;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
@@ -132,7 +129,7 @@ public class NetworkDAO implements DAO<Network>
     public Network getItem(String... keys) throws Exception {
         Session session = factory.openSession();
         
-        if(lazyLoadMode)    
+        if(!lazyLoadMode)    
             HibUtils.enableEagerFetching(session);
  
         Transaction tx = null;

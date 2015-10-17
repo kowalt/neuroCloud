@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.5//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping package="com.mycompany.nncloudrestservice.model">
   <class name="Layer" table="layers">
     <id name="id" type="int">
@@ -11,9 +11,9 @@
         <key column="id_layer" not-null="true"/>
         <one-to-many class="Neuron"/>
     </bag>
+    <many-to-one name="network" class="Network" not-null="true" column="id_network"></many-to-one>
     <fetch-profile name="layer-with-neurons">
         <fetch association="neurons" style="join"/>
     </fetch-profile>
-    <many-to-one name="network" class="Network" not-null="true" column="id_network"></many-to-one>
   </class>
 </hibernate-mapping>

@@ -43,9 +43,12 @@ public class Server implements RunNetwork
     public void loadNetworkIntoGPU(Network n) {
         cl_context context = initializer.getContext();
         
-//        cl_mem todo[] = new cl_mem[3];
-//        memObjects[0] = clCreateBuffer(context, 
-//        CL_MEM_READ_ONLY | CL_MEM_COPY_HOST_PTR,
-//        Sizeof.cl_float * n, srcA, null);
+        n = NetworkUtil.convert();
+        
+        
+        cl_mem inputWeightsMem[] = new cl_mem[3];
+        memObjects[0] = clCreateBuffer(context, 
+        CL_MEM_READ_ONLY | CL_MEM_COPY_HOST_PTR,
+        Sizeof.cl_float * n, srcA, null);
     }
 }

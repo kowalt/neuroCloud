@@ -10,5 +10,5 @@ package nncgpuserver.model;
  * @author Tomasz
  */
 public class SynapseToRun extends Synapse{
-    
+    private float value;
 }

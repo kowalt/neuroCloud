@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.5//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping package="com.mycompany.nncloudrestservice.model">
   <class name="User" table="users">
     <meta attribute="class-description">
@@ -20,9 +20,9 @@
         <key column="id_user" not-null="true"/>
         <one-to-many class="Network"/>
     </bag>
+    <one-to-one name="performance_settings" cascade="all" class="PerformanceSettings"></one-to-one>
     <fetch-profile name="user-with-networks">
         <fetch association="networks" style="join"/>
     </fetch-profile>
-    <one-to-one name="performance_settings" cascade="all" class="PerformanceSettings"></one-to-one>
   </class>
 </hibernate-mapping>
