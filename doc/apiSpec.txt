@@ -26,9 +26,13 @@ Password is not encrypted! Use HTTPS.
 
     + Headers
 
-            Set-Cookie: nazwa="sessionid"; path=/; domain=DOMENA
+            Set-Cookie: name="session_id"; path=/; domain=DOMAIN
 
 + Response 401 (application/json)
+
+        {
+            "error": "Bad login or password"
+        }
 
 ## logout [/logout]
 
@@ -36,7 +40,17 @@ Terminates the opened session.
 
 ### Session termination request [GET]
 
-+ Response 200
++ Response 204
+
+    + Headers
+
+            Set-Cookie: name="session_id"; path=/; domain=DOMAIN; expires=CURRENT_DATE OR EARLIER
+
++ Response 401
+
+        {
+            "error": "No session associated with this ID."
+        }
 
 ## register [/register]
 
@@ -55,7 +69,7 @@ Register new user
 
 + Response 201
         
-+ Response 422
++ Response 400
 
         {
             "error": "User kowalt already exists"
@@ -149,12 +163,16 @@ Network will be set as active after this operation.
             </layer>
             <synapse id="179" weight="0.2256" from="515"/>
         </neuralnetwork>
+        
++ Response 404
+
+        Unable to load network    
 
 ### Delete the particular network [DELETE]
 
 + Response 204
 
-### Alter an existing network [PUT]
+### Alter an existing network [PATCH]
 
 The message should contain only the elements that need to be changed, with respective id's and the desired values.
     
@@ -196,48 +214,11 @@ The message should contain only the elements that need to be changed, with respe
             "1stlayer": 4,
             "2ndlayer": 3,
             "3rdlayer": 2,
-            "4thlayer": 1
+            "4thlayer": 1,
             "activationFunction": "-1<=>x<=-1;x<=>x>-1,x<1;1<=>x>=1"
         }
             
-        
-+ Response 200 (application/xml)
-
-        <?xml version="1.1" encoding="UTF-8"?>
-        <neuralnetwork id="3" name="MyNetworkForClassification">
-            <synapse id="5" weight="0.2" to="5512"/>
-            <synapse id="7" weight="0.3" to="6125"/>
-            <synapse id="51" weight="0.78" to="7785"/>
-            <synapse id="225" weight="0.7" to="412"/>
-            <layer relative_number="1">
-                <neuron id="5512" activation="-1<=>x<=-1;x<=>x>-1,x<1;1<=>x>=1"/>
-                <neuron id="6125" activation="-1<=>x<=-1;x<=>x>-1,x<1;1<=>x>=1"/>
-                <neuron id="7785" activation="-1<=>x<=-1;x<=>x>-1,x<1;1<=>x>=1"/>
-                <neuron id="412" activation="-1<=>x<=-1;x<=>x>-1,x<1;1<=>x>=1"/>
-            </layer>
-            <synapse id="332" weight="0.5" from="6125" to="9001"/> 
-            <synapse id="255" weight="0.6" from="6125" to="57612"/>
-            <synapse id="9001" weight="-0.2" from="412" to="21"/>
-            <layer relative_number="2">
-                <neuron id="21" activation="-1<=>x<=-1;x<=>x>-1,x<1;1<=>x>=1"/>
-                <neuron id="9001" activation="-1<=>x<=-1;x<=>x>-1,x<1;1<=>x>=1"/>
-                <neuron id="55612" activation="-1<=>x<=-1;x<=>x>-1,x<1;1<=>x>=1"/>
-            </layer>
-            <synapse id="1" weight="0.1" from="21" to="57612"/>
-            <synapse id="4" weight="0.1" from="21" to="5612"/>
-            <synapse id="333" weight="-0.1" from="9001" to="5612"/>
-            <synapse weight="0.9999" from="55612" to="5612"/>
-            <layer relative_number="3">
-                <neuron id="57612" activation="-1<=>x<=-1;x<=>x>-1,x<1;1<=>x>=1"/>
-                <neuron id="5612" activation="-1<=>x<=-1;x<=>x>-1,x<1;1<=>x>=1"/>
-            </layer>
-            <synapse id="274" weight="0.3" from="57612" to="515"/>
-            <synapse id="519" weight="-0.444" from="5612" to="515"/>
-            <layer relative_number="4">
-                <neuron id="515" activation="-1<=>x<=-1;x<=>x>-1,x<1;1<=>x>=1"/>
-            </layer>
-            <synapse id="179" weight="0.2256" from="515"/>
-        </neuralnetwork>
++ Response 204
 
 + Response 400
 

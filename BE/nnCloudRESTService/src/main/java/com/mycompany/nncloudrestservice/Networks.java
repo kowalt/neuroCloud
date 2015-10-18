@@ -7,6 +7,7 @@ package com.mycompany.nncloudrestservice;
 
 import com.mycompany.nncloudrestservice.controllers.GetListOfNetworksController;
 import com.mycompany.nncloudrestservice.controllers.LoadController;
+import com.mycompany.nncloudrestservice.exceptions.NetworkAccessException;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
@@ -27,7 +28,16 @@ public class Networks
     public Response loadNetwork(@PathParam("id") String id)
     {
         LoadController lc = new LoadController();
-        String r = lc.loadNetworkAsXML(Integer.parseInt(id));
+        String r = null;
+        try
+        {    
+            r = lc.loadNetworkAsXML(Integer.parseInt(id));
+        }
+        catch(NetworkAccessException nae)
+        {
+            return Response.status(404).entity(nae.getMessage()).build();
+        }    
+        
         return Response.status(200).entity(r).build();
     }
     

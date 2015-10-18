@@ -6,8 +6,10 @@
 package com.mycompany.nncloudrestservice.controllers;
 
 import com.mycompany.nncloudrestservice.daos.NetworkDAO;
+import com.mycompany.nncloudrestservice.exceptions.NetworkAccessException;
 import com.mycompany.nncloudrestservice.model.Network;
 import java.io.StringWriter;
+import java.util.List;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
@@ -18,11 +20,30 @@ import javax.xml.bind.Marshaller;
  */
 public class LoadController 
 {
-    public String loadNetworkAsXML(int id)
+    public String loadNetworkAsXML(int id) throws NetworkAccessException
     {
         String r = null;
         StringWriter sw = new StringWriter();
         NetworkDAO ndao = new NetworkDAO();
+        //check if user has access for this network
+        List<Network> nList = ndao.getNetworksForCurrentUser();
+        
+        if(nList.isEmpty())
+            throw new NetworkAccessException("Unable to load network");
+        
+        boolean foundFlag = false;
+        for(Network n: nList)
+        {
+            if(n.getId() == id)
+            {    
+                foundFlag = true;
+                break;
+            }
+        }
+
+        if(!foundFlag)
+            throw new NetworkAccessException("Unable to load network");
+        
         ndao.setLazyLoadMode(false);
         
         try

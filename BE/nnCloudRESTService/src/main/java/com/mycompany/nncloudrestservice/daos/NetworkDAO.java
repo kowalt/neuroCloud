@@ -5,18 +5,19 @@
  */
 package com.mycompany.nncloudrestservice.daos;
 
-import com.mycompany.nncloudrestservice.model.ActivationFunction;
 import com.mycompany.nncloudrestservice.model.Network;
 import com.mycompany.nncloudrestservice.model.User;
 import com.mycompany.nncloudrestservice.utils.CurrentUserContainer;
 import com.mycompany.nncloudrestservice.utils.HibUtils;
 import com.mycompany.nncloudrestservice.utils.SessionContainer;
 import java.util.List;
+import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.hibernate.criterion.Restrictions;
 
 /**
  *
@@ -128,13 +129,13 @@ public class NetworkDAO implements DAO<Network>
     @Override
     public Network getItem(String... keys) throws Exception {
         Session session = factory.openSession();
-        
-        if(!lazyLoadMode)    
+                
+        if(!lazyLoadMode)  
             HibUtils.enableEagerFetching(session);
  
         Transaction tx = null;
         
-        String id_network = keys[0];
+        Integer id_network = Integer.parseInt(keys[0]);
         
         Network n = null;
         
@@ -142,15 +143,7 @@ public class NetworkDAO implements DAO<Network>
         {
             tx = session.beginTransaction();
             
-            Query query = session.createQuery("SELECT n FROM com.mycompany.nncloudrestservice.model.Network n JOIN n.user user WHERE user.id = :id_user AND n.id = :id_network");
-            
-            query.setParameter("id_user", CurrentUserContainer.getInstance().getId());
-            query.setParameter("id_network", Integer.parseInt(id_network));
-            
-            List results = query.list();
-            n = (Network)results.get(0);
-            n.setUser(CurrentUserContainer.getInstance());
-                       
+            n = (Network) session.get(Network.class, id_network); 
             tx.commit();
         }
         catch(HibernateException he)
@@ -162,6 +155,7 @@ public class NetworkDAO implements DAO<Network>
         {
             session.close();
         }
+        
         return n;
     }
     
