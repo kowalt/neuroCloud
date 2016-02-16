@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package nncgpuserver;
+package jocl;
 
+import nncgpuserver.KernelUtil;
 import static org.jocl.CL.*;
 import org.jocl.cl_command_queue;
 import org.jocl.cl_context;

@@ -14,6 +14,8 @@ import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import jocl.ServerJOCL;
+import normal.ServerCPU;
 import static org.jocl.CL.*;
 /**
  *
@@ -33,23 +35,38 @@ public class Main {
     @Parameter(names = {"-n", "--name"}, description="Server's name")
     private String name;
     
+    @Parameter(names= {"-m","--mode"}, description="0-normal, 1-jocl, 2-javacl")
+    private Integer mode;
+    
     private void initializeRMIServer()
     {
         try 
         {
-            Server s = new Server();
-            DeviceInitializer di = new DeviceInitializer();
-            di.initialize(platform_index, device_index);
-            s.setInitializer(di);
-            RunNetwork rn_stub = (RunNetwork)UnicastRemoteObject.exportObject(s, 0);
+            INetworkCalculatorServer s = null;
+            switch(mode)
+            {
+                case 0:
+                    s = new ServerCPU();
+                    break;    
+                case 1:
+                    s = new ServerJOCL(platform_index, device_index);
+                    break;
+                case 2:
+                    break;
+                default:
+                    printHelp();
+                    return;
+            }
+            
+            INetworkCalculatorServer rn_stub = (INetworkCalculatorServer)UnicastRemoteObject.exportObject(s, 0);
             Registry registry = LocateRegistry.getRegistry();
-            registry.bind("RunNetwork", rn_stub);
+            registry.bind("INetworkCalculatorServer", rn_stub);
 
             System.out.println("RMI Initialized successfully");
         } 
         catch (RemoteException ex) 
         {
-            Logger.getLogger(Server.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(INetworkCalculatorServer.class.getName()).log(Level.SEVERE, null, ex);
         } 
         catch (AlreadyBoundException ex) 
         {

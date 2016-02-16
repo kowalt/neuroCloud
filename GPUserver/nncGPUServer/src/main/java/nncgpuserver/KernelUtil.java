@@ -18,11 +18,11 @@ public class KernelUtil
         "    sum += values[gid]*weights[gid];"+   
         "}";
     
-    private static final String OUTPUT_KERNEL_SOURCE = "__kernel float "+
-        "calculateNeuronOutputKernel(__global const float af_value,__global const float *weights)" +
+    private static final String OUTPUT_KERNEL_SOURCE = "__kernel void "+
+        "calculateNeuronOutputKernel(__global const float af_value, __global const float *weights, __global float* output, )" +
         "{"+
         "    int gid = get_global_id(0);"+
-        "    return sum*weights[gid];" +   
+        "    output = sum*weights[gid];" +   
         "}";
             
 

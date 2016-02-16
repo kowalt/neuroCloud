@@ -13,7 +13,7 @@ import nncgpuserver.model.Network;
  *
  * @author Tomasz
  */
-public interface RunNetwork extends Remote {
+public interface INetworkCalculatorServer extends Remote {
     
     public void loadNetworkIntoGPU(Network n);
     

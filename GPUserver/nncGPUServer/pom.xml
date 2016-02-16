@@ -21,5 +21,10 @@
             <artifactId>jcommander</artifactId>
             <version>1.48</version>
         </dependency>
+        <dependency>
+            <groupId>com.nativelibs4java</groupId>
+            <artifactId>javacl</artifactId>
+            <version>1.0.0-RC4</version>
+        </dependency>
     </dependencies>
 </project>
