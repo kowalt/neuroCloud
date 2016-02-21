@@ -6,15 +6,12 @@
 package normal;
 
 import java.rmi.RemoteException;
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import nncgpuserver.INetworkCalculatorServer;
-import model.original.ActivationFunction;
 import model.original.Layer;
 import model.original.Network;
 import model.original.Neuron;
-import model.original.Synapse;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 /**
@@ -33,16 +30,9 @@ public class ServerCPU implements INetworkCalculatorServer{
     @Override
     public double[] run(double[] input) throws RemoteException {
         Network n = new Network();
-        ValueCalculator vc = new ValueCalculator();
-
         List<Layer> lList = n.getLayers();
-
-        List<Neuron> neurons = lList.get(0).getNeurons();       
-
         double[] output = new double[getLargestLayerSize(lList)];
-        
         NetworkProcessor np = new NetworkProcessor();
-        
         double[] internalInput = input;
         
         for(Layer l: lList)

@@ -33,12 +33,12 @@ public class NetworkProcessor
             output = new double[l.getNeurons().size()];
             List<Synapse> synapses_input = neu.getSynapses_in();
             double input_value_sum = 0.0; 
-
+            
             for(int i=0; i<synapses_input.size(); i++)
                 input_value_sum += input[i]*synapses_input.get(i).getWeight();
-
+                
             List<ActivationFunction> activation_functions = neu.getActivation_functions();
-
+            
             output[index++] = vc.calculateValue(activation_functions, input_value_sum);
         }
         return output;
