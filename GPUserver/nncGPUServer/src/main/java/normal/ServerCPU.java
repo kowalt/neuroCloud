@@ -7,6 +7,7 @@ package normal;
 
 import java.rmi.RemoteException;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import nncgpuserver.INetworkCalculatorServer;
 import model.original.ActivationFunction;
@@ -31,63 +32,40 @@ public class ServerCPU implements INetworkCalculatorServer{
 
     @Override
     public double[] run(double[] input) throws RemoteException {
-       Network n = new Network();
-       ValueCalculator vc = new ValueCalculator();
-       
-       List<Layer> lList = n.getLayers();
-              
-       List<Neuron> neurons = lList.get(0).getNeurons();       
-       List<Double> last_layer_output=new ArrayList<>();
-       
-       //convert array to list
-       for(int i=0;i<input.length;i++)
-       {
-           last_layer_output.add(input[i]);
-       }
-       
-               
-       double input_value_sum = 0.0; 
-       
-       //firstLayer
-       for(Neuron neu: neurons)
-       {    
-           List<Synapse> synapses_input = neu.getSynapses_in();
-           input_value_sum = 0.0; 
-           
-           for(int i=0; i<synapses_input.size(); i++)
-               input_value_sum += input[i]*synapses_input.get(i).getWeight();
-                                
-           List<ActivationFunction> activation_functions = neu.getActivation_functions();
-           
-           last_layer_output.add(vc.calculateValue(activation_functions, input_value_sum));  
-       }
+        Network n = new Network();
+        ValueCalculator vc = new ValueCalculator();
+
+        List<Layer> lList = n.getLayers();
+
+        List<Neuron> neurons = lList.get(0).getNeurons();       
+
+        double[] output = new double[getLargestLayerSize(lList)];
         
-       //innerLayers
-       List<Layer> innerLayer = lList.subList(1, 3);
-       
-       for(int i=0;i<innerLayer.size();i++)
-       {
-            neurons = lList.get(i).getNeurons();
+        NetworkProcessor np = new NetworkProcessor();
+        
+        double[] internalInput = input;
+        
+        for(Layer l: lList)
+        {
+            output = np.runLayer(l, internalInput);
+            internalInput = output;
+        }
 
-            for(Neuron neu: neurons)
-            {
-                List<Synapse> synapses_input = neu.getSynapses_in();
-                input_value_sum = 0.0;
-                
-                for(int j=0; j<synapses_input.size(); j++)
-                {
-                    input_value_sum += input[i]*synapses_input.get(i).getWeight();  
-                }
-                
-                List<ActivationFunction> activation_functions = neu.getActivation_functions();
-                    
-            }
-       }
-       
-
-       
-       //lastLayer
-       
-       return null;
+        return output;
+    }
+    
+    private int getLargestLayerSize(List<Layer> lList)
+    {
+        Iterator<Layer> iter = lList.iterator();
+        
+        int largest = 0;
+        int cursize;
+        
+        while(iter.hasNext())
+        {
+            cursize = iter.next().getNeurons().size();
+            largest = (largest >= cursize ) ? largest : cursize;
+        }
+        return largest;
     }
 }
