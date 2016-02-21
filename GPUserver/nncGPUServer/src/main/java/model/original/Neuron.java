@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package nncgpuserver.model;
+package model.original;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,6 +36,7 @@ public class Neuron
     private List<Synapse> synapses_out = new ArrayList<>();
     @XmlTransient
     private Layer layer;
+
     
     public int getId() {
         return id;

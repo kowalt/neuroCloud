@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package nncgpuserver.model;
+package model.original;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -58,6 +58,4 @@ public class Synapse
     public void setNeuron_out(Neuron neuron_out) {
         this.neuron_out = neuron_out;
     }
-    
-    
 }

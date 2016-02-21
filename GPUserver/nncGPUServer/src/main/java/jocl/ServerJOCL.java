@@ -7,8 +7,7 @@ package jocl;
 
 import jocl.DeviceInitializer;
 import nncgpuserver.INetworkCalculatorServer;
-import utils.NetworkUtil;
-import nncgpuserver.model.Network;
+import model.original.Network;
 import org.jocl.cl_kernel;
 import org.jocl.cl_mem;
 import static org.jocl.CL.*;
@@ -39,7 +38,7 @@ public class ServerJOCL implements INetworkCalculatorServer
     }
 
     @Override
-    public int[] run(int[] input) 
+    public double[] run(double[] input) 
     {
         cl_kernel kernel_input = initializer.getKernel_input();
         cl_kernel kernel_output = initializer.getKernel_output();

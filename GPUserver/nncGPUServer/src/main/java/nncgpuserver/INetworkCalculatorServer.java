@@ -7,7 +7,7 @@ package nncgpuserver;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
-import nncgpuserver.model.Network;
+import model.original.Network;
 
 /**
  *
@@ -17,5 +17,5 @@ public interface INetworkCalculatorServer extends Remote {
     
     public void loadNetworkIntoGPU(Network n);
     
-    public int[] run(int[] input) throws RemoteException;
+    public double[] run(double[] input) throws RemoteException;
 }

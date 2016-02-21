@@ -14,6 +14,7 @@ import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javacl.ServerJavaCL;
 import jocl.ServerJOCL;
 import normal.ServerCPU;
 import static org.jocl.CL.*;
@@ -52,6 +53,7 @@ public class Main {
                     s = new ServerJOCL(platform_index, device_index);
                     break;
                 case 2:
+                    s = new ServerJavaCL();
                     break;
                 default:
                     printHelp();

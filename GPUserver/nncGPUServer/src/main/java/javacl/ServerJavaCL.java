@@ -7,7 +7,7 @@ package javacl;
 
 import java.rmi.RemoteException;
 import nncgpuserver.INetworkCalculatorServer;
-import nncgpuserver.model.Network;
+import model.original.Network;
 
 /**
  *
@@ -21,7 +21,7 @@ public class ServerJavaCL implements INetworkCalculatorServer {
     }
 
     @Override
-    public int[] run(int[] input) throws RemoteException {
+    public double[] run(double[] input) throws RemoteException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
