@@ -11,9 +11,6 @@ import java.util.List;
 import nncgpuserver.INetworkCalculatorServer;
 import model.original.Layer;
 import model.original.Network;
-import model.original.Neuron;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
-
 /**
  *
  * @author Tomasz
