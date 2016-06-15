@@ -62,7 +62,7 @@ public class ValueCalculator
             for(String c: comparators)
             {    
                 String[] rightAndLeft = domain_rule.split(c);
-                if(rightAndLeft!=null)
+                if(rightAndLeft != null && rightAndLeft.length == 2)
                 {   
                     String right = rightAndLeft[1];
                     String left = rightAndLeft[0];
@@ -99,7 +99,7 @@ public class ValueCalculator
 
     private double calculateFunctionValue(String funcion_raw, double argument)
     {
-        return f_interpreter.calculateValueInfix(funcion_raw, new double[]{argument});
+        return f_interpreter.calculateValueInfix(funcion_raw.replaceAll("x", String.valueOf(argument)), new double[]{argument});
     }
 }
 

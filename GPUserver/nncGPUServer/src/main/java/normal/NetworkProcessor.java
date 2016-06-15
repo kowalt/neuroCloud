@@ -22,8 +22,8 @@ public class NetworkProcessor
     public NetworkProcessor()
     {
         vc = new ValueCalculator();
-    }        
-    
+    }
+
     public double[] runLayer(Layer l, double[] input)
     {
         double[] output=null;
@@ -36,9 +36,9 @@ public class NetworkProcessor
             
             for(int i=0; i<synapses_input.size(); i++)
                 input_value_sum += input[i]*synapses_input.get(i).getWeight();
-                
+
             List<ActivationFunction> activation_functions = neu.getActivation_functions();
-            
+
             output[index++] = vc.calculateValue(activation_functions, input_value_sum);
         }
         return output;

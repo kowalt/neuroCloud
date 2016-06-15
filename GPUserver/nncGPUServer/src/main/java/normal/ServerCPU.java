@@ -55,4 +55,11 @@ public class ServerCPU implements INetworkCalculatorServer{
         }
         return largest;
     }
+
+    @Override
+    public void sayHello() {
+        System.out.println("Hello world!");
+    }
+    
+    
 }

@@ -60,4 +60,9 @@ public class ServerJOCL implements INetworkCalculatorServer
 //        CL_MEM_READ_ONLY | CL_MEM_COPY_HOST_PTR,
 //        Sizeof.cl_float * n, srcA, null);
     }
+
+    @Override
+    public void sayHello() {
+        System.out.println("Hello from server JOCL!");
+    }
 }

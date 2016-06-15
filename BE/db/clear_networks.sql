@@ -7,3 +7,5 @@ TRUNCATE TABLE neurons;
 TRUNCATE TABLE layers;  
 TRUNCATE TABLE networks;
 SET FOREIGN_KEY_CHECKS = 1;
+
+SELECT * FROM activation_functions;

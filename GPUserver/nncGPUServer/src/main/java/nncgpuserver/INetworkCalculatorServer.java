@@ -16,6 +16,6 @@ import model.original.Network;
 public interface INetworkCalculatorServer extends Remote {
     
     public void loadNetworkIntoGPU(Network n);
-    
     public double[] run(double[] input) throws RemoteException;
+    public void sayHello();        
 }

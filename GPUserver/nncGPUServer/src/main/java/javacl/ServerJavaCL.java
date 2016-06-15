@@ -25,4 +25,8 @@ public class ServerJavaCL implements INetworkCalculatorServer {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
+    @Override
+    public void sayHello() {
+        System.out.println("Hello from javaCL");
+    }
 }

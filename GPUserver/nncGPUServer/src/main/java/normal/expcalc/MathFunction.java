@@ -72,7 +72,6 @@ public class MathFunction
        return -1; 
     }
     
-    //stos nie zawiera drugiej wartosci! dlaczego?!
     public static double getValue(String symbol,Stack<Double> v)
     {
         double [] vd = new double[v.size()];

@@ -16,12 +16,11 @@ import java.util.StringTokenizer;
  */
 public class ActivationFunctionParser 
 {
-    
     public ActivationFunctionParser()
     {
-
+        
     }
-    
+
     public List<ActivationFunction> parse(String raw)
     {
         StringTokenizer rulesTok = new StringTokenizer(raw, ";");

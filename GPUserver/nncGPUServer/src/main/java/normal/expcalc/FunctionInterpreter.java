@@ -9,7 +9,6 @@ import java.util.Stack;
 import java.util.LinkedList;
 import java.lang.Double;
 import java.lang.Character;
-import java.text.DecimalFormat;
 /**
  *
  * @author Tomek
@@ -32,17 +31,14 @@ public class FunctionInterpreter
     
     public double calculateValueInfix(String infix,double[] v)
     {
-        String rpnBuf=infix;
-        String [] rpnBufTok;      
-                
-        rpnBuf = substitute(rpnBuf,v,'0');
-        
-        rpnBufTok = toRPN(rpnBuf);
+        String [] rpnBufTok;
+
+        rpnBufTok = toRPN(infix); //-5.5^2 -> [-5.5,2,^] expected: [5.5 2 ^ -]
                
         return calculateValueRPN(rpnBufTok);
     }
 
-    private double calculateValueRPN(String [] rpn)
+    public double calculateValueRPN(String [] rpn)
     {
         Stack<String> s = new Stack();
                                
@@ -214,30 +210,6 @@ public class FunctionInterpreter
         return 0;
     }    
     
-    //zamienia wszystie zmienne na odpowiadajace im wartosci. s jest wyrażeniem zapisanym w notacji infiksowej! exc to litera którą pomijamy przy podstawianiu
-    public String substitute(String s,double [] v,char exc)
-    {
-        StringBuffer sbuf = new StringBuffer(s);
-        int c=0; //numer bieżącej zmiennej
-        
-        if(v != null)
-        for(int i="a".codePointAt(0);i<"a".codePointAt(0)+v.length;i++) //Dla każdej zmiennej/wymiaru
-        {    
-            for(int j=0;j<sbuf.length()-1;j++)               
-                if(Character.isLowerCase(sbuf.charAt(j)) && (sbuf.codePointAt(j) == i) && (sbuf.charAt(j) != exc))         
-                        if(isOperator(sbuf.charAt(j+1)) || (sbuf.charAt(j+1) == ')') || (sbuf.charAt(j+1) == ',')) //jeżeli wyraz po prawej stronie małej litery jest operatorem, prawym nawiasem lub przecinkiem, to mamy do czynienia ze zmienną                                               
-                            sbuf.replace(j, j+1,String.valueOf(v[c]));
-                         
-            //jeżeli wyraz jest końcowy, to
-            if(Character.isLowerCase(sbuf.charAt(sbuf.length()-1)) && (sbuf.codePointAt(sbuf.length()-1) == i) && (sbuf.charAt(sbuf.length()-1) != exc))
-                if((sbuf.length() == 1) || (sbuf.length() >= 2) && isOperator(sbuf.charAt(sbuf.length()-2)))
-                    sbuf.replace(sbuf.length()-1,sbuf.length(),String.valueOf(v[c]));
-            
-            c++;            
-        }
-        return sbuf.toString();
-    }
-    
     //policz ile jest wymiarow
     public int calculateDim(String infix)
     {
@@ -273,7 +245,10 @@ public class FunctionInterpreter
             case '/':    
                 return a/b;
             case '^':
-                return Math.pow(a,b);
+                //if(a>0)
+                    return Math.pow(a,b);
+                //else
+                    //return -Math.pow(a, b);
         }
         return 0.0;
     }                     

@@ -5,7 +5,6 @@
  */
 package jocl;
 
-import nncgpuserver.KernelUtil;
 import static org.jocl.CL.*;
 import org.jocl.cl_command_queue;
 import org.jocl.cl_context;
