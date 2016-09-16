@@ -5,8 +5,8 @@
  */
 package com.mycompany.nncloudrestservice;
 
-import com.mycompany.nncloudrestservice.controllers.GetListOfNetworksController;
-import com.mycompany.nncloudrestservice.controllers.LoadController;
+import com.mycompany.nncloudrestservice.model.GetListOfNetworks;
+import com.mycompany.nncloudrestservice.model.Load;
 import com.mycompany.nncloudrestservice.exceptions.NetworkAccessException;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -27,7 +27,7 @@ public class Networks
     @Produces(MediaType.APPLICATION_XML)
     public Response loadNetwork(@PathParam("id") String id)
     {
-        LoadController lc = new LoadController();
+        Load lc = new Load();
         String r = null;
         try
         {    
@@ -45,7 +45,7 @@ public class Networks
     @Produces(MediaType.APPLICATION_JSON)
     public Response getListOfNetworks()
     {
-        GetListOfNetworksController glofnc = new GetListOfNetworksController();
+        GetListOfNetworks glofnc = new GetListOfNetworks();
         return Response.status(200).entity(glofnc.getListOfNetworks().toString()).build();
     }
 }

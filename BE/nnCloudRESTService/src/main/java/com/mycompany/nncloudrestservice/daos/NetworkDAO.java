@@ -5,8 +5,8 @@
  */
 package com.mycompany.nncloudrestservice.daos;
 
-import com.mycompany.nncloudrestservice.model.Network;
-import com.mycompany.nncloudrestservice.model.User;
+import com.mycompany.nncloudrestservice.pojo.Network;
+import com.mycompany.nncloudrestservice.pojo.User;
 import com.mycompany.nncloudrestservice.utils.CurrentUserContainer;
 import com.mycompany.nncloudrestservice.utils.HibUtils;
 import com.mycompany.nncloudrestservice.utils.SessionContainer;

@@ -8,7 +8,7 @@ package com.mycompany.nncloudrestservice.daos;
 
 import com.mycompany.nncloudrestservice.exceptions.UserExistsException;
 import com.mycompany.nncloudrestservice.exceptions.LoginException;
-import com.mycompany.nncloudrestservice.model.User;
+import com.mycompany.nncloudrestservice.pojo.User;
 import com.mycompany.nncloudrestservice.utils.SessionContainer;
 import java.util.List;
 import org.hibernate.HibernateException;

@@ -5,7 +5,6 @@
  */
 package com.mycompany.nncloudrestservice;
 
-import com.mycompany.nncloudrestservice.controllers.GenerateController;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -28,7 +27,7 @@ public class Generate
     @Produces(MediaType.APPLICATION_XML)
     public Response generate(String x)
     {
-        GenerateController gc = new GenerateController();
+        com.mycompany.nncloudrestservice.model.Generate gc = new com.mycompany.nncloudrestservice.model.Generate();
        
         try
         {

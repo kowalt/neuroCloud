@@ -1,6 +1,5 @@
 package com.mycompany.nncloudrestservice;
 
-import com.mycompany.nncloudrestservice.controllers.LoginController;
 import com.mycompany.nncloudrestservice.exceptions.LoginException;
 import java.util.UUID;
 import javax.ws.rs.Consumes;
@@ -31,7 +30,7 @@ public class Login
     @Produces(MediaType.APPLICATION_JSON)
     public Response loginUser(String x)
     {
-        LoginController lc = new LoginController();
+        com.mycompany.nncloudrestservice.model.Login lc = new com.mycompany.nncloudrestservice.model.Login();
         JSONObject request = new JSONObject(x);
                 
         NewCookie c1;

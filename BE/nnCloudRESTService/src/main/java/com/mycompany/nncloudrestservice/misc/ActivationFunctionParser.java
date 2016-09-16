@@ -5,7 +5,7 @@
  */
 package com.mycompany.nncloudrestservice.misc;
 
-import com.mycompany.nncloudrestservice.model.ActivationFunction;
+import com.mycompany.nncloudrestservice.pojo.ActivationFunction;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;

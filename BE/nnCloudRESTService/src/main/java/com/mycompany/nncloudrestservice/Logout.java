@@ -6,7 +6,7 @@
 package com.mycompany.nncloudrestservice;
 
 import com.mycompany.nncloudrestservice.exceptions.LogoutException;
-import com.mycompany.nncloudrestservice.controllers.LoginController;
+import com.mycompany.nncloudrestservice.model.Login;
 import com.mycompany.nncloudrestservice.daos.UserDAO;
 import javax.ws.rs.CookieParam;
 import javax.ws.rs.GET;
@@ -26,7 +26,7 @@ public class Logout
     @GET
     public Response logoutUser(@CookieParam("session_id") Cookie cookie)
     {
-        LoginController lc = new LoginController();
+        Login lc = new Login();
         
         try
         {

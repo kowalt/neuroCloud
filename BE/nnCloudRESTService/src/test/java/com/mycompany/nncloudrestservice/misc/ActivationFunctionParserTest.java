@@ -5,7 +5,7 @@
  */
 package com.mycompany.nncloudrestservice.misc;
 
-import com.mycompany.nncloudrestservice.model.ActivationFunction;
+import com.mycompany.nncloudrestservice.pojo.ActivationFunction;
 import java.util.List;
 import org.junit.After;
 import org.junit.AfterClass;

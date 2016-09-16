@@ -6,7 +6,7 @@
 package com.mycompany.nncloudrestservice.utils;
 
 import com.mycompany.nncloudrestservice.daos.UserDAO;
-import com.mycompany.nncloudrestservice.model.User;
+import com.mycompany.nncloudrestservice.pojo.User;
 import com.mycompany.nncloudrestservice.utils.SafeHashUtil;
 
 /**

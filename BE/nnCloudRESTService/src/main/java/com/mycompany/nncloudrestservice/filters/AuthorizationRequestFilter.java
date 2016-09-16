@@ -5,7 +5,7 @@
  */
 package com.mycompany.nncloudrestservice.filters;
 
-import com.mycompany.nncloudrestservice.controllers.LoginController;
+import com.mycompany.nncloudrestservice.model.Login;
 import com.mycompany.nncloudrestservice.utils.CurrentUserContainer;
 import java.io.IOException;
 import javax.annotation.Priority;
@@ -33,7 +33,7 @@ public class AuthorizationRequestFilter implements ContainerRequestFilter
 
         Cookie c = requestContext.getCookies().get("session_id");
         
-        LoginController lc = new LoginController();
+        Login lc = new Login();
         
         // check if cookie contains a valid token 
         if(c != null && c.getValue() != null && lc.checkIfTokenIsCorrect(c.getValue()))

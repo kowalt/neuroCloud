@@ -5,7 +5,6 @@
  */
 package com.mycompany.nncloudrestservice;
 
-import com.mycompany.nncloudrestservice.controllers.RegisterController;
 import com.mycompany.nncloudrestservice.exceptions.UserExistsException;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
@@ -28,7 +27,7 @@ public class Register
     public Response register(String x)
     {
         JSONObject request = new JSONObject(x);
-        RegisterController rc = new RegisterController();
+        com.mycompany.nncloudrestservice.model.Register rc = new com.mycompany.nncloudrestservice.model.Register();
         
         try
         {
