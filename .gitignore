@@ -4,8 +4,12 @@
 *.cfg.xml
 *.swp
 *.log
+*.log.1
 /BE/nnCloudRESTService/target/
 /BE/JavaApplication27/nbproject/private/
 /GPUserver/nncGPUServer/target/
 /GPUserver/nncGPUServer/nbproject/
+/GPUserver/nncGPUServer/nbproject/
+/GPUserver/nncGPUServer/.classpath
+/GPUserver/nncGPUServer/.project
 /GPUserver/nncGPUServer/nb-configuration.xml

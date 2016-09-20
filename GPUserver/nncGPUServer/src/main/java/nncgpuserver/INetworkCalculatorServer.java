@@ -7,7 +7,7 @@ package nncgpuserver;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
-import model.original.Network;
+import pojol.original.Network;
 
 /**
  *

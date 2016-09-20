@@ -3,7 +3,7 @@ package normal;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import model.original.ActivationFunction;
+import pojol.original.ActivationFunction;
 import normal.expcalc.FunctionInterpreter;
 
 /*

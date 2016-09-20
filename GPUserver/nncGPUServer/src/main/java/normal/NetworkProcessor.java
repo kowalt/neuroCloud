@@ -6,10 +6,10 @@
 package normal;
 
 import java.util.List;
-import model.original.ActivationFunction;
-import model.original.Layer;
-import model.original.Neuron;
-import model.original.Synapse;
+import pojol.original.ActivationFunction;
+import pojol.original.Layer;
+import pojol.original.Neuron;
+import pojol.original.Synapse;
 
 /**
  *

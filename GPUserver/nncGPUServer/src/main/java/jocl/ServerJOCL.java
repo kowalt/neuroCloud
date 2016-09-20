@@ -7,7 +7,7 @@ package jocl;
 
 import jocl.DeviceInitializer;
 import nncgpuserver.INetworkCalculatorServer;
-import model.original.Network;
+import pojol.original.Network;
 import org.jocl.cl_kernel;
 import org.jocl.cl_mem;
 import static org.jocl.CL.*;
