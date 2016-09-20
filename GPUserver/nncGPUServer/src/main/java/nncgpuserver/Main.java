@@ -32,7 +32,7 @@ public class Main {
     
     @Parameter(names = {"-d","--device"}, description="Device index")
     private Integer device_index = 0;
-        
+
     @Parameter(names = {"-n", "--name"}, description="Server's name")
     private String name;
     

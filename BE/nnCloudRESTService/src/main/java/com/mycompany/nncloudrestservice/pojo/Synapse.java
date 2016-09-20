@@ -26,7 +26,8 @@ public class Synapse
     private Neuron neuron_in;
     @XmlTransient
     private Neuron neuron_out;
-    
+    private double value;
+
     public double getWeight() {
         return weight;
     }
@@ -59,5 +60,13 @@ public class Synapse
         this.neuron_out = neuron_out;
     }
     
+    public double getValue()
+    {
+    	return this.value;
+    }
     
+    public void setValue(double v)
+    {
+    	this.value = v;
+    }
 }
