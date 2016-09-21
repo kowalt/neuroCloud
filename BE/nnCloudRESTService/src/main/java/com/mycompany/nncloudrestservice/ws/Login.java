@@ -1,4 +1,4 @@
-package com.mycompany.nncloudrestservice;
+package com.mycompany.nncloudrestservice.ws;
 
 import com.mycompany.nncloudrestservice.exceptions.LoginException;
 import java.util.UUID;
