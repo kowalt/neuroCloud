@@ -7,7 +7,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import org.json.JSONObject;
 
-import com.mycompany.nncloudrestservice.model.UploadInput;
+import com.mycompany.nncloudrestservice.logic.UploadInput;
 
 @Path("upload_inputs")
 public class SetInputVector {

@@ -30,7 +30,7 @@ public class Login
     @Produces(MediaType.APPLICATION_JSON)
     public Response loginUser(String x)
     {
-        com.mycompany.nncloudrestservice.model.Login lc = new com.mycompany.nncloudrestservice.model.Login();
+        com.mycompany.nncloudrestservice.logic.Login lc = new com.mycompany.nncloudrestservice.logic.Login();
         JSONObject request = new JSONObject(x);
                 
         NewCookie c1;

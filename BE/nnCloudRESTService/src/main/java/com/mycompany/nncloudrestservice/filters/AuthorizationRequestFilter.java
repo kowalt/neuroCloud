@@ -5,7 +5,7 @@
  */
 package com.mycompany.nncloudrestservice.filters;
 
-import com.mycompany.nncloudrestservice.model.Login;
+import com.mycompany.nncloudrestservice.logic.Login;
 import com.mycompany.nncloudrestservice.utils.CurrentUserContainer;
 import java.io.IOException;
 import javax.annotation.Priority;

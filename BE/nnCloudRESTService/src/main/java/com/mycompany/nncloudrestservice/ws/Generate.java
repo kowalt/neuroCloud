@@ -27,7 +27,7 @@ public class Generate
     @Produces(MediaType.APPLICATION_XML)
     public Response generate(String x)
     {
-        com.mycompany.nncloudrestservice.model.Generate gc = new com.mycompany.nncloudrestservice.model.Generate();
+        com.mycompany.nncloudrestservice.logic.Generate gc = new com.mycompany.nncloudrestservice.logic.Generate();
        
         try
         {

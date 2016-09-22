@@ -1,4 +1,4 @@
-package com.mycompany.nncloudrestservice.model;
+package com.mycompany.nncloudrestservice.logic;
 
 import java.util.List;
 

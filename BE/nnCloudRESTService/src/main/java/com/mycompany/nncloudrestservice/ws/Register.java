@@ -27,7 +27,7 @@ public class Register
     public Response register(String x)
     {
         JSONObject request = new JSONObject(x);
-        com.mycompany.nncloudrestservice.model.Register rc = new com.mycompany.nncloudrestservice.model.Register();
+        com.mycompany.nncloudrestservice.logic.Register rc = new com.mycompany.nncloudrestservice.logic.Register();
         
         try
         {

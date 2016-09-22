@@ -60,6 +60,4 @@ public class ServerCPU implements INetworkCalculatorServer{
     public void sayHello() {
         System.out.println("Hello world!");
     }
-    
-    
 }

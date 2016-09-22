@@ -5,8 +5,8 @@
  */
 package com.mycompany.nncloudrestservice.ws;
 
-import com.mycompany.nncloudrestservice.model.GetListOfNetworks;
-import com.mycompany.nncloudrestservice.model.Load;
+import com.mycompany.nncloudrestservice.logic.GetListOfNetworks;
+import com.mycompany.nncloudrestservice.logic.Load;
 import com.mycompany.nncloudrestservice.exceptions.NetworkAccessException;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;

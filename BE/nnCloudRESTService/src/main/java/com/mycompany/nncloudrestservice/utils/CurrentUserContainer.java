@@ -7,7 +7,6 @@ package com.mycompany.nncloudrestservice.utils;
 
 import com.mycompany.nncloudrestservice.daos.UserDAO;
 import com.mycompany.nncloudrestservice.pojo.User;
-import com.mycompany.nncloudrestservice.utils.SafeHashUtil;
 
 /**
  *
@@ -16,6 +15,11 @@ import com.mycompany.nncloudrestservice.utils.SafeHashUtil;
 public class CurrentUserContainer 
 {
     private static User instance = null;
+    
+    private CurrentUserContainer()
+    {
+    
+    }
     
     public static User getInstance()
     {        
