@@ -7,7 +7,7 @@ package normal;
 
 import java.util.ArrayList;
 import java.util.List;
-import pojol.original.ActivationFunction;
+import pojo.original.ActivationFunction;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;

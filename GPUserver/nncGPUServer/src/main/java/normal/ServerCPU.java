@@ -9,8 +9,8 @@ import java.rmi.RemoteException;
 import java.util.Iterator;
 import java.util.List;
 import nncgpuserver.INetworkCalculatorServer;
-import pojol.original.Layer;
-import pojol.original.Network;
+import pojo.original.Layer;
+import pojo.original.Network;
 /**
  *
  * @author Tomasz

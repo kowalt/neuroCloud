@@ -7,7 +7,7 @@ package javacl;
 
 import java.rmi.RemoteException;
 import nncgpuserver.INetworkCalculatorServer;
-import pojol.original.Network;
+import pojo.original.Network;
 
 /**
  *
