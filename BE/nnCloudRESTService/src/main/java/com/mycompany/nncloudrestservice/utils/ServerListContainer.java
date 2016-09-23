@@ -6,6 +6,8 @@
 package com.mycompany.nncloudrestservice.utils;
 
 import com.mycompany.nncloudrestservice.logic.RMIServer;
+
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -13,8 +15,8 @@ import java.util.List;
  * @author Tomasz
  */
 public class ServerListContainer {
-    private static List<RMIServer> instance = null;
-    
+    private static List<RMIServer> instance = new ArrayList<>();
+
     private ServerListContainer()
     {
     
@@ -25,9 +27,19 @@ public class ServerListContainer {
         return instance;
     }
     
-    public static List<RMIServer> addServer(RMIServer server)
+    public static void addServer(RMIServer server)
     {
+    	instance.add(server.getId(), server);
+    }
     
+    public static RMIServer getAt(int id)
+    {
+    	return instance.get(id);
+    }
+    
+    public static void deleteAt(int id)
+    {
+    	instance.remove(id);
     }
     
 }

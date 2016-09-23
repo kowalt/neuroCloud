@@ -26,18 +26,20 @@ public class Main {
 
     @Parameter(names = {"-l","--list"}, description="List mode")
     private boolean listMode = false;
-    
+
     @Parameter(names = {"-p","--platform"}, description="Platform index")
     private Integer platform_index = 0;
-    
+
     @Parameter(names = {"-d","--device"}, description="Device index")
     private Integer device_index = 0;
 
     @Parameter(names = {"-n", "--name"}, description="Server's name")
     private String name;
-    
+
     @Parameter(names= {"-m","--mode"}, description="0-normal, 1-jocl, 2-javacl")
     private Integer mode;
+
+    public static final int RMI_PORT = 61262; 
     
     private void initializeRMIServer()
     {
@@ -63,7 +65,10 @@ public class Main {
             INetworkCalculatorServer rn_stub = (INetworkCalculatorServer)UnicastRemoteObject.exportObject(s, 0);
             Registry registry = LocateRegistry.getRegistry();
             registry.bind("INetworkCalculatorServer", rn_stub);
-
+            
+            ServerRegistrationManager manager = new ServerRegistrationManager();
+            manager.register();
+            
             System.out.println("RMI Initialized successfully");
         } 
         catch (RemoteException ex) 
@@ -75,7 +80,7 @@ public class Main {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+        
     private void printHelp()
     {
         System.out.println(

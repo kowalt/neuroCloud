@@ -17,5 +17,6 @@ public interface INetworkCalculatorServer extends Remote {
     
     public void loadNetworkIntoGPU(Network n);
     public double[] run(double[] input) throws RemoteException;
-    public void sayHello();        
+    public void sayHello();
+    public String getLabel();
 }

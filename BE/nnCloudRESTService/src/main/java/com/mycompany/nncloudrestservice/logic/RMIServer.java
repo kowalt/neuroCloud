@@ -11,11 +11,11 @@ package com.mycompany.nncloudrestservice.logic;
  */
 public class RMIServer {
     private int id;
-    private String name;
+    private String label;
 
-    public RMIServer(int id, String name) {
+    public RMIServer(int id, String label) {
         this.id = id;
-        this.name = name;
+        this.label = label;
     }
 
     public int getId() {
@@ -26,11 +26,11 @@ public class RMIServer {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getlabel() {
+        return label;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setlabel(String label) {
+        this.label = label;
     }
 }

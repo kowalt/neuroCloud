@@ -18,7 +18,8 @@ import pojo.original.Network;
 public class ServerCPU implements INetworkCalculatorServer{
 
     private Network n;
-    
+    private final String LABEL = "Very basic single-threaded CPU server";
+
     @Override
     public void loadNetworkIntoGPU(Network n) {
        this.n = n;
@@ -60,4 +61,9 @@ public class ServerCPU implements INetworkCalculatorServer{
     public void sayHello() {
         System.out.println("Hello world!");
     }
+
+	@Override
+	public String getLabel() {
+		return LABEL;
+	}
 }

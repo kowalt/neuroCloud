@@ -15,6 +15,8 @@ import pojo.original.Network;
  */
 public class ServerJavaCL implements INetworkCalculatorServer {
 
+    private final String LABEL = "JAVACL server";
+	
     @Override
     public void loadNetworkIntoGPU(Network n) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -28,5 +30,10 @@ public class ServerJavaCL implements INetworkCalculatorServer {
     @Override
     public void sayHello() {
         System.out.println("Hello from javaCL");
+    }
+    
+    public String getLabel()
+    {
+    	return LABEL;
     }
 }

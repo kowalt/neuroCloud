@@ -21,7 +21,8 @@ public class RunManager {
     {
         try
         {
-            Registry registry = LocateRegistry.getRegistry("178.62.119.189:2001");
+        	
+            Registry registry = LocateRegistry.getRegistry(host,port);
             INetworkCalculatorServer stub = (INetworkCalculatorServer) registry.lookup("ServerCPU");
         }
         catch(RemoteException e)

@@ -21,7 +21,8 @@ import org.jocl.cl_context;
 public class ServerJOCL implements INetworkCalculatorServer
 {    
     private DeviceInitializer initializer;
-
+    private final String LABEL = "JOCL server";
+    
     public DeviceInitializer getInitializer() {
         return initializer;
     }
@@ -64,5 +65,11 @@ public class ServerJOCL implements INetworkCalculatorServer
     @Override
     public void sayHello() {
         System.out.println("Hello from server JOCL!");
+    }
+    
+    @Override
+    public String getLabel()
+    {
+    	return LABEL;
     }
 }
