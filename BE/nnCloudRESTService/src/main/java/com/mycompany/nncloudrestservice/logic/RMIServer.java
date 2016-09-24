@@ -10,19 +10,21 @@ package com.mycompany.nncloudrestservice.logic;
  * @author Tomasz
  */
 public class RMIServer {
-    private int id;
+    private Integer id;
     private String label;
+    private String host;
+    private String port;
 
-    public RMIServer(int id, String label) {
+    public RMIServer(Integer id, String label) {
         this.id = id;
         this.label = label;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -32,5 +34,21 @@ public class RMIServer {
 
     public void setlabel(String label) {
         this.label = label;
+    }
+
+    public String getHost() {
+        return host;
+    }
+
+    public void setHost(String host) {
+        this.host = host;
+    }
+
+    public String getPort() {
+        return port;
+    }
+
+    public void setPort(String port) {
+        this.port = port;
     }
 }

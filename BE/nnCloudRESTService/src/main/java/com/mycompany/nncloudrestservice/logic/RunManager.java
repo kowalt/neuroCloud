@@ -5,12 +5,9 @@
  */
 package com.mycompany.nncloudrestservice.logic;
 
-import com.mycompany.nncloudrestservice.daos.NetworkDAO;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -21,7 +18,7 @@ public class RunManager {
     {
         try
         {
-        	
+            
             Registry registry = LocateRegistry.getRegistry(host,port);
             INetworkCalculatorServer stub = (INetworkCalculatorServer) registry.lookup("ServerCPU");
         }

@@ -16,7 +16,8 @@ import java.util.List;
  */
 public class ServerListContainer {
     private static List<RMIServer> instance = new ArrayList<>();
-
+    private int activeId;
+    
     private ServerListContainer()
     {
     

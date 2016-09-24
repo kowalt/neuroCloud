@@ -66,7 +66,8 @@ public class Main {
             Registry registry = LocateRegistry.getRegistry();
             registry.bind("INetworkCalculatorServer", rn_stub);
             
-            ServerRegistrationManager manager = new ServerRegistrationManager();
+            RMIServer server = new RMIServer(null, s.getLabel());
+            ServerRegistrationManager manager = new ServerRegistrationManager(server);
             manager.register();
             
             System.out.println("RMI Initialized successfully");
