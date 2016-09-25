@@ -4,6 +4,8 @@ import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 
+import nncgpuserver.RMIServer;
+
 public class ServerRegistrationManager implements Runnable{
 
 	private final int REPORT_INTERVAL = 15000;
@@ -32,7 +34,7 @@ public class ServerRegistrationManager implements Runnable{
 	public void register()
 	{
 		try {
-			serv.register(this.server);
+                    serv.register(this.server);
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
@@ -41,7 +43,7 @@ public class ServerRegistrationManager implements Runnable{
 	public void unRegister()
 	{
 		try {
-			serv.unRegister(server);
+                    serv.unRegister(server);
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}

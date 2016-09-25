@@ -5,9 +5,15 @@
  */
 package com.mycompany.nncloudrestservice.logic;
 
+import com.mycompany.nncloudrestservice.utils.ServerListContainer;
+import java.rmi.AccessException;
+import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import org.eclipse.persistence.sessions.server.Server;
 
 /**
  *
@@ -18,9 +24,15 @@ public class RunManager {
     {
         try
         {
-            
-            Registry registry = LocateRegistry.getRegistry(host,port);
-            INetworkCalculatorServer stub = (INetworkCalculatorServer) registry.lookup("ServerCPU");
+            RMIServer server = ServerListContainer.getAt(serverId);
+            Registry registry = LocateRegistry.getRegistry(server.getHost(),server.getPort());
+            try {
+                INetworkCalculatorServer stub = (INetworkCalculatorServer) registry.lookup(server.getName());
+            } catch (NotBoundException ex) {
+                Logger.getLogger(RunManager.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (AccessException ex) {
+                Logger.getLogger(RunManager.class.getName()).log(Level.SEVERE, null, ex);
+            }        
         }
         catch(RemoteException e)
         {

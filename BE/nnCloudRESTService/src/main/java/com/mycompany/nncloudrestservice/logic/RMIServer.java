@@ -5,6 +5,8 @@
  */
 package com.mycompany.nncloudrestservice.logic;
 
+import java.util.Timer;
+
 /**
  *
  * @author Tomasz
@@ -13,7 +15,9 @@ public class RMIServer {
     private Integer id;
     private String label;
     private String host;
-    private String port;
+    private Integer port;
+    private String name;
+    private Timer last_report_timer;
 
     public RMIServer(Integer id, String label) {
         this.id = id;
@@ -44,11 +48,27 @@ public class RMIServer {
         this.host = host;
     }
 
-    public String getPort() {
+    public Integer getPort() {
         return port;
     }
 
-    public void setPort(String port) {
+    public void setPort(Integer port) {
         this.port = port;
     }
+
+    public String getLabel() {
+        return label;
+    }
+
+    public void setLabel(String label) {
+        this.label = label;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }   
 }
