@@ -8,7 +8,7 @@ import nncgpuserver.RMIServer;
 
 public class ServerRegistrationManager implements Runnable{
 
-	private final int REPORT_INTERVAL = 15000;
+	private final Long REPORT_INTERVAL = 15000l;
 	private final String HOST_WS = "178.62.119.189";
 	private final int PORT_WS = 61262;
 	private RMIServer server;
@@ -19,15 +19,15 @@ public class ServerRegistrationManager implements Runnable{
 
 		try
 		{
-			Registry registry = LocateRegistry.getRegistry(HOST_WS, PORT_WS);
-			ICalculationServerRegistrationService serv = (ICalculationServerRegistrationService) registry.lookup("ICalculationServerRegistrationService");
-			
-			this.serv = serv;
-			System.out.println(serv.sayHello());
+                    Registry registry = LocateRegistry.getRegistry(HOST_WS, PORT_WS);
+                    ICalculationServerRegistrationService serv = (ICalculationServerRegistrationService) registry.lookup("ICalculationServerRegistrationService");
+
+                    this.serv = serv;
+                    System.out.println(serv.sayHello());
 		}
 		catch(Exception e)
 		{
-			e.printStackTrace();
+                    e.printStackTrace();
 		}
 	}
 
@@ -43,7 +43,7 @@ public class ServerRegistrationManager implements Runnable{
 	public void unRegister()
 	{
 		try {
-                    serv.unRegister(server);
+                    serv.unRegister(this.server);
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
@@ -52,7 +52,7 @@ public class ServerRegistrationManager implements Runnable{
 	@Override
 	public void run() {
 		try {
-			serv.report();
+			serv.report(this.server);
 			Thread.sleep(REPORT_INTERVAL);
 		} 
 		catch (RemoteException e)

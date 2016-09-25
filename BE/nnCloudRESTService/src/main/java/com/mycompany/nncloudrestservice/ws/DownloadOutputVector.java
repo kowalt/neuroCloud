@@ -1,5 +1,6 @@
 package com.mycompany.nncloudrestservice.ws;
 
+import com.mycompany.nncloudrestservice.logic.GetOutput;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;

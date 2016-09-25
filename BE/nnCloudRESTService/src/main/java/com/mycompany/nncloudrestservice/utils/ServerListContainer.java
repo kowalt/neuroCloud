@@ -5,7 +5,7 @@
  */
 package com.mycompany.nncloudrestservice.utils;
 
-import com.mycompany.nncloudrestservice.logic.RMIServer;
+import com.mycompany.nncloudrestservice.pojo.RMIServer;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,5 +42,11 @@ public class ServerListContainer {
     {
     	instance.remove(id);
     }
+    
+    public void setActive(int id)
+    {
+        this.activeId = id;
+    }
+    
     
 }

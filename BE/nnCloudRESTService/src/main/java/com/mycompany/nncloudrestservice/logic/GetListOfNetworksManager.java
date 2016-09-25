@@ -15,7 +15,7 @@ import org.json.JSONObject;
  *
  * @author Tomasz
  */
-public class GetListOfNetworks 
+public class GetListOfNetworksManager 
 {
     public JSONArray getListOfNetworks()
     {

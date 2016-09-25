@@ -3,7 +3,7 @@ package com.mycompany.nncloudrestservice.serverservice;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 
-import com.mycompany.nncloudrestservice.logic.RMIServer;
+import com.mycompany.nncloudrestservice.pojo.RMIServer;
 
 public interface ICalculationServerRegistrationService extends Remote {
 

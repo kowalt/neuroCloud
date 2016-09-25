@@ -18,6 +18,7 @@ import javacl.ServerJavaCL;
 import jocl.ServerJOCL;
 import normal.ServerCPU;
 import static org.jocl.CL.*;
+import utils.ExternalIpUtil;
 /**
  *
  * @author Tomasz
@@ -39,7 +40,7 @@ public class Main {
     @Parameter(names= {"-m","--mode"}, description="0-normal, 1-jocl, 2-javacl")
     private Integer mode;
 
-    public static final int RMI_PORT = 61262; 
+    public static final int RMI_PORT = 61263; 
     
     private void initializeRMIServer()
     {
@@ -67,9 +68,12 @@ public class Main {
             registry.bind("INetworkCalculatorServer", rn_stub);
             
             RMIServer server = new RMIServer(null, s.getLabel());
+            server.setHost(ExternalIpUtil.getExternalIP());
+            server.setPort(RMI_PORT);
+            server.setName(s.getClass().getName());
             ServerRegistrationManager manager = new ServerRegistrationManager(server);
             manager.register();
-            
+            manager.run();
             System.out.println("RMI Initialized successfully");
         } 
         catch (RemoteException ex) 

@@ -3,6 +3,7 @@ package com.mycompany.nncloudrestservice;
 import com.mycompany.nncloudrestservice.filters.AuthorizationRequestFilter;
 import com.mycompany.nncloudrestservice.filters.CORSFilter;
 import com.mycompany.nncloudrestservice.filters.CORSPreflightFilter;
+import com.mycompany.nncloudrestservice.logic.RMIServerTimeoutChecker;
 import com.mycompany.nncloudrestservice.serverservice.CalculationServerRegistrationService;
 
 import org.glassfish.grizzly.http.server.HttpServer;
@@ -51,11 +52,12 @@ public class Main {
     {
     	try
     	{
-    		CalculationServerRegistrationService server = new CalculationServerRegistrationService();
-    		server  = (CalculationServerRegistrationService) UnicastRemoteObject.exportObject(server, RMI_PORT);
-    		// Bind the remote object's stub in the registry
-    		Registry registry = LocateRegistry.getRegistry();
-    		registry.bind("CalculationServerRegistrationService", server);
+            CalculationServerRegistrationService server = new CalculationServerRegistrationService();
+            server  = (CalculationServerRegistrationService) UnicastRemoteObject.exportObject(server, RMI_PORT);
+            // Bind the remote object's stub in the registry
+            Registry registry = LocateRegistry.getRegistry();
+            registry.bind("CalculationServerRegistrationService", server);
+            new RMIServerTimeoutChecker().run();
     	}
     	catch(Exception e)
     	{

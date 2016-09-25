@@ -5,6 +5,7 @@
  */
 package com.mycompany.nncloudrestservice.logic;
 
+import com.mycompany.nncloudrestservice.pojo.RMIServer;
 import com.mycompany.nncloudrestservice.utils.ServerListContainer;
 import java.rmi.AccessException;
 import java.rmi.NotBoundException;
@@ -13,7 +14,6 @@ import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import org.eclipse.persistence.sessions.server.Server;
 
 /**
  *

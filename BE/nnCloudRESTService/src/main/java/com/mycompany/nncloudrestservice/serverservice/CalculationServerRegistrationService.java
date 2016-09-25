@@ -2,12 +2,11 @@ package com.mycompany.nncloudrestservice.serverservice;
 
 import java.rmi.RemoteException;
 
-import com.mycompany.nncloudrestservice.logic.RMIServer;
+import com.mycompany.nncloudrestservice.pojo.RMIServer;
 import com.mycompany.nncloudrestservice.utils.ServerListContainer;
 import java.util.Timer;
 
 public class CalculationServerRegistrationService implements ICalculationServerRegistrationService{
-        private int TIMEOUT = 10000;
 	@Override
 	public void register(RMIServer server) throws RemoteException {
             server.setId(ServerListContainer.getInstance().size());
@@ -26,6 +25,6 @@ public class CalculationServerRegistrationService implements ICalculationServerR
 
 	@Override
 	public void report(RMIServer server) throws RemoteException {
-            ServerListContainer.getAt(server.getId()).setTimeo
+            ServerListContainer.getAt(server.getId()).setLast_report_timer(System.currentTimeMillis());
 	}
 }

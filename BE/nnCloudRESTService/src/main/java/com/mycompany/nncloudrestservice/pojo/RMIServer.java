@@ -3,9 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.mycompany.nncloudrestservice.logic;
-
-import java.util.Timer;
+package com.mycompany.nncloudrestservice.pojo;
 
 /**
  *
@@ -17,7 +15,7 @@ public class RMIServer {
     private String host;
     private Integer port;
     private String name;
-    private Timer last_report_timer;
+    private Long last_report_time;
 
     public RMIServer(Integer id, String label) {
         this.id = id;
@@ -70,5 +68,13 @@ public class RMIServer {
 
     public void setName(String name) {
         this.name = name;
-    }   
+    }
+
+    public Long getLast_report_time() {
+        return last_report_time;
+    }
+
+    public void setLast_report_timer(Long last_report_time) {
+        this.last_report_time = last_report_time;
+    }
 }

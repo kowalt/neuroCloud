@@ -22,7 +22,7 @@ public class RMIServer {
     public RMIServer(Integer id, String label) {
         this.id = id;
         this.label = label;
-        last_report_time = System.nanoTime();
+        last_report_time = System.currentTimeMillis();
     }
 
     public Integer getId() {

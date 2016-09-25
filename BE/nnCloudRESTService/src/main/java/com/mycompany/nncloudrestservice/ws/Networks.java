@@ -5,7 +5,7 @@
  */
 package com.mycompany.nncloudrestservice.ws;
 
-import com.mycompany.nncloudrestservice.logic.GetListOfNetworks;
+import com.mycompany.nncloudrestservice.logic.GetListOfNetworksManager;
 import com.mycompany.nncloudrestservice.logic.Load;
 import com.mycompany.nncloudrestservice.exceptions.NetworkAccessException;
 import javax.ws.rs.GET;
@@ -45,7 +45,7 @@ public class Networks
     @Produces(MediaType.APPLICATION_JSON)
     public Response getListOfNetworks()
     {
-        GetListOfNetworks glofnc = new GetListOfNetworks();
+        GetListOfNetworksManager glofnc = new GetListOfNetworksManager();
         return Response.status(200).entity(glofnc.getListOfNetworks().toString()).build();
     }
 }

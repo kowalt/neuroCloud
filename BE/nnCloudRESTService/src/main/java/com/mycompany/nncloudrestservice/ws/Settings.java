@@ -5,6 +5,9 @@
  */
 package com.mycompany.nncloudrestservice.ws;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.mycompany.nncloudrestservice.logic.ListOfServersManager;
+import com.mycompany.nncloudrestservice.utils.ServerListContainer;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -23,6 +26,7 @@ public class Settings {
     @Produces(MediaType.APPLICATION_JSON)
     public Response getServerList()
     {
-        return null;
+        ListOfServersManager slManager = new ListOfServersManager();
+        return Response.status(Response.Status.OK).entity(slManager.getListOfServers()).build();
     }
 }
