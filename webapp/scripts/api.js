@@ -3,5 +3,6 @@ var API =
 {
 	'AUTH_LOGIN': API_ROOT + '/login',
 	'AUTH_REGISTER': API_ROOT + '/register',
-	'AUTH_LOGOUT': API_ROOT + '/logout'
+	'AUTH_LOGOUT': API_ROOT + '/logout',
+	'GENERATE': API_ROOT + '/generate'
 }
