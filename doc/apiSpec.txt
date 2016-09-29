@@ -224,18 +224,30 @@ The message should contain only the elements that need to be changed, with respe
 
 ## Run network [/run]
 
-### Run the active network [GET]
+### Run the active network [POST]
+
++ Request (application/json)
+
+        {
+            "vector":
+                [1.0,0.22,0.161,-0.521]
+            "id_network": 1
+        }
 
 + Response 202
 
 ## Set the input vector [/upload_inputs]
 
-### Upload the input vector to the active network [PUT]
+### Upload the input vector [POST]
 
 + Request (application/json)
 
-        [1.0,0.22,0.161,-0.521]
-
+        {
+            "vector":
+                [1.0,0.22,0.161,-0.521]
+            "id_network": 1
+        }
+    
 + Response 204
 
 + Response 400 (application/json)
@@ -268,7 +280,7 @@ Determine if the user wants to visualise the current network
 
 ## Set a new login [/settings/newlogin]
 
-### Set a new login [PUT]
+### Set a new login [POST]
 
 + Request (application/json)
 
@@ -279,7 +291,7 @@ Determine if the user wants to visualise the current network
 
 ## Set a new email [/settings/email]
 
-### Set a new email [PUT]
+### Set a new email [POST]
 
 + Request (application/json)
 

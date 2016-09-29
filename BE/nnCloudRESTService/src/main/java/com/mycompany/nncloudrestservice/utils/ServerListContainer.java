@@ -16,7 +16,7 @@ import java.util.List;
  */
 public class ServerListContainer {
     private static List<RMIServer> instance = new ArrayList<>();
-    private int activeId;
+    public static int activeId;
     
     private ServerListContainer()
     {
@@ -30,7 +30,9 @@ public class ServerListContainer {
     
     public static void addServer(RMIServer server)
     {
-    	instance.add(server.getId(), server);
+    	instance.add(server.getId(), server); //TODO should id be generated?
+        if(instance.size() == 1)
+            activeId = server.getId();
     }
     
     public static RMIServer getAt(int id)
@@ -42,11 +44,4 @@ public class ServerListContainer {
     {
     	instance.remove(id);
     }
-    
-    public void setActive(int id)
-    {
-        this.activeId = id;
-    }
-    
-    
 }

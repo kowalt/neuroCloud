@@ -7,6 +7,8 @@ package com.mycompany.nncloudrestservice.logic;
 
 import com.mycompany.nncloudrestservice.pojo.RMIServer;
 import com.mycompany.nncloudrestservice.utils.ServerListContainer;
+import java.util.List;
+import java.util.stream.Collectors;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -27,5 +29,15 @@ public class ListOfServersManager {
             r.put(obj);
         }
         return r;
+    }
+    
+    public String setActiveServer(int id)
+    {
+        List<RMIServer> list = ServerListContainer.getInstance();
+        
+        List<> result = list.stream().filter().collect(Collectors.toList());
+                
+        ServerListContainer.activeId = id;
+        
     }
 }

@@ -10,6 +10,7 @@ import com.mycompany.nncloudrestservice.logic.ListOfServersManager;
 import com.mycompany.nncloudrestservice.utils.ServerListContainer;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -28,5 +29,15 @@ public class Settings {
     {
         ListOfServersManager slManager = new ListOfServersManager();
         return Response.status(Response.Status.OK).entity(slManager.getListOfServers()).build();
+    }
+    
+    @GET
+    @Path("/newServer/{id: \\\\d+}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response setActiveServer(@PathParam("id") String id)
+    {
+        ListOfServersManager losm = new ListOfServersManager();
+        losm.setActiveServer(Integer.parseInt(id));
+        return Response.status(204).build();
     }
 }
