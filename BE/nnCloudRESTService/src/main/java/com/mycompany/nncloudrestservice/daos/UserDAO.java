@@ -133,7 +133,7 @@ public class UserDAO implements DAO<User>
         try
         {
             tx = session.beginTransaction();
-            Query query = session.createQuery("FROM com.mycompany.nncloudrestservice.model.User u WHERE u.login = :login AND u.password = :password");
+            Query query = session.createQuery("FROM com.mycompany.nncloudrestservice.pojo.User u WHERE u.login = :login AND u.password = :password");
             query.setParameter("login", login);
             query.setParameter("password", password);
             List results = query.list();
@@ -165,7 +165,7 @@ public class UserDAO implements DAO<User>
         try
         {
             tx = session.beginTransaction();
-            Query query = session.createQuery("FROM com.mycompany.nncloudrestservice.model.User u WHERE u.session_id = :token");
+            Query query = session.createQuery("FROM com.mycompany.nncloudrestservice.pojo.User u WHERE u.session_id = :token");
             query.setParameter("token", token);
             List results = query.list();
             

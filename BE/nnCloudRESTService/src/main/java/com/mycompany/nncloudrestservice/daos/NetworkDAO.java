@@ -40,7 +40,7 @@ public class NetworkDAO implements DAO<Network>
         {
             tx = session.beginTransaction();
             
-            Query query = session.createQuery("FROM com.mycompany.nncloudrestservice.model.User u WHERE u.id = :id_user");
+            Query query = session.createQuery("FROM com.mycompany.nncloudrestservice.pojo.User u WHERE u.id = :id_user");
             
             query.setParameter("id_user", CurrentUserContainer.getInstance().getId());
             List results = query.list();
@@ -165,7 +165,7 @@ public class NetworkDAO implements DAO<Network>
         try
         {
             tx = session.beginTransaction();
-            Query query = session.createQuery("SELECT n FROM com.mycompany.nncloudrestservice.model.Network n JOIN n.user user WHERE user.id = :userid");
+            Query query = session.createQuery("SELECT n FROM com.mycompany.nncloudrestservice.pojo.Network n JOIN n.user user WHERE user.id = :userid");
             query.setParameter("userid", CurrentUserContainer.getInstance().getId());
             networks = query.list();
             tx.commit();
