@@ -6,6 +6,7 @@
 package com.mycompany.nncloudrestservice.ws;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.mycompany.nncloudrestservice.exceptions.NNCloudRestServiceException;
 import com.mycompany.nncloudrestservice.logic.ListOfServersManager;
 import com.mycompany.nncloudrestservice.utils.ServerListContainer;
 import javax.ws.rs.GET;
@@ -37,7 +38,15 @@ public class Settings {
     public Response setActiveServer(@PathParam("id") String id)
     {
         ListOfServersManager losm = new ListOfServersManager();
-        losm.setActiveServer(Integer.parseInt(id));
+        
+        try
+        {
+            losm.setActiveServer(Integer.parseInt(id));
+        }
+        catch(NNCloudRestServiceException ex)
+        {
+            Response.status(400).entity(ex.getMessage()).build();
+        }
         return Response.status(204).build();
     }
 }

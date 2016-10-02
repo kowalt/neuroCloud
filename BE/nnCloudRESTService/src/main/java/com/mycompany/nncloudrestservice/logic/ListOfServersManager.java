@@ -5,6 +5,7 @@
  */
 package com.mycompany.nncloudrestservice.logic;
 
+import com.mycompany.nncloudrestservice.exceptions.NNCloudRestServiceException;
 import com.mycompany.nncloudrestservice.pojo.RMIServer;
 import com.mycompany.nncloudrestservice.utils.ServerListContainer;
 import java.util.List;
@@ -31,13 +32,13 @@ public class ListOfServersManager {
         return r;
     }
     
-    public String setActiveServer(int id)
+    public void setActiveServer(int id) throws NNCloudRestServiceException
     {
         List<RMIServer> list = ServerListContainer.getInstance();
         
-        List<> result = list.stream().filter().collect(Collectors.toList());
+        if(!list.stream().filter( o -> o.getId().equals(id)).findFirst().isPresent())
+            throw new NNCloudRestServiceException("Wrong id");
                 
         ServerListContainer.activeId = id;
-        
     }
 }
