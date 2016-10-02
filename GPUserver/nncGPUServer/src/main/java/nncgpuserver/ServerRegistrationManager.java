@@ -33,35 +33,35 @@ public class ServerRegistrationManager implements Runnable{
 
 	public void register()
 	{
-		try {
-                    serv.register(this.server);
-		} catch (RemoteException e) {
-			e.printStackTrace();
-		}
+            try {
+                serv.register(this.server);
+            } catch (RemoteException e) {
+                    e.printStackTrace();
+            }
 	}
 
 	public void unRegister()
 	{
-		try {
-                    serv.unRegister(this.server);
-		} catch (RemoteException e) {
-			e.printStackTrace();
-		}
+            try {
+                serv.unRegister(this.server);
+            } catch (RemoteException e) {
+                    e.printStackTrace();
+            }
 	}
 
 	@Override
 	public void run() {
-		try {
-			serv.report(this.server);
-			Thread.sleep(REPORT_INTERVAL);
-		} 
-		catch (RemoteException e)
-		{
-			e.printStackTrace();
-		}
-		catch (InterruptedException e) 
-		{
-			e.printStackTrace();
-		}
+            try {
+                    serv.report(this.server);
+                    Thread.sleep(REPORT_INTERVAL);
+            } 
+            catch (RemoteException e)
+            {
+                    e.printStackTrace();
+            }
+            catch (InterruptedException e) 
+            {
+                    e.printStackTrace();
+            }
 	}
 }

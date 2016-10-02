@@ -24,3 +24,10 @@ img.banner
 	line-height: 20px;
 	width: 50px;
 }
+
+div.canvas
+{
+	position: absolute;
+	width: 100%;
+	height: 100%;
+}

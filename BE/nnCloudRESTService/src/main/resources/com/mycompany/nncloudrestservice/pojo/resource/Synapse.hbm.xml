@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.5//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<hibernate-mapping package="com.mycompany.nncloudrestservice.model">
+<hibernate-mapping package="com.mycompany.nncloudrestservice.pojo">
   <class name="Synapse" table="synapses">
         <id name="id" type="int">
             <column name="id_synapse"/>
@@ -12,7 +12,7 @@
             <column name="weight" />
         </property>
         <property name="value" type="double">
-        	<column name="value"/>
+            <column name="value"/>
         </property>
   </class>   
 </hibernate-mapping>
