@@ -38,7 +38,7 @@ angular.module('nncloud')
 			if($scope.first == "" || $scope.second == "" || $scope.third == "" || $scope.fourth == "")
 				error_message = "Neuron number in layer must not be empty!";
 			
-			if(error_message != )
+			if(error_message != "")
 			{
 				$alert({title: 'Cannot register: ', content: error_message, placement: 'top', type: 'danger', show: true});
 				return false;
