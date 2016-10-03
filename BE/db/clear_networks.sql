@@ -9,3 +9,7 @@ TRUNCATE TABLE networks;
 SET FOREIGN_KEY_CHECKS = 1;
 
 SELECT * FROM activation_functions;
+
+SELECT * FROM users;
+
+UPDATE users SET activated = 1 where login='test';

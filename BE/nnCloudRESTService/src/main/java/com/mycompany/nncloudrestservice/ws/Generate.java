@@ -28,7 +28,7 @@ public class Generate
     public Response generate(String x)
     {
         com.mycompany.nncloudrestservice.logic.Generate gc = new com.mycompany.nncloudrestservice.logic.Generate();
-       
+
         try
         {
             gc.generateNetwork(new JSONObject(x));
