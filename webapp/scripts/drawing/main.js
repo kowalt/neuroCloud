@@ -1,16 +1,6 @@
 // Let's first initialize sigma:
 var s = new sigma('container');
 
-s.graph.addNode({
-  // Main attributes:
-  id: 'n0',
-  label: 'Hello',
-  // Display attributes:
-  x: 0,
-  y: 0,
-  size: 1,
-  color: '#f00'
-
 // Then, let's add some data to display:
 s.graph.addNode({
   // Main attributes:

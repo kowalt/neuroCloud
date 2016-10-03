@@ -1,3 +1,10 @@
 <div ng-controller="SaveAsCtrl" class="container">
-	Save as under construction.
+	<form>
+		<h2>Save as</h2>
+		<div class="form-group">
+			<label for="name">Name</label>
+			<input type="text" class="form-control" id="inputName" ng-model="network.name">
+		</div>
+		<button class="btn btn-lg btn-primary btn-block" type="submit" ng-click="generate()">Save</button>
+	</form>
 </div>
