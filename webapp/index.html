@@ -16,6 +16,8 @@
 		<script src="//cdnjs.cloudflare.com/ajax/libs/angular-strap/2.3.8/angular-strap.tpl.min.js"></script>
 		<script src="scripts/app.js"></script>
 		<script src="scripts/api.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/sigma.js/1.1.0/sigma.min.js"></script>
+		<script src="scripts/drawing/main.js"></script>
 
 		<!-- Controllers -->
 		<script src="scripts/controllers/NavbarCtrl.js"></script>
@@ -28,6 +30,7 @@
 		<script src="scripts/controllers/LoginCtrl.js"></script>
 		<script src="scripts/controllers/RegisterCtrl.js"></script>
 		<script src="scripts/controllers/SettingsCtrl.js"></script>
+
 	
 		<div ng-include="'views/header.html'" ng-show="!authorized"></div>
 		<div ng-include="'views/core/navbar.html'" ng-show="authorized"></div>
