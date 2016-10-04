@@ -1,26 +1,32 @@
 /*
 * 
-returns node_a.id
-node_a.label
-node_a.x
-node_a.y
-node_a.size
-node_a.color 
+returns 
+node.id
+node.label
+node.x
+node.y
+node.size
+node.color
 */
-function transform(xmlNetwork, canvas_width, canvas_length)
+function transform(xmlNetwork)
 {
 	parser = new DOMParser();
 	xmlDoc = parser.parseFromString(xmlNetwork , "");
 	var nodes = [];
 	//draw layers with neurons
-	layers = xmlDoc.getElementsByTagName("layer");
+	_layers = xmlDoc.getElementsByTagName("layer");
 
-	for(var i=0; i < layers.length; i++)
+	for(var i=0; i < _layers.length; i++)
 	{
-		neurons = layers[i].childNodes;
+		neurons = _layers[i].childNodes;
 		for(var j=0; j < neurons.legth; j++)
 		{
-			
+			var node;
+			node.x = 1/_layers.length*layerIndex; // height instead of 1 before normalisation
+			node.y = 1/neurons.length*neuronIndex; // width ----||----
+			nodes.push(node);
 		}
 	}
+
+	return nodes;
 }
