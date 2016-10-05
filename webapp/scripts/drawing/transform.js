@@ -24,6 +24,7 @@ function transformNodes(xmlNetwork)
 			var node;
 			node.x = 1/_layers.length*layerIndex; // height instead of 1 before normalisation
 			node.y = 1/neurons.length*neuronIndex; // width ----||----
+			node.id = neurons[j].getAttribute('id');
 			nodes.push(node);
 		}
 	}
@@ -45,8 +46,9 @@ function transformEdges(xmlNetwork)
 	for(var i=0; i < synapses.length; i++ )
 	{
 		var edge;
-		edge.source = xmlDoc.getAttribute("from");
-		edge.target = xmlDoc.getAttribute("to");
+		edge.source = xmlDoc.getAttribute('from');
+		edge.target = xmlDoc.getAttribute('to');
+		edge.id = synapses[i].getAttribute('id');
 		edges.push(edge);
 	}
 	

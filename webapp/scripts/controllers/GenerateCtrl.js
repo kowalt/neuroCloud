@@ -13,7 +13,8 @@ angular.module('nncloud')
 				url: API['GENERATE'],
 				headers:
 				{
-					"Content-Type": "application/json"
+					"Content-Type": "application/json",
+					"Cookie": $cookies.get("session_id")
 				},
 				data: {"name": $scope.network.name ,"1stlayer": $scope.network.first, "2ndlayer": $scope.network.first, "3rdlayer": $scope.network.third, "4thlayer": $scope.network.fourth, "activationFunction": $scope.network.activationFunction }
 			};
