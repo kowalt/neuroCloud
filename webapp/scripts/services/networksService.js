@@ -1,4 +1,4 @@
-app.factory('networkService', ['$http', function($http) {
+app.factory('networksService', ['$http', '$cookies', function($http, $cookies) {
 	return 
 	{
 		getParticularNetwork: function(id) 
@@ -10,11 +10,33 @@ app.factory('networkService', ['$http', function($http) {
 				headers:
 				{
 					"Content-Type": "application/json",
-					"Cookie": $cookies.get("session_id")
+					"Cookie": "session_id="+$cookies.get("session_id")
 				}
-			}
+			};
 
 			$http(request).success(function(data) {
+				return data;
+			})
+			.error(function(err) {
+				return err;
+			});
+		},
+		
+		getNetworksList: function()
+		{
+			var request =
+			{
+				method: "GET",
+				url: API['NETWORKS'],
+				headers: 
+				{
+					"Content-Type": "application/json",
+					"Cookie": "session_id="+$cookies.get("session_id")
+				}
+			};
+			
+			$http(request).success(function(data)
+			{
 				return data;
 			})
 			.error(function(err) {

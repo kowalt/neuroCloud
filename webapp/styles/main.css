@@ -40,3 +40,8 @@ div.workbench_menu
 	display: inline;
 	float:right;
 }
+
+div.network_list
+{
+	border-style: solid;
+}

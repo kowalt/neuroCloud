@@ -5,5 +5,6 @@ var API =
 	'AUTH_REGISTER': API_ROOT + '/register',
 	'AUTH_LOGOUT': API_ROOT + '/logout',
 	'GENERATE': API_ROOT + '/generate',
-	'NETWORK': API_ROOT + '/network'
-}
+	'NETWORK': API_ROOT + '/network',
+	'NETWORKS': API_ROOT + '/networks'
+};
