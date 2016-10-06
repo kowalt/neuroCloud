@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('nncloud')
-  .controller('WorkbenchCtrl', ['$scope', '$cookies', 'networksService', function ($scope, $cookies, networksService) {
+  .controller('WorkbenchCtrl', ['$scope', '$cookies', '$alert', 'networksService', function ($scope, $cookies, $alert, networksService) {
 	//get active network
 	var activeNetworkID = $cookies.get('activeNetworkID');
 	if(activeNetworkID !== undefined)

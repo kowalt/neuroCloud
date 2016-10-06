@@ -13,3 +13,8 @@ SELECT * FROM activation_functions;
 SELECT * FROM users;
 
 UPDATE users SET activated = 1 where login='test';
+
+SELECT s.value FROM synapses s;
+SELECT * FROM synapses;
+
+ALTER TABLE synapses ADD value DOUBLE;
