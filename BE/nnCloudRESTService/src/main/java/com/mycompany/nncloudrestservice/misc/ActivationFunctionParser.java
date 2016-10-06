@@ -32,15 +32,17 @@ public class ActivationFunctionParser
         while(rulesTok.hasMoreElements())
         {
             String[] rule = rulesTok.nextToken().split("<=>");
-            String function,domain;            
+            String function;
+            String domain = "";
             function = rule[0];
-            domain = rule[1];
+            if(rule.length > 1)
+                domain = rule[1];
             
             afun = new ActivationFunction();
-            
+
             afun.setFunction(function);
             afun.setDomain_rule(domain);
-            
+
             af.add(afun);
         }
         
