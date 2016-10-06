@@ -1,13 +1,25 @@
 'use strict';
 
 angular.module('nncloud')
-  .controller('WorkbenchCtrl', ['$scope', function ($scope) {
+  .controller('WorkbenchCtrl', ['$scope', 'networkService', function ($scope, networkService) {
 	//get active network
 	var activeNetworkID = $cookies.get('activeNetworkID');
 	if(activeNetworkID !== undefined)
-		$location.path('/core/load')
+		$location.path('/core/load');
+	var xmlNetwork = "";
 	
-	var xmlNetwork = 
+	networkService.getParticularNetwork(activeNetworkID).success(function(data) 
+	{
+		xmlNetwork = data;
+	})
+	.error(function(err)
+	{
+		$alert({title: 'Unable to load network', content: err, placement: 'top', type: 'danger', show: true});
+	}
+	);
+
+	if(xmlNetwork === "")
+		return;
 	
 	var nodes = transformNodes(xmlNetwork);
 	

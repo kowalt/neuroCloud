@@ -32,7 +32,7 @@ angular.module('nncloud')
 		var validate = function()
 		{
 			var error_message = "";
-			
+
 			if($scope.name == "")
 				error_message = "Name must not be empty!"
 			
