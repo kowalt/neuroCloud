@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('nncloud')
+app
   .controller('WorkbenchCtrl', ['$scope', '$cookies', '$alert', 'networksService', function ($scope, $cookies, $alert, networksService) {
 	//get active network
 	var activeNetworkID = $cookies.get('activeNetworkID');
@@ -8,7 +8,7 @@ angular.module('nncloud')
 		$location.path('/core/load');
 	var xmlNetwork = "";
 	
-	networkService.getParticularNetwork(activeNetworkID).success(function(data) 
+	networksService.getParticularNetwork(activeNetworkID).success(function(data) 
 	{
 		xmlNetwork = data;
 	})
