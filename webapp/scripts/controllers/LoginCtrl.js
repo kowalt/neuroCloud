@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('nncloud').controller('LoginCtrl', ['$scope', '$http', '$alert', '$rootScope', '$location', function ($scope, $http, $alert, $rootScope, $location) {
+app.controller('LoginCtrl', ['$scope', '$http', '$alert', '$rootScope', '$location', function ($scope, $http, $alert, $rootScope, $location) {
 	if($rootScope.authorized)
 		$location.path('/core/workbench');
 

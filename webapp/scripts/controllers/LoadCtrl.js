@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('nncloud')
+app
   .controller('LoadCtrl', ['$scope', '$cookies', '$location', '$alert', 'networksService', function ($scope, $cookies, $location, $alert, networksService) {
 	networkService.getNetworksList().success(function(data)
 	{

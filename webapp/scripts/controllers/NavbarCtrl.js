@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('nncloud')
+app
   .controller('NavbarCtrl',['$scope','$location', function ($scope, $location) {
 	$scope.networks_dropdown = [
                 {

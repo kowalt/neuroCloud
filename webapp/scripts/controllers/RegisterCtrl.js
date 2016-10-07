@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('nncloud')
+app
   .controller('RegisterCtrl', ['$scope', '$http', '$location', '$alert', function ($scope,$http,$location,$alert) {
 	$scope.register = function()
 	{

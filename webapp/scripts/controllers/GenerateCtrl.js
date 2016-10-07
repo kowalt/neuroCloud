@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('nncloud')
+app
   .controller('GenerateCtrl', ['$scope', '$http', '$alert', function ($scope, $http, $alert) {
 		$scope.generate = function()
 		{
