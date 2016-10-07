@@ -1,4 +1,4 @@
-app.factory('networksService', ['$http', '$cookies', function($http, $cookies) {
+angular.module('nncloud').factory('networksService', ['$http', '$cookies', function($http, $cookies) {
 	return 
 	{
 		getParticularNetwork: function(id) 
