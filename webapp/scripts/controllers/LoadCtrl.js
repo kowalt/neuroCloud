@@ -2,7 +2,7 @@
 
 app
   .controller('LoadCtrl', ['$scope', '$cookies', '$location', '$alert', 'networksService', function ($scope, $cookies, $location, $alert, networksService) {
-	networkService.getNetworksList().success(function(data)
+	networksService.getNetworksList().success(function(data)
 	{
 		$scope.networks = data;
 	}).error(function(err)

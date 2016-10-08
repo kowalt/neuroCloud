@@ -1,10 +1,10 @@
 'use strict';
 
 app
-  .controller('WorkbenchCtrl', ['$scope', '$cookies', '$alert', 'networksService', function ($scope, $cookies, $alert, networksService) {
+  .controller('WorkbenchCtrl', ['$scope', '$cookies', '$alert', '$location', 'networksService', function ($scope, $cookies, $alert, $location,networksService) {
 	//get active network
 	var activeNetworkID = $cookies.get('activeNetworkID');
-	if(activeNetworkID !== undefined)
+	if(activeNetworkID === undefined)
 		$location.path('/core/load');
 	var xmlNetwork = "";
 	
