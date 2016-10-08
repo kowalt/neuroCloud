@@ -14,8 +14,7 @@ app.factory('networksService', ['$http', '$cookies', function($http, $cookies) {
 			url: API['NETWORKS'],
 			headers: 
 			{
-				"Content-Type": "application/json",
-				"Cookie": "session_id="+$cookies.get("session_id")
+				"Content-Type": "application/json"
 			}
 		};
 		
@@ -37,7 +36,6 @@ app.factory('networksService', ['$http', '$cookies', function($http, $cookies) {
 			headers:
 			{
 				"Content-Type": "application/json",
-				"Cookie": "session_id="+$cookies.get("session_id")
 			}
 		};
 

@@ -8,7 +8,8 @@
  */
 var app = angular.module('nncloud', ['ngRoute','mgcrea.ngStrap', 'mgcrea.ngStrap.tooltip','mgcrea.ngStrap.modal','ngCookies']);
   app.config(['$routeProvider', '$httpProvider', function ($routeProvider, $httpProvider) {
-    $routeProvider
+  $httpProvider.defaults.withCredentials = true;  
+  $routeProvider
       .when('/login', {
         templateUrl: 'views/login.html',
         controller: 'LoginCtrl'
