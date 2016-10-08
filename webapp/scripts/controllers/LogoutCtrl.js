@@ -1,6 +1,6 @@
 'use strict';
 
-app.module('nncloud')
+app
   .controller('LogoutCtrl',['$scope', '$http', '$alert','$location', '$rootScope', function($scope, $http, $alert, $location, $rootScope) {
 	$scope.logout = function()
 	{

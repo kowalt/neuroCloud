@@ -1,47 +1,51 @@
 app.factory('networksService', ['$http', '$cookies', function($http, $cookies) {
-	return 
+	var exposedAPI = 
 	{
-		getParticularNetwork: function(id)
-		{
-			var request = 
-			{
-				method: "GET",
-				url: API['NETWORK']+'/'+id.toString(),
-				headers:
-				{
-					"Content-Type": "application/json",
-					"Cookie": "session_id="+$cookies.get("session_id")
-				}
-			};
+		getParticularNetwork: getParticularNetwork,
+		getNetworksList: getNetworksList
+	}
+	return exposedAPI;
 
-			$http(request).success(function(data) {
-				return data;
-			})
-			.error(function(err) {
-				return err;
-			});
-		},
-		
-		getNetworksList: function()
+	function getNetworksList()
+	{
+		var request =
 		{
-			var request =
+			method: "GET",
+			url: API['NETWORKS'],
+			headers: 
 			{
-				method: "GET",
-				url: API['NETWORKS'],
-				headers: 
-				{
-					"Content-Type": "application/json",
-					"Cookie": "session_id="+$cookies.get("session_id")
-				}
-			};
-			
-			$http(request).success(function(data)
+				"Content-Type": "application/json",
+				"Cookie": "session_id="+$cookies.get("session_id")
+			}
+		};
+		
+		$http(request).success(function(data)
+		{
+			return data;
+		})
+		.error(function(err) {
+			return err;
+		});
+	}
+	
+	function getParticularNetwork(id)
+	{
+		var request = 
+		{
+			method: "GET",
+			url: API['NETWORK']+'/'+id.toString(),
+			headers:
 			{
-				return data;
-			})
-			.error(function(err) {
-				return err;
-			});
-		}
+				"Content-Type": "application/json",
+				"Cookie": "session_id="+$cookies.get("session_id")
+			}
+		};
+
+		$http(request).success(function(data) {
+			return data;
+		})
+		.error(function(err) {
+			return err;
+		});
 	}
 }]);
