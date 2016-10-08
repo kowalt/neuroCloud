@@ -5,7 +5,10 @@ app
 	//get active network
 	var activeNetworkID = $cookies.get('activeNetworkID');
 	if(activeNetworkID === undefined)
+	{	
 		$location.path('/core/load');
+		return;
+	}
 	var xmlNetwork = "";
 	
 	networksService.getParticularNetwork(activeNetworkID).success(function(data) 
