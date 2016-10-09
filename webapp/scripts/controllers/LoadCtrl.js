@@ -2,14 +2,13 @@
 
 app
   .controller('LoadCtrl', ['$scope', '$cookies', '$location', '$alert', 'networksService', function ($scope, $cookies, $location, $alert, networksService) {
-	try
-	{
-		$scope.networks = networksService.getNetworksList();
-	}
-	catch(err)
-	{
-		$alert({title: 'Unable to load list of networks', content: err, placement: 'top', type: 'danger', show: true});
-	}
+
+		$scope.networks = networksService.getNetworksList().success(function(data) {
+			$scope.networks = data;
+		})
+		.error(function(err) {
+			$alert({title: 'Unable to load list of networks', content: err, placement: 'top', type: 'danger', show: true});
+		});
 
 	$scope.selectNetwork = function(id)
 	{
