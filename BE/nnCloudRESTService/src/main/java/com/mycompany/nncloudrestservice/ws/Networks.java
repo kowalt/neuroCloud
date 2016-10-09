@@ -23,25 +23,6 @@ import javax.ws.rs.core.Response;
 public class Networks
 {
     @GET
-    @Path("/{id: \\d+}")
-    @Produces(MediaType.APPLICATION_XML)
-    public Response loadNetwork(@PathParam("id") String id)
-    {
-        Load lc = new Load();
-        String r = null;
-        try
-        {    
-            r = lc.loadNetworkAsXML(Integer.parseInt(id));
-        }
-        catch(NetworkAccessException nae)
-        {
-            return Response.status(404).entity(nae.getMessage()).build();
-        }    
-        
-        return Response.status(200).entity(r).build();
-    }
-    
-    @GET
     @Produces(MediaType.APPLICATION_JSON)
     public Response getListOfNetworks()
     {

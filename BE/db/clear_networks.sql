@@ -18,3 +18,7 @@ SELECT s.value FROM synapses s;
 SELECT * FROM synapses;
 
 ALTER TABLE synapses ADD value DOUBLE;
+
+ALTER TABLE users DROP INDEX session_id_UNIQUE;
+
+SELECT * FROM user;
