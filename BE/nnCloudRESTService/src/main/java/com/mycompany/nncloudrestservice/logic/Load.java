@@ -6,6 +6,8 @@
 package com.mycompany.nncloudrestservice.logic;
 
 import com.mycompany.nncloudrestservice.daos.NetworkDAO;
+import com.mycompany.nncloudrestservice.dto.NetworkDTO;
+import com.mycompany.nncloudrestservice.dto.transform.NetworkToDTO;
 import com.mycompany.nncloudrestservice.exceptions.NetworkAccessException;
 import com.mycompany.nncloudrestservice.pojo.Network;
 import java.io.StringWriter;
@@ -49,12 +51,14 @@ public class Load
         try
         {
             Network network = (Network)ndao.getItem(String.valueOf(id));
-            JAXBContext jaxbContext = JAXBContext.newInstance(Network.class);
+            NetworkToDTO transform = new NetworkToDTO();
+            NetworkDTO ndto = transform.transform(network);
+            JAXBContext jaxbContext = JAXBContext.newInstance(NetworkDTO.class);
             Marshaller marshaller = jaxbContext.createMarshaller();
             
             marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
             marshaller.setProperty(Marshaller.JAXB_ENCODING, "UTF-8");
-            marshaller.marshal(network, sw);
+            marshaller.marshal(ndto, sw);
             r = sw.toString();
         }
         catch(JAXBException e)
