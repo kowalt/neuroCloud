@@ -3,22 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.mycompany.nncloudrestservice.logic;
+package com.mycompany.nncloudrestservice.dto.transform;
 
+import com.mycompany.nncloudrestservice.dto.NetworkDTO;
 import com.mycompany.nncloudrestservice.pojo.Network;
 
 /**
- * Class responsible for transformations Network->NetworkDTO, NetworkDTO->Network
+ *
  * @author Tomasz
  */
-public class NetworkTransform {
-   public void transformIn(Network network)
-   {
-       
-   }
-   
-   public Network transformOut()
-   {
+public class DTOToNetwork {
+    public Network transform(NetworkDTO ndto)
+    {
        return null;
-   }
+    }
 }

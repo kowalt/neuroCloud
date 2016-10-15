@@ -47,7 +47,7 @@ public class Generate
         
         for(int i=0;i<4;i++)
         {   
-            Layer l = generateLayer(i, neuronsPerLayer[i], af);
+            Layer l = generateLayer(i+1, neuronsPerLayer[i], af);
             l.setNetwork(network);
             layers.add(l);
         }
