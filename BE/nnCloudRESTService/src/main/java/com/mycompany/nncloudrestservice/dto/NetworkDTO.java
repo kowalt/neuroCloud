@@ -6,14 +6,18 @@
 package com.mycompany.nncloudrestservice.dto;
 
 import java.util.List;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlElementWrapper;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
  * @author Tomasz
  */
+@XmlRootElement(name="network")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class NetworkDTO {
    @XmlAttribute
    private int id;
@@ -23,33 +27,27 @@ public class NetworkDTO {
    @XmlElement(name="synapse")
    private List<SynapseDTO> synapsesInput;
 
-   @XmlElementWrapper
    @XmlElement(name="layer")
    private LayerDTO layer1;
 
-   @XmlElementWrapper
    @XmlElement(name="synapse")
    private List<SynapseDTO> synapsesBetween1and2Layer;
 
-   @XmlElementWrapper
    @XmlElement(name="layer")
    private LayerDTO layer2;
 
    @XmlElement(name="synapse")
    private List<SynapseDTO> synapsesBetween2and3Layer;
 
-   @XmlElementWrapper
    @XmlElement(name="layer")
    private LayerDTO layer3;
 
    @XmlElement(name="synapses")
    private List<SynapseDTO> synapsesBetween3and4Layer;
 
-   @XmlElementWrapper
    @XmlElement(name="layer")
    private LayerDTO layer4;
 
-   @XmlElementWrapper
    @XmlElement(name="synapse")
    private List<SynapseDTO> synapsesOutput;
 
@@ -140,6 +138,4 @@ public class NetworkDTO {
     public void setSynapsesOutput(List<SynapseDTO> synapsesOutput) {
         this.synapsesOutput = synapsesOutput;
     }
-   
-   
 }

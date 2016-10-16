@@ -5,12 +5,18 @@
  */
 package com.mycompany.nncloudrestservice.daos;
 
+import com.mycompany.nncloudrestservice.pojo.Layer;
 import com.mycompany.nncloudrestservice.pojo.Network;
+import com.mycompany.nncloudrestservice.pojo.Neuron;
+import com.mycompany.nncloudrestservice.pojo.Synapse;
 import com.mycompany.nncloudrestservice.pojo.User;
 import com.mycompany.nncloudrestservice.utils.CurrentUserContainer;
 import com.mycompany.nncloudrestservice.utils.HibUtils;
 import com.mycompany.nncloudrestservice.utils.SessionContainer;
+import java.util.ArrayList;
+import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Set;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -126,7 +132,7 @@ public class NetworkDAO implements DAO<Network>
     @Override
     public Network getItem(String... keys) throws Exception {
         Session session = factory.openSession();
-                
+
         if(!lazyLoadMode)  
             HibUtils.enableEagerFetching(session);
  
@@ -140,7 +146,8 @@ public class NetworkDAO implements DAO<Network>
         {
             tx = session.beginTransaction();
             
-            n = (Network) session.get(Network.class, id_network); 
+            n = (Network) session.get(Network.class, id_network);
+            removeDuplicates(n);
             tx.commit();
         }
         catch(HibernateException he)
@@ -184,5 +191,25 @@ public class NetworkDAO implements DAO<Network>
 
     public void setLazyLoadMode(boolean lazyLoadMode) {
         this.lazyLoadMode = lazyLoadMode;
+    }
+    
+    private void removeDuplicates(Network network)
+    {
+        Set<Layer> layersSet = new LinkedHashSet<>();
+        layersSet.addAll(network.getLayers());
+        List<Layer> layersList = new ArrayList<>();
+        layersList.addAll(layersSet);
+        network.setLayers(layersList);
+        
+//        Set<Neuron> neuronsSet = new LinkedHashSet<>();
+//        List<Neuron> neuronsList = new ArrayList<>();
+//
+//        for(Layer layer: layersList)
+//        {
+//            neuronsSet.addAll(layer.getNeurons());
+//            
+//        }
+//        
+//        Set<Synapse> synapsesSet = new LinkedHashSet<>();
     }
 }

@@ -21,4 +21,7 @@ ALTER TABLE synapses ADD value DOUBLE;
 
 ALTER TABLE users DROP INDEX session_id_UNIQUE;
 
-SELECT * FROM user;
+SELECT * FROM users;
+
+SELECT * FROM networks;
+SELECT * FROM layers;

@@ -94,6 +94,8 @@ public class NetworkToDTO {
         {
             NeuronDTO neuDTO = new NeuronDTO();
             neuDTO.setActivation(unwindActivationFunctions(n.getActivation_functions()));
+            neuDTO.setId(n.getId());
+            neuDTOList.add(neuDTO);
         }
 
         return neuDTOList;
@@ -123,10 +125,15 @@ public class NetworkToDTO {
         for(Synapse s: synapses)
         {
             SynapseDTO sdto = new SynapseDTO();
-            if(s.getNeuron_out() != null) //Not output layer
+            if(s.getNeuron_out() != null) //Not output layer    
                 sdto.setTo(s.getNeuron_out().getId());
+            
             if(s.getNeuron_in() != null) //Not input layer
                 sdto.setFrom(s.getNeuron_in().getId());
+
+            sdto.setId(s.getId());
+            sdto.setValue(s.getValue());
+            sdto.setWeight(s.getWeight());
             sdtol.add(sdto);
         }
         return sdtol;

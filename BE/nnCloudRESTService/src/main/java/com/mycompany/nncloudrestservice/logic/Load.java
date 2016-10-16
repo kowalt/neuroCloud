@@ -25,7 +25,6 @@ public class Load
     public String loadNetworkAsXML(int id) throws NetworkAccessException
     {
         String r = null;
-        StringWriter sw = new StringWriter();
         NetworkDAO ndao = new NetworkDAO();
         //check if user has access for this network
         List<Network> nList = ndao.getNetworksForCurrentUser();
@@ -53,13 +52,14 @@ public class Load
             Network network = (Network)ndao.getItem(String.valueOf(id));
             NetworkToDTO transform = new NetworkToDTO();
             NetworkDTO ndto = transform.transform(network);
+            
             JAXBContext jaxbContext = JAXBContext.newInstance(NetworkDTO.class);
             Marshaller marshaller = jaxbContext.createMarshaller();
-            
             marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
             marshaller.setProperty(Marshaller.JAXB_ENCODING, "UTF-8");
+            StringWriter sw = new StringWriter();
             marshaller.marshal(ndto, sw);
-            r = sw.toString();
+            r = sw.toString().replace("&lt;", "<").replace("&gt;", ">");
         }
         catch(JAXBException e)
         {
