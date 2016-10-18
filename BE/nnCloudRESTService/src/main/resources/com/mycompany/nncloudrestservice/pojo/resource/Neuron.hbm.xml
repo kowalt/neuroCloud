@@ -19,9 +19,7 @@
             <one-to-many class="Synapse"/>
         </bag>
         <bag name="activation_functions" table="activation_functions" cascade="all" inverse="true" lazy="false">
-            <key>
-                <column name="id_activation_function" not-null="true"/>
-            </key>
+            <key column="id_neuron" not-null="true"/>
             <one-to-many class="ActivationFunction"/>
         </bag>
         <many-to-one name="layer" class="Layer" column="id_layer" not-null="true"></many-to-one>
