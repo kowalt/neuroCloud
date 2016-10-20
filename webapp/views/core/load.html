@@ -1,5 +1,5 @@
 <div ng-controller="LoadCtrl" class="container">
 	<div ng-repeat="network in networks" id="{{ network.id }}" ng-click="selectNetwork(network.id)">
-		{{ network.name }} created in {{ network.creation-date | date }}
+		{{ network.name }} created in {{ network.creation-date | date : "yyyy-MM-dd" }}
 	</div>
 </div>
