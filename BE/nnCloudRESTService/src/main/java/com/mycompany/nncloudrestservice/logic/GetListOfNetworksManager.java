@@ -26,7 +26,7 @@ public class GetListOfNetworksManager
             JSONObject singleNetwork = new JSONObject();
             singleNetwork.put("id", n.getId());
             singleNetwork.put("name", n.getName());
-            singleNetwork.put("creation-date", n.getCreation());
+            singleNetwork.put("creationdate", n.getCreation());
             rarrNetworks.put(singleNetwork);
         }
         return rarrNetworks;
