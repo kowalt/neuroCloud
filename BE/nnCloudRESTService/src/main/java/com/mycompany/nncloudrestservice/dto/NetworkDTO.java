@@ -42,7 +42,7 @@ public class NetworkDTO {
    @XmlElement(name="layer")
    private LayerDTO layer3;
 
-   @XmlElement(name="synapses")
+   @XmlElement(name="synapse")
    private List<SynapseDTO> synapsesBetween3and4Layer;
 
    @XmlElement(name="layer")
