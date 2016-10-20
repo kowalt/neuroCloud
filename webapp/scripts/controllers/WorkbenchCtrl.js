@@ -13,8 +13,7 @@ app
 	
 	networksService.getParticularNetwork(activeNetworkID).success(function(data) 
 	{
-		if(xmlNetwork === "")
-			return;
+		xmlNetwork = data
 
 		var nodes = transformNodes(xmlNetwork);
 
