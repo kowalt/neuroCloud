@@ -27,8 +27,7 @@ img.banner
 
 div.canvas
 {
-	position: absolute;
-	width: 80%;
+	width: 75%;
 	height: 100%;
 	float: left;
 	display: inline;
@@ -38,7 +37,10 @@ div.canvas
 div.workbench_menu
 {
 	display: inline;
-	float:right;
+	float: right;
+	height: 100%;
+	width: 20%;
+	border-style: dotted;
 }
 
 div.network_list
