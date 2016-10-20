@@ -59,7 +59,8 @@ public class Load
             marshaller.setProperty(Marshaller.JAXB_ENCODING, "UTF-8");
             StringWriter sw = new StringWriter();
             marshaller.marshal(ndto, sw);
-            r = sw.toString().replace("&lt;", "<").replace("&gt;", ">");
+            //r = sw.toString().replace("&lt;", "<").replace("&gt;", ">");
+            r = sw.toString();
         }
         catch(JAXBException e)
         {
