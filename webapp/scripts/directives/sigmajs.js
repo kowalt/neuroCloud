@@ -1,7 +1,7 @@
 (function() {
 	'use strict';
 
-	angular.module('sigmajs-ng', []).directive('sigmajs', function() {
+	app.directive('sigmajs', function() {
 		//over-engineered random id, so that multiple instances can be put on a single page
 		var divId = 'sigmjs-dir-container-'+Math.floor((Math.random() * 999999999999))+'-'+Math.floor((Math.random() * 999999999999))+'-'+Math.floor((Math.random() * 999999999999));
 		return {
