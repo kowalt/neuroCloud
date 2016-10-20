@@ -19,12 +19,12 @@ function transformNodes(xmlNetwork)
 	for(var i=0; i < _layers.length; i++)
 	{
 		neurons = _layers[i].childNodes;
-		for(var j=0; j < neurons.legth; j++)
+		for(var j=0; j < Math.floor(neurons.length/2); j++)
 		{
-			var node;
-			node.x = 1/_layers.length*layerIndex; // height instead of 1 before normalisation
-			node.y = 1/neurons.length*neuronIndex; // width ----||----
-			node.id = neurons[j].getAttribute('id');
+			var node = {};
+			node.x = 1/_layers.length*i; // height instead of 1 before normalisation
+			node.y = 1/neurons.length*j; // width ----||----
+			node.id = neurons[j*2+1].getAttribute('id');
 			nodes.push(node);
 		}
 	}
@@ -45,9 +45,9 @@ function transformEdges(xmlNetwork)
 		
 	for(var i=0; i < synapses.length; i++ )
 	{
-		var edge;
-		edge.source = xmlDoc.getAttribute('from');
-		edge.target = xmlDoc.getAttribute('to');
+		var edge = {};
+		edge.source = synapses[i].getAttribute('from');
+		edge.target = synapses[i].getAttribute('to');
 		edge.id = synapses[i].getAttribute('id');
 		edges.push(edge);
 	}
