@@ -46,6 +46,8 @@ function transformEdges(xmlNetwork)
 	for(var i=0; i < synapses.length; i++ )
 	{
 		var edge = {};
+		if(synapses[i].getAttribute('from') == "" || synapses[i].getAttribute('to') == "")
+			continue;
 		edge.source = synapses[i].getAttribute('from');
 		edge.target = synapses[i].getAttribute('to');
 		edge.id = synapses[i].getAttribute('id');
