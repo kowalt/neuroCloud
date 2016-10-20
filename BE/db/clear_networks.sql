@@ -25,3 +25,5 @@ SELECT * FROM users;
 
 SELECT * FROM networks;
 SELECT * FROM layers;
+
+SELECT * FROM neurons;
