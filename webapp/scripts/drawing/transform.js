@@ -33,7 +33,7 @@ function transformNodes(xmlNetwork)
 }
 
 /*
-	Transforms synapses to edges
+	Transforms synapses to edges, input and output
 */
 function transformEdges(xmlNetwork)
 {
@@ -42,17 +42,27 @@ function transformEdges(xmlNetwork)
 	
 	var synapses = xmlDoc.getElementsByTagName("synapse");
 	var edges = [];
-		
+	var inputVec = [];
+	var outputVec = [];
+	
 	for(var i=0; i < synapses.length; i++ )
 	{
 		var edge = {};
-		if(synapses[i].getAttribute('from') == "0" || synapses[i].getAttribute('to') == "0")
+
+		source = synapses[i].getAttribute('from');
+		target = synapses[i].getAttribute('to');
+
+		if(source == "0" || target == "0")
+		{
+			
 			continue;
-		edge.source = synapses[i].getAttribute('from');
-		edge.target = synapses[i].getAttribute('to');
+		}
+
+		edge.source = source;
+		edge.target = target;
 		edge.id = synapses[i].getAttribute('id');
 		edges.push(edge);
 	}
 	
-	return edges;
+	return [edges, inputVec, outputVec];
 }

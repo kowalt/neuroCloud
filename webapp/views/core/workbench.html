@@ -1,6 +1,6 @@
 <div ng-controller="WorkbenchCtrl" class="container">
 	<div class="workbench">
-		<sigmajs graph="sigmaGraph" width="80%" height="300px" releative-size-node="true"></sigmajs>
+		<sigmajs graph="sigmaGraph" releative-size-node="true"></sigmajs>
 		<div class="workbench_menu">
 			<table>
 				<thead>
@@ -10,8 +10,21 @@
 					<tr>
 				</thead>
 				<tbody>
+					<tr ng-repeat="inout in inoutContainer">
+						<td>{{ inout.input_vector }}</td>
+						<td>{{ inout.output_vector }}</td>
+					</tr>
+					<tr>
+						<td>
+							<button ng-click="uploadInput()">Upload</button>
+						</td>
+						<td>
+							<button ng-click="downloadOutput()">Download</button>
+						</td>
+					</tr>
 				</tbody>
 			</table>
+			<button>Run</button>
 		</div>
 	</div>
 </div>

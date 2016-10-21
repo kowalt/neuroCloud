@@ -5,7 +5,9 @@
  */
 package com.mycompany.nncloudrestservice.dto.transform;
 
+import com.mycompany.nncloudrestservice.daos.NetworkDAO;
 import com.mycompany.nncloudrestservice.dto.NetworkDTO;
+import com.mycompany.nncloudrestservice.pojo.Layer;
 import com.mycompany.nncloudrestservice.pojo.Network;
 
 /**
@@ -15,6 +17,14 @@ import com.mycompany.nncloudrestservice.pojo.Network;
 public class DTOToNetwork {
     public Network transform(NetworkDTO ndto)
     {
-       return null;
+       Network n = new Network();
+       
+       n.setId(ndto.getId());
+       
+       //obtain creation from database if network already exists
+       NetworkDAO ndao = new NetworkDAO();
+       //n.setCreation(ndao.getItem(keys));
+       
+       return n;
     }
 }

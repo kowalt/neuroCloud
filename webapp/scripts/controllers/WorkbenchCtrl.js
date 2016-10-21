@@ -16,8 +16,12 @@ app
 		xmlNetwork = data
 
 		var nodes = transformNodes(xmlNetwork);
-		var edges = transformEdges(xmlNetwork);
-		
+		var transformEdgesResult = transformEdges(xmlNetwork);
+		var edges = transformEdgesResult[0];
+
+		$scope.inoutContainer.input_vector = transformEdgesResult[1];
+		$scope.inoutContainer.output_vector = transformEdgesResult[2];
+
 		for(var i=0;i<nodes.length; i++)
 			nodes[i].size = 1;
 		
