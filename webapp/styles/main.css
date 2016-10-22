@@ -44,6 +44,11 @@ div.workbench_menu
 	padding: 2px;
 }
 
+div.workbench_menu input
+{
+	width: 50%;
+}
+
 div.network_list
 {
 	border-style: solid;
