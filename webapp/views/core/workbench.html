@@ -11,7 +11,7 @@
 				</thead>
 				<tbody>
 					<tr ng-repeat="inout in inout_tracking() track by $index">
-						<td>{{ inoutContainer.input_vector[$index] }}</td>
+						<td><label>{{$index}}<input value="{{ inoutContainer.input_vector[$index] }}"></label></td>
 						<td>{{ inoutContainer.output_vector[$index] }}</td>
 					</tr>
 					<tr>
