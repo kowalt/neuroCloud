@@ -44,7 +44,7 @@ function transformEdges(xmlNetwork)
 	var edges = [];
 	var inputVec = [];
 	var outputVec = [];
-	
+
 	for(var i=0; i < synapses.length; i++ )
 	{
 		var edge = {};
@@ -54,7 +54,10 @@ function transformEdges(xmlNetwork)
 
 		if(source == "0" || target == "0")
 		{
-			
+			if(source == "0")
+				inputVec.push(synapses[i].getAttribute("value"));
+			if(target == "0")
+				outputVec.push(synapses[i].getAttribute("value"));
 			continue;
 		}
 
@@ -63,6 +66,6 @@ function transformEdges(xmlNetwork)
 		edge.id = synapses[i].getAttribute('id');
 		edges.push(edge);
 	}
-	
+
 	return [edges, inputVec, outputVec];
 }

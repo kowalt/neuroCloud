@@ -10,9 +10,9 @@
 					<tr>
 				</thead>
 				<tbody>
-					<tr ng-repeat="inout in inoutContainer">
-						<td>{{ inout.input_vector }}</td>
-						<td>{{ inout.output_vector }}</td>
+					<tr ng-repeat="inout in inout_tracking() track by $index">
+						<td>{{ inoutContainer.input_vector[$index] }}</td>
+						<td>{{ inoutContainer.output_vector[$index] }}</td>
 					</tr>
 					<tr>
 						<td>

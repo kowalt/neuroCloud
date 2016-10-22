@@ -2,6 +2,18 @@
 
 app
   .controller('WorkbenchCtrl', ['$scope', '$cookies', '$alert', '$location', 'networksService', function ($scope, $cookies, $alert, $location,networksService) {
+	$scope.inout_tracking = function()
+	{
+		var lenInput = $scope.inoutContainer.input_vector.length;
+		var lenOutput = $scope.inoutContainer.output_vector.length;
+
+		if(lenInput > lenOutput)
+			return $scope.inoutContainer.input_vector;
+		else
+			return $scope.inoutContainer.output_vector;	
+	}
+
+	$scope.inoutContainer = {input_vector: [], output_vector: []};
 	//get active network
 	var activeNetworkID = $cookies.get('activeNetworkID');
 	if(activeNetworkID === undefined)
