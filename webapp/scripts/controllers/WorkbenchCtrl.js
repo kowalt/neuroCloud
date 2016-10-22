@@ -2,6 +2,12 @@
 
 app
   .controller('WorkbenchCtrl', ['$scope', '$cookies', '$alert', '$location', 'networksService', function ($scope, $cookies, $alert, $location,networksService) {
+	$scope.run = function()
+	{
+		
+		
+	}
+
 	$scope.inout_tracking = function()
 	{
 		var lenInput = $scope.inoutContainer.input_vector.length;
@@ -45,5 +51,5 @@ app
 	.error(function(err)
 	{
 		$alert({title: 'Unable to load network', content: err, placement: 'top', type: 'danger', show: true});
-	});
+	});	
 }]);

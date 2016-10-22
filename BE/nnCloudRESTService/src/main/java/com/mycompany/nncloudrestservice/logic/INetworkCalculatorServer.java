@@ -15,7 +15,7 @@ import java.rmi.RemoteException;
  */
 public interface INetworkCalculatorServer extends Remote {
     
-    public void loadNetworkIntoGPU(Network n);
+    public void loadNetworkIntoGPU(Network n) throws RemoteException;
     public double[] run(double[] input) throws RemoteException;
-    public void sayHello();        
+    public void sayHello() throws RemoteException;        
 }

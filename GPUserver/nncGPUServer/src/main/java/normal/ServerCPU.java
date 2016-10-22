@@ -27,7 +27,6 @@ public class ServerCPU implements INetworkCalculatorServer{
 
     @Override
     public double[] run(double[] input) throws RemoteException {
-        Network n = new Network();
         List<Layer> lList = n.getLayers();
         double[] output = new double[getLargestLayerSize(lList)];
         NetworkProcessor np = new NetworkProcessor();

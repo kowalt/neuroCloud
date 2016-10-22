@@ -6,8 +6,6 @@ app.factory('networksService', ['$http', '$cookies', function($http, $cookies) {
 	}
 	return exposedAPI;
 
-	
-	
 	function getNetworksList()
 	{
 		var request =
@@ -47,5 +45,10 @@ app.factory('networksService', ['$http', '$cookies', function($http, $cookies) {
 		.error(function(err) {
 			return err;
 		});
+	}
+	
+	function runNetwork(id)
+	{
+		
 	}
 }]);

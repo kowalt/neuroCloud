@@ -20,14 +20,16 @@ import java.util.logging.Logger;
  * @author Tomasz
  */
 public class RunManager {
-    public void run(int networkId, int serverId)
+    public void run(int networkId, int serverId, double[] vector)
     {
         try
         {
             RMIServer server = ServerListContainer.getAt(serverId);
             Registry registry = LocateRegistry.getRegistry(server.getHost(),server.getPort());
+
             try {
                 INetworkCalculatorServer stub = (INetworkCalculatorServer) registry.lookup(server.getName());
+                stub.run(vector);
             } catch (NotBoundException ex) {
                 Logger.getLogger(RunManager.class.getName()).log(Level.SEVERE, null, ex);
             } catch (AccessException ex) {

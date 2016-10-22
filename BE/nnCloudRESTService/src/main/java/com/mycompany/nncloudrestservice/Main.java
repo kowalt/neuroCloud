@@ -5,6 +5,7 @@ import com.mycompany.nncloudrestservice.filters.CORSFilter;
 import com.mycompany.nncloudrestservice.filters.CORSPreflightFilter;
 import com.mycompany.nncloudrestservice.logic.RMIServerTimeoutChecker;
 import com.mycompany.nncloudrestservice.serverservice.CalculationServerRegistrationService;
+import com.mycompany.nncloudrestservice.serverservice.ICalculationServerRegistrationService;
 
 import org.glassfish.grizzly.http.server.HttpServer;
 import org.glassfish.jersey.grizzly2.httpserver.GrizzlyHttpServerFactory;
@@ -53,10 +54,10 @@ public class Main {
     	try
     	{
             CalculationServerRegistrationService server = new CalculationServerRegistrationService();
-            server  = (CalculationServerRegistrationService) UnicastRemoteObject.exportObject(server, RMI_PORT);
+            ICalculationServerRegistrationService stub  = (ICalculationServerRegistrationService) UnicastRemoteObject.exportObject(server, RMI_PORT);
             // Bind the remote object's stub in the registry
             Registry registry = LocateRegistry.getRegistry();
-            registry.bind("CalculationServerRegistrationService", server);
+            registry.bind("ICalculationServerRegistrationService", stub);
             new RMIServerTimeoutChecker().run();
     	}
     	catch(Exception e)
@@ -75,6 +76,7 @@ public class Main {
         if(args.length != 0)
             base_uri = args[0];
         final HttpServer server = startServer();
+        startRMIServer();
         System.out.println(String.format("Jersey app started at %s\nHit enter to stop it",base_uri));
         System.in.read();
         server.stop();
