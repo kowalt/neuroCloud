@@ -6,6 +6,7 @@
 package normal;
 
 import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
 import java.util.Iterator;
 import java.util.List;
 import nncgpuserver.INetworkCalculatorServer;
@@ -16,12 +17,17 @@ import pojo.original.Network;
  * @author Tomasz
  */
 public class ServerCPU implements INetworkCalculatorServer{
-
+ 
     private Network n;
     private final String LABEL = "Very basic single-threaded CPU server";
 
+    public ServerCPU() throws RemoteException
+    {
+    
+    }
+    
     @Override
-    public void loadNetworkIntoGPU(Network n) {
+    public void loadNetworkIntoGPU(Network n) throws RemoteException {
        this.n = n;
     }
 
@@ -41,7 +47,7 @@ public class ServerCPU implements INetworkCalculatorServer{
         return output;
     }
     
-    private int getLargestLayerSize(List<Layer> lList)
+    private int getLargestLayerSize(List<Layer> lList) throws RemoteException
     {
         Iterator<Layer> iter = lList.iterator();
         
@@ -57,12 +63,12 @@ public class ServerCPU implements INetworkCalculatorServer{
     }
 
     @Override
-    public void sayHello() {
+    public void sayHello() throws RemoteException {
         System.out.println("Hello world!");
     }
 
-	@Override
-	public String getLabel() {
-		return LABEL;
-	}
+    @Override
+    public String getLabel() throws RemoteException {
+            return LABEL;
+    }
 }

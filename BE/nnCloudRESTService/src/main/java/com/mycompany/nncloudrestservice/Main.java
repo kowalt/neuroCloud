@@ -27,7 +27,8 @@ import java.util.Map;
 public class Main {
     // Base URI the Grizzly HTTP server will listen on
     public static String base_uri = "http://localhost:8080/nncloudAPI/";
-    public static final int RMI_PORT = 61262; 
+    public static final int RMI_PORT = 61262;
+    public static final int RMI_REGISTRY_PORT = 1099;
 
     /**
      * Starts Grizzly HTTP server exposing JAX-RS resources defined in this application.
@@ -56,6 +57,8 @@ public class Main {
             CalculationServerRegistrationService server = new CalculationServerRegistrationService();
             ICalculationServerRegistrationService stub  = (ICalculationServerRegistrationService) UnicastRemoteObject.exportObject(server, RMI_PORT);
             // Bind the remote object's stub in the registry
+
+            LocateRegistry.createRegistry(RMI_REGISTRY_PORT);
             Registry registry = LocateRegistry.getRegistry();
             registry.bind("ICalculationServerRegistrationService", stub);
             new RMIServerTimeoutChecker().run();

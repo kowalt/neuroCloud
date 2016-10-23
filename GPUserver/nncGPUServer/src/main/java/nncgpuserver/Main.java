@@ -40,6 +40,12 @@ public class Main {
     @Parameter(names= {"-m","--mode"}, description="0-normal, 1-jocl, 2-javacl")
     private Integer mode;
 
+    @Parameter(names= {"-o","--registryPort"}, description="Port of remote RMI registry to connect with")
+    private Integer registryPort;
+    
+    @Parameter(names= {"-s","--registryHost"}, description="Host of remote RMI registry to connect with")
+    private String registryHost;
+    
     public static final int RMI_PORT = 61263; 
     
     private void initializeRMIServer()
@@ -62,11 +68,11 @@ public class Main {
                     printHelp();
                     return;
             }
-            
-            INetworkCalculatorServer rn_stub = (INetworkCalculatorServer)UnicastRemoteObject.exportObject(s, 0);
-            Registry registry = LocateRegistry.getRegistry();
+
+            INetworkCalculatorServer rn_stub = (INetworkCalculatorServer)UnicastRemoteObject.exportObject(s, RMI_PORT);
+            Registry registry = LocateRegistry.getRegistry(registryHost, registryPort);
             registry.bind("INetworkCalculatorServer", rn_stub);
-            
+
             RMIServer server = new RMIServer(null, s.getLabel());
             server.setHost(ExternalIpUtil.getExternalIP());
             server.setPort(RMI_PORT);

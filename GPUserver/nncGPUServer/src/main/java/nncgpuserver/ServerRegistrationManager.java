@@ -10,7 +10,7 @@ public class ServerRegistrationManager implements Runnable{
 
 	private final Long REPORT_INTERVAL = 15000l;
 	private final String HOST_WS = "178.62.119.189";
-	private final int PORT_WS = 61262;
+	private final int PORT_WS = 1099;
 	private RMIServer server;
 	private ICalculationServerRegistrationService serv;
 
