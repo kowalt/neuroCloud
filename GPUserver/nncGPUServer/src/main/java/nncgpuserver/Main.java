@@ -17,7 +17,6 @@ import java.util.logging.Logger;
 import javacl.ServerJavaCL;
 import jocl.ServerJOCL;
 import normal.ServerCPU;
-import static org.jocl.CL.*;
 import utils.ExternalIpUtil;
 /**
  *

@@ -21,6 +21,8 @@ import com.mycompany.nncloudrestservice.pojo.Network;
 import com.mycompany.nncloudrestservice.pojo.Neuron;
 import com.mycompany.nncloudrestservice.pojo.Synapse;
 import com.mycompany.nncloudrestservice.utils.CurrentUserContainer;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -41,7 +43,12 @@ public class DTOToNetwork {
        
        //obtain creation from database if network already exists
        NetworkDAO ndao = new NetworkDAO();
-       Network nPrototype = ndao.getItem(ndto.getId());
+       Network nPrototype = null;
+            try {
+                nPrototype = ndao.getItem(String.valueOf(ndto.getId()));
+            } catch (Exception ex) {
+                Logger.getLogger(DTOToNetwork.class.getName()).log(Level.SEVERE, null, ex);
+            }
        Date creationDate;
        if(nPrototype == null)
     	   creationDate = Calendar.getInstance().getTime();  
@@ -134,8 +141,10 @@ public class DTOToNetwork {
     	
     	for(SynapseDTO sdt: synDTOList)
     	{
-    		Synapse s = new Synapse();
-    		s.setId(sdt.getId()); //TODO finish
+            Synapse s = new Synapse();
+            s.setId(sdt.getId()); //TODO finish
     	}
+        
+        return null;
     }
 }
