@@ -147,6 +147,8 @@ public class NetworkDAO implements DAO<Network>
             tx = session.beginTransaction();
             
             n = (Network) session.get(Network.class, id_network);
+            if(n == null)
+            	return null;
             removeDuplicates(n);
             tx.commit();
         }

@@ -18,11 +18,21 @@ import javax.xml.bind.annotation.XmlElement;
 @XmlAccessorType(XmlAccessType.FIELD)
 public class LayerDTO {
     @XmlAttribute
+	private int id;
+	@XmlAttribute
     private int relative_number;
     @XmlElement(name="neuron")
     private List<NeuronDTO> neurons;
     
-    public int getRelative_number() {
+    public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public int getRelative_number() {
         return relative_number;
     }
 
