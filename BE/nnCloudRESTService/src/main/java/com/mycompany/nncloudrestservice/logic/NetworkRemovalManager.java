@@ -8,7 +8,7 @@ public class NetworkRemovalManager {
 	{
 		NetworkDAO ndao = new NetworkDAO();
 		ndao.setLazyLoadMode(true);
-		Network network = ndao.getItem(String.valueOf(id));
+                Network network = ndao.getItem(String.valueOf(id));
 		ndao.removeItem(network);
 	}
 }

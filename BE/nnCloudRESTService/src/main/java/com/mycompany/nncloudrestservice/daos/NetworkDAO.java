@@ -130,7 +130,7 @@ public class NetworkDAO implements DAO<Network>
     }
     
     @Override
-    public Network getItem(String... keys) throws Exception {
+    public Network getItem(String... keys) {
         Session session = factory.openSession();
 
         if(!lazyLoadMode)  

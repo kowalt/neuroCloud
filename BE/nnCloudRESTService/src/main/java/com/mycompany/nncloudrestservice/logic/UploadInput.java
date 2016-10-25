@@ -23,12 +23,8 @@ public class UploadInput {
 
 		NetworkDAO ndao = new NetworkDAO();
 		Network network = null;
-		try {
-			network = ndao.getItem(String.valueOf(network_id));
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
+                network = ndao.getItem(String.valueOf(network_id));
+
 		List<Neuron> input_neurons = network.getLayers().get(0).getNeurons();
 		
 		int i = 0;

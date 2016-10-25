@@ -48,7 +48,7 @@ public class Network {
     public Response deleteNetwork(@PathParam("id") String id)
     {
     	NetworkRemovalManager nrm = new NetworkRemovalManager();
-    	
+    	nrm.removeNetwork(Integer.parseInt(id));
     	return Response.status(204).build();
     }
 }
