@@ -11,6 +11,7 @@ import java.util.Date;
 import java.util.List;
 
 import com.mycompany.nncloudrestservice.daos.NetworkDAO;
+import com.mycompany.nncloudrestservice.daos.NeuronDAO;
 import com.mycompany.nncloudrestservice.dto.LayerDTO;
 import com.mycompany.nncloudrestservice.dto.NetworkDTO;
 import com.mycompany.nncloudrestservice.dto.NeuronDTO;
@@ -139,12 +140,33 @@ public class DTOToNetwork {
     {
     	List<Synapse> synList = new ArrayList<>();
     	
+    	List<Neuron> neuList = new ArrayList<>();
+    	
+    	NeuronDAO neuDAO = new NeuronDAO();
+
     	for(SynapseDTO sdt: synDTOList)
     	{
             Synapse s = new Synapse();
-            s.setId(sdt.getId()); //TODO finish
+            s.setId(sdt.getId());
+            s.setValue(sdt.getValue());
+            s.setWeight(sdt.getWeight());
+            
+            Neuron neuIn = null, neuOut = null;
+            
+            if(sdt.getFrom() != 0)
+            {
+            	neuIn = neuDAO.getItem(String.valueOf(sdt.getFrom()));
+                neuIn.getSynapses_in().add(s); //Adding new synapse
+                neuDAO.addItem(neuIn);
+            }
+            if(sdt.getTo() != 0)
+            {
+            	neuOut = neuDAO.getItem(String.valueOf(sdt.getTo()));
+                neuOut.getSynapses_out().add(s);
+                neuDAO.addItem(neuOut);
+            }
     	}
-        
+
         return null;
     }
 }
