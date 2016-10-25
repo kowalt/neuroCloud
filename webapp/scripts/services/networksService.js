@@ -2,7 +2,8 @@ app.factory('networksService', ['$http', '$cookies', function($http, $cookies) {
 	var exposedAPI = 
 	{
 		getParticularNetwork: getParticularNetwork,
-		getNetworksList: getNetworksList
+		getNetworksList: getNetworksList,
+		deleteNetwork: deleteNetwork
 	}
 	return exposedAPI;
 
