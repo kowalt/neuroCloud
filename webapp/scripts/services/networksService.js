@@ -12,7 +12,7 @@ app.factory('networksService', ['$http', '$cookies', function($http, $cookies) {
 		{
 			method: "GET",
 			url: API['NETWORKS'],
-			headers: 
+			headers:
 			{
 				"Content-Type": "application/json"
 			}
@@ -47,6 +47,22 @@ app.factory('networksService', ['$http', '$cookies', function($http, $cookies) {
 		});
 	}
 	
+	function deleteNetwork(id)
+	{
+		var request = 
+		{
+			method: "DELETE",
+			url: API['NETWORK']+'/'+id.toString()
+		}
+		
+		return $http(request).success(function(data) {
+			return data;
+		})
+		.error(function(err) {
+			return err;
+		});
+	}
+
 	function runNetwork(id)
 	{
 		

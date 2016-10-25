@@ -7,12 +7,16 @@ package com.mycompany.nncloudrestservice.ws;
 
 import com.mycompany.nncloudrestservice.exceptions.NetworkAccessException;
 import com.mycompany.nncloudrestservice.logic.Load;
+import com.mycompany.nncloudrestservice.logic.NetworkRemovalManager;
+
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.Response.StatusType;
 
 /**
  *
@@ -37,5 +41,14 @@ public class Network {
         }    
         
         return Response.status(200).entity(r).build();
-    }   
+    }
+    
+    @DELETE
+    @Path("/{id: \\d+}")
+    public Response deleteNetwork(@PathParam("id") String id)
+    {
+    	NetworkRemovalManager nrm = new NetworkRemovalManager();
+    	
+    	return Response.status(204).build();
+    }
 }

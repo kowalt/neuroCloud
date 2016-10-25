@@ -128,7 +128,7 @@ public class NetworkDAO implements DAO<Network>
             session.close();
         }
     }
-
+    
     @Override
     public Network getItem(String... keys) throws Exception {
         Session session = factory.openSession();
@@ -139,9 +139,8 @@ public class NetworkDAO implements DAO<Network>
         Transaction tx = null;
         
         Integer id_network = Integer.parseInt(keys[0]);
-        
         Network n = null;
-        
+
         try
         {
             tx = session.beginTransaction();
