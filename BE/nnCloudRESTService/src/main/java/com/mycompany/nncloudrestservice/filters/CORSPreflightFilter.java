@@ -27,7 +27,7 @@ public class CORSPreflightFilter implements ContainerRequestFilter
         try
         {
             if(requestContext.getMethod().matches("OPTIONS"))
-                requestContext.setRequestUri(URI.create(Main.base_uri + "preflight"));
+                requestContext.setRequestUri(URI.create(Main.base_uri + "/preflight"));
         }
         catch(Exception e)
         {

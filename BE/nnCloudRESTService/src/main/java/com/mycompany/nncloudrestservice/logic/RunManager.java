@@ -29,7 +29,7 @@ public class RunManager {
 
             try {
                 INetworkCalculatorServer stub = (INetworkCalculatorServer) registry.lookup(server.getName());
-                stub.run(vector);
+                stub.run(vector, networkId);
             } catch (NotBoundException ex) {
                 Logger.getLogger(RunManager.class.getName()).log(Level.SEVERE, null, ex);
             } catch (AccessException ex) {

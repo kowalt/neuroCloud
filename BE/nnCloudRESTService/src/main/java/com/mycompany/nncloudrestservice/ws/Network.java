@@ -11,6 +11,7 @@ import com.mycompany.nncloudrestservice.logic.NetworkRemovalManager;
 
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -52,7 +53,7 @@ public class Network {
     	return Response.status(204).build();
     }
     
-    @PATCH
+    @PUT
     @Path("/{id: \\d+}")
     public Response updateNetwork(@PathParam("id") String id)
     {
