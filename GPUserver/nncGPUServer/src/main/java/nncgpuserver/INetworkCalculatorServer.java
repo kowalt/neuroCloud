@@ -16,7 +16,7 @@ import pojo.original.Network;
 public interface INetworkCalculatorServer extends Remote {
     
     public void loadNetworkIntoGPU(Network n) throws RemoteException;
-    public double[] run(double[] input) throws RemoteException;
+    public double[] run(double[] input, int networkID) throws RemoteException;
     public void sayHello() throws RemoteException;
     public String getLabel() throws RemoteException;
 }

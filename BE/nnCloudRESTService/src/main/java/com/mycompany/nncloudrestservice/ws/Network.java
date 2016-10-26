@@ -39,7 +39,7 @@ public class Network {
         {
             return Response.status(404).entity(nae.getMessage()).build();
         }    
-        
+
         return Response.status(200).entity(r).build();
     }
     
@@ -50,5 +50,12 @@ public class Network {
     	NetworkRemovalManager nrm = new NetworkRemovalManager();
     	nrm.removeNetwork(Integer.parseInt(id));
     	return Response.status(204).build();
+    }
+    
+    @PATCH
+    @Path("/{id: \\d+}")
+    public Response updateNetwork(@PathParam("id") String id)
+    {
+    	return null;
     }
 }

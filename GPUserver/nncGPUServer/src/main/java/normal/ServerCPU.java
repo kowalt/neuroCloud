@@ -7,6 +7,7 @@ package normal;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import nncgpuserver.INetworkCalculatorServer;
@@ -18,21 +19,22 @@ import pojo.original.Network;
  */
 public class ServerCPU implements INetworkCalculatorServer{
  
-    private Network n;
+    private HashMap<Integer, Network> networks;
     private final String LABEL = "Very basic single-threaded CPU server";
 
     public ServerCPU() throws RemoteException
     {
-    
+    	networks = new HashMap<Integer,Network>();
     }
     
     @Override
     public void loadNetworkIntoGPU(Network n) throws RemoteException {
-       this.n = n;
+       networks.put(n.getId(), n);
     }
 
     @Override
-    public double[] run(double[] input) throws RemoteException {
+    public double[] run(double[] input, int networkID) throws RemoteException {
+    	Network n = networks.get(networkID);
         List<Layer> lList = n.getLayers();
         double[] output = new double[getLargestLayerSize(lList)];
         NetworkProcessor np = new NetworkProcessor();
