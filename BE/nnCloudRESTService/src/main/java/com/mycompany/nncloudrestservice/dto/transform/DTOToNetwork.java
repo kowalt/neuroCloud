@@ -8,6 +8,7 @@ package com.mycompany.nncloudrestservice.dto.transform;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 import com.mycompany.nncloudrestservice.daos.NetworkDAO;
@@ -33,6 +34,8 @@ public class DTOToNetwork {
 	
 	private NetworkDTO ndto;
 	private Network n;
+	private HashMap<Integer, Neuron> neuronsMap;
+	
 	public DTOToNetwork(NetworkDTO ndto)
 	{
 		this.ndto = ndto;
@@ -106,6 +109,7 @@ public class DTOToNetwork {
     		neuron.setActivation_functions(transformActivation_functions(ndt.getActivation()));
 
         	neuList.add(neuron);
+        	neuronsMap.put(neuron.getId(), neuron);
     	}
     	return neuList;
     }
@@ -136,9 +140,15 @@ public class DTOToNetwork {
     	transformSingleSynapsesList(ndto.getSynapsesOutput());
     }
     
-    private List<Synapse> transformSingleSynapsesList(List<SynapseDTO> synDTOList)
+    private void transformSingleSynapsesList(List<SynapseDTO> synDTOList)
     {
-    	NeuronDAO neuDAO = new NeuronDAO();
+    	for(SynapseDTO sdt: synDTOList)
+    	{
+            Synapse s = new Synapse();
+            s.setId(sdt.getId());
+            s.setValue(sdt.getValue());
+            s.setWeight(sdt.getWeight());
+    	}
 
     	for(SynapseDTO sdt: synDTOList)
     	{
@@ -151,18 +161,14 @@ public class DTOToNetwork {
             
             if(sdt.getFrom() != 0)
             {
-            	neuIn = neuDAO.getItem(String.valueOf(sdt.getFrom()));
+            	neuIn = neuronsMap.get(sdt.getFrom());
                 neuIn.getSynapses_in().add(s); //Adding new synapse
-                neuDAO.addItem(neuIn);
             }
             if(sdt.getTo() != 0)
             {
-            	neuOut = neuDAO.getItem(String.valueOf(sdt.getTo()));
-                neuOut.getSynapses_out().add(s);
-                neuDAO.addItem(neuOut);
+            	neuOut = neuronsMap.get(sdt.getTo());
+                neuOut.getSynapses_out().add(s); //Adding new synapse
             }
     	}
-
-        return null;
     }
 }

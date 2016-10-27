@@ -50,6 +50,26 @@
 				element.on('$destroy', function() {
 					s.graph.clear();
 				});
+				
+				s.bind('clickNode', function(e) {
+					var nodeId = e.data.node.id, toKeep = s.graph.neighbors(nodeId);
+					toKeep[nodeId] = e.data.node;
+
+					s.graph.nodes().forEach(function(n) {
+						if (toKeep[n.id])
+							n.color = '#27ae60';
+						else
+							n.color = '#eee';
+					});
+
+					s.graph.edges().forEach(function(e) {
+						if (toKeep[e.source] && toKeep[e.target])
+							e.color = '#27ae60';
+						else
+							e.color = '#eee';
+					});
+					s.refresh();
+				});
 			}
 		};
 	});
