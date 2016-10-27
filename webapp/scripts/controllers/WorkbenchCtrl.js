@@ -1,10 +1,9 @@
 'use strict';
 
 app
-  .controller('WorkbenchCtrl', ['$scope', '$cookies', '$alert', '$location', 'networksService', function ($scope, $cookies, $alert, $location,networksService) {
+  .controller('WorkbenchCtrl', ['$scope', '$cookies', '$alert', '$location', 'networksService','commonDataService', function ($scope, $cookies, $alert, $location,networksService,commonDataService) {
 	$scope.run = function()
 	{
-		
 		
 	}
 
@@ -27,14 +26,14 @@ app
 		$location.path('/core/load');
 		return;
 	}
-	var xmlNetwork = "";
+	$scope.xmlNetwork = commonDataService;
 	
 	networksService.getParticularNetwork(activeNetworkID).success(function(data) 
 	{
-		xmlNetwork = data
+		$scope.xmlNetwork = data;
 
-		var nodes = transformNodes(xmlNetwork);
-		var transformEdgesResult = transformEdges(xmlNetwork);
+		var nodes = transformNodes($scope.xmlNetwork);
+		var transformEdgesResult = transformEdges($scope.xmlNetwork);
 		var edges = transformEdgesResult[0];
 
 		$scope.inoutContainer.input_vector = transformEdgesResult[1];

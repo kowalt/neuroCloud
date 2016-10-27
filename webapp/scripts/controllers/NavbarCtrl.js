@@ -1,7 +1,7 @@
 'use strict';
 
 app
-  .controller('NavbarCtrl',['$scope','$location', '$cookies', '$alert','networksService', function ($scope, $location, $cookies, $alert, networksService) {
+  .controller('NavbarCtrl',['$scope','$location', '$cookies', '$alert','networksService','commonDataService', function ($scope, $location, $cookies, $alert, networksService, commonDataService) {
 	$scope.networks_dropdown = [
                 {
                         "text": "Load...",
@@ -16,7 +16,7 @@ app
                 },
                 {
                         "text": "Save as...",
-			"href": "#/core/saveas"
+						"href": "#/core/saveas"
                 },
                 {
                         "divider": true
@@ -32,6 +32,8 @@ app
 		networksService.deleteNetwork($scope.activeNetworkID).success(function(data) {
 			$alert({title: 'Network deleted', content: 'Network deleted successfully', placement: 'top', type: 'info', show: true});
 			$cookies.remove('activeNetworkID');
+			$scope.xmlNetwork = commonDataService;
+			$scope.xmlNetwork = '';
 			$location.path('/core/load');
 		}).
 		error(function(err) {
