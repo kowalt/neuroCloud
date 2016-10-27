@@ -129,7 +129,7 @@ Network will be set as active after this operation.
 + Response 200 (application/xml)
 
         <?xml version="1.1" encoding="UTF-8"?>
-        <neuralnetwork id="3" name="MyNetworkForClassification">
+        <network id="3" name="MyNetworkForClassification">
             <synapse id="5" weight="0.2" to="5512"/>
             <synapse id="7" weight="0.3" to="6125"/>
             <synapse id="51" weight="0.78" to="7785"/>
@@ -162,7 +162,7 @@ Network will be set as active after this operation.
                 <neuron id="515" activation="-1<=>x<=-1;x<=>x>-1,x<1;1<=>x>=1"/>
             </layer>
             <synapse id="179" weight="0.2256" from="515"/>
-        </neuralnetwork>
+        </network>
         
 + Response 404
 
@@ -172,15 +172,47 @@ Network will be set as active after this operation.
 
 + Response 204
 
-### Alter an existing network [PATCH]
+### Alter an existing network [PUT]
 
-The message should contain only the elements that need to be changed, with respective id's and the desired values.
+The message should the whole network DTO
     
 + Request (application/xml)
 
         <?xml version="1.1" encoding="UTF-8"?>
-        <synapse id="274" weight="0.7" from="57612" to="515"/>
-        <neuron id="515" activation="2*x+1"/>
+        <network id="3" name="MyNetworkForClassification">
+            <synapse id="5" weight="0.2" to="5512"/>
+            <synapse id="7" weight="0.3" to="6125"/>
+            <synapse id="51" weight="0.78" to="7785"/>
+            <synapse id="225" weight="0.7" to="412"/>
+            <layer relative_number="1">
+                <neuron id="5512" activation="5*x+4"/>
+                <neuron id="6125" activation="5*x+4"/>
+                <neuron id="7785" activation="5*x+4"/>
+                <neuron id="412" activation="-1<=>x<=-1;x<=>x>-1,x<1;1<=>x>=1"/>
+            </layer>
+            <synapse id="332" weight="0.5" from="6125" to="9001"/> 
+            <synapse id="255" weight="0.6" from="6125" to="57612"/>
+            <synapse id="9001" weight="-0.2" from="412" to="21"/>
+            <layer relative_number="2">
+                <neuron id="21" activation="-1<=>x<=-1;x<=>x>-1,x<1;1<=>x>=1"/>
+                <neuron id="9001" activation="-1<=>x<=-1;x<=>x>-1,x<1;1<=>x>=1"/>
+                <neuron id="55612" activation="-1<=>x<=-1;x<=>x>-1,x<1;1<=>x>=1"/>
+            </layer>
+            <synapse id="1" weight="0.1" from="21" to="57612"/>
+            <synapse id="4" weight="0.1" from="21" to="5612"/>
+            <synapse id="333" weight="-0.1" from="9001" to="5612"/>
+            <synapse weight="0.9999" from="55612" to="5612"/>
+            <layer relative_number="3">
+                <neuron id="57612" activation="-1<=>x<=-1;x<=>x>-1,x<1;1<=>x>=1"/>
+                <neuron id="5612" activation="-1<=>x<=-1;x<=>x>-1,x<1;1<=>x>=1"/>
+            </layer>
+            <synapse id="274" weight="0.3" from="57612" to="515"/>
+            <synapse id="519" weight="-0.444" from="5612" to="515"/>
+            <layer relative_number="4">
+                <neuron id="515" activation="-1<=>x<=-1;x<=>x>-1,x<1;1<=>x>=1"/>
+            </layer>
+            <synapse id="179" weight="0.2256" from="515"/>
+        </network>
         
 + Response 204
 
@@ -230,7 +262,7 @@ The message should contain only the elements that need to be changed, with respe
 
         {
             "vector":
-                [1.0,0.22,0.161,-0.521]
+                [1.0,0.22,0.161,-0.521],
             "id_network": 1
         }
 
@@ -256,7 +288,7 @@ The message should contain only the elements that need to be changed, with respe
             "error": "The number of inputs must be the same as the number of input synapses."
         }
 
-## Download output vector [/download_outputs]
+## Download output vector [/download_outputs/{id}]
 
 ### Download the output vector of the active network [GET]
 
