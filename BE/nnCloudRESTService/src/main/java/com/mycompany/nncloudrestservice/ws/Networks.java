@@ -5,8 +5,7 @@
  */
 package com.mycompany.nncloudrestservice.ws;
 
-import com.mycompany.nncloudrestservice.logic.GetListOfNetworksManager;
-import com.mycompany.nncloudrestservice.logic.Load;
+import com.mycompany.nncloudrestservice.logic.NetworkCrudManager;
 import com.mycompany.nncloudrestservice.exceptions.NetworkAccessException;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -26,7 +25,7 @@ public class Networks
     @Produces(MediaType.APPLICATION_JSON)
     public Response getListOfNetworks()
     {
-        GetListOfNetworksManager glofnc = new GetListOfNetworksManager();
-        return Response.status(200).entity(glofnc.getListOfNetworks().toString()).build();
+        NetworkCrudManager ncm = new NetworkCrudManager();
+        return Response.status(200).entity(ncm.getListOfNetworks().toString()).build();
     }
 }

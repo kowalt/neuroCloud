@@ -7,10 +7,13 @@ package com.mycompany.nncloudrestservice.ws;
 
 import com.mycompany.nncloudrestservice.exceptions.NetworkAccessException;
 import com.mycompany.nncloudrestservice.logic.Load;
+import com.mycompany.nncloudrestservice.logic.NetworkCrudManager;
 import com.mycompany.nncloudrestservice.logic.NetworkRemovalManager;
 
+import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
@@ -18,6 +21,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.StatusType;
+import javax.xml.bind.JAXBContext;
 
 /**
  *
@@ -30,11 +34,11 @@ public class Network {
     @Produces(MediaType.APPLICATION_XML)
     public Response loadNetwork(@PathParam("id") String id)
     {
-        Load lc = new Load();
+        NetworkCrudManager ncm = new NetworkCrudManager();
         String r = null;
         try
         {    
-            r = lc.loadNetworkAsXML(Integer.parseInt(id));
+            r = ncm.loadNetworkAsXML(Integer.parseInt(id));
         }
         catch(NetworkAccessException nae)
         {
@@ -48,15 +52,27 @@ public class Network {
     @Path("/{id: \\d+}")
     public Response deleteNetwork(@PathParam("id") String id)
     {
-    	NetworkRemovalManager nrm = new NetworkRemovalManager();
-    	nrm.removeNetwork(Integer.parseInt(id));
+    	NetworkCrudManager ncm = new NetworkCrudManager();
+    	ncm.removeNetwork(Integer.parseInt(id));
     	return Response.status(204).build();
     }
     
     @PUT
     @Path("/{id: \\d+}")
-    public Response updateNetwork(@PathParam("id") String id)
+    @Consumes(MediaType.APPLICATION_XML)
+    public Response updateNetwork(@PathParam("id") String id, String networkRaw)
     {
-    	return null;
+    	NetworkCrudManager ncm = new NetworkCrudManager();
+    	ncm.updateNetwork(networkRaw);	
+    	return Response.status(201).build();
+    }
+    
+    @POST
+    @Consumes(MediaType.APPLICATION_XML)
+    public Response sendNewNetwork(String networkRaw)
+    {
+    	NetworkCrudManager ncm = new NetworkCrudManager();
+    	ncm.updateNetwork(networkRaw);
+    	return Response.status(201).build();
     }
 }

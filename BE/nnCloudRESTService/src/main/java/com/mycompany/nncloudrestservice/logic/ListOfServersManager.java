@@ -35,10 +35,10 @@ public class ListOfServersManager {
     public void setActiveServer(int id) throws NNCloudRestServiceException
     {
         List<RMIServer> list = ServerListContainer.getInstance();
-        
+
         if(!list.stream().filter( o -> o.getId().equals(id)).findFirst().isPresent())
             throw new NNCloudRestServiceException("Wrong id");
-                
+
         ServerListContainer.activeId = id;
     }
 }

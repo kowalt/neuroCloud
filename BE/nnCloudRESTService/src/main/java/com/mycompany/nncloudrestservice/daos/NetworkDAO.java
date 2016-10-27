@@ -93,7 +93,7 @@ public class NetworkDAO implements DAO<Network>
         try
         {
             tx = session.beginTransaction();
-            session.update(item);
+            session.saveOrUpdate(item);
             tx.commit();
         }
         catch(HibernateException he)

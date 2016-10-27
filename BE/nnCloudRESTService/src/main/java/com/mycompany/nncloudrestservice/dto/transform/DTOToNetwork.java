@@ -129,19 +129,15 @@ public class DTOToNetwork {
     
     private void transformSynapses()
     {
-    	List<Synapse> synInput = transformSingleSynapsesList(ndto.getSynapsesInput());
-    	List<Synapse> syn12 = transformSingleSynapsesList(ndto.getSynapsesBetween1and2Layer());
-    	List<Synapse> syn23 = transformSingleSynapsesList(ndto.getSynapsesBetween2and3Layer());
-    	List<Synapse> syn34 = transformSingleSynapsesList(ndto.getSynapsesBetween3and4Layer());
-    	List<Synapse> synOutput = transformSingleSynapsesList(ndto.getSynapsesOutput());
+    	transformSingleSynapsesList(ndto.getSynapsesInput());
+    	transformSingleSynapsesList(ndto.getSynapsesBetween1and2Layer());
+    	transformSingleSynapsesList(ndto.getSynapsesBetween2and3Layer());
+    	transformSingleSynapsesList(ndto.getSynapsesBetween3and4Layer());
+    	transformSingleSynapsesList(ndto.getSynapsesOutput());
     }
     
     private List<Synapse> transformSingleSynapsesList(List<SynapseDTO> synDTOList)
     {
-    	List<Synapse> synList = new ArrayList<>();
-    	
-    	List<Neuron> neuList = new ArrayList<>();
-    	
     	NeuronDAO neuDAO = new NeuronDAO();
 
     	for(SynapseDTO sdt: synDTOList)
