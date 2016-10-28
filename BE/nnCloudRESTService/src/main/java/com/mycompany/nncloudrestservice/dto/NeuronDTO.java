@@ -16,15 +16,15 @@ import javax.xml.bind.annotation.XmlAttribute;
 @XmlAccessorType(XmlAccessType.FIELD)
 public class NeuronDTO {
     @XmlAttribute
-    private int id;
+    private Integer id;
     @XmlAttribute
     private String activation;
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

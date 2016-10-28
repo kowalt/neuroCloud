@@ -103,7 +103,9 @@ public class DTOToNetwork {
     	
     	for(int i=0; i< neuDTOl.size(); i++)
     	{
-    		NeuronDTO ndt = new NeuronDTO();
+    		NeuronDTO ndt = neuDTOl.get(i);
+    		if( ndt.getId() != null )
+    			neuron.setId(ndt.getId());
     		neuron.setId(ndt.getId());
     		neuron.setLayer(layer);
     		neuron.setActivation_functions(transformActivation_functions(ndt.getActivation()));
@@ -159,12 +161,12 @@ public class DTOToNetwork {
             
             Neuron neuIn = null, neuOut = null;
             
-            if(sdt.getFrom() != 0)
+            if(sdt.getFrom() != 0) // if not input layer
             {
             	neuIn = neuronsMap.get(sdt.getFrom());
                 neuIn.getSynapses_in().add(s); //Adding new synapse
             }
-            if(sdt.getTo() != 0)
+            if(sdt.getTo() != 0) // if not output layer
             {
             	neuOut = neuronsMap.get(sdt.getTo());
                 neuOut.getSynapses_out().add(s); //Adding new synapse
