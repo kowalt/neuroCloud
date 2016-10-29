@@ -2,6 +2,16 @@
 	'use strict';
 
 	app.directive('sigmajs', function() {
+		sigma.classes.graph.addMethod('neighbors', function(nodeId) {
+			var k,
+				neighbors = {},
+				index = this.allNeighborsIndex[nodeId] || {};
+
+			for (k in index)
+			  neighbors[k] = this.nodesIndex[k];
+
+			return neighbors;
+		});
 		//over-engineered random id, so that multiple instances can be put on a single page
 		var divId = 'sigmjs-dir-container-'+Math.floor((Math.random() * 999999999999))+'-'+Math.floor((Math.random() * 999999999999))+'-'+Math.floor((Math.random() * 999999999999));
 		return {
@@ -69,14 +79,14 @@
 						if (toKeep[n.id])
 							n.color = '#27ae60';
 						else
-							n.color = '#eee';
+							n.color = '#aaa';
 					});
 
 					s.graph.edges().forEach(function(e) {
 						if (toKeep[e.source] && toKeep[e.target])
 							e.color = '#27ae60';
 						else
-							e.color = '#eee';
+							e.color = '#aaa';
 					});
 					s.refresh();
 				});
