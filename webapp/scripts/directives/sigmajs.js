@@ -50,7 +50,17 @@
 				element.on('$destroy', function() {
 					s.graph.clear();
 				});
-				
+				sigma.classes.graph.addMethod('neighbors', function(nodeId) {
+					var k,
+						neighbors = {},
+						index = this.allNeighborsIndex[nodeId] || {};
+
+					for (k in index)
+					  neighbors[k] = this.nodesIndex[k];
+
+					return neighbors;
+				});
+
 				s.bind('clickNode', function(e) {
 					var nodeId = e.data.node.id, toKeep = s.graph.neighbors(nodeId);
 					toKeep[nodeId] = e.data.node;
@@ -70,6 +80,19 @@
 					});
 					s.refresh();
 				});
+				
+				// When the stage is clicked, we just color each
+				// node and edge with its original color.
+				s.bind('clickStage', function(e) {
+					s.graph.nodes().forEach(function(n) {
+						n.color = n.originalColor;
+					});
+					s.graph.edges().forEach(function(e) {
+						e.color = e.originalColor;
+					});
+					// Same as in the previous event:
+					s.refresh();
+				  });
 			}
 		};
 	});
