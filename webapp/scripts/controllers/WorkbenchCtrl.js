@@ -41,7 +41,7 @@ app
 
 		for(var i=0;i<nodes.length; i++)
 			nodes[i].size = 1;
-		
+
 		$scope.sigmaGraph = {
 			nodes: nodes,		
 			edges: edges

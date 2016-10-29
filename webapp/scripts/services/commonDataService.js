@@ -1,4 +1,5 @@
-app.factory('commonDataService', function(
+app.factory('commonDataService', [function(
 {
-	return {xmlNetwork: ''};
-}));
+	var xmlNetwork = '';
+	return xmlNetwork;
+})]);
