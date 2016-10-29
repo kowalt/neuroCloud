@@ -29,7 +29,7 @@ app
 	
 	$scope.deleteNetwork = function()
 	{
-		networksService.deleteNetwork($scope.activeNetworkID).success(function(data) {
+		networksService.deleteNetwork($cookies.get('activeNetworkID')).success(function(data) {
 			$alert({title: 'Network deleted', content: 'Network deleted successfully', placement: 'top', type: 'info', show: true});
 			$cookies.remove('activeNetworkID');
 			$scope.xmlNetwork = commonDataService;
