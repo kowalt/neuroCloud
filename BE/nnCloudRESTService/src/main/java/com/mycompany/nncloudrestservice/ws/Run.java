@@ -5,6 +5,7 @@
  */
 package com.mycompany.nncloudrestservice.ws;
 
+import com.mycompany.nncloudrestservice.localcalculations.singlethreaded.SingleThreadRunManager;
 import com.mycompany.nncloudrestservice.logic.RunManager;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
@@ -25,7 +26,6 @@ public class Run {
     @Consumes(MediaType.APPLICATION_JSON)
     public Response run(String x)
     {
-    	RunManager manager = new RunManager();
         JSONObject request = new JSONObject(x);
 
         JSONArray jVector= request.getJSONArray("vector");
@@ -34,7 +34,10 @@ public class Run {
         for(int i=0; i< vector.length ;i++)
             vector[i] = jVector.getDouble(i);
 
-        manager.run(request.getInt("id_network"), request.getInt("server_id"), vector);
-        return Response.status(202).build();
+        SingleThreadRunManager manager = new SingleThreadRunManager(request.getInt("id_network"));
+        
+        double [] result = manager.run(vector);
+        
+        return Response.status(200).entity(result).build();
     }
 }
