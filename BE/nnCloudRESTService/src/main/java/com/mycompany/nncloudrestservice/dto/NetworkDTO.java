@@ -20,7 +20,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlAccessorType(XmlAccessType.FIELD)
 public class NetworkDTO {
    @XmlAttribute
-   private int id;
+   private Integer id = null;
    @XmlAttribute
    private String name;
 
@@ -51,11 +51,11 @@ public class NetworkDTO {
    @XmlElement(name="synapse")
    private List<SynapseDTO> synapsesOutput;
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

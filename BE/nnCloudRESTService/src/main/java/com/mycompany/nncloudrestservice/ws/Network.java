@@ -6,9 +6,7 @@
 package com.mycompany.nncloudrestservice.ws;
 
 import com.mycompany.nncloudrestservice.exceptions.NetworkAccessException;
-import com.mycompany.nncloudrestservice.logic.Load;
 import com.mycompany.nncloudrestservice.logic.NetworkCrudManager;
-import com.mycompany.nncloudrestservice.logic.NetworkRemovalManager;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -20,8 +18,6 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import javax.ws.rs.core.Response.StatusType;
-import javax.xml.bind.JAXBContext;
 
 /**
  *
@@ -43,7 +39,7 @@ public class Network {
         catch(NetworkAccessException nae)
         {
             return Response.status(404).entity(nae.getMessage()).build();
-        }    
+        }
 
         return Response.status(200).entity(r).build();
     }

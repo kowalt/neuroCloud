@@ -58,7 +58,7 @@ public class Generate
         ndao.addItem(network);
     }
     
-    private void connectLayers(List<Layer> l)
+    public void connectLayers(List<Layer> l)
     {
         Random random = new Random();
         //input
@@ -68,6 +68,7 @@ public class Generate
         {
             Synapse s = new Synapse();
             s.setWeight(random.nextDouble());
+            s.setValue(0.0);
             s.setNeuron_in(null);
             s.setNeuron_out(n);
             addSynapse_in(n,s);
@@ -86,6 +87,7 @@ public class Generate
                 {
                     Synapse s = new Synapse();
                     s.setWeight(random.nextDouble());
+                    s.setValue(0.0);
                     s.setNeuron_in(np);
                     s.setNeuron_out(nc);
                     addSynapse_out(np,s);
@@ -102,6 +104,7 @@ public class Generate
         {
             Synapse s = new Synapse();
             s.setWeight(random.nextDouble());
+            s.setValue(0.0);
             s.setNeuron_out(null);
             s.setNeuron_in(n);
             addSynapse_out(n,s);

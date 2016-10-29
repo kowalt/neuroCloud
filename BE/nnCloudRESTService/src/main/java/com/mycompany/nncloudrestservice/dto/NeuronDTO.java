@@ -16,7 +16,7 @@ import javax.xml.bind.annotation.XmlAttribute;
 @XmlAccessorType(XmlAccessType.FIELD)
 public class NeuronDTO {
     @XmlAttribute
-    private Integer id;
+    private Integer id = null;
     @XmlAttribute
     private String activation;
 

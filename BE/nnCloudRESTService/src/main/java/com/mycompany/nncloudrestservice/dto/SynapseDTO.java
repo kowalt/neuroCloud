@@ -16,7 +16,7 @@ import javax.xml.bind.annotation.XmlAttribute;
 @XmlAccessorType(XmlAccessType.FIELD)
 public class SynapseDTO {
     @XmlAttribute
-    private int id;
+    private Integer id = null;
     @XmlAttribute
     private double weight;
     @XmlAttribute
@@ -26,11 +26,11 @@ public class SynapseDTO {
     @XmlAttribute
     private int to;
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
