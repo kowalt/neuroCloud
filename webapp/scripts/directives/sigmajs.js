@@ -60,16 +60,6 @@
 				element.on('$destroy', function() {
 					s.graph.clear();
 				});
-				sigma.classes.graph.addMethod('neighbors', function(nodeId) {
-					var k,
-						neighbors = {},
-						index = this.allNeighborsIndex[nodeId] || {};
-
-					for (k in index)
-					  neighbors[k] = this.nodesIndex[k];
-
-					return neighbors;
-				});
 
 				s.bind('clickNode', function(e) {
 					var nodeId = e.data.node.id, toKeep = s.graph.neighbors(nodeId);
