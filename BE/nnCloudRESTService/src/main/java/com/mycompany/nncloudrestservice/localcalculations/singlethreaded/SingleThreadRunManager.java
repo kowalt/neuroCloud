@@ -49,6 +49,10 @@ public class SingleThreadRunManager{
         {
             output_vector[index++] = n.getSynapses_out().get(0).getValue();
         }
+        
+        NetworkDAO ndao = new NetworkDAO();
+        ndao.updateItem(n);
+
         return output_vector;
     }
 }
