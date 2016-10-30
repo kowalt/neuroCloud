@@ -6,5 +6,6 @@ var API =
 	'AUTH_LOGOUT': API_ROOT + '/logout',
 	'GENERATE': API_ROOT + '/generate',
 	'NETWORK': API_ROOT + '/network',
-	'NETWORKS': API_ROOT + '/networks'
+	'NETWORKS': API_ROOT + '/networks',
+	'RUN': API_ROOT + '/run'
 };

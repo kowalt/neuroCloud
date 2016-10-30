@@ -3,7 +3,8 @@ app.factory('networksService', ['$http', '$cookies', function($http, $cookies) {
 	{
 		getParticularNetwork: getParticularNetwork,
 		getNetworksList: getNetworksList,
-		deleteNetwork: deleteNetwork
+		deleteNetwork: deleteNetwork,
+		runNetwork: runNetwork
 	}
 	return exposedAPI;
 
@@ -64,8 +65,25 @@ app.factory('networksService', ['$http', '$cookies', function($http, $cookies) {
 		});
 	}
 
-	function runNetwork(id)
+	function runNetwork(id, inputVector)
 	{
+		var request = 
+		{
+			method: "POST",
+			url: API['RUN'],
+			headers:
+			{
+				"Content-Type": "application/json",
+			}
+			data: { "id_network": id, "vector": inputVector}
+			}
+		}
 		
+		return $http(request).success(function(data) {
+			return data;
+		})
+		.error(function(err) {
+			return err;
+		});
 	}
 }]);

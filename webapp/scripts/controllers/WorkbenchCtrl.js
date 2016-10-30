@@ -4,7 +4,11 @@ app
   .controller('WorkbenchCtrl', ['$scope', '$cookies', '$alert', '$location', 'networksService','commonDataService', function ($scope, $cookies, $alert, $location,networksService,commonDataService) {
 	$scope.run = function()
 	{
-		
+		networksService.runNetwork($cookies.get('activeNetworkID'), $scope.inoutContainer.input_vector).success(function(data) {
+			reload();
+		}).error(function(err){
+			$alert({title: 'Unable to load network', content: err, placement: 'top', type: 'danger', show: true })});
+		});
 	}
 
 	$scope.inout_tracking = function()
@@ -28,27 +32,32 @@ app
 	}
 	$scope.xmlNetwork = commonDataService;
 	
-	networksService.getParticularNetwork(activeNetworkID).success(function(data) 
+	reload();
+	
+	var reload = function() 
 	{
-		$scope.xmlNetwork = data;
+		networksService.getParticularNetwork(activeNetworkID).success(function(data) 
+		{
+			$scope.xmlNetwork = data;
 
-		var nodes = transformNodes($scope.xmlNetwork);
-		var transformEdgesResult = transformEdges($scope.xmlNetwork);
-		var edges = transformEdgesResult[0];
+			var nodes = transformNodes($scope.xmlNetwork);
+			var transformEdgesResult = transformEdges($scope.xmlNetwork);
+			var edges = transformEdgesResult[0];
 
-		$scope.inoutContainer.input_vector = transformEdgesResult[1];
-		$scope.inoutContainer.output_vector = transformEdgesResult[2];
+			$scope.inoutContainer.input_vector = transformEdgesResult[1];
+			$scope.inoutContainer.output_vector = transformEdgesResult[2];
 
-		for(var i=0;i<nodes.length; i++)
-			nodes[i].size = 1;
+			for(var i=0;i<nodes.length; i++)
+				nodes[i].size = 1;
 
-		$scope.sigmaGraph = {
-			nodes: nodes,		
-			edges: edges
-		}
-	})
-	.error(function(err)
-	{
-		$alert({title: 'Unable to load network', content: err, placement: 'top', type: 'danger', show: true});
-	});	
+			$scope.sigmaGraph = {
+				nodes: nodes,		
+				edges: edges
+			}
+		})
+		.error(function(err)
+		{
+			$alert({title: 'Unable to load network', content: err, placement: 'top', type: 'danger', show: true});
+		});	
+	}
 }]);
