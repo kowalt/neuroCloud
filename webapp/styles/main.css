@@ -52,12 +52,12 @@ div.workbench_menu input
 div.network_list_elem
 {
 	border-style: solid;
-	cursor: hand;
+	cursor: pointer;
 }
 
 div.network_list_elem:hover
 {
 	border-style: solid;
-	cursor: hand;
+	cursor: pointer;
 	color: #ffd11a;
 }
