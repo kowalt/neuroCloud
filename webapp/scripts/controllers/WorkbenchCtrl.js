@@ -6,6 +6,7 @@ app
 	{
 		networksService.runNetwork($cookies.get('activeNetworkID'), $scope.inoutContainer.input_vector).success(function(data) {
 			reload();
+			$scope.inoutContainer.output_vector = data;
 		}).error(function(err){
 			$alert({title: 'Unable to load network', content: err, placement: 'top', type: 'danger', show: true });
 		});
