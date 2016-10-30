@@ -8,6 +8,7 @@ package com.mycompany.nncloudrestservice.localcalculations.singlethreaded;
 import com.mycompany.nncloudrestservice.daos.NetworkDAO;
 import com.mycompany.nncloudrestservice.pojo.Layer;
 import com.mycompany.nncloudrestservice.pojo.Network;
+import com.mycompany.nncloudrestservice.pojo.Neuron;
 import java.util.Iterator;
 import java.util.List;
 
@@ -33,31 +34,21 @@ public class SingleThreadRunManager{
 
     public double[] run(double[] input) {
         List<Layer> lList = n.getLayers();
-        double[] output = new double[getLargestLayerSize(lList)];
-        NetworkProcessor np = new NetworkProcessor();
-        double[] internalInput = input;
+        
+        NetworkProcessor np = new NetworkProcessor(n);
+        
+        np.setInput(input);
         
         for(Layer l: lList)
-        {
-            output = np.runLayer(l, internalInput);
-            internalInput = output;
-        }
+            np.runLayer(l);
 
-        return output;
-    }
-    
-    private int getLargestLayerSize(List<Layer> lList)
-    {
-        Iterator<Layer> iter = lList.iterator();
-        
-        int largest = 0;
-        int cursize;
-        
-        while(iter.hasNext())
+        List<Neuron> outNeuList = n.getLayers().get(3).getNeurons();
+        double [] output_vector = new double[outNeuList.size()];
+        int index = 0;
+        for(Neuron n: outNeuList)
         {
-            cursize = iter.next().getNeurons().size();
-            largest = (largest >= cursize ) ? largest : cursize;
+            output_vector[index++] = n.getSynapses_out().get(0).getValue();
         }
-        return largest;
+        return output_vector;
     }
 }
