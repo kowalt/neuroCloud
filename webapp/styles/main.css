@@ -49,7 +49,15 @@ div.workbench_menu input
 	width: 50%;
 }
 
-div.network_list
+div.network_list_elem
 {
 	border-style: solid;
+	cursor: hand;
+}
+
+div.network_list_elem:hover
+{
+	border-style: solid;
+	cursor: hand;
+	color="#ffd11a";
 }
