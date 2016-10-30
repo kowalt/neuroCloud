@@ -7,7 +7,7 @@ app
 		networksService.runNetwork($cookies.get('activeNetworkID'), $scope.inoutContainer.input_vector).success(function(data) {
 			reload();
 		}).error(function(err){
-			$alert({title: 'Unable to load network', content: err, placement: 'top', type: 'danger', show: true })});
+			$alert({title: 'Unable to load network', content: err, placement: 'top', type: 'danger', show: true });
 		});
 	}
 
@@ -34,7 +34,7 @@ app
 	
 	reload();
 	
-	var reload = function() 
+	function reload()
 	{
 		networksService.getParticularNetwork(activeNetworkID).success(function(data) 
 		{

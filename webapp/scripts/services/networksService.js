@@ -74,11 +74,14 @@ app.factory('networksService', ['$http', '$cookies', function($http, $cookies) {
 			headers:
 			{
 				"Content-Type": "application/json",
-			}
-			data: { "id_network": id, "vector": inputVector}
+			},
+			data:
+			{ 
+				"id_network": id, 
+				"vector": inputVector
 			}
 		}
-		
+
 		return $http(request).success(function(data) {
 			return data;
 		})
