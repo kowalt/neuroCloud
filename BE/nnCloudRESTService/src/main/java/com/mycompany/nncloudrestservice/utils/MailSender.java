@@ -2,8 +2,11 @@ package com.mycompany.nncloudrestservice.utils;
 
 import java.util.Properties;
 
+import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
 import com.mycompany.nncloudrestservice.pojo.User;
@@ -30,8 +33,12 @@ public class MailSender {
 		
 		try
 		{
-			
-			
+			MimeMessage msg = new MimeMessage(session);
+			msg.setFrom(new InternetAddress(FROM));
+			msg.addRecipient(Message.RecipientType.TO, new InternetAddress(RECIPIENT_ADDRESS));
+			msg.setSubject(SUBJECT);
+			msg.setText(BODY);
+			Transport.send(msg);
 		}
 		catch(MessagingException mex)
 		{
