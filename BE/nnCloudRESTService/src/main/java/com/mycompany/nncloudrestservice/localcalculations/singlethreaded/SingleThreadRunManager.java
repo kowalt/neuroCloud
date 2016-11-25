@@ -46,10 +46,8 @@ public class SingleThreadRunManager{
         double [] output_vector = new double[outNeuList.size()];
         int index = 0;
         for(Neuron n: outNeuList)
-        {
             output_vector[index++] = n.getSynapses_out().get(0).getValue();
-        }
-        
+
         NetworkDAO ndao = new NetworkDAO();
         ndao.updateItem(n);
 

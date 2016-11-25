@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+
+<xs:schema version="1.0"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           elementFormDefault="qualified"
+           xmlns:jaxb="http://java.sun.com/xml/ns/jaxb" 
+           xmlns:xjc="http://java.sun.com/xml/ns/jaxb/xjc" 
+           jaxb:version="1.0" jaxb:extensionBindingPrefixes="xjc">
+        <xs:element name="network">
+          <xs:complexType>
+            <xs:choice maxOccurs="unbounded">
+              <xs:element ref="layer"/>
+              <xs:element ref="synapse"/>
+            </xs:choice>
+            <xs:attribute name="id" use="required" type="xs:integer"/>
+            <xs:attribute name="name" use="required" type="xs:string"/>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="layer">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element maxOccurs="unbounded" ref="neuron"/>
+            </xs:sequence>
+            <xs:attribute name="relative_number" use="required" type="xs:integer"/>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="neuron">
+          <xs:complexType>
+            <xs:attribute name="activation" use="required"/>
+            <xs:attribute name="id" use="required" type="xs:integer"/>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="synapse">
+          <xs:complexType>
+            <xs:attribute name="from" type="xs:integer"/>
+            <xs:attribute name="id" type="xs:integer"/>
+            <xs:attribute name="to" type="xs:integer"/>
+            <xs:attribute name="weight" use="required" type="xs:decimal"/>
+          </xs:complexType>
+        </xs:element>
+</xs:schema>

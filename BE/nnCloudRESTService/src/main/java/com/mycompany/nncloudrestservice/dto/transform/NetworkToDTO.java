@@ -33,10 +33,12 @@ public class NetworkToDTO {
 
         List<Layer> layers = network.getLayers();
 
-        ndto.setLayer1(convertLayer(layers.get(0)));
-        ndto.setLayer2(convertLayer(layers.get(1)));
-        ndto.setLayer3(convertLayer(layers.get(2)));
-        ndto.setLayer4(convertLayer(layers.get(3)));
+        ndto.setLayerIn(convertLayer(layers.get(0)));
+        if(layers.get(1) != null)
+            ndto.setLayer2(convertLayer(layers.get(1)));
+        if(layers.get(2) != null)
+            ndto.setLayer3(convertLayer(layers.get(2)));
+        ndto.setLayerOut(convertLayer(layers.get(3)));
         
         List<Synapse> synapsesBuffer = new ArrayList<>();
 
@@ -45,31 +47,21 @@ public class NetworkToDTO {
 
         List<SynapseDTO> synapsesInputDTO;
         synapsesInputDTO = convert(synapsesBuffer);
-        
 
         ndto.setSynapsesInput(synapsesInputDTO);
-        
-        //1-2
-        synapsesBuffer = new ArrayList<>();
-        for(Neuron n: layers.get(1).getNeurons())        
-            synapsesBuffer.addAll(n.getSynapses_in());
 
-        ndto.setSynapsesBetween1and2Layer(convert(synapsesBuffer));
-        //2-3
+        //inner
         synapsesBuffer = new ArrayList<>();
-        for(Neuron n: layers.get(2).getNeurons())    
-            synapsesBuffer.addAll(n.getSynapses_in());
-        ndto.setSynapsesBetween2and3Layer(convert(synapsesBuffer));
-        
-        //3-4
-        synapsesBuffer = new ArrayList<>();
-        for(Neuron n: layers.get(3).getNeurons())    
-            synapsesBuffer.addAll(n.getSynapses_in());
-        ndto.setSynapsesBetween3and4Layer(convert(synapsesBuffer));      
+        for(int i=1; i< layers.size()-1; i++)
+        {
+            for(Neuron n: layers.get(i).getNeurons())
+                synapsesBuffer.addAll(n.getSynapses_in());
+            ndto.addSynapsesInner(convert(synapsesBuffer));
+        }
         
         //out
         synapsesBuffer = new ArrayList<>();
-        for(Neuron n: layers.get(3).getNeurons())    
+        for(Neuron n: layers.get(layers.size()-1).getNeurons())    
             synapsesBuffer.addAll(n.getSynapses_out());
         ndto.setSynapsesOutput(convert(synapsesBuffer));      
         

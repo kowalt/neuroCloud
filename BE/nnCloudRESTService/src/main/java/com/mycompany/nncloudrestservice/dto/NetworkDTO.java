@@ -12,6 +12,7 @@ import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
+
 /**
  *
  * @author Tomasz
@@ -19,6 +20,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement(name="network")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class NetworkDTO {
+    
    @XmlAttribute
    private Integer id = null;
    @XmlAttribute
@@ -28,7 +30,7 @@ public class NetworkDTO {
    private List<SynapseDTO> synapsesInput;
 
    @XmlElement(name="layer")
-   private LayerDTO layer1;
+   private LayerDTO layerIn;
 
    @XmlElement(name="synapse")
    private List<SynapseDTO> synapsesBetween1and2Layer;
@@ -46,7 +48,7 @@ public class NetworkDTO {
    private List<SynapseDTO> synapsesBetween3and4Layer;
 
    @XmlElement(name="layer")
-   private LayerDTO layer4;
+   private LayerDTO layerOut;
 
    @XmlElement(name="synapse")
    private List<SynapseDTO> synapsesOutput;
@@ -75,12 +77,12 @@ public class NetworkDTO {
         this.synapsesInput = synapsesInput;
     }
 
-    public LayerDTO getLayer1() {
-        return layer1;
+    public LayerDTO getLayerIn() {
+        return layerIn;
     }
 
-    public void setLayer1(LayerDTO layer1) {
-        this.layer1 = layer1;
+    public void setLayerIn(LayerDTO layerIn) {
+        this.layerIn = layerIn;
     }
 
     public List<SynapseDTO> getSynapsesBetween1and2Layer() {
@@ -123,12 +125,12 @@ public class NetworkDTO {
         this.synapsesBetween3and4Layer = synapsesBetween3and4Layer;
     }
 
-    public LayerDTO getLayer4() {
-        return layer4;
+    public LayerDTO getLayerOut() {
+        return layerOut;
     }
 
-    public void setLayer4(LayerDTO layer4) {
-        this.layer4 = layer4;
+    public void setLayerOut(LayerDTO layerOut) {
+        this.layerOut = layerOut;
     }
 
     public List<SynapseDTO> getSynapsesOutput() {
@@ -137,5 +139,18 @@ public class NetworkDTO {
 
     public void setSynapsesOutput(List<SynapseDTO> synapsesOutput) {
         this.synapsesOutput = synapsesOutput;
+    }
+    
+    public void addSynapsesInner(List<SynapseDTO> synapsesInner)
+    {
+        if(synapsesBetween1and2Layer==null)
+            this.synapsesBetween1and2Layer = synapsesInner;
+        else
+        if(synapsesBetween2and3Layer==null)
+            this.synapsesBetween2and3Layer = synapsesInner;
+        else
+        if(synapsesBetween3and4Layer==null)
+            this.synapsesBetween3and4Layer = synapsesInner;
+
     }
 }

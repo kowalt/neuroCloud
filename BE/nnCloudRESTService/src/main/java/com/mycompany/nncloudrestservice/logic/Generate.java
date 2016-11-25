@@ -28,12 +28,10 @@ public class Generate
     {
         Network network = new Network();
         String name = parameters.getString("name");
-        int[] neuronsPerLayer = new int[4]; 
-                             
-        neuronsPerLayer[0] = parameters.getInt("1stlayer");
-        neuronsPerLayer[1] = parameters.getInt("2ndlayer");
-        neuronsPerLayer[2] = parameters.getInt("3rdlayer");
-        neuronsPerLayer[3] = parameters.getInt("4thlayer");
+        List<Integer> neuronsPerLayer = new ArrayList<>(); 
+
+        for(int i=0; i < neuronsPerLayer.size(); i++)
+            neuronsPerLayer.add(parameters.getJSONArray("neuronsPerLayer").getInt(i));
         
         String activationFunctionRaw = parameters.getString("activationFunction");
         
@@ -45,9 +43,9 @@ public class Generate
         
         List<Layer> layers = new ArrayList<>();
         
-        for(int i=0;i<4;i++)
+        for(int i=0;i<neuronsPerLayer.size();i++)
         {   
-            Layer l = generateLayer(i+1, neuronsPerLayer[i], af);
+            Layer l = generateLayer(i+1, neuronsPerLayer.get(i), af);
             l.setNetwork(network);
             layers.add(l);
         }
@@ -74,7 +72,7 @@ public class Generate
             addSynapse_in(n,s);
         }
         //inner layers
-        for(int i=1;i<4;i++)
+        for(int i=1;i<l.size()-1;i++)
         {
             Layer previousLayer = l.get(i-1);
             Layer currentLayer = l.get(i);
