@@ -34,11 +34,11 @@ public class NetworkToDTO {
         List<Layer> layers = network.getLayers();
 
         ndto.setLayerIn(convertLayer(layers.get(0)));
-        if(layers.get(1) != null)
+        if(layers.size() > 2)
             ndto.setLayer2(convertLayer(layers.get(1)));
-        if(layers.get(2) != null)
+        if(layers.size() > 3)
             ndto.setLayer3(convertLayer(layers.get(2)));
-        ndto.setLayerOut(convertLayer(layers.get(3)));
+        ndto.setLayerOut(convertLayer(layers.get(layers.size()-1)));
         
         List<Synapse> synapsesBuffer = new ArrayList<>();
 

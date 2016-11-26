@@ -30,7 +30,7 @@ public class Generate
         String name = parameters.getString("name");
         List<Integer> neuronsPerLayer = new ArrayList<>(); 
 
-        for(int i=0; i < neuronsPerLayer.size(); i++)
+        for(int i=0; i < parameters.getJSONArray("neuronsPerLayer").length(); i++)
             neuronsPerLayer.add(parameters.getJSONArray("neuronsPerLayer").getInt(i));
         
         String activationFunctionRaw = parameters.getString("activationFunction");
@@ -95,7 +95,7 @@ public class Generate
         }
         
         //output
-        Layer outputLayer = l.get(3);
+        Layer outputLayer = l.get(l.size()-1);
         List<Neuron> neuronsOut = outputLayer.getNeurons();
         
         for(Neuron n: neuronsOut)

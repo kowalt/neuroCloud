@@ -9,7 +9,6 @@ import com.mycompany.nncloudrestservice.daos.NetworkDAO;
 import com.mycompany.nncloudrestservice.pojo.Layer;
 import com.mycompany.nncloudrestservice.pojo.Network;
 import com.mycompany.nncloudrestservice.pojo.Neuron;
-import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -42,7 +41,7 @@ public class SingleThreadRunManager{
         for(Layer l: lList)
             np.runLayer(l);
 
-        List<Neuron> outNeuList = n.getLayers().get(3).getNeurons();
+        List<Neuron> outNeuList = n.getLayers().get(n.getLayers().size()-1).getNeurons();
         double [] output_vector = new double[outNeuList.size()];
         int index = 0;
         for(Neuron n: outNeuList)
