@@ -72,7 +72,7 @@ public class Generate
             addSynapse_in(n,s);
         }
         //inner layers
-        for(int i=1;i<l.size()-1;i++)
+        for(int i=1;i<l.size();i++)
         {
             Layer previousLayer = l.get(i-1);
             Layer currentLayer = l.get(i);

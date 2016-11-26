@@ -31,6 +31,7 @@ import java.util.logging.Logger;
  * @author Tomasz
  */
 public class DTOToNetwork {
+    /*
     private NetworkDTO ndto;
     private Network n;
     private HashMap<Integer, Neuron> neuronsMap;
@@ -169,4 +170,5 @@ public class DTOToNetwork {
             }
     	}
     }
+    */
 }

@@ -99,6 +99,7 @@ public class NetworkCrudManager {
 
 	public void updateNetwork(String networkRaw)
 	{
+            /*
 		try {
 			JAXBContext jaxbContext = JAXBContext.newInstance(NetworkDTO.class);
 			Unmarshaller unm = jaxbContext.createUnmarshaller();
@@ -112,5 +113,6 @@ public class NetworkCrudManager {
 		} catch (JAXBException e) {
 			e.printStackTrace();
 		}
+               */
 	}
 }

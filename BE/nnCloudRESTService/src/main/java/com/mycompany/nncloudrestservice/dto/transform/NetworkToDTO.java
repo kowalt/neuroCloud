@@ -51,9 +51,9 @@ public class NetworkToDTO {
         ndto.setSynapsesInput(synapsesInputDTO);
 
         //inner
-        synapsesBuffer = new ArrayList<>();
-        for(int i=1; i< layers.size()-1; i++)
+        for(int i=1; i< layers.size(); i++)
         {
+            synapsesBuffer = new ArrayList<>();
             for(Neuron n: layers.get(i).getNeurons())
                 synapsesBuffer.addAll(n.getSynapses_in());
             ndto.addSynapsesInner(convert(synapsesBuffer));
