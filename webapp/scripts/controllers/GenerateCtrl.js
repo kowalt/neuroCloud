@@ -6,7 +6,11 @@ app
 		{
 			if(!validate())
 				return;
-
+			
+			var neuPerLay = $scope.network.neuronsPerLayer.split(" ").map(function(item) {
+				return parseInt(item, 10);
+			});
+			
 			var request = 
 			{
 				method: "POST",
@@ -15,7 +19,7 @@ app
 				{
 					"Content-Type": "application/json",
 				},
-				data: {"name": $scope.network.name ,"1stlayer": $scope.network.first, "2ndlayer": $scope.network.second, "3rdlayer": $scope.network.third, "4thlayer": $scope.network.fourth, "activationFunction": $scope.network.activationFunction }
+				data: {"name": $scope.network.name ,"neuronsPerLayer": neuPerLay, "activationFunction": $scope.network.activationFunction }
 			};
 
 			$http(request).success(function(data, status, headers, config)
@@ -30,14 +34,21 @@ app
 
 		var validate = function()
 		{
+			function isPositiveInt(value) {
+			  return !isNaN(value) && 
+					 parseInt(Number(value)) == value && 
+					 !isNaN(parseInt(value, 10)) && value > 0;
+			}
+
 			var error_message = "";
 
 			if($scope.name == "")
 				error_message = "Name must not be empty!"
-			
-			if($scope.first == "" || $scope.second == "" || $scope.third == "" || $scope.fourth == "")
-				error_message = "Neuron number in layer must not be empty!";
-			
+			$scope.network.neuronsPerLayer.split(" ").map(function(item) {
+				if(!isPositiveInt(item))
+					error_message = "Incorrect amount of neurons"
+			});
+
 			if(error_message != "")
 			{
 				$alert({title: 'Cannot register: ', content: error_message, placement: 'top', type: 'danger', show: true});
