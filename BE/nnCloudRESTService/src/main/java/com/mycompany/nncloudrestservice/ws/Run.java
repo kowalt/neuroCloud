@@ -6,10 +6,8 @@
 package com.mycompany.nncloudrestservice.ws;
 
 import com.mycompany.nncloudrestservice.localcalculations.singlethreaded.SingleThreadRunManager;
-import com.mycompany.nncloudrestservice.logic.RunManager;
 import java.util.Arrays;
 import javax.ws.rs.Consumes;
-import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
