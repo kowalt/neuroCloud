@@ -21,11 +21,11 @@ public class ActivationFunction
 {
     @XmlAttribute
     private int id;
-
     private String function;
     private String domain_rule;
     @XmlTransient
     private Neuron neuron;
+    private String first_derivative;
     
     public int getId() {
         return id;
@@ -67,5 +67,13 @@ public class ActivationFunction
         instance.setDomain_rule(domain_rule);
         
         return instance;
+    }
+
+    public String getFirst_derivative() {
+        return first_derivative;
+    }
+
+    public void setFirst_derivative(String first_derivative) {
+        this.first_derivative = first_derivative;
     }
 }

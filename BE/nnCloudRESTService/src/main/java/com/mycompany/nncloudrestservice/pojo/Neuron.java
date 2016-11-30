@@ -36,6 +36,7 @@ public class Neuron
     private List<Synapse> synapses_out = new ArrayList<>();
     @XmlTransient
     private Layer layer;
+    private Double error_value;
     
     public int getId() {
         return id;
@@ -75,5 +76,13 @@ public class Neuron
 
     public void setLayer(Layer layer) {
         this.layer = layer;
+    }
+
+    public Double getError_value() {
+        return error_value;
+    }
+
+    public void setError_value(Double error_value) {
+        this.error_value = error_value;
     }
 }

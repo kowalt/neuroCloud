@@ -1,9 +1,11 @@
 package com.mycompany.nncloudrestservice.training.ebp;
 
 import com.mycompany.nncloudrestservice.localcalculations.singlethreaded.SingleThreadRunManager;
+import com.mycompany.nncloudrestservice.pojo.Layer;
 import com.mycompany.nncloudrestservice.pojo.Network;
+import com.mycompany.nncloudrestservice.pojo.Neuron;
+import com.mycompany.nncloudrestservice.pojo.Synapse;
 import java.util.List;
-import java.util.stream.Stream;
 import org.apache.commons.lang3.ArrayUtils;
 
 public class EBP implements Runnable {
@@ -22,19 +24,51 @@ public class EBP implements Runnable {
         this.training_set = training_set;
     }
 
-    private double calculateGoalFunction(double[] output_vector, double[] expected_vector)
+    private void calculateAndSetOutputErrors(double[] output_vector, double[] expected_vector)
     {
-        double r = 0.0;
+        List<Layer> layers = network.getLayers();
+        
+        Layer output_layer = layers.get(layers.size()-1);
 
-        for(int i=0; i<output_vector.length; i++)
-            r += Math.pow(output_vector[i] - expected_vector[i], 2);
-
-        return r/2.0;
+        int i = 0;
+        for(Neuron neuron: output_layer.getNeurons())
+        {
+            neuron.setError_value(expected_vector[i] - output_vector[i]);
+            i++;
+        }
     }
     
-    private void updateWeights(double goal_function)
+    private void calculateInnerErrors()
     {
-        
+        List<Layer> layers = network.getLayers();
+        for(Layer l: layers)
+        {
+            if(l.getRelative_number() == layers.size())
+                continue;
+
+            for(Neuron neuron: l.getNeurons())
+            {
+                Double error_value = 0.0;
+                List<Synapse> synapses_out = neuron.getSynapses_out();
+                for(Synapse synapse: synapses_out)
+                    error_value += synapse.getNeuron_out().getError_value() * synapse.getWeight();
+                neuron.setError_value(error_value);
+            }
+        }
+    }
+    
+    private void updateWeights()
+    {
+        for(Layer layer: network.getLayers())
+        {
+            for(Neuron neuron: layer.getNeurons())
+            {
+                for(Synapse synin: neuron.getSynapses_in())
+                {
+                    // Double delta = learning_factor*neuron.getError_value()*neuron.get
+                }
+            }
+        }
     }
     
     private void train(Network n)
@@ -46,7 +80,8 @@ public class EBP implements Runnable {
             {    
                 double[] output_vector = runManager.run(ArrayUtils.toPrimitive(learning_set.get(j)));
                 double[] expected_vector = ArrayUtils.toPrimitive(training_set.get(j));
-                double goal_function = calculateGoalFunction(output_vector, expected_vector);
+                calculateAndSetOutputErrors(output_vector, expected_vector);
+                calculateInnerErrors();
                 updateWeights();
             }
         }

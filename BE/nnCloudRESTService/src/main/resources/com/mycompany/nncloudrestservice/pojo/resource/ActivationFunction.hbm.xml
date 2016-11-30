@@ -8,6 +8,7 @@
       </id>
       <property name="function" column="function" type="string"/>
       <property name="domain_rule" column="domain_rule" type="string"/>
+      <property name="first_derivative" column="first_derivative" type="string"/>
       <many-to-one name="neuron" class="Neuron" column="id_neuron" not-null="true"></many-to-one>
   </class>
 </hibernate-mapping>

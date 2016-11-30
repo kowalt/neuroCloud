@@ -42,10 +42,18 @@ public class ActivationFunctionParser
 
             afun.setFunction(function);
             afun.setDomain_rule(domain);
+            afun.setFirst_derivative(calculateDerivative(function));
 
             af.add(afun);
         }
         
         return af;
+    }
+    
+    private String calculateDerivative(String activationFunction)
+    {
+        if(activationFunction.equals("Tanh"))
+            return "Sech^2";
+        return "";
     }
 }

@@ -51,7 +51,7 @@ public class Generate
         }
         connectLayers(layers); 
         network.setLayers(layers);
-        
+
         NetworkDAO ndao = new NetworkDAO();
         ndao.addItem(network);
     }

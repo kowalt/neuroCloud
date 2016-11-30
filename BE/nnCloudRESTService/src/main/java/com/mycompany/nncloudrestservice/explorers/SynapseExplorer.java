@@ -58,9 +58,4 @@ public class SynapseExplorer {
         synList.addAll(registry.values());
         return synList;
     }
-    
-    public void saveAll(Integer networkdId)
-    {
-    
-    }
 }

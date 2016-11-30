@@ -24,6 +24,10 @@ public class MathFunction
                 return Math.cos(v[0]);
             case "Tg":
                 return Math.tan(v[0]);
+            case "Tanh":
+                return Math.tanh(v[0]);
+            case "Sech":
+                return 1.0/Math.cosh(v[0]);
             case "Ctg":
                 return 1/Math.tan(v[0]);
             case "Add":
