@@ -26,14 +26,17 @@ public class ValueCalculator
         f_interpreter = new FunctionInterpreter();
     }
     
-    public double calculateValue(List<ActivationFunction> activation_functions, double input)
+    public double calculateValue(List<ActivationFunction> activation_functions, double input, boolean derivative)
     {
         double output = Double.NaN;
         for(ActivationFunction af: activation_functions)
         {
             if(checkIfDomainRuleApply(af.getDomain_rule(), input))
-            {    
-                output = calculateFunctionValue(af.getFunction(), input);
+            {   
+                if(derivative)
+                    output = calculateFunctionValue(af.getFirst_derivative(), input);
+                else
+                    output = calculateFunctionValue(af.getFunction(), input);
                 break;
             }
         }

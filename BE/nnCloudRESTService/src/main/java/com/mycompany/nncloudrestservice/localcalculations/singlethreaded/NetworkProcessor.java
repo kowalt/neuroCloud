@@ -52,7 +52,7 @@ public class NetworkProcessor
             List<ActivationFunction> activation_functions = neu.getActivation_functions();
             
             for(Synapse syn_out: synapses_output)
-                syn_out.setValue(vc.calculateValue(activation_functions, input_value_sum));
+                syn_out.setValue(vc.calculateValue(activation_functions, input_value_sum, false));
         }
 
     }

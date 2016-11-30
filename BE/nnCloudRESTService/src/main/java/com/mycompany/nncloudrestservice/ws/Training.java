@@ -1,5 +1,7 @@
 package com.mycompany.nncloudrestservice.ws;
 
+import com.mycompany.nncloudrestservice.logic.TrainingManager;
+import com.mycompany.nncloudrestservice.training.ebp.EBP;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -14,6 +16,8 @@ public class Training {
     @Produces(MediaType.APPLICATION_JSON)
     public Response training(String x)
     {
-    	return null; //TODO
+        TrainingManager trainingManager = new TrainingManager();
+        trainingManager.train(x);
+    	return Response.status(202).build();
     }
 }
