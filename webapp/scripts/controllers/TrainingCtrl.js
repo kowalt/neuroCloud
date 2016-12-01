@@ -15,6 +15,14 @@ app
 		return retArr;
 	}
 
+	function obtainNetworkId(networkXML)
+	{
+		parser = new DOMParser();
+		xmlDoc = parser.parseFromString(networkXML, "application/xml");
+		var network = xmlDoc.getElementsByTagName("network");
+		return network.getAttribute('id');
+	}
+
 	$scope.addLearningData = function() {
 		var f = document.getElementById('learningSet').files[0], r = new FileReader();
 		r.onloadend = function(e) {
@@ -29,5 +37,15 @@ app
 			$scope.trainingProps.trainingSet = digestCSV(e.target.result);
 		}
 		r.readAsBinaryString(f);
+	}
+	
+	$scope.train = function() {
+		$scope.xmlNetwork = commonDataService;
+		$scope.trainingProps.networkId = obtainNetworkId($scope.xmlNetwork);
+		networksService.train($scope.trainingProps).success(function(data) {
+			$alert({title: 'Network sent for training', content: data, placement: 'top', type: 'info', show: true });
+		}).error(function(err){
+			$alert({title: 'Unable to train network', content: err, placement: 'top', type: 'danger', show: true });
+		}
 	}
 }]);

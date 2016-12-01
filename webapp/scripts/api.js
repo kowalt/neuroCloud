@@ -7,5 +7,6 @@ var API =
 	'GENERATE': API_ROOT + '/generate',
 	'NETWORK': API_ROOT + '/network',
 	'NETWORKS': API_ROOT + '/networks',
-	'RUN': API_ROOT + '/run'
+	'RUN': API_ROOT + '/run',
+	'TRAINING': API_ROOT + '/training'
 };

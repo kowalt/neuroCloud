@@ -4,7 +4,9 @@ app.factory('networksService', ['$http', '$cookies', function($http, $cookies) {
 		getParticularNetwork: getParticularNetwork,
 		getNetworksList: getNetworksList,
 		deleteNetwork: deleteNetwork,
-		runNetwork: runNetwork
+		runNetwork: runNetwork,
+		generate: generate,
+		train: train
 	}
 	return exposedAPI;
 
@@ -86,6 +88,54 @@ app.factory('networksService', ['$http', '$cookies', function($http, $cookies) {
 			return data;
 		})
 		.error(function(err) {
+			return err;
+		});
+	}
+	
+	function generate(name, neuPerLay, activationFunction)
+	{
+		var request = 
+		{
+			method: "POST",
+			url: API['GENERATE'],
+			headers:
+			{
+				"Content-Type": "application/json",
+			},
+			data: {"name": name ,"neuronsPerLayer": neuPerLay, "activationFunction": activationFunction }
+		}
+		
+		return $http(request).success(function(data) {
+			return data;
+		})
+		.error(function(err){
+			return err;
+		});
+	}
+	
+	function train(trainingProps)
+	{
+		var request = 
+		{
+			method: "POST",
+			url: API['TRAINING'],
+			headers:
+			{
+				"Content-Type": "application/json",
+			},
+			data: {
+				"networkId": trainingProps.networkId,
+				"iterations": trainingProps.iterations,
+				"learningSet": trainingProps.learningSet,
+				"trainingSet": trainingProps.trainingSet,
+				"learningCoefficient": trainingProps.learningCoefficient
+			}
+		}
+		
+		return $http(request).success(function(data){
+			return data;
+		})
+		.error(function(err){
 			return err;
 		});
 	}

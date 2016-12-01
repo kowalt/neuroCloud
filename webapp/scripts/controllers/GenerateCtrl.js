@@ -1,7 +1,7 @@
 'use strict';
 
 app
-  .controller('GenerateCtrl', ['$scope', '$http', '$alert', function ($scope, $http, $alert) {
+  .controller('GenerateCtrl', ['$scope', '$http', '$alert','networksService' function ($scope, $http, $alert, networksService) {
 		$scope.generate = function()
 		{
 			if(!validate())
@@ -11,23 +11,9 @@ app
 				return parseInt(item, 10);
 			});
 			
-			var request = 
-			{
-				method: "POST",
-				url: API['GENERATE'],
-				headers:
-				{
-					"Content-Type": "application/json",
-				},
-				data: {"name": $scope.network.name ,"neuronsPerLayer": neuPerLay, "activationFunction": $scope.network.activationFunction }
-			};
-
-			$http(request).success(function(data, status, headers, config)
-			{
-				$alert({title: 'Network generated', content: 'Network generation successfull', placement: 'top', type: 'info', show: true});				
-			})
-			.error(function(data, status, headers, config)
-			{
+			networksService.generate($scope.network.name, neuPerLay, $scope.network.activationFunction).success(function(data){
+				$alert({title: 'Network generated', content: 'Network generation successfull', placement: 'top', type: 'info', show: true});
+			}).error(function(err) {
 				$alert({title: 'Unable to generate', content: data, placement: 'top', type: 'danger', show: true});
 			});
 		}
