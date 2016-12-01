@@ -1,6 +1,6 @@
 'use strict';
 
 app
-  .controller('TrainingCtrl', ['$scope', '$cookies', '$alert', '$location', 'networksService','commonDataService', function ($scope, $cookies, $alert, $location,networksService,commonDataService) {
-	
+  .controller('TrainingCtrl', ['$scope', '$alert', 'networksService','commonDataService', function ($scope, $alert,networksService,commonDataService) {
+	$scope.trainingProps = {};
 }]);

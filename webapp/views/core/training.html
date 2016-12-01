@@ -1,3 +1,21 @@
 <div ng-controller="TrainingCtrl" class="container">
-	Training under construction.
+	<form>
+		<h2>Training with EBP algorithm</h2>
+		<div class="form-group">
+			<label for="learningCoefficient">Learning coefficient</label>
+			<input type="text" class="form-control" id="inputName" ng-model= "trainingProps.learningCoefficient">
+		</div>
+		<div class="form-group">
+			<label for="learningSet" class="btn btn-default btn-file">Learning set</label>
+			<input type="file" style="display: none;" id="learningSet" ng-model="trainingProps.learningSet">
+		</div>
+		<div class="form-group">
+			<label for="trainingSet" class="btn btn-default btn-file">Training set</label>
+			<input type="file" style="display: none;" id="trainingSet" ng-model="trainingProps.trainingSet">
+		</div>
+		<div class="form-group">
+			<label for="iterations">Iterations</label>
+			<input type="number" class="form-control" id="inputName" ng-model="trainingProps.iterations">
+		</div>
+	</form>
 </div>

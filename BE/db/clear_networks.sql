@@ -10,7 +10,7 @@ SET FOREIGN_KEY_CHECKS = 1;
 
 SELECT * FROM activation_functions;
 
-SELECT * FROM users;
+SELECT COUNT(id_synapse) FROM synapses;
 
 UPDATE users SET activated = 1 where login='test';
 
@@ -22,6 +22,8 @@ ALTER TABLE synapses ADD value DOUBLE;
 ALTER TABLE users DROP INDEX session_id_UNIQUE;
 
 SELECT * FROM users;
+
+SELECT * FROM networks;
 
 SELECT * FROM networks;
 SELECT * FROM layers;
