@@ -71,7 +71,11 @@ public class MathFunction
             case "Pow":
                 return 2;
             case "Mod":
-                return 2;           
+                return 2;
+            case "Tanh":
+                return 1;
+            case "Sech":
+                return 1;
         }
        return -1; 
     }

@@ -8,7 +8,7 @@ app
 			reload();
 			$scope.inoutContainer.output_vector = data;
 		}).error(function(err){
-			$alert({title: 'Unable to load network', content: err, placement: 'top', type: 'danger', show: true });
+			$alert({title: 'Unable to run network', content: err, placement: 'top', type: 'danger', show: true });
 		});
 	}
 

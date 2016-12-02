@@ -52,8 +52,8 @@ public class ActivationFunctionParser
     
     private String calculateDerivative(String activationFunction)
     {
-        if(activationFunction.equals("Tanh"))
-            return "Sech^2";
+        if(activationFunction.equals("Tanh(x)"))
+            return "Sech(x)^2";
         return "";
     }
 }
