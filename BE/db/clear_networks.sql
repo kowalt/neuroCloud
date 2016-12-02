@@ -21,6 +21,8 @@ ALTER TABLE synapses ADD value DOUBLE;
 
 ALTER TABLE users DROP INDEX session_id_UNIQUE;
 
+ALTER TABLE activation_functions ADD first_derivative VARCHAR(90);
+
 SELECT * FROM users;
 
 SELECT * FROM networks;
@@ -29,3 +31,5 @@ SELECT * FROM networks;
 SELECT * FROM layers;
 
 SELECT * FROM neurons;
+
+SELECT * FROM activation_functions;

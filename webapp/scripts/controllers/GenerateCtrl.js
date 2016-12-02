@@ -1,7 +1,7 @@
 'use strict';
 
 app
-  .controller('GenerateCtrl', ['$scope', '$http', '$alert','networksService' function ($scope, $http, $alert, networksService) {
+  .controller('GenerateCtrl', ['$scope', '$http', '$alert','networksService', function ($scope, $http, $alert, networksService) {
 		$scope.generate = function()
 		{
 			if(!validate())

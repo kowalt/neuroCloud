@@ -46,6 +46,6 @@ app
 			$alert({title: 'Network sent for training', content: data, placement: 'top', type: 'info', show: true });
 		}).error(function(err){
 			$alert({title: 'Unable to train network', content: err, placement: 'top', type: 'danger', show: true });
-		}
+		});
 	}
 }]);
