@@ -8,6 +8,7 @@ package com.mycompany.nncloudrestservice.logic;
 import com.mycompany.nncloudrestservice.daos.NetworkDAO;
 import com.mycompany.nncloudrestservice.pojo.Network;
 import com.mycompany.nncloudrestservice.training.ebp.EBP;
+import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 import java.util.ArrayList;
 import org.json.JSONArray;
@@ -34,11 +35,24 @@ public class TrainingManager {
         
         for(int i=0; i<learningSetArrRaw.length(); i++)
         {
-            learningSet.add((Double[])learningSetArrRaw.get(i)); //Crashpoint
-            trainingSet.add((Double[])trainingSetArrRaw.get(i));
+            learningSet.add(convertJSONArray(learningSetArrRaw.getJSONArray(i))); //Crashpoint
+            trainingSet.add(convertJSONArray(trainingSetArrRaw.getJSONArray(i)));
         }
 
         EBP ebp = new EBP(network, learningCoefficient, iterations, learningSet, trainingSet);
         ebp.run();
+    }
+    
+    private Double[] convertJSONArray(JSONArray arr)
+    {
+        Double[] rbuf = new Double[arr.length()];
+        for(int i=0; i<arr.length(); i++)
+        {       
+            if(arr.get(i) instanceof Integer)
+                rbuf[i] = ((Integer)arr.get(i)).doubleValue();
+            else
+                rbuf[i] = (Double)arr.get(i);
+        }
+        return rbuf;
     }
 }
