@@ -31,7 +31,7 @@ import java.util.logging.Logger;
  * @author Tomasz
  */
 public class DTOToNetwork {
-    /*
+  
     private NetworkDTO ndto;
     private Network n;
     private HashMap<Integer, Neuron> neuronsMap;
@@ -75,13 +75,13 @@ public class DTOToNetwork {
     {
     	List<Layer> layerList = new ArrayList<>(4);
 
-    	LayerDTO l1d = ndto.getLayer1();
+    	LayerDTO l1d = ndto.getLayerIn();
     	layerList.add(transformLayer(l1d));
     	LayerDTO l2d = ndto.getLayer2();
     	layerList.add(transformLayer(l2d));
     	LayerDTO l3d = ndto.getLayer3();
     	layerList.add(transformLayer(l3d));
-    	LayerDTO l4d = ndto.getLayer4();
+    	LayerDTO l4d = ndto.getLayerOut();
     	layerList.add(transformLayer(l4d));
 
     	return layerList;
@@ -170,5 +170,4 @@ public class DTOToNetwork {
             }
     	}
     }
-    */
 }
