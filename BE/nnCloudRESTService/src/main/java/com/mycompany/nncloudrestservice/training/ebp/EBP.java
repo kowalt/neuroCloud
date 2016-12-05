@@ -3,11 +3,13 @@ package com.mycompany.nncloudrestservice.training.ebp;
 import com.mycompany.nncloudrestservice.comparators.LayerAscendingComparator;
 import com.mycompany.nncloudrestservice.comparators.LayerDescendingComparator;
 import com.mycompany.nncloudrestservice.localcalculations.singlethreaded.SingleThreadRunManager;
-import com.mycompany.nncloudrestservice.localcalculations.singlethreaded.ValueCalculator;
+import com.mycompany.nncloudrestservice.localcalculations.ValueCalculator;
 import com.mycompany.nncloudrestservice.pojo.Layer;
 import com.mycompany.nncloudrestservice.pojo.Network;
 import com.mycompany.nncloudrestservice.pojo.Neuron;
 import com.mycompany.nncloudrestservice.pojo.Synapse;
+import com.mycompany.nncloudrestservice.utils.MailSender;
+
 import java.util.Collections;
 import java.util.List;
 import org.apache.commons.lang3.ArrayUtils;
@@ -98,6 +100,9 @@ public class EBP implements Runnable {
                 updateWeights();
             }
         }
+
+        MailSender postman = new MailSender();
+        postman.sendNofificationAfterTraining(n.getName());
     }
 
     @Override

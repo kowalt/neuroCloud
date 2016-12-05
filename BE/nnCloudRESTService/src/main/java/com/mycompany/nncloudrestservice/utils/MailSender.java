@@ -43,7 +43,6 @@ public class MailSender {
 		catch(MessagingException mex)
 		{
 			mex.printStackTrace();
-		}
-		
+		}	
 	}
 }
