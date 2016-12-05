@@ -62,10 +62,10 @@ public class ActivationFunction
     public ActivationFunction cloneFunctionAndDomainRule()
     {
         ActivationFunction instance = new ActivationFunction();
-        
         instance.setFunction(function);
+        instance.setFirst_derivative(first_derivative);
         instance.setDomain_rule(domain_rule);
-        
+
         return instance;
     }
 
