@@ -5,6 +5,7 @@
  */
 package com.mycompany.nncloudrestservice.localcalculations.singlethreaded;
 
+import com.mycompany.nncloudrestservice.localcalculations.ValueCalculator;
 import com.mycompany.nncloudrestservice.pojo.ActivationFunction;
 import com.mycompany.nncloudrestservice.pojo.Layer;
 import com.mycompany.nncloudrestservice.pojo.Network;

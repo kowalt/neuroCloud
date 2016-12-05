@@ -1,4 +1,4 @@
-package com.mycompany.nncloudrestservice.localcalculations.singlethreaded;
+package com.mycompany.nncloudrestservice.localcalculations;
 
 import com.mycompany.nncloudrestservice.misc.expcalc.FunctionInterpreter;
 import com.mycompany.nncloudrestservice.pojo.ActivationFunction;
