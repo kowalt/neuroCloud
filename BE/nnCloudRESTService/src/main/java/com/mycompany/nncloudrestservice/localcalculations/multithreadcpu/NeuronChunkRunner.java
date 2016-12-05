@@ -8,17 +8,18 @@ import com.mycompany.nncloudrestservice.pojo.Layer;
 import com.mycompany.nncloudrestservice.pojo.Neuron;
 import com.mycompany.nncloudrestservice.pojo.Synapse;
 
-public class NeuronChunkRunner implements Runnable {
-	private Layer l;
-	private List<Neuron> chunk;
+public class NeuronChunkRunner implements Runnable 
+{
+    private Layer l;
+    private List<Neuron> chunk;
     private ValueCalculator vc;
-    
-	public NeuronChunkRunner(Layer l, List<Neuron> chunk)
-	{
-		this.l = l;
-		this.chunk = chunk;
-		vc = new ValueCalculator();
-	}
+
+    public NeuronChunkRunner(Layer l, List<Neuron> chunk)
+    {
+        this.l = l;
+        this.chunk = chunk;
+        vc = new ValueCalculator();
+    }
 
     private void runChunk(Layer l, List<Neuron> chunk)
     {
@@ -37,9 +38,9 @@ public class NeuronChunkRunner implements Runnable {
                 syn_out.setValue(vc.calculateValue(activation_functions, input_value_sum, false));
         }
     }
-	
-	@Override
-	public void run() {
-		runChunk(l,chunk);
-	}
+
+    @Override
+    public void run() {
+        runChunk(l,chunk);
+    }
 }

@@ -23,26 +23,26 @@ public class MailSender {
 	}
 	
 	public void sendNofificationAfterTraining(String networkName)
-	{
-        Session session = Session.getDefaultInstance(properties);
-		final String SUBJECT = "nnCloud network training";
-		final String BODY = "Your network " + networkName + " has finished training";
-		
-		User u = CurrentUserContainer.getInstance();
-		final String RECIPIENT_ADDRESS = u.getEmail();
-		
-		try
-		{
-			MimeMessage msg = new MimeMessage(session);
-			msg.setFrom(new InternetAddress(FROM));
-			msg.addRecipient(Message.RecipientType.TO, new InternetAddress(RECIPIENT_ADDRESS));
-			msg.setSubject(SUBJECT);
-			msg.setText(BODY);
-			Transport.send(msg);
-		}
-		catch(MessagingException mex)
-		{
-			mex.printStackTrace();
-		}	
+        {
+            Session session = Session.getDefaultInstance(properties);
+            final String SUBJECT = "nnCloud network training";
+            final String BODY = "Your network " + networkName + " has finished training";
+
+            User u = CurrentUserContainer.getInstance();
+            final String RECIPIENT_ADDRESS = u.getEmail();
+
+            try
+            {
+                MimeMessage msg = new MimeMessage(session);
+                msg.setFrom(new InternetAddress(FROM));
+                msg.addRecipient(Message.RecipientType.TO, new InternetAddress(RECIPIENT_ADDRESS));
+                msg.setSubject(SUBJECT);
+                msg.setText(BODY);
+                Transport.send(msg);
+            }
+            catch(MessagingException mex)
+            {
+                mex.printStackTrace();
+            }	
 	}
 }

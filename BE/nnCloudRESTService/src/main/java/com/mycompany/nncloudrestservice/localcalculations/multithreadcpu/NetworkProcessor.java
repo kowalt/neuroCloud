@@ -3,7 +3,7 @@ package com.mycompany.nncloudrestservice.localcalculations.multithreadcpu;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.mycompany.nncloudrestservice.localcalculations.singlethreaded.ValueCalculator;
+import com.mycompany.nncloudrestservice.localcalculations.ValueCalculator;
 import com.mycompany.nncloudrestservice.pojo.ActivationFunction;
 import com.mycompany.nncloudrestservice.pojo.Layer;
 import com.mycompany.nncloudrestservice.pojo.Network;
@@ -47,9 +47,8 @@ public class NetworkProcessor
     		if(i == (threads - 1))
     			chunks.get(i).addAll(nList.subList(i*delta+delta, nList.size()));
     	}
-    	
-    	
+
     	for(List<Neuron> chunk: chunks)
-    		(new Thread(NeuronChunkRunner(l, chunk))).start();
+            (new Thread(new NeuronChunkRunner(l, chunk))).start();
     }
 }
