@@ -24,6 +24,7 @@ public class TrainingManager {
         JSONObject rawData = new JSONObject(x);
         Integer networkId = (Integer) rawData.get("networkId");
         NetworkDAO ndao = new NetworkDAO();
+        ndao.setLazyLoadMode(false);
         Network network = ndao.getItem(networkId.toString());
         Integer iterations = (Integer) rawData.get("iterations");
         Double learningCoefficient = (Double) rawData.get("learningCoefficient");
@@ -40,7 +41,7 @@ public class TrainingManager {
         }
 
         EBP ebp = new EBP(network, learningCoefficient, iterations, learningSet, trainingSet);
-        ebp.run();
+        new Thread(ebp).start();
     }
     
     private Double[] convertJSONArray(JSONArray arr)

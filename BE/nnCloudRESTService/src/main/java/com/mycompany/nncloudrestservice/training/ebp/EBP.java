@@ -1,11 +1,14 @@
 package com.mycompany.nncloudrestservice.training.ebp;
 
+import com.mycompany.nncloudrestservice.comparators.LayerAscendingComparator;
+import com.mycompany.nncloudrestservice.comparators.LayerDescendingComparator;
 import com.mycompany.nncloudrestservice.localcalculations.singlethreaded.SingleThreadRunManager;
 import com.mycompany.nncloudrestservice.localcalculations.singlethreaded.ValueCalculator;
 import com.mycompany.nncloudrestservice.pojo.Layer;
 import com.mycompany.nncloudrestservice.pojo.Network;
 import com.mycompany.nncloudrestservice.pojo.Neuron;
 import com.mycompany.nncloudrestservice.pojo.Synapse;
+import java.util.Collections;
 import java.util.List;
 import org.apache.commons.lang3.ArrayUtils;
 
@@ -42,6 +45,7 @@ public class EBP implements Runnable {
     private void calculateInnerErrors()
     {
         List<Layer> layers = network.getLayers();
+        Collections.sort(layers, new LayerDescendingComparator());
         for(Layer l: layers)
         {
             if(l.getRelative_number() == layers.size())
@@ -56,12 +60,13 @@ public class EBP implements Runnable {
                 neuron.setError_value(error_value);
             }
         }
+        Collections.sort(layers, new LayerAscendingComparator());
     }
     
     private void updateWeights()
     {
         ValueCalculator vc = new ValueCalculator();
-
+        
         for(Layer layer: network.getLayers())
         {
             for(Neuron neuron: layer.getNeurons())
