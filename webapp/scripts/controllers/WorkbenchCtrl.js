@@ -30,17 +30,15 @@ app
 	{	
 		$location.path('/core/load');
 		return;
-	}
-	$scope.xmlNetwork = commonDataService;
-	
+	}	
 	reload();
-	
+
 	function reload()
 	{
 		networksService.getParticularNetwork(activeNetworkID).success(function(data) 
 		{
 			$scope.xmlNetwork = data;
-
+			commonDataService.xmlNetwork = data;
 			var nodes = transformNodes($scope.xmlNetwork);
 			var transformEdgesResult = transformEdges($scope.xmlNetwork);
 			var edges = transformEdgesResult[0];
