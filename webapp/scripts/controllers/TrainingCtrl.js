@@ -27,18 +27,18 @@ app
 		var f = document.getElementById('learningSet').files[0], r = new FileReader();
 		r.onloadend = function(e) {
 			$scope.trainingProps.learningSet = digestCSV(e.target.result);
+			r.readAsBinaryString(f);
 		}
-		r.readAsBinaryString(f);
 	}
 
 	$scope.addTrainingData = function() {
 		var f = document.getElementById('trainingSet').files[0], r = new FileReader();
 		r.onloadend = function(e) {
 			$scope.trainingProps.trainingSet = digestCSV(e.target.result);
+			r.readAsBinaryString(f);
 		}
-		r.readAsBinaryString(f);
 	}
-	
+
 	$scope.train = function() {
 		$scope.xmlNetwork = commonDataService;
 		$scope.trainingProps.networkId = obtainNetworkId($scope.xmlNetwork);
