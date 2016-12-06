@@ -11,7 +11,7 @@ app
 
 	$scope.selectNetwork = function(id)
 	{
-		networksService.getParticularNetwork(activeNetworkID).success(function(data) 
+		networksService.getParticularNetwork(id).success(function(data) 
 		{
 			commonDataService = data;
 		})
