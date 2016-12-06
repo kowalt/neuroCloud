@@ -13,7 +13,7 @@ app
 	{
 		networksService.getParticularNetwork(activeNetworkID).success(function(data) 
 		{
-			$scope.xmlNetwork = data;
+			commonDataService = data;
 		})
 		.error(function(err)
 		{
