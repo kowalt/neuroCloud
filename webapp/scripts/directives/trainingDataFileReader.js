@@ -1,6 +1,7 @@
 app.directive('trainingDataFileReader', function() {
   return {
 	restrict: 'A',
+	scope: {},
     link: function(scope, element, attrs) {
       $(element).on('change', function(changeEvent) {
         var files = changeEvent.target.files;
