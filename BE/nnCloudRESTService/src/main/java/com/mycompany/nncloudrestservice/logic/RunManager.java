@@ -12,14 +12,16 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 
 /**
  *
  * @author Tomasz
  */
 public class RunManager {
+	private static final Logger logger = LogManager.getLogger(RunManager.class);
     public void run(int networkId, int serverId, double[] vector)
     {
         try
@@ -31,9 +33,9 @@ public class RunManager {
                 INetworkCalculatorServer stub = (INetworkCalculatorServer) registry.lookup(server.getName());
                 stub.run(vector, networkId);
             } catch (NotBoundException ex) {
-                Logger.getLogger(RunManager.class.getName()).log(Level.SEVERE, null, ex);
+                logger.error(ex.getStackTrace());
             } catch (AccessException ex) {
-                Logger.getLogger(RunManager.class.getName()).log(Level.SEVERE, null, ex);
+                logger.error(ex.getStackTrace());
             }        
         }
         catch(RemoteException e)

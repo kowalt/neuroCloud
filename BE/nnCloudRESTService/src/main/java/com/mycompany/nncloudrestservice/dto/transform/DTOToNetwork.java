@@ -23,15 +23,16 @@ import com.mycompany.nncloudrestservice.pojo.Network;
 import com.mycompany.nncloudrestservice.pojo.Neuron;
 import com.mycompany.nncloudrestservice.pojo.Synapse;
 import com.mycompany.nncloudrestservice.utils.CurrentUserContainer;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 
 /**
  *
  * @author Tomasz
  */
 public class DTOToNetwork {
-  
+	private static final Logger logger = LogManager.getLogger(DTOToNetwork.class);
     private NetworkDTO ndto;
     private Network n;
     private HashMap<Integer, Neuron> neuronsMap;
@@ -51,7 +52,7 @@ public class DTOToNetwork {
              try {
                  nPrototype = ndao.getItem(String.valueOf(ndto.getId()));
              } catch (Exception ex) {
-                 Logger.getLogger(DTOToNetwork.class.getName()).log(Level.SEVERE, null, ex);
+                 logger.error(ex.getStackTrace());
              }
         Date creationDate;
         if(nPrototype == null)

@@ -6,13 +6,15 @@
 package com.mycompany.nncloudrestservice.logic;
 
 import com.mycompany.nncloudrestservice.daos.NetworkDAO;
+import com.mycompany.nncloudrestservice.dto.transform.DTOToNetwork;
 import com.mycompany.nncloudrestservice.pojo.Network;
 import com.mycompany.nncloudrestservice.pojo.Neuron;
 import com.mycompany.nncloudrestservice.pojo.Synapse;
 import com.mycompany.nncloudrestservice.utils.CurrentUserContainer;
 import com.mycompany.nncloudrestservice.ws.DownloadOutputVector;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 import org.json.JSONArray;
 
 /**
@@ -20,6 +22,7 @@ import org.json.JSONArray;
  * @author Tomasz
  */
 public class GetOutput {
+	private static final Logger logger = LogManager.getLogger(GetOutput.class);
     private Network network;
     
     public GetOutput(int id)
@@ -28,7 +31,7 @@ public class GetOutput {
             NetworkDAO ndao = new NetworkDAO();
             network = ndao.getItem(String.valueOf(id));
         } catch (Exception ex) {
-            Logger.getLogger(GetOutput.class.getName()).log(Level.SEVERE, null, ex);
+            logger.error(ex.getStackTrace());
         }
     }
     
@@ -49,7 +52,7 @@ public class GetOutput {
         try {
             network = ndao.getItem(String.valueOf(id));
         } catch (Exception ex) {
-            Logger.getLogger(DownloadOutputVector.class.getName()).log(Level.SEVERE, null, ex);
+            logger.error(ex.getStackTrace());
         }
         
         JSONArray r = new JSONArray();
