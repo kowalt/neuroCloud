@@ -20,9 +20,9 @@ app.directive('trainingDataFileReader', function() {
 						
 					return retArr;
 				}
-				if(scope.$eval(attrs.fileType) === 'learning')
+				if(attrs.fileType === 'learning')
 					scope.trainingProps.learningSet = digestCSV(contents);
-				if(scope.$eval(attrs.fileType) === 'training')
+				if(attrs.fileType === 'training')
 					scope.trainingProps.trainingSet = digestCSV(contents);
               });
           };
