@@ -14,7 +14,7 @@ app.directive('trainingDataFileReader', function() {
 					var retArr = [];
 					var arrayOfLines = rawContent.match(/[^\r\n]+/g);
 
-					for(var i=0; i<arrayOfLines; i++)
+					for(var i=0; i<arrayOfLines.length; i++)
 						retArr[i] = arrayOfLines[i].split(',');
 
 					return retArr;
