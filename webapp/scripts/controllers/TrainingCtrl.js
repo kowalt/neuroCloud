@@ -13,7 +13,7 @@ app
 	}
 
 	$scope.train = function() {
-		$scope.xmlNetwork = commonDataService;
+		$scope.xmlNetwork = commonDataService.xmlNetwork;
 		$scope.trainingProps.networkId = obtainNetworkId($scope.xmlNetwork);
 		networksService.train($scope.trainingProps).success(function(data) {
 			$alert({title: 'Network sent for training', content: data, placement: 'top', type: 'info', show: true });
