@@ -1,7 +1,6 @@
 app.directive('trainingDataFileReader', function() {
   return {
 	restrict: 'A',
-	scope: {},
     link: function(scope, element, attrs) {
       element.on('change', function(changeEvent) {
         var files = changeEvent.target.files;
@@ -14,10 +13,10 @@ app.directive('trainingDataFileReader', function() {
 				{
 					var retArr = [];
 					var arrayOfLines = rawContent.match(/[^\r\n]+/g);
-					
+
 					for(var i=0; i<arrayOfLines; i++)
 						retArr[i] = arrayOfLines[i].split(',');
-						
+
 					return retArr;
 				}
 				if(attrs.fileType === 'learning')
