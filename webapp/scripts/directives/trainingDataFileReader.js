@@ -15,7 +15,10 @@ app.directive('trainingDataFileReader', function() {
 					var arrayOfLines = rawContent.match(/[^\r\n]+/g);
 
 					for(var i=0; i<arrayOfLines.length; i++)
+					{
 						retArr[i] = arrayOfLines[i].split(',');
+						retArr[i] = parseFloat(retArr[i]);
+					}
 
 					return retArr;
 				}
