@@ -17,7 +17,8 @@ app.directive('trainingDataFileReader', function() {
 					for(var i=0; i<arrayOfLines.length; i++)
 					{
 						retArr[i] = arrayOfLines[i].split(',');
-						retArr[i] = parseFloat(retArr[i]);
+						for(var j=0; j<retArr[i].length; j++)
+							retArr[i][j] = parseFloat(retArr[i][j]);
 					}
 
 					return retArr;
