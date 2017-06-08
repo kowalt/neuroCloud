@@ -16,7 +16,6 @@ import com.mycompany.nncloudrestservice.dto.LayerDTO;
 import com.mycompany.nncloudrestservice.dto.NetworkDTO;
 import com.mycompany.nncloudrestservice.dto.NeuronDTO;
 import com.mycompany.nncloudrestservice.dto.SynapseDTO;
-import com.mycompany.nncloudrestservice.logic.Generate;
 import com.mycompany.nncloudrestservice.pojo.ActivationFunction;
 import com.mycompany.nncloudrestservice.pojo.Layer;
 import com.mycompany.nncloudrestservice.pojo.Network;
@@ -32,7 +31,7 @@ import org.apache.log4j.Logger;
  * @author Tomasz
  */
 public class DTOToNetwork {
-	private static final Logger logger = LogManager.getLogger(DTOToNetwork.class);
+    private static final Logger logger = LogManager.getLogger(DTOToNetwork.class);
     private NetworkDTO ndto;
     private Network n;
     private HashMap<Integer, Neuron> neuronsMap;

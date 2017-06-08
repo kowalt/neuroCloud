@@ -3,9 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.mycompany.nncloudrestservice.localcalculations.singlethreaded;
+package com.mycompany.nncloudrestservice.localcalculations;
 
 import com.mycompany.nncloudrestservice.daos.NetworkDAO;
+import com.mycompany.nncloudrestservice.localcalculations.multithreadcpu.RunProcessor;
 import com.mycompany.nncloudrestservice.pojo.Layer;
 import com.mycompany.nncloudrestservice.pojo.Network;
 import com.mycompany.nncloudrestservice.pojo.Neuron;
@@ -15,18 +16,24 @@ import java.util.List;
  *
  * @author Tomasz
  */
-public class SingleThreadRunManager{
+public class RunManager{
  
     private Network n;
-
-    public SingleThreadRunManager(int id)
+    private Mode mode = Mode.SINGLETHREAD;
+    
+    private enum Mode
+    {
+        SINGLETHREAD,MULTITHREAD
+    }
+    
+    public RunManager(int id)
     {
         NetworkDAO ndao = new NetworkDAO();
         ndao.setLazyLoadMode(false);
         n = ndao.getItem(String.valueOf(id));
     }
     
-    public SingleThreadRunManager(Network n)
+    public RunManager(Network n)
     {
     	this.n = n;
     }
@@ -34,7 +41,12 @@ public class SingleThreadRunManager{
     public double[] run(double[] input) {
         List<Layer> lList = n.getLayers();
         
-        NetworkProcessor np = new NetworkProcessor(n);
+        IRunProcessor np;
+
+        if(mode == Mode.MULTITHREAD)
+            np = new com.mycompany.nncloudrestservice.localcalculations.multithreadcpu.RunProcessor(n);
+        else
+            np = new com.mycompany.nncloudrestservice.localcalculations.singlethreaded.RunProcessor(n);
         
         np.setInput(input);
         

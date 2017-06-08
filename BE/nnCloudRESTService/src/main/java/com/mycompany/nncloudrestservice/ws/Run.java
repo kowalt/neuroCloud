@@ -5,7 +5,7 @@
  */
 package com.mycompany.nncloudrestservice.ws;
 
-import com.mycompany.nncloudrestservice.localcalculations.singlethreaded.SingleThreadRunManager;
+import com.mycompany.nncloudrestservice.localcalculations.RunManager;
 import java.util.Arrays;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
@@ -35,7 +35,7 @@ public class Run {
         for(int i=0; i< vector.length ;i++)
             vector[i] = jVector.getDouble(i);
 
-        SingleThreadRunManager manager = new SingleThreadRunManager(request.getInt("id_network"));
+        RunManager manager = new RunManager(request.getInt("id_network"));
         double [] result = manager.run(vector);
         return Response.status(200).entity(Arrays.toString(result)).build();
     }

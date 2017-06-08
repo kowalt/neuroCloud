@@ -18,6 +18,8 @@ import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.HashMap;
 import java.util.Map;
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 
 
 /**
@@ -29,7 +31,7 @@ public class Main {
     public static String base_uri = "http://localhost:8080/nncloudAPI/";
     public static final int RMI_PORT = 61262;
     public static final int RMI_REGISTRY_PORT = 1099;
-
+    private static final Logger logger = LogManager.getLogger(Main.class);
     /**
      * Starts Grizzly HTTP server exposing JAX-RS resources defined in this application.
      * @return Grizzly HTTP server.
@@ -81,6 +83,7 @@ public class Main {
         final HttpServer server = startServer();
         startRMIServer();
         System.out.println(String.format("Jersey app started at %s\nHit enter to stop it",base_uri));
+        logger.info("Started grizzly server.");
         System.in.read();
         server.stop();
     }

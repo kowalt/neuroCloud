@@ -5,6 +5,7 @@
  */
 package com.mycompany.nncloudrestservice.localcalculations.singlethreaded;
 
+import com.mycompany.nncloudrestservice.localcalculations.RunManager;
 import com.mycompany.nncloudrestservice.pojo.ActivationFunction;
 import com.mycompany.nncloudrestservice.pojo.Layer;
 import com.mycompany.nncloudrestservice.pojo.Network;
@@ -50,7 +51,7 @@ public class SingleThreadRunManagerTest {
     {
         double[] expecteds = {0.045};
         double[] testInput = {0.1};
-        SingleThreadRunManager manager = new SingleThreadRunManager(createNetwork1());
+        RunManager manager = new RunManager(createNetwork1());
         
         assertArrayEquals(expecteds, manager.run(testInput), DELTA);
     }

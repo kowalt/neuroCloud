@@ -5,6 +5,7 @@
  */
 package com.mycompany.nncloudrestservice.localcalculations.singlethreaded;
 
+import com.mycompany.nncloudrestservice.localcalculations.IRunProcessor;
 import com.mycompany.nncloudrestservice.localcalculations.ValueCalculator;
 import com.mycompany.nncloudrestservice.pojo.ActivationFunction;
 import com.mycompany.nncloudrestservice.pojo.Layer;
@@ -17,12 +18,12 @@ import java.util.List;
  *
  * @author Tomasz
  */
-public class NetworkProcessor 
+public class RunProcessor implements IRunProcessor
 {
     private ValueCalculator vc;
     private Network n;
     
-    public NetworkProcessor(Network n)
+    public RunProcessor(Network n)
     {
         vc = new ValueCalculator();
         this.n = n;

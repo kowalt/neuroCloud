@@ -2,7 +2,7 @@ package com.mycompany.nncloudrestservice.training.ebp;
 
 import com.mycompany.nncloudrestservice.comparators.LayerAscendingComparator;
 import com.mycompany.nncloudrestservice.comparators.LayerDescendingComparator;
-import com.mycompany.nncloudrestservice.localcalculations.singlethreaded.SingleThreadRunManager;
+import com.mycompany.nncloudrestservice.localcalculations.RunManager;
 import com.mycompany.nncloudrestservice.localcalculations.ValueCalculator;
 import com.mycompany.nncloudrestservice.pojo.Layer;
 import com.mycompany.nncloudrestservice.pojo.Network;
@@ -68,7 +68,7 @@ public class EBP implements Runnable {
     private void updateWeights()
     {
         ValueCalculator vc = new ValueCalculator();
-        
+
         for(Layer layer: network.getLayers())
         {
             for(Neuron neuron: layer.getNeurons())
@@ -76,7 +76,7 @@ public class EBP implements Runnable {
                 Double e = 0.0;
                 for(Synapse synin: neuron.getSynapses_in())
                     e += synin.getValue()*synin.getWeight();
-                
+
                 for(Synapse synin: neuron.getSynapses_in())
                 {
                     Double delta = learning_factor*neuron.getError_value()*vc.calculateValue(neuron.getActivation_functions(), e, true)*synin.getValue();
@@ -88,7 +88,7 @@ public class EBP implements Runnable {
     
     private void train(Network n)
     {
-        SingleThreadRunManager runManager = new SingleThreadRunManager(network);
+        RunManager runManager = new RunManager(network);
         for(int i=0; i<iterations; i++)
         {
             for(int j=0; j<learning_set.size(); j++)
