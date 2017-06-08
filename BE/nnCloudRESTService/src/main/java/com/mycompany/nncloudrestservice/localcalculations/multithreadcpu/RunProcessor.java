@@ -1,5 +1,6 @@
 package com.mycompany.nncloudrestservice.localcalculations.multithreadcpu;
 
+import com.mycompany.nncloudrestservice.localcalculations.IRunProcessor;
 import java.util.ArrayList;
 import java.util.List;
 
