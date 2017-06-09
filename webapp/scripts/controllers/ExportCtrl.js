@@ -7,11 +7,14 @@ angular.module('nncloud')
 	  {
 		  if($scope.selectedFormat.name == "XML")
 		  {
-			var blob = new Blob(commonDataService.xmlNetwork,  {type:"application/xml;charset=utf-8;" });
-			var downloadLink = angular.element('<a></a>');
-			downloadLink.attr('href',window.URL.createObjectURL(blob));
-			downloadLink.attr('download', 'network.xml');
-			downloadLink[0].click();
+			var fileContent = commonDataService.xmlNetwork;
+			var element = document.createElement('a');
+			element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(fileContent));
+			element.setAttribute('download', 'myNetwork.xml');
+			element.style.display = 'none';
+			document.body.appendChild(element);
+			element.click();
+			document.body.removeChild(element);
 		  }
 	  }
   }]);
