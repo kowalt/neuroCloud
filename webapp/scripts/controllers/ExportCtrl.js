@@ -2,8 +2,7 @@
 
 angular.module('nncloud')
   .controller('ExportCtrl', ['$scope','commonDataService', function ($scope, commonDataService) {
-	  $scope.formats = [{"name":"XML"}];
-	  $scope.selectedFormat = "";
+	  $scope.formats = [{name:"XML"}];
 	  $scope.download = function()
 	  {
 		  if($scope.selectedFormat == "XML")
