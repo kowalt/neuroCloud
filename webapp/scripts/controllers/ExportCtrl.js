@@ -14,4 +14,4 @@ angular.module('nncloud')
 			downloadLink[0].click();
 		  }
 	  }
-  });
+  }]);
