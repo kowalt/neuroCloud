@@ -5,7 +5,7 @@ angular.module('nncloud')
 	  $scope.formats = [{name:"XML"}];
 	  $scope.download = function()
 	  {
-		  if($scope.selectedFormat == "XML")
+		  if($scope.selectedFormat.name == "XML")
 		  {
 			var blob = new Blob(commonDataService.xmlNetwork,  {type:"application/xml;charset=utf-8;" });
 			var downloadLink = angular.element('<a></a>');
