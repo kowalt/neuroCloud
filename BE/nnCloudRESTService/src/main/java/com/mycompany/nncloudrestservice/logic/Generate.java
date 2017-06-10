@@ -24,7 +24,12 @@ import org.json.JSONObject;
  */
 public class Generate 
 {   
-    public void generateNetwork(JSONObject parameters)
+    public enum Mode
+    {
+        NORMAL,RETURN_ONLY
+    }
+    
+    public Network generateNetwork(JSONObject parameters, Mode mode)
     {
         Network network = new Network();
         String name = parameters.getString("name");
@@ -52,8 +57,13 @@ public class Generate
         connectLayers(layers); 
         network.setLayers(layers);
 
-        NetworkDAO ndao = new NetworkDAO();
-        ndao.addItem(network);
+        if(mode == Mode.NORMAL)
+        {
+            NetworkDAO ndao = new NetworkDAO();
+            ndao.addItem(network);
+        }
+
+        return network;
     }
     
     public void connectLayers(List<Layer> l)

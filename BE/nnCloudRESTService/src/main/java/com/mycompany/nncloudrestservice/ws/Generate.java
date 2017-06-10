@@ -31,7 +31,7 @@ public class Generate
 
         try
         {
-            gc.generateNetwork(new JSONObject(x));
+            gc.generateNetwork(new JSONObject(x),com.mycompany.nncloudrestservice.logic.Generate.Mode.NORMAL);
             System.out.println("Network generated");
         }
         catch(JSONException je)

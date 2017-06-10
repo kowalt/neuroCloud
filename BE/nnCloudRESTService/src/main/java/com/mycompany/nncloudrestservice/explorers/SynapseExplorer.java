@@ -58,4 +58,14 @@ public class SynapseExplorer {
         synList.addAll(registry.values());
         return synList;
     }
+    
+    /**
+     * Set weights of all synapses
+     */
+    public void setWeights(double value)
+    {
+        List<Synapse> synapses = getAll();
+        for(Synapse s: synapses)
+            s.setWeight(value);
+    }
 }

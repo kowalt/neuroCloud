@@ -21,7 +21,7 @@ public class RunManager{
     private Network n;
     private Mode mode = Mode.SINGLETHREAD;
     
-    private enum Mode
+    public enum Mode
     {
         SINGLETHREAD,MULTITHREAD
     }
@@ -63,5 +63,10 @@ public class RunManager{
         ndao.updateItem(n);
 
         return output_vector;
+    }
+    
+    public void setMode(Mode mode)
+    {
+        this.mode = mode;
     }
 }
