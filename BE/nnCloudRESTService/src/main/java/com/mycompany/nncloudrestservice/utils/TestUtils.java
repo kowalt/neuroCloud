@@ -17,7 +17,7 @@ import java.util.List;
 import org.json.JSONObject;
 
 /**
- *
+ * Class for testing purposes
  * @author Tomek
  */
 public class TestUtils {
@@ -90,6 +90,42 @@ public class TestUtils {
         SynapseExplorer se = new SynapseExplorer(network);
         se.setWeights(0.5);
         
+        List<Neuron> neurons = network.getLayers().get(0).getNeurons();
+        
+        for(Neuron n: neurons)
+        {
+            List<Synapse> synapses = n.getSynapses_in();
+            
+            for(Synapse syn: synapses)
+                syn.setValue(0.4);
+        }
+
         return network;
     }
+    
+    public static Network createNetwork3()
+    {
+        Generate generator = new Generate();
+        
+        JSONObject parameters = new JSONObject("{"
+                + "'name': 'network3',"
+                + "'neuronsPerLayer':[3,2,1]," 
+                + "'activationFunction':'Tanh(x)'" 
+                + "}");
+        Network network = generator.generateNetwork(parameters,Generate.Mode.RETURN_ONLY);
+        
+        SynapseExplorer se = new SynapseExplorer(network);
+        se.setWeights(0.5);
+        
+        List<Neuron> neurons = network.getLayers().get(0).getNeurons();
+        
+        for(Neuron n: neurons)
+        {
+            List<Synapse> synapses = n.getSynapses_in();
+            
+            for(Synapse syn: synapses)
+                syn.setValue(0.73);
+        }
+        return network;
+    }        
 }

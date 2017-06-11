@@ -20,43 +20,32 @@ import java.util.Map;
  */
 public class SynapseExplorer {
     private Network network;
-    private Map<Integer, Synapse> registry;
+    private List<Synapse> synapses;
     
     public SynapseExplorer(Network n)
     {
         this.network = n;
-        registry = new HashMap<Integer, Synapse>();
+        synapses = new ArrayList<Synapse>();
     }
-    
-    private boolean isInRegistry(Integer synId)
-    {
-        return registry.get(synId) != null;
-    }
-    
+
     /**
      * Returns all unique synapses
     */
     public List<Synapse> getAll()
     {        
-
         for(Layer layer: network.getLayers())
+        {
             for(Neuron neuron: layer.getNeurons())
             {
                 for(Synapse synIn: neuron.getSynapses_in())
-                {
-                    if(isInRegistry(synIn.getId()))
-                        registry.put(synIn.getId(), synIn);
-                }
-                
+                    synapses.add(synIn);
+
                 for(Synapse synOut: neuron.getSynapses_out())
-                {
-                    if(isInRegistry(synOut.getId()))
-                        registry.put(synOut.getId(), synOut);
-                }
+                    synapses.add(synOut);
             }
-        List<Synapse> synList = new ArrayList<>();
-        synList.addAll(registry.values());
-        return synList;
+        }
+
+        return synapses;
     }
     
     /**
@@ -64,8 +53,16 @@ public class SynapseExplorer {
      */
     public void setWeights(double value)
     {
-        List<Synapse> synapses = getAll();
-        for(Synapse s: synapses)
-            s.setWeight(value);
+        for(Layer layer: network.getLayers())
+        {
+            for(Neuron neuron: layer.getNeurons())
+            {
+                for(Synapse synIn: neuron.getSynapses_in())
+                    synIn.setWeight(value);
+
+                for(Synapse synOut: neuron.getSynapses_out())
+                    synOut.setWeight(value);
+            }
+        }
     }
 }

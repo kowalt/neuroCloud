@@ -53,9 +53,22 @@ public class RunManagerTest {
         assertArrayEquals(expecteds1, manager.run(testInput1), DELTA);
         
         //second network
+        double[] testInput2 = {0.1,0.4,0.5,0.9};
+        double[] expecteds2 = {0.5123800463240914,0.5123800463240914};
         manager = new RunManager(TestUtils.createNetwork2());
         manager.setMode(RunManager.Mode.SINGLETHREAD);
-        assertArrayEquals(expecteds1, manager.run(testInput1), DELTA);
+        assertArrayEquals(expecteds2, manager.run(testInput2), DELTA);
+        manager.setMode(RunManager.Mode.MULTITHREAD);
+        assertArrayEquals(expecteds2, manager.run(testInput2), DELTA);
+        
+        //third
+        double[] testInput3 = {0.33,0.24,0.9};
+        double[] expecteds3 = {0.3261574509746072};
+        manager = new RunManager(TestUtils.createNetwork3());
+        manager.setMode(RunManager.Mode.SINGLETHREAD);
+        assertArrayEquals(expecteds3, manager.run(testInput3), DELTA);
+        manager.setMode(RunManager.Mode.MULTITHREAD);
+        assertArrayEquals(expecteds3, manager.run(testInput3), DELTA);
     }
     
 
