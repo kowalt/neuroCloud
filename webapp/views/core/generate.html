@@ -7,11 +7,11 @@
 		</div>
 		<div class="form-group">
 			<label for="neuronsPerLayer">Neurons per layer</label>
-			<input type="text" class="form-control" id="neuronsPerLayer" ng-model="network.neuronsPerLayer">
+			<input type="text" class="form-control" id="neuronsPerLayer" ng-model="network.neuronsPerLayer" bs-tooltip="tooltipNeuronsPerLayer">
 		</div>
 		<div class="form-group">
 			<label for="activationFunction">Activation function</label>
-			<input type="text" class="form-control" id="activationFunction" ng-model="network.activationFunction">
+			<input type="text" class="form-control" id="activationFunction" ng-model="network.activationFunction" bs-tooltip="tooltipActivationFunction">
 		</div>
 		<button class="btn btn-lg btn-primary btn-block" type="submit" ng-click="generate()">Generate</button>
 	</form>

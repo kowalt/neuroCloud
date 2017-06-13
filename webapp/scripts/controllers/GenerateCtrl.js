@@ -2,6 +2,9 @@
 
 app
   .controller('GenerateCtrl', ['$scope', '$http', '$alert','networksService', function ($scope, $http, $alert, networksService) {
+		$scope.tooltipNeuronsPerLayer = {"title": "Insert numbers separated by spacebar e.g. 4 3 2 2. Every number defines the amount of neurons on the corresponding layer."};
+		$scope.tooltipActivationFunction = {"title": "Insert the activation function and domain rules in format function<=>domain_rule1,domain_rule2. Domain rules are optional."};
+
 		$scope.generate = function()
 		{
 			if(!validate())
