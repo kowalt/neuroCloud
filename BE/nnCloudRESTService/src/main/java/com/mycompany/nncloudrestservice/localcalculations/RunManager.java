@@ -59,9 +59,13 @@ public class RunManager{
         for(Neuron n: outNeuList)
             output_vector[index++] = n.getSynapses_out().get(0).getValue();
 
-        NetworkDAO ndao = new NetworkDAO();
-        ndao.updateItem(n);
-
+        String callerClassName = new Exception().getStackTrace()[1].getClassName();
+        
+        if(!callerClassName.contains("Test"))
+        {        
+            NetworkDAO ndao = new NetworkDAO();
+            ndao.updateItem(n);
+        }
         return output_vector;
     }
     

@@ -89,16 +89,6 @@ public class TestUtils {
         
         SynapseExplorer se = new SynapseExplorer(network);
         se.setWeights(0.5);
-        
-        List<Neuron> neurons = network.getLayers().get(0).getNeurons();
-        
-        for(Neuron n: neurons)
-        {
-            List<Synapse> synapses = n.getSynapses_in();
-            
-            for(Synapse syn: synapses)
-                syn.setValue(0.4);
-        }
 
         return network;
     }
@@ -117,15 +107,82 @@ public class TestUtils {
         SynapseExplorer se = new SynapseExplorer(network);
         se.setWeights(0.5);
         
-        List<Neuron> neurons = network.getLayers().get(0).getNeurons();
-        
-        for(Neuron n: neurons)
-        {
-            List<Synapse> synapses = n.getSynapses_in();
-            
-            for(Synapse syn: synapses)
-                syn.setValue(0.73);
-        }
         return network;
-    }        
+    }
+
+    public static Network createNetwork4()
+    {
+        Generate generator = new Generate();
+        
+        JSONObject parameters = new JSONObject("{"
+                + "'name': 'network4',"
+                + "'neuronsPerLayer':[4,3,5,5]," 
+                + "'activationFunction':'Tanh(x)'" 
+                + "}");
+        Network network = generator.generateNetwork(parameters,Generate.Mode.RETURN_ONLY);
+        
+        SynapseExplorer se = new SynapseExplorer(network);
+        se.setWeights(0.5);
+
+        return network;
+    }
+    
+    public static Network createNetwork5()
+    {
+        Generate generator = new Generate();
+        
+        JSONObject parameters = new JSONObject("{"
+                + "'name': 'network5',"
+                + "'neuronsPerLayer':[4,3,5,5]," 
+                + "'activationFunction':'Tanh(x)'" 
+                + "}");
+        Network network = generator.generateNetwork(parameters,Generate.Mode.RETURN_ONLY);
+        
+        SynapseExplorer se = new SynapseExplorer(network);
+        se.setWeights(0.5);
+
+        List<Neuron> someNeurons = network.getLayers().get(1).getNeurons();
+        
+        for(Neuron neu: someNeurons)
+        {
+            for(Synapse s: neu.getSynapses_in())
+                s.setWeight(0.15);
+        }
+        
+        someNeurons = network.getLayers().get(2).getNeurons();
+        
+        for(Neuron neu: someNeurons)
+        {
+            int c =1;
+            for(Synapse s: neu.getSynapses_in())
+            {   
+                if(c%2 == 1)
+                    s.setWeight(0.77);
+                else
+                    s.setWeight(0.22);
+            }
+            c++;
+        }
+
+        return network;
+    }
+    
+    public static Network createNetwork6()
+    {
+        Generate generator = new Generate();
+        
+        JSONObject parameters = new JSONObject("{"
+                + "'name': 'network6',"
+                + "'neuronsPerLayer':[3,2,2]," 
+                + "'activationFunction':'Tanh(x)'" 
+                + "}");
+        Network network = generator.generateNetwork(parameters,Generate.Mode.RETURN_ONLY);
+        
+        SynapseExplorer se = new SynapseExplorer(network);
+        se.setWeights(0.7);
+        
+        network.getLayers().get(2).getNeurons().get(0).getSynapses_in().get(1).setWeight(0.2);
+
+        return network;
+    }
 }

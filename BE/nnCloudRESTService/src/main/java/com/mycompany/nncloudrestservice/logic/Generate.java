@@ -54,7 +54,7 @@ public class Generate
             l.setNetwork(network);
             layers.add(l);
         }
-        connectLayers(layers); 
+        connectLayers(layers);
         network.setLayers(layers);
 
         if(mode == Mode.NORMAL)

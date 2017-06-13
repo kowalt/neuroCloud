@@ -19,7 +19,7 @@ import static org.junit.Assert.*;
  */
 public class RunManagerTest {
     
-    public final Double DELTA = 0.000001;
+    public final Double DELTA = 0.00001;
     
     public RunManagerTest() {
     }
@@ -69,7 +69,33 @@ public class RunManagerTest {
         assertArrayEquals(expecteds3, manager.run(testInput3), DELTA);
         manager.setMode(RunManager.Mode.MULTITHREAD);
         assertArrayEquals(expecteds3, manager.run(testInput3), DELTA);
+        
+        //fourth- largest network
+        
+        double[] testInput4 = {0.33,0.24,0.9,0.52};
+        double[] expecteds4 = {0.8977604920144835,0.8977604920144835,0.8977604920144835,0.8977604920144835,0.8977604920144835};
+        manager = new RunManager(TestUtils.createNetwork4());
+        manager.setMode(RunManager.Mode.SINGLETHREAD);
+        assertArrayEquals(expecteds4, manager.run(testInput4), DELTA);
+        manager.setMode(RunManager.Mode.MULTITHREAD);
+        assertArrayEquals(expecteds4, manager.run(testInput4), DELTA);
+        
+        //fifth
+        double[] testInput5 = {0.33,0.24,0.9,0.52};
+        double[] expecteds5 = {0.6620500831850127,0.6620500831850127,0.6620500831850127,0.6620500831850127,0.6620500831850127};
+        manager = new RunManager(TestUtils.createNetwork5());
+        manager.setMode(RunManager.Mode.SINGLETHREAD);
+        assertArrayEquals(expecteds5, manager.run(testInput5), DELTA);
+        manager.setMode(RunManager.Mode.MULTITHREAD);
+        assertArrayEquals(expecteds5, manager.run(testInput5), DELTA);
+        
+        //sixth
+        double[] testInput6 = {0.33,0.8,0.9};
+        double[] expecteds6 = {0.5695772868696615, 0.7642207101974337};
+        manager = new RunManager(TestUtils.createNetwork6());
+        manager.setMode(RunManager.Mode.SINGLETHREAD);
+        assertArrayEquals(expecteds6, manager.run(testInput6), DELTA);
+        manager.setMode(RunManager.Mode.MULTITHREAD);
+        assertArrayEquals(expecteds6, manager.run(testInput6), DELTA);
     }
-    
-
 }

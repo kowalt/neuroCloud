@@ -20,6 +20,7 @@ import org.apache.log4j.Logger;
  *
  * @author Tomasz
  */
+@Deprecated
 public class RunManager {
 	private static final Logger logger = LogManager.getLogger(RunManager.class);
     public void run(int networkId, int serverId, double[] vector)
