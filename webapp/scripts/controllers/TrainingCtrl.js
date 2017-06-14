@@ -3,6 +3,7 @@
 app
   .controller('TrainingCtrl', ['$scope', '$alert', 'networksService','commonDataService', function ($scope, $alert,networksService,commonDataService) {
 	$scope.trainingProps = {};
+	$scope.tooltipTraining = {"title":"File with floating-point values partitioned by comma. Vectors' separator is crlf"};
 
 	function obtainNetworkId(networkXML)
 	{

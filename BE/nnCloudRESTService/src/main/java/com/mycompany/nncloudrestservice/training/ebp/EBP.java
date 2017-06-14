@@ -15,11 +15,11 @@ import java.util.List;
 import org.apache.commons.lang3.ArrayUtils;
 
 public class EBP implements Runnable {
-    private Network network;
-    private Double learning_factor;
-    private Integer iterations;
-    private List<Double[]> learning_set;
-    private List<Double[]> training_set;
+    private final Network network;
+    private final Double learning_factor;
+    private final Integer iterations;
+    private final List<Double[]> learning_set;
+    private final List<Double[]> training_set;
 
     public EBP(Network network, Double learning_factor, Integer iterations, List<Double[]> learning_set, List<Double[]> training_set)
     {

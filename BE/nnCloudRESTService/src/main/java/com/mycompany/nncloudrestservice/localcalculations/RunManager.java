@@ -18,8 +18,8 @@ import java.util.List;
  */
 public class RunManager{
  
-    private Network n;
-    private Mode mode = Mode.SINGLETHREAD;
+    private final Network n;
+    private Mode mode = Mode.MULTITHREAD;
     
     public enum Mode
     {
