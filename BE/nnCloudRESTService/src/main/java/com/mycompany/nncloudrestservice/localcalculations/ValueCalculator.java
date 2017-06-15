@@ -5,6 +5,8 @@ import com.mycompany.nncloudrestservice.pojo.ActivationFunction;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -20,6 +22,7 @@ import java.util.Set;
 public class ValueCalculator
 {
     private FunctionInterpreter f_interpreter;
+    private static final Logger logger = LogManager.getLogger(ValueCalculator.class);
     
     public ValueCalculator()
     {
@@ -101,9 +104,10 @@ public class ValueCalculator
         }
     }
 
-    private double calculateFunctionValue(String funcion_raw, double argument)
+    private double calculateFunctionValue(String function_raw, double argument)
     {
-        return f_interpreter.calculateValueInfix(funcion_raw.replaceAll("x", String.valueOf(argument)), new double[]{argument});
+        logger.debug("calculateFunctionValue->function_raw="+function_raw+" ,argument="+String.valueOf(argument));
+        return f_interpreter.calculateValueInfix(function_raw.replaceAll("x", String.valueOf(argument)), new double[]{argument});
     }
 }
 

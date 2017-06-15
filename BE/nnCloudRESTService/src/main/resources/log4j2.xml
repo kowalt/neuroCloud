@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Configuration status="WARN">
+    <Appenders>
+        <RollingFile name="rollingfile" fileName="nnCloudRESTServiceXML.log" filePattern="nnCloudRESTServiceXML-%d{yyyyMMddHHmmss}.log">
+            <PatternLayout>
+                <pattern>
+                    [%-5level] %d{yyyy-MM-dd HH:mm:ss} [%t] %M- %msg%n
+                </pattern>
+            </PatternLayout>
+            <Policies>
+                <OnStartupTrigerringPolicy/>
+            </Policies>
+        </RollingFile>
+    </Appenders>
+    <Loggers>
+        <Root level="ALL">
+            <AppenderRef ref="rollingfile" level="all"/>
+        </Root>
+    </Loggers>
+</Configuration>
