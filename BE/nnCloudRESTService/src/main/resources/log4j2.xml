@@ -14,8 +14,8 @@
         </RollingFile>
     </Appenders>
     <Loggers>
-        <Root level="ALL">
-            <AppenderRef ref="rollingfile" level="all"/>
+        <Root level="DEBUG">
+            <AppenderRef ref="rollingfile" level="debug"/>
         </Root>
     </Loggers>
 </Configuration>

@@ -34,10 +34,15 @@ public class ValueCalculator
         double output = Double.NaN;
         for(ActivationFunction af: activation_functions)
         {
+            logger.trace("activationFunction="+af.getFunction()+",domain_rule="+af.getDomain_rule());
             if(checkIfDomainRuleApply(af.getDomain_rule(), input))
             {   
                 if(derivative)
-                    output = calculateFunctionValue(af.getFirst_derivative(), input);
+                {
+                    String firstDerivative = af.getFirst_derivative();
+                    logger.trace("derivative="+firstDerivative);
+                    output = calculateFunctionValue(firstDerivative, input);
+                }
                 else
                     output = calculateFunctionValue(af.getFunction(), input);
                 break;
@@ -106,7 +111,7 @@ public class ValueCalculator
 
     private double calculateFunctionValue(String function_raw, double argument)
     {
-        logger.debug("calculateFunctionValue->function_raw="+function_raw+" ,argument="+String.valueOf(argument));
+        logger.trace("calculateFunctionValue->function_raw="+function_raw+" ,argument="+String.valueOf(argument));
         return f_interpreter.calculateValueInfix(function_raw.replaceAll("x", String.valueOf(argument)), new double[]{argument});
     }
 }

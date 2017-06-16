@@ -13,6 +13,8 @@ import com.mycompany.nncloudrestservice.utils.MailSender;
 import java.util.Collections;
 import java.util.List;
 import org.apache.commons.lang3.ArrayUtils;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class EBP implements Runnable {
     private final Network network;
@@ -20,6 +22,7 @@ public class EBP implements Runnable {
     private final Integer iterations;
     private final List<Double[]> learning_set;
     private final List<Double[]> training_set;
+    private final Logger LOGGER = LogManager.getLogger(EBP.class);
 
     public EBP(Network network, Double learning_factor, Integer iterations, List<Double[]> learning_set, List<Double[]> training_set)
     {
@@ -100,7 +103,9 @@ public class EBP implements Runnable {
                 updateWeights();
             }
         }
-
+        
+        LOGGER.info("training network "+n.getName()+" finished");
+        
         MailSender postman = new MailSender();
         postman.sendNofificationAfterTraining(n.getName());
     }
