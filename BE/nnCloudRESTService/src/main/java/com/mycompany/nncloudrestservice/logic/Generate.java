@@ -45,6 +45,7 @@ public class Generate
         
         network.setCreation(Calendar.getInstance().getTime());
         network.setName(name);
+        network.setState("IDLE");
         
         List<Layer> layers = new ArrayList<>();
         

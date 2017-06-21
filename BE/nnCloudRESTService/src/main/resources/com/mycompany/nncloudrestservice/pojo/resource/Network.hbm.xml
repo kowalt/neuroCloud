@@ -8,6 +8,9 @@
       </id>
       <property name="name" column="name" type="string"/>
       <property name="creation" column="creation" type="date"/>
+      <property name="state" column="state" type="string"/>
+      <property name="trainingIterationsMax" column="trainingIterationsMax" type="int"/>
+      <property name="trainingIterationsDone" column="trainingIterationsDone" type="int"/>
       <bag name="layers" cascade="all" table="layers" inverse="true" lazy="true">
           <key column="id_network" not-null="true"/>
           <one-to-many class="Layer"/>

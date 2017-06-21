@@ -6,7 +6,7 @@
  *
  * Main module of the application.
  */
-var app = angular.module('nncloud', ['ngRoute','mgcrea.ngStrap', 'mgcrea.ngStrap.tooltip','mgcrea.ngStrap.modal','ngCookies','mgcrea.ngStrap.helpers.dimensions']);
+var app = angular.module('nncloud', ['ngRoute','mgcrea.ngStrap', 'mgcrea.ngStrap.tooltip','mgcrea.ngStrap.modal','ngCookies','mgcrea.ngStrap.helpers.dimensions','angular-websocket']);
   app.config(['$routeProvider', '$httpProvider', function ($routeProvider, $httpProvider) {
   $httpProvider.defaults.withCredentials = true;  
   $routeProvider

@@ -28,6 +28,10 @@ public class Network
     private int id;
     private String name;
     private Date creation;
+    private String state;
+    private int trainingIterationsMax;
+    private int trainingIterationsDone;
+    
     @XmlElementWrapper
     @XmlElement(name="layer")
     private List<Layer> layers = new ArrayList<>();
@@ -60,6 +64,14 @@ public class Network
         this.creation = creation;
     }
 
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
+
     public List<Layer> getLayers() {
         return layers;
     }
@@ -74,5 +86,21 @@ public class Network
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public int getTrainingIterationsMax() {
+        return trainingIterationsMax;
+    }
+
+    public void setTrainingIterationsMax(int trainingIterationsMax) {
+        this.trainingIterationsMax = trainingIterationsMax;
+    }
+
+    public int getTrainingIterationsDone() {
+        return trainingIterationsDone;
+    }
+
+    public void setTrainingIterationsDone(int trainingIterationsDone) {
+        this.trainingIterationsDone = trainingIterationsDone;
     }
 }

@@ -1,4 +1,4 @@
 app.factory('commonDataService', [function()
 {
-	return {xmlNetwork: ''};
+	return {xmlNetwork: '', progressBarInfo: ''};
 }]);

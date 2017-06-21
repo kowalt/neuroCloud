@@ -5,6 +5,12 @@ app
 	$scope.trainingProps = {};
 	$scope.tooltipTraining = {"title":"File with floating-point values partitioned by comma. Vectors' separator is crlf"};
 
+	function connectWithProgressSocket()
+	{
+		
+		
+	}
+	
 	function obtainNetworkId(networkXML)
 	{
 		parser = new DOMParser();

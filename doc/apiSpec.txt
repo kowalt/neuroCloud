@@ -121,7 +121,6 @@ Register new user
             
 + Response 201
 
-
 ### Get the particular network [GET]
 
 Network will be set as active after this operation.
@@ -243,10 +242,7 @@ The message should the whole network DTO
 
         {
             "name": "MyNetworkForClassification",
-            "1stlayer": 4,
-            "2ndlayer": 3,
-            "3rdlayer": 2,
-            "4thlayer": 1,
+            "neuronsPerLayer": [4,3,2,1],
             "activationFunction": "-1<=>x<=-1;x<=>x>-1,x<1;1<=>x>=1"
         }
             
@@ -295,6 +291,24 @@ The message should the whole network DTO
 + Response 200 (application/json)
 
         [0.2]
+
+
+## Training [/training]
+
+### Train network
+
++ Request (application/json)
+
+        {
+            "networkId": 3,
+            "algorithmId": 1,
+            "iterations": 200,
+            "learningSet": [[0.15, 0.75, 0.5, 0.3], [0.1, 0.25, 0.1, 1.0], [0.12, 0.453, 0.9, 1.0]],
+            "trainingSet": [[0.3, 0.25], [0.13, 0.95], [0.32, 0.753]],
+            "learningCoefficient": 2.1
+        }
+
++ Response 202
 
 # Group Settings
 
@@ -363,3 +377,4 @@ Determine if the user wants to visualise the current network
         {
             "error": "Wrong id"
         }
+        

@@ -26,7 +26,11 @@ public class TrainingManager {
         NetworkDAO ndao = new NetworkDAO();
         ndao.setLazyLoadMode(false);
         Network network = ndao.getItem(networkId.toString());
+        network.setState("BUSY");
         Integer iterations = (Integer) rawData.get("iterations");
+        network.setTrainingIterationsMax(iterations);
+        network.setTrainingIterationsDone(0);
+        ndao.updateItem(network);
         Double learningCoefficient = (Double) rawData.get("learningCoefficient");
 
         JSONArray learningSetArrRaw = new JSONArray(rawData.get("learningSet").toString());
@@ -36,7 +40,7 @@ public class TrainingManager {
         
         for(int i=0; i<learningSetArrRaw.length(); i++)
         {
-            learningSet.add(convertJSONArray(learningSetArrRaw.getJSONArray(i))); //Crashpoint
+            learningSet.add(convertJSONArray(learningSetArrRaw.getJSONArray(i)));
             trainingSet.add(convertJSONArray(trainingSetArrRaw.getJSONArray(i)));
         }
 

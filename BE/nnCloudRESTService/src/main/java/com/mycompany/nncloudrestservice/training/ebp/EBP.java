@@ -2,6 +2,7 @@ package com.mycompany.nncloudrestservice.training.ebp;
 
 import com.mycompany.nncloudrestservice.comparators.LayerAscendingComparator;
 import com.mycompany.nncloudrestservice.comparators.LayerDescendingComparator;
+import com.mycompany.nncloudrestservice.daos.NetworkDAO;
 import com.mycompany.nncloudrestservice.localcalculations.RunManager;
 import com.mycompany.nncloudrestservice.localcalculations.ValueCalculator;
 import com.mycompany.nncloudrestservice.pojo.Layer;
@@ -89,8 +90,9 @@ public class EBP implements Runnable {
         }
     }
     
-    private void train(Network n)
+    private void train()
     {
+        NetworkDAO ndao = new NetworkDAO();
         RunManager runManager = new RunManager(network);
         for(int i=0; i<iterations; i++)
         {
@@ -102,16 +104,20 @@ public class EBP implements Runnable {
                 calculateInnerErrors();
                 updateWeights();
             }
+            network.setTrainingIterationsDone(i+1);
+            ndao.updateItem(network);
         }
-        
-        LOGGER.info("training network "+n.getName()+" finished");
-        
+
+        LOGGER.info("training network "+network.getName()+" finished");
+        network.setState("IDLE");
+        ndao.updateItem(network);
+
         MailSender postman = new MailSender();
-        postman.sendNofificationAfterTraining(n.getName());
+        postman.sendNofificationAfterTraining(network.getName());
     }
 
     @Override
     public void run() {
-        train(network);
+        train();
     }
 }

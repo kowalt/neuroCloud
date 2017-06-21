@@ -3,6 +3,7 @@
 *.jar
 *.cfg.xml
 *.swp
+*.csv
 *.log
 *.log.1
 .classpath
