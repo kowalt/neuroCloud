@@ -18,7 +18,7 @@ app
 
 	function checkIfCurrentlyTrained()
 	{
-		var networkId = obtainNetworkId($scope.xmlNetwork);
+		var networkId = obtainNetworkId(commonDataService.xmlNetwork);
 
 		var iterationsMax = -1;
 		var iterationsDone = -1;
@@ -32,7 +32,7 @@ app
 			
 			$scope.percentage = iterationsDone/iterationsMax * 100;
 			
-			progressMessage = percentage.toString()+"%("+iterationsDone+"/"+"iterationsMax)";
+			progressMessage = percentage.toString()+"%("+iterationsDone+"/"+iterationsMax+")";
 		}).error(function(err){
 			$alert({title: 'Unable to check if network is currently trained', content: err, placement: 'top', type: 'danger', show: true });
 		});
