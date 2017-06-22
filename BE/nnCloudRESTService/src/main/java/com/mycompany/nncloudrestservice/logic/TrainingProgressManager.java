@@ -21,7 +21,7 @@ public class TrainingProgressManager {
         Network network = ndao.getItem(networkId);
 
         JSONObject jsonO = new JSONObject();
-        
+
         jsonO.append("iterationsMax", network.getTrainingIterationsMax());
         jsonO.append("iterationsDone", network.getTrainingIterationsDone());
 

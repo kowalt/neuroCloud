@@ -29,8 +29,8 @@ public class Network
     private String name;
     private Date creation;
     private String state;
-    private int trainingIterationsMax;
-    private int trainingIterationsDone;
+    private Integer trainingIterationsMax;
+    private Integer trainingIterationsDone;
     
     @XmlElementWrapper
     @XmlElement(name="layer")
@@ -88,19 +88,19 @@ public class Network
         this.user = user;
     }
 
-    public int getTrainingIterationsMax() {
+    public Integer getTrainingIterationsMax() {
         return trainingIterationsMax;
     }
 
-    public void setTrainingIterationsMax(int trainingIterationsMax) {
+    public void setTrainingIterationsMax(Integer trainingIterationsMax) {
         this.trainingIterationsMax = trainingIterationsMax;
     }
 
-    public int getTrainingIterationsDone() {
+    public Integer getTrainingIterationsDone() {
         return trainingIterationsDone;
     }
 
-    public void setTrainingIterationsDone(int trainingIterationsDone) {
+    public void setTrainingIterationsDone(Integer trainingIterationsDone) {
         this.trainingIterationsDone = trainingIterationsDone;
     }
 }

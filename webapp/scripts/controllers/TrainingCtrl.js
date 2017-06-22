@@ -1,7 +1,7 @@
 'use strict';
 
 app
-  .controller('TrainingCtrl', ['$scope', '$alert', 'networksService','commonDataService', function ($scope, $alert,networksService,commonDataService) {
+  .controller('TrainingCtrl', ['$scope', '$alert', 'networksService','commonDataService','$interval', function ($scope, $alert,networksService,commonDataService,$interval) {
 	$scope.trainingProps = {};
 	$scope.tooltipTraining = {"title":"File with floating-point values partitioned by comma. Vectors' separator is crlf"};
 	$scope.isCurrentlyTrained = false;
