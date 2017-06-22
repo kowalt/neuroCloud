@@ -6,7 +6,8 @@ app.factory('networksService', ['$http', '$cookies', function($http, $cookies) {
 		deleteNetwork: deleteNetwork,
 		runNetwork: runNetwork,
 		generate: generate,
-		train: train
+		train: train,
+		getProgress: getProgress
 	}
 	return exposedAPI;
 
@@ -39,7 +40,7 @@ app.factory('networksService', ['$http', '$cookies', function($http, $cookies) {
 			url: API['NETWORK']+'/'+id.toString(),
 			headers:
 			{
-				"Content-Type": "application/json",
+				"Content-Type": "application/json"
 			}
 		};
 
@@ -75,7 +76,7 @@ app.factory('networksService', ['$http', '$cookies', function($http, $cookies) {
 			url: API['RUN'],
 			headers:
 			{
-				"Content-Type": "application/json",
+				"Content-Type": "application/json"
 			},
 			data:
 			{ 
@@ -100,7 +101,7 @@ app.factory('networksService', ['$http', '$cookies', function($http, $cookies) {
 			url: API['GENERATE'],
 			headers:
 			{
-				"Content-Type": "application/json",
+				"Content-Type": "application/json"
 			},
 			data: {"name": name ,"neuronsPerLayer": neuPerLay, "activationFunction": activationFunction }
 		}
@@ -121,7 +122,7 @@ app.factory('networksService', ['$http', '$cookies', function($http, $cookies) {
 			url: API['TRAINING'],
 			headers:
 			{
-				"Content-Type": "application/json",
+				"Content-Type": "application/json"
 			},
 			data: {
 				"networkId": trainingProps.networkId,
@@ -148,7 +149,7 @@ app.factory('networksService', ['$http', '$cookies', function($http, $cookies) {
 			url: API['TRAINING']+'/'+id.toString(),
 			headers:
 			{
-				"Content-Type": "application/json",
+				"Content-Type": "application/json"
 			}
 		};
 
