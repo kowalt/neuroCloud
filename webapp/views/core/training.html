@@ -1,5 +1,5 @@
 <div ng-controller="TrainingCtrl" class="container">
-	<form>
+	<form ng-show="isCurrentlyTrained">
 		<h2>Training with EBP algorithm</h2>
 		<div class="form-group">
 			<label for="learningCoefficient">Learning coefficient</label>
@@ -20,8 +20,8 @@
 		<button class="btn btn-lg btn-primary btn-block" type="submit" ng-click="train()">Train</button>
 	</form>
 	<div class="progress">
-		<div class="progress-bar" role="progressbar" style="width:70%">
-			{{ scope.progress }}
+		<div class="progress-bar" role="progressbar" style="width:{{ percentage }}%">
+			{{ progressMessage }}
 		</div>
 	</div>
 </div>

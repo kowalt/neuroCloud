@@ -139,4 +139,24 @@ app.factory('networksService', ['$http', '$cookies', function($http, $cookies) {
 			return err;
 		});
 	}
+	
+	function getProgress(id)
+	{
+		var request = 
+		{
+			method: "GET",
+			url: API['TRAINING']+'/'+id.toString(),
+			headers:
+			{
+				"Content-Type": "application/json",
+			}
+		};
+
+		return $http(request).success(function(data) {
+			return data;
+		})
+		.error(function(err) {
+			return err;
+		});		
+	}
 }]);

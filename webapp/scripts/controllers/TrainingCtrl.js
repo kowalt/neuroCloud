@@ -4,13 +4,45 @@ app
   .controller('TrainingCtrl', ['$scope', '$alert', 'networksService','commonDataService', function ($scope, $alert,networksService,commonDataService) {
 	$scope.trainingProps = {};
 	$scope.tooltipTraining = {"title":"File with floating-point values partitioned by comma. Vectors' separator is crlf"};
-
+	$scope.isCurrentlyTrained = false;
+	$scope.progressMessage = "";
+	$scope.percentage;
+	var PERIOD = 3000; //Milliseconds between every progres check
+	
+	updateProgress();
+	
 	function connectWithProgressSocket()
 	{
-		
-		
+		//Todo
+	}
+
+	function checkIfCurrentlyTrained()
+	{
+		var networkId = obtainNetworkId($scope.xmlNetwork);
+
+		var iterationsMax = -1;
+		var iterationsDone = -1;
+		networksService.getProgress(networkId).success(function(data) {
+			iterationsMax = data.iterationsMax;
+			iterationsDone = data.iterationsDone;
+			if(iterationsMax != iterationsDone)
+				$scope.isCurrentlyTrained = true;
+			else
+				$scope.isCurrentlyTrained = false;
+			
+			$scope.percentage = iterationsDone/iterationsMax * 100;
+			
+			progressMessage = percentage.toString()+"%("+iterationsDone+"/"+"iterationsMax)";
+		}).error(function(err){
+			$alert({title: 'Unable to check if network is currently trained', content: err, placement: 'top', type: 'danger', show: true });
+		});
 	}
 	
+	function updateProgress()
+	{
+		$interval(checkIfCurrentlyTrained, PERIOD);
+	}
+
 	function obtainNetworkId(networkXML)
 	{
 		parser = new DOMParser();
