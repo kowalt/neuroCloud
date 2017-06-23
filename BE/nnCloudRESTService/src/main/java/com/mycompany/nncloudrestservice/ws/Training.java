@@ -28,6 +28,6 @@ public class Training {
     public Response obtainProgress(@PathParam("id") String id)
     {
         TrainingProgressManager progressManager = new TrainingProgressManager();
-        return Response.status(Response.Status.OK).entity(progressManager.getProgress(id)).build();
+        return Response.status(Response.Status.OK).entity(progressManager.getProgress(id).toString()).build();
     }
 }
