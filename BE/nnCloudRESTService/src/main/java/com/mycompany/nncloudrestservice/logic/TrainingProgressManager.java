@@ -22,8 +22,20 @@ public class TrainingProgressManager {
 
         JSONObject jsonO = new JSONObject();
 
-        jsonO.append("iterationsMax", network.getTrainingIterationsMax());
-        jsonO.append("iterationsDone", network.getTrainingIterationsDone());
+        Integer trainingIterationsMax,trainingIterationsDone;
+        
+        if(network.getTrainingIterationsDone() == null || network.getTrainingIterationsMax() == null)
+        {
+            trainingIterationsDone = -1;
+            trainingIterationsMax = -1;
+        }
+        else
+        {
+            trainingIterationsDone = network.getTrainingIterationsDone();
+            trainingIterationsMax = network.getTrainingIterationsMax();
+        }
+        jsonO.append("iterationsMax", trainingIterationsMax);
+        jsonO.append("iterationsDone", trainingIterationsDone);
 
         return jsonO;
     }
