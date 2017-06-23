@@ -23,8 +23,8 @@ app
 		var iterationsMax = -1;
 		var iterationsDone = -1;
 		networksService.getProgress(networkId).success(function(data) {
-			iterationsMax = data.iterationsMax;
-			iterationsDone = data.iterationsDone;
+			iterationsMax = data.iterationsMax[0];
+			iterationsDone = data.iterationsDone[0];
 			if(iterationsMax != iterationsDone)
 				$scope.isCurrentlyTrained = true;
 			else
