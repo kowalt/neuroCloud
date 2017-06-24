@@ -45,7 +45,7 @@ app
 
 	function obtainNetworkId(networkXML)
 	{
-		parser = new DOMParser();
+		var parser = new DOMParser();
 		xmlDoc = parser.parseFromString(networkXML, "application/xml");
 		var network = xmlDoc.getElementsByTagName("network")[0];
 		return network.getAttribute('id');
