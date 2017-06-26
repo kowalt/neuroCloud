@@ -30,7 +30,7 @@ app
 	{	
 		$location.path('/core/load');
 		return;
-	}	
+	}
 	reload();
 
 	function reload()
@@ -39,6 +39,11 @@ app
 		{
 			$scope.xmlNetwork = data;
 			commonDataService.xmlNetwork = data;
+			if(isNetworkTooBigToDraw(data))
+			{	
+				$alert({title: 'Network loaded, but it is too big to display.', content: err, placement: 'top', type: 'warning', show: true});
+				return;
+			}
 			var nodes = transformNodes($scope.xmlNetwork);
 			var transformEdgesResult = transformEdges($scope.xmlNetwork);
 			var edges = transformEdgesResult[0];
@@ -58,5 +63,14 @@ app
 		{
 			$alert({title: 'Unable to load network', content: err, placement: 'top', type: 'danger', show: true});
 		});	
+	}
+	
+	function isNetworkTooBigToDraw(networkData)
+	{
+		var MAX_NUMBER_OF_LINES = 3000;
+		var numberOfLines = networkData.split(/\r\n|\r|\n/).length;
+		if(numberOfLines > MAX_NUMBER_OF_LINES)
+			return true;
+		return false;
 	}
 }]);
