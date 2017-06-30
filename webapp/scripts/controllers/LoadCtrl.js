@@ -11,15 +11,6 @@ app
 
 	$scope.selectNetwork = function(id)
 	{
-		networksService.getParticularNetwork(id).success(function(data) 
-		{
-
-		})
-		.error(function(err)
-		{
-			$alert({title: 'Unable to load network', content: err, placement: 'top', type: 'danger', show: true});
-		});
-
 		$cookies.put('activeNetworkID', id);
 		$location.path('/core/workbench');
 	}
