@@ -39,11 +39,7 @@ app
 		{
 			$scope.xmlNetwork = data;
 			commonDataService.xmlNetwork = data;
-			if(isNetworkTooBigToDraw(data))
-			{	
-				$alert({title: 'Network loaded, but it is too big to display.', content: err, placement: 'top', type: 'warning', show: true});
-				return;
-			}
+
 			var nodes = transformNodes($scope.xmlNetwork);
 			var transformEdgesResult = transformEdges($scope.xmlNetwork);
 			var edges = transformEdgesResult[0];
@@ -54,9 +50,16 @@ app
 			for(var i=0;i<nodes.length; i++)
 				nodes[i].size = 1;
 
-			$scope.sigmaGraph = {
-				nodes: nodes,		
-				edges: edges
+			if(isNetworkTooBigToDraw(data))
+			{	
+				$alert({title: 'Network loaded, but it is too big to display.', content: err, placement: 'top', type: 'warning', show: true});
+			}
+			else
+			{
+				$scope.sigmaGraph = {
+					nodes: nodes,		
+					edges: edges
+				}
 			}
 		})
 		.error(function(err)

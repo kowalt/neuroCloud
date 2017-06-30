@@ -40,7 +40,7 @@ app
 	
 	function updateProgress()
 	{
-		$interval(checkIfCurrentlyTrained, PERIOD);
+		$scope.progressCheckInterval = $interval(checkIfCurrentlyTrained, PERIOD);
 	}
 
 	function obtainNetworkId(networkXML)
@@ -62,4 +62,8 @@ app
 			$alert({title: 'Unable to train network', content: err, placement: 'top', type: 'danger', show: true });
 		});
 	}
+	
+	$scope.$on("$destroy", function(){
+        $interval.cancel($scope.progressCheckInterval);
+    });
 }]);
