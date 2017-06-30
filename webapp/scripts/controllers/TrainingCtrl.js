@@ -31,8 +31,7 @@ app
 				$scope.isCurrentlyTrained = false;
 			
 			$scope.percentage = iterationsDone/iterationsMax * 100;
-			
-			$scope.progressMessage = $scope.percentage.toString()+"%("+iterationsDone+"/"+iterationsMax+")";
+			$scope.progressMessage = $scope.percentage.toString().substring(0,5)+"%("+iterationsDone+"/"+iterationsMax+")";
 		}).error(function(err){
 			$alert({title: 'Unable to check if network is currently trained', content: err, placement: 'top', type: 'danger', show: true });
 		});
