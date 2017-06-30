@@ -13,7 +13,7 @@ app
 	{
 		networksService.getParticularNetwork(id).success(function(data) 
 		{
-			commonDataService = data;
+
 		})
 		.error(function(err)
 		{
