@@ -47,15 +47,15 @@ app
 			$scope.inoutContainer.input_vector = transformEdgesResult[1];
 			$scope.inoutContainer.output_vector = transformEdgesResult[2];
 
-			for(var i=0;i<nodes.length; i++)
-				nodes[i].size = 1;
-
 			if(isNetworkTooBigToDraw(data))
 			{	
-				$alert({title: 'Network loaded, but it is too big to display.', content: err, placement: 'top', type: 'warning', show: true});
+				$alert({title: 'Network loaded, but it is too big to be displayed.', content: '', placement: 'top', type: 'warning', show: true});
 			}
 			else
 			{
+				for(var i=0;i<nodes.length; i++)
+					nodes[i].size = 1;
+
 				$scope.sigmaGraph = {
 					nodes: nodes,		
 					edges: edges

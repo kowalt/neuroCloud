@@ -41,6 +41,8 @@ public class NetworkCrudManager {
     {
         String r = null;
         NetworkDAO ndao = new NetworkDAO();
+        
+        ndao.setLazyLoadMode(true);
         //check if user has access for this network
         List<Network> nList = ndao.getNetworksForCurrentUser();
         
@@ -64,7 +66,8 @@ public class NetworkCrudManager {
         
         try
         {
-            Network network = (Network)ndao.getItem(String.valueOf(id));
+            ndao.setLazyLoadMode(false);
+            Network network = (Network)ndao.getItem(String.valueOf(id)); //SLOW!!!
             NetworkToDTO transform = new NetworkToDTO();
             NetworkDTO ndto = transform.transform(network);
             
