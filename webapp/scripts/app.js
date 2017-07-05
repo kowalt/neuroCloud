@@ -56,6 +56,6 @@ var app = angular.module('nncloud', ['ngRoute','mgcrea.ngStrap', 'mgcrea.ngStrap
   }]).run(['$rootScope','$cookies', function($rootScope, $cookies){
 	$rootScope.authorized = false;
 	if($cookies.get('language') === undefined)
-		cookies.put('language','en');
+		$cookies.put('language','en');
 }]);
 
