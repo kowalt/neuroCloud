@@ -11,8 +11,8 @@ app
 	function getDropdown()
 	{
 		return [
-			{text: 'English', click: '$cookies.put("language","en")'},
-			{text: 'Polish', click: '$cookies.put("language","pl")'}
+			{text: 'English', click: 'setLangCode("en")'},
+			{text: 'Polish', click: 'setLangCode("pl")'}
 		  ];
 	}
 	
