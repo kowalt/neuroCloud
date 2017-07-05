@@ -1,5 +1,5 @@
 app
-.factory('localizedMessageService', '$cookies' [function($cookies) {
+.factory('localizedMessageService', ['$cookies', function($cookies) {
 	return
 	{
 		getDropdown: function()
