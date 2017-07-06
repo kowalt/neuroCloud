@@ -11,8 +11,8 @@ app
 	function getDropdown()
 	{
 		return [
-			{text: 'English', click: 'setLangCode("en")'},
-			{text: 'Polish', click: 'setLangCode("pl")'}
+			{text: '<img src="images/flag-united-kingdom.png" height="12" width="16">English', click: 'setLangCode("en")'},
+			{text: '<img src="images/flag-poland.png" height="12" width="16">Polish', click: 'setLangCode("pl")'}
 		  ];
 	}
 	
@@ -38,7 +38,7 @@ app
 		switch(messageCode)
 		{
 			case "settings.header":
-				return "SETTINGS";
+				return "Settings";
 		}
 		
 		return "Localization service error getting English value";
@@ -49,7 +49,7 @@ app
 		switch(messageCode)
 		{
 			case "settings.header":
-				return "USTAWIENIA"
+				return "Ustawienia"
 		}
 
 		return "Localization service error getting Polish value";

@@ -6,6 +6,6 @@ app.controller('SettingsCtrl', ['$scope','localizedMessageService','$cookies', f
 	
 	$scope.setLangCode = function(code)
 	{
-		$cookies.put("language",code);
+		$cookies.put("language", code);
 	}
   }]);
