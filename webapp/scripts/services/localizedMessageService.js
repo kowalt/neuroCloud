@@ -39,8 +39,24 @@ app
 		{
 			case "settings.header":
 				return "Settings";
+			case "settings.selectLanguage":
+				return "Select language";
+			case "navbar.networks":
+				return "Networks";
+			case "navbar.workspace":
+				return "Workspace";
+			case "navbar.generate":
+				return "Generate";
+			case "navbar.export":
+				return "Export";
+			case "navbar.training":
+				return "Training";
+			case "navbar.settings":
+				return "Settings";
+			case "navbar.logout":
+				return "Logout";
 		}
-		
+
 		return "Localization service error getting English value";
 	}
 
@@ -49,7 +65,23 @@ app
 		switch(messageCode)
 		{
 			case "settings.header":
-				return "Ustawienia"
+				return "Ustawienia";
+			case "settings.selectLanguage":
+				return "Wybierz język";
+			case "navbar.networks":
+				return "Sieci";
+			case "navbar.workspace":
+				return "Przestrzeń robocza";
+			case "navbar.generate":
+				return "Generuj";
+			case "navbar.export":
+				return "Eksport";
+			case "navbar.training":
+				return "Trening";
+			case "navbar.settings":
+				return "Ustawienia";
+			case "navbar.logout":
+				return "Wyloguj";
 		}
 
 		return "Localization service error getting Polish value";

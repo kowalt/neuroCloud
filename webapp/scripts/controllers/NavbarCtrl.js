@@ -1,7 +1,7 @@
 'use strict';
 
 app
-  .controller('NavbarCtrl',['$scope','$location', '$cookies', '$alert','networksService','commonDataService', function ($scope, $location, $cookies, $alert, networksService, commonDataService) {
+  .controller('NavbarCtrl',['$scope','$location', '$cookies', '$alert','networksService','commonDataService','localizedMessageService', function ($scope, $location, $cookies, $alert, networksService, commonDataService, localizedMessageService) {
 	$scope.networks_dropdown = [
                 {
                         "text": "Load...",
@@ -25,7 +25,16 @@ app
                         "text": "Delete",
                         "click": "deleteNetwork()"
                 }
-	]
+	];
+	
+	$scope.networksLabel = localizedMessageService.getLocalizedMessage('navbar.networks');
+	$scope.workspaceLabel = localizedMessageService.getLocalizedMessage('navbar.workspace');
+	$scope.generateLabel = localizedMessageService.getLocalizedMessage('navbar.generate');
+	$scope.exportLabel = localizedMessageService.getLocalizedMessage('navbar.export');
+	$scope.trainingLabel = localizedMessageService.getLocalizedMessage('navbar.training');
+	$scope.settingsLabel = localizedMessageService.getLocalizedMessage('navbar.settings');
+	$scope.exportLabel = localizedMessageService.getLocalizedMessage('navbar.export');
+	$scope.logoutLabel = localizedMessageService.getLocalizedMessage('navbar.logout');
 	
 	$scope.deleteNetwork = function()
 	{
