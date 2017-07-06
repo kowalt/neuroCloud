@@ -11,8 +11,8 @@ app
 	function getDropdown()
 	{
 		return [
-			{text: '<img src="images/flag-united-kingdom.png" height="12" width="16">English', click: 'setLangCode("en")'},
-			{text: '<img src="images/flag-poland.png" height="12" width="16">Polish', click: 'setLangCode("pl")'}
+			{text: 'English', click: 'setLangCode("en")'},
+			{text: 'Polski', click: 'setLangCode("pl")'}
 		  ];
 	}
 	
