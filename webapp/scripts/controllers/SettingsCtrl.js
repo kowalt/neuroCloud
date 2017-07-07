@@ -13,8 +13,8 @@ app.controller('SettingsCtrl', ['$scope','localizedMessageService','$cookies','$
 
 	$scope.setLangCode = function(code)
 	{
-		$rootScope.$broadcast('change.the.language','foo');
 		$cookies.put('language', code);
+		$rootScope.$broadcast('change.the.language', 'foo');
 		setLabels();
 	}
   }]);
