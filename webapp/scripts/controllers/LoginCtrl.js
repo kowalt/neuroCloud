@@ -1,6 +1,6 @@
 'use strict';
 
-app.controller('LoginCtrl', ['$scope', '$http', '$alert', '$rootScope', '$location','localizedMessageService','$cookies', function ($scope, $http, $alert, $rootScope, $location, localizedMessageService, cookies) {
+app.controller('LoginCtrl', ['$scope', '$http', '$alert', '$rootScope', '$location','localizedMessageService','$cookies', function ($scope, $http, $alert, $rootScope, $location, localizedMessageService, $cookies) {
 	if($rootScope.authorized)
 		$location.path('/core/workbench');
 
