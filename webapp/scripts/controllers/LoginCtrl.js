@@ -12,7 +12,7 @@ app.controller('LoginCtrl', ['$scope', '$http', '$alert', '$rootScope', '$locati
 		$scope.loginLabel = localizedMessageService.getLocalizedMessage("login.login");
 		$scope.passwordLabel = localizedMessageService.getLocalizedMessage("login.password");
 		$scope.rememberMeLabel = localizedMessageService.getLocalizedMessage("login.rememberMe");
-		$scope.createNewAccount = localizedMessageService.getLocalizedMessage("login.createNewAccount");
+		$scope.createNewAccountLabel = localizedMessageService.getLocalizedMessage("login.createNewAccount");
 	}
 	
 	$scope.setPolishLanguage = function()
