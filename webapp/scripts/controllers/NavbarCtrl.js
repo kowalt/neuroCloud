@@ -7,7 +7,7 @@ app
 	
 	$scope.$on('change.the.language', function(event, value) {
 		setLabels();
-	})
+	});
 	
 	$scope.networks_dropdown = [
                 {

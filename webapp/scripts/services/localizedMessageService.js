@@ -55,6 +55,16 @@ app
 				return "Settings";
 			case "navbar.logout":
 				return "Logout";
+			case "login.signIn":
+				return "Sign in";
+			case "login.login":
+				return "Login";
+			case "login.password":
+				return "Password";
+			case "login.rememberMe":
+				return "Remember me";
+			case "login.createNewAccount":
+				return "Create new account";
 		}
 
 		return "Localization service error getting English value";
@@ -82,6 +92,16 @@ app
 				return "Ustawienia";
 			case "navbar.logout":
 				return "Wyloguj";
+			case "login.signIn":
+				return "Zaloguj";
+			case "login.login":
+				return "Login";
+			case "login.password":
+				return "Hasło";
+			case "login.rememberMe":
+				return "Zapamiętaj";
+			case "login.createNewAccount":
+				return "Stwórz nowe konto";
 		}
 
 		return "Localization service error getting Polish value";

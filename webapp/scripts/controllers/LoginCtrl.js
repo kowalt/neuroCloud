@@ -1,8 +1,31 @@
 'use strict';
 
-app.controller('LoginCtrl', ['$scope', '$http', '$alert', '$rootScope', '$location', function ($scope, $http, $alert, $rootScope, $location) {
+app.controller('LoginCtrl', ['$scope', '$http', '$alert', '$rootScope', '$location','localizedMessageService','$cookies', function ($scope, $http, $alert, $rootScope, $location, localizedMessageService, cookies) {
 	if($rootScope.authorized)
 		$location.path('/core/workbench');
+
+	setLabels();
+	
+	function setLabels()
+	{
+		$scope.signInLabel = localizedMessageService.getLocalizedMessage("login.signIn");
+		$scope.loginLabel = localizedMessageService.getLocalizedMessage("login.login");
+		$scope.passwordLabel = localizedMessageService.getLocalizedMessage("login.password");
+		$scope.rememberMeLabel = localizedMessageService.getLocalizedMessage("login.rememberMe");
+		$scope.createNewAccount = localizedMessageService.getLocalizedMessage("login.createNewAccount");
+	}
+	
+	$scope.setPolishLanguage = function()
+	{
+		$cookies.put('language','pl');
+		setLabels();
+	}
+
+	$scope.setEnglishLanguage = function()
+	{
+		$cookies.put('language','en');
+		setLabels();
+	}
 
 	$scope.login = function()
 	{

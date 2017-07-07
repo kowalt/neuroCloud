@@ -1,16 +1,20 @@
 <div class="container" ng-controller="LoginCtrl">
 	<form novalidate class="form-signin">
-		<h2 class="form-signin-heading">Sign in</h2>
-		<label for="inputLogin" class="sr-only">Login</label>
-		<input type="text" id="inputLogin" class="form-control" placeholder="Login" ng-model="user.login" required autofocus>
-		<label for="inputPassword" class="sr-only">Password</label>
-		<input type="password" id="inputPassword" class="form-control" placeholder="Password" ng-model="user.password" required>
+		<div class="languageBar">
+			<button style="background: url(images/polandLargeFlag.png)" ng-click="setPolishLanguage()"></button>
+			<button style="background: url(images/ukLargeFlag.png)" ng-click="setEnglishLanguage()"></button>
+		</div>
+		<h2 class="form-signin-heading">{{ signInLabel }}</h2>
+		<label for="inputLogin" class="sr-only">{{ loginLabel }}</label>
+		<input type="text" id="inputLogin" class="form-control" placeholder="{{ loginLabel }}" ng-model="user.login" required autofocus>
+		<label for="inputPassword" class="sr-only">{{ passwordLabel }}</label>
+		<input type="password" id="inputPassword" class="form-control" placeholder="{{ passwordLabel }}" ng-model="user.password" required>
 		<div class="checkbox">
 			<label>
-				<input type="checkbox" value="remember-me"> Remember me
+				<input type="checkbox" value="remember-me"> {{ rememberMeLabel }}
 			</label>
 		</div>
-		<button class="btn btn-lg btn-primary btn-block" type="submit" ng-click="login()">Sign in</button>
-		<a ng-href="#/register">Create new account</a>
+		<button class="btn btn-lg btn-primary btn-block" type="submit" ng-click="login()">{{ signInLabel }}</button>
+		<a ng-href="#/register">{{ createNewAccountLabel }}</a>
 	</form>
 </div>
