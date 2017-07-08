@@ -1,7 +1,22 @@
 'use strict';
 
 app
-  .controller('RegisterCtrl', ['$scope', '$http', '$location', '$alert', function ($scope,$http,$location,$alert) {
+  .controller('RegisterCtrl', ['$scope', '$http', '$location', '$alert','localizedMessageService', function ($scope,$http,$location,$alert,localizedMessageService) {
+	  
+	setLabels();
+
+	function setLabels()
+	{
+		$scope.signUpLabel = localizedMessageService.getLocalizedMessage('register.signUp');
+		$scope.emailLabel = localizedMessageService.getLocalizedMessage('register.email');
+		$scope.loginLabel = localizedMessageService.getLocalizedMessage('register.login');
+		$scope.passwordLabel = localizedMessageService.getLocalizedMessage('register.password');
+		$scope.confirmPasswordLabel = localizedMessageService.getLocalizedMessage('register.confirmPassword');
+		$scope.enterTheMessageForAdminHereLabel = localizedMessageService.getLocalizedMessage('register.enterTheMessageForAdminHere');
+		$scope.registerLabel = localizedMessageService.getLocalizedMessage('register.register');
+		$scope.backToTheLoginPromptLabel = localizedMessageService.getLocalizedMessage('register.backToTheLoginPrompt');
+	} 
+	  
 	$scope.register = function()
 	{
 		if(!validate())
@@ -19,12 +34,12 @@ app
 		}
 		$http(request).success(function(data, status, headers, config)
 		{
-			$alert({title: 'Data have been submitted successfully.', content: 'We will look at your request.', placement: 'top', type: 'success', show: true});
+			$alert({title: localizedMessageService.getLocalizedMessage('register.alert.dataSubmitOK.title'), content: localizedMessageService.getLocalizedMessage('register.alert.dataSubmitOK.content'), placement: 'top', type: 'success', show: true});
 			$location.path('/login');
 		})
 		.error(function(data, status, headers, config)
 		{
-			$alert({title: 'Cannot register: ', content: data.error, placement: 'top', type: 'danger', show: true});
+			$alert({title: localizedMessageService.getLocalizedMessage('register.alert.dataSubmitNOK.title'), content: data.error, placement: 'top', type: 'danger', show: true});
 		});
 	}
 
@@ -33,11 +48,11 @@ app
 		var error_message = "";
 		
 		if($scope.user.password != $scope.password_confirmation)
-			error_message = "passwords doesn't match!";
+			error_message = localizedMessageService.getLocalizedMessage('register.alert.errorMessagePasswordsDM');
 		
 		if(error_message != "")
 		{
-			$alert({title: 'Cannot register: ', content: error_message, placement: 'top', type: 'danger', show: true});
+			$alert({title: localizedMessageService.getLocalizedMessage('register.alert.dataSubmitNOK.title'), content: error_message, placement: 'top', type: 'danger', show: true});
 			return false;
 		}
 

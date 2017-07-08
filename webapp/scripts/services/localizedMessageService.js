@@ -65,6 +65,32 @@ app
 				return "Remember me";
 			case "login.createNewAccount":
 				return "Create new account";
+			case "login.alert.unableToSignIn.title":
+				return "Unable to sign in: ";
+			case "register.signUp":
+				return "Sign up";
+			case "register.email":
+				return "Email";
+			case "register.login":
+				return "Login";
+			case "register.password":
+				return "Password";
+			case "register.confirmPassword":
+				return "Confiirm password";
+			case "register.enterTheMessageForAdminHere":
+				return "Enter the message for the admin here...";
+			case "register.register":
+				return "Register";
+			case "register.backToTheLoginPrompt":
+				return "Go back to the login prompt";				
+			case "register.alert.dataSubmitOK.title":
+				return 'Data has been submitted successfully.';
+			case "register.alert.dataSubmitOK.content":
+				return 'We will look at your request';
+			case "register.alert.dataSubmitNOK.title":
+				return 'Cannot register: ';
+			case "register.alert.errorMessagePasswordsDM":
+				return "Passwords doesn't match!";
 		}
 
 		return "Localization service error getting English value";
@@ -101,7 +127,33 @@ app
 			case "login.rememberMe":
 				return "Zapamiętaj";
 			case "login.createNewAccount":
-				return "Stwórz nowe konto";
+				return "Stwórz nowe konto";	
+			case "login.alert.unableToSignIn.title":
+				return "Bład logowania: ";
+			case "register.signUp":
+				return "Rejestracja nowego konta";
+			case "register.email":
+				return "Email";
+			case "register.login":
+				return "Login";
+			case "register.password":
+				return "Hasło";
+			case "register.confirmPassword":
+				return "Potwierdzenie hasła";
+			case "register.enterTheMessageForAdminHere":
+				return "Wpisz tutaj wiadomość dla administratora...";
+			case "register.register":
+				return "Zarejestruj";
+			case "register.backToTheLoginPrompt":
+				return "Wróć do ekranu logowania";				
+			case "register.alert.dataSubmitOK.title":
+				return 'Dane zostały wysłane pomyślnie';
+			case "register.alert.dataSubmitOK.content":
+				return 'Podanie zostanie rozpatrzone';
+			case "register.alert.dataSubmitNOK.title":
+				return 'Nie można zarejestrować: ';
+			case "register.alert.errorMessagePasswordsDM":
+				return "Podane hasła nie zgadzają się";
 		}
 
 		return "Localization service error getting Polish value";
