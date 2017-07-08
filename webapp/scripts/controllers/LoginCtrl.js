@@ -54,7 +54,7 @@ app.controller('LoginCtrl', ['$scope', '$http', '$alert', '$rootScope', '$locati
 					msg = data.error;
 				else
 					msg = "Untypical error. Code: " + status.toString();
-				$alert({title: localizedMessageService.getLocalizedMessage('login.alert.unableToSignIn'), content: msg, placement: 'top', type: 'danger', show: true});
+				$alert({title: localizedMessageService.getLocalizedMessage('login.alert.unableToSignIn.title'), content: msg, placement: 'top', type: 'danger', show: true});
 			});
 			
 			$scope.user.password = '';
