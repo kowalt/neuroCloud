@@ -1,7 +1,7 @@
 'use strict';
 
 app
-  .controller('WorkbenchCtrl', ['$scope', '$cookies', '$alert', '$location', 'networksService','commonDataService', function ($scope, $cookies, $alert, $location,networksService,commonDataService) {
+  .controller('WorkbenchCtrl', ['$scope', '$cookies', '$alert', '$location', 'networksService','commonDataService','localizedMessageService', function ($scope, $cookies, $alert, $location,networksService,commonDataService,localizedMessageService) {
 	
 	setLabels();
 	function setLabels()
