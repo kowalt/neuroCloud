@@ -4,36 +4,41 @@ app
   .controller('NavbarCtrl',['$scope','$location', '$cookies', '$alert','networksService','commonDataService','localizedMessageService', function ($scope, $location, $cookies, $alert, networksService, commonDataService, localizedMessageService) {
 	
 	setLabels();
+	createDropDown();
 	
 	$scope.$on('change.the.language', function(event, value) {
 		setLabels();
+		createDropDown();
 	});
 	
-	$scope.networks_dropdown = [
-                {
-                        "text": localizedMessageService.getLocalizedMessage('navbar.dropdown.load'),
-                        "href": "#/core/load"
-                },
-                {
-                        "divider": true
-                },
-                {
-                        "text": localizedMessageService.getLocalizedMessage('navbar.dropdown.save'),
-                        "href": "#" //will be ng-click
-                },
-                {
-                        "text": localizedMessageService.getLocalizedMessage('navbar.dropdown.saveas'),
-						"href": "#/core/saveas"
-                },
-                {
-                        "divider": true
-                },
-                {
-                        "text": localizedMessageService.getLocalizedMessage('navbar.dropdown.delete'),
-                        "click": "deleteNetwork()"
-                }
-	];
-		
+	function createDropDown()
+	{
+		$scope.networks_dropdown = [
+					{
+							"text": localizedMessageService.getLocalizedMessage('navbar.dropdown.load'),
+							"href": "#/core/load"
+					},
+					{
+							"divider": true
+					},
+					{
+							"text": localizedMessageService.getLocalizedMessage('navbar.dropdown.save'),
+							"href": "#" //will be ng-click
+					},
+					{
+							"text": localizedMessageService.getLocalizedMessage('navbar.dropdown.saveas'),
+							"href": "#/core/saveas"
+					},
+					{
+							"divider": true
+					},
+					{
+							"text": localizedMessageService.getLocalizedMessage('navbar.dropdown.delete'),
+							"click": "deleteNetwork()"
+					}
+		];
+	}
+	
 	function setLabels()
 	{
 		$scope.networksLabel = localizedMessageService.getLocalizedMessage('navbar.networks');
