@@ -5,8 +5,8 @@
 			<table>
 				<thead>
 					<tr>
-						<th>Input</th>
-						<th>Output</th>
+						<th>{{ inputLabel }}</th>
+						<th>{{ outputLabel }}</th>
 					<tr>
 				</thead>
 				<tbody>
@@ -16,15 +16,15 @@
 					</tr>
 					<tr>
 						<td>
-							<button ng-click="uploadInput()">Upload</button>
+							<button ng-click="uploadInput()">{{ uploadLabel }}</button>
 						</td>
 						<td>
-							<button ng-click="downloadOutput()">Download</button>
+							<button ng-click="downloadOutput()">{{ downloadLabel }}</button>
 						</td>
 					</tr>
 				</tbody>
 			</table>
-			<button class="btn btn-lg btn-primary btn-block" ng-click="run()">Run</button>
+			<button class="btn btn-lg btn-primary btn-block" ng-click="run()">{{ runButtonLabel }}</button>
 		</div>
 	</div>
 </div>

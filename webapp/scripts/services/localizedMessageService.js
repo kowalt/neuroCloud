@@ -111,6 +111,30 @@ app
 				return "created in";
 			case "load.alert.loadListNOK.title":
 				return "Unable to load the list of networks";
+			case "logout.alert.loggedOut.title":
+				return "Logged out";
+			case "saveas.header":
+				return "Save As";
+			case "saveas.name":
+				return "new name";
+			case "saveas.saveButton":
+				return "Save";
+			case "workbench.input":
+				return "Inputs";
+			case "workbench.output":
+				return "Outputs";
+			case "workbench.upload":
+				return "Upload"
+			case "workbench.download":
+				return "Download";
+			case "workbench.runButton":
+				return "Run";
+			case "workbench.alert.runNOK.title":
+				return "Unable to run network";
+			case "workbench.alert.tooBig":
+				return "Network loaded, but it is too big to be displayed";
+			case "workbench.alert.reloadNOK":
+				return "Unable to load network";
 		}
 
 		return "Localization service error getting English value";
@@ -194,6 +218,14 @@ app
 				return "utworzono";
 			case "load.alert.loadListNOK.title":
 				return "Nie można pobrać listy sieci";
+			case "logout.alert.loggedOut.title":
+				return "Wylogowano";
+			case "saveas.header":
+				return "Zapisz jako";
+			case "saveas.name":
+				return "nowa nazwa";
+			case "saveas.saveButton":
+				return "Zapisz";
 		}
 
 		return "Localization service error getting Polish value";

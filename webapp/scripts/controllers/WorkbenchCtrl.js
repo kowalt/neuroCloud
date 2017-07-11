@@ -2,13 +2,24 @@
 
 app
   .controller('WorkbenchCtrl', ['$scope', '$cookies', '$alert', '$location', 'networksService','commonDataService', function ($scope, $cookies, $alert, $location,networksService,commonDataService) {
+	
+	setLabels();
+	function setLabels()
+	{
+		$scope.inputLabel = localizedMessageService.getLocalizedMessage('workbench.input');
+		$scope.outputLabel = localizedMessageService.getLocalizedMessage('workbench.output');
+		$scope.uploadLabel = localizedMessageService.getLocalizedMessage('workbench.upload');
+		$scope.downloadLabel = localizedMessageService.getLocalizedMessage('workbench.download');
+		$scope.runButtonLabel = localizedMessageService.getLocalizedMessage('workbench.runButton');
+	}
+
 	$scope.run = function()
 	{
 		networksService.runNetwork($cookies.get('activeNetworkID'), $scope.inoutContainer.input_vector).success(function(data) {
 			reload();
 			$scope.inoutContainer.output_vector = data;
 		}).error(function(err){
-			$alert({title: 'Unable to run network', content: err, placement: 'top', type: 'danger', show: true });
+			$alert({title: localizedMessageService.getLocalizedMessage('workbench.alert.runNOK.title'), content: err, placement: 'top', type: 'danger', show: true });
 		});
 	}
 
@@ -49,7 +60,7 @@ app
 
 			if(isNetworkTooBigToDraw(data))
 			{	
-				$alert({title: 'Network loaded, but it is too big to be displayed.', content: '', placement: 'top', type: 'warning', show: true});
+				$alert({title: localizedMessageService.getLocalizedMessage('workbench.alert.tooBig'), content: '', placement: 'top', type: 'warning', show: true});
 			}
 			else
 			{
@@ -64,7 +75,7 @@ app
 		})
 		.error(function(err)
 		{
-			$alert({title: 'Unable to load network', content: err, placement: 'top', type: 'danger', show: true});
+			$alert({title: localizedMessageService.getLocalizedMessage('workbench.alert.reloadNOK'), content: err, placement: 'top', type: 'danger', show: true});
 		});	
 	}
 	

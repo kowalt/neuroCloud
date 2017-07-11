@@ -1,10 +1,10 @@
 <div ng-controller="SaveAsCtrl" class="container">
 	<form>
-		<h2>Save as</h2>
+		<h2>{{ headerLabel }}</h2>
 		<div class="form-group">
-			<label for="name">Name</label>
+			<label for="name">{{ nameLabel }}</label>
 			<input type="text" class="form-control" id="inputName" ng-model="network.name">
 		</div>
-		<button class="btn btn-lg btn-primary btn-block" type="submit" ng-click="generate()">Save</button>
+		<button class="btn btn-lg btn-primary btn-block" type="submit" ng-click="generate()">{{ saveButtonLabel }}</button>
 	</form>
 </div>

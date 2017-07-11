@@ -1,7 +1,7 @@
 'use strict';
 
 app
-  .controller('LogoutCtrl',['$scope', '$http', '$alert','$location', '$rootScope', function($scope, $http, $alert, $location, $rootScope) {
+  .controller('LogoutCtrl',['$scope', '$http', '$alert','$location', '$rootScope','localizedMessageService', function($scope, $http, $alert, $location, $rootScope, localizedMessageService) {
 	$scope.logout = function()
 	{
 		var request =
@@ -15,7 +15,7 @@ app
 		{
 			$rootScope.authorized = false;
 			$location.path('/login');
-			$alert({title: 'Logged out', content: "", placement: 'top', type: 'info', show: true});
+			$alert({title: localizedMessageService('logout.alert.loggedOut.title'), content: "", placement: 'top', type: 'info', show: true});
 		});
 	}
   }]);
