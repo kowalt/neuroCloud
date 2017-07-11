@@ -8,7 +8,7 @@ angular.module('nncloud')
 	function setLabels()
 	{
 		$scope.headerLabel = localizedMessageService.getLocalizedMessage('saveas.header');
-		$scope.headerLabel = localizedMessageService.getLocalizedMessage('saveas.name');
-		$scope.headerLabel = localizedMessageService.getLocalizedMessage('saveas.saveButton');
+		$scope.nameLabel = localizedMessageService.getLocalizedMessage('saveas.name');
+		$scope.saveButtonLabel = localizedMessageService.getLocalizedMessage('saveas.saveButton');
 	}
 }]);
