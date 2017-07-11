@@ -174,6 +174,26 @@ app
 				return 'Nie można zarejestrować: ';
 			case "register.alert.errorMessagePasswordsDM":
 				return "Podane hasła nie zgadzają się";
+			case "navbar.dropdown.load":
+				return "Ładuj...";
+			case "navbar.dropdown.save":
+				return "Zapisz";
+			case "navbar.dropdown.saveas":
+				return "Zapisz jako...";
+			case "navbar.dropdown.delete":
+				return "Usuń";
+			case "navbar.alert.deleteOK.title":
+				return "Usunięcie sieci";
+			case "navbar.alert.deleteOK.content":
+				return "Sieć została usunięta pomyślnie";
+			case "navbar.alert.deleteNOK.title":
+				return "Nie można usunąć sieci";	
+			case "load.loadViewHeader":
+				return "Wybierz sieć";
+			case "load.createdIn":
+				return "utworzono";
+			case "load.alert.loadListNOK.title":
+				return "Nie można pobrać listy sieci";
 		}
 
 		return "Localization service error getting Polish value";
