@@ -231,7 +231,7 @@ app
 			case "workbench.output":
 				return "Wyjścia";
 			case "workbench.upload":
-				return "Wstaw vartości wejść"
+				return "Wstaw wartości wejść"
 			case "workbench.download":
 				return "Pobierz wartości wyjść";
 			case "workbench.runButton":
