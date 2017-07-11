@@ -91,6 +91,26 @@ app
 				return 'Cannot register: ';
 			case "register.alert.errorMessagePasswordsDM":
 				return "Passwords doesn't match!";
+			case "navbar.dropdown.load":
+				return "Load...";
+			case "navbar.dropdown.save":
+				return "Save";
+			case "navbar.dropdown.saveas":
+				return "Save as...";
+			case "navbar.dropdown.delete":
+				return "Delete";
+			case "navbar.alert.deleteOK.title":
+				return "Network deleted";
+			case "navbar.alert.deleteOK.content":
+				return "Network deleted successfully";
+			case "navbar.alert.deleteNOK.title":
+				return "Unable to delete network";	
+			case "load.loadViewHeader":
+				return "Select network to load";
+			case "load.createdIn":
+				return "created in";
+			case "load.alert.loadListNOK.title":
+				return "Unable to load the list of networks";
 		}
 
 		return "Localization service error getting English value";

@@ -11,25 +11,25 @@ app
 	
 	$scope.networks_dropdown = [
                 {
-                        "text": "Load...",
+                        "text": localizedMessageService.getLocalizedMessage('navbar.dropdown.load'),
                         "href": "#/core/load"
                 },
                 {
                         "divider": true
                 },
                 {
-                        "text": "Save",
+                        "text": localizedMessageService.getLocalizedMessage('navbar.dropdown.save'),
                         "href": "#" //will be ng-click
                 },
                 {
-                        "text": "Save as...",
+                        "text": localizedMessageService.getLocalizedMessage('navbar.dropdown.saveas'),
 						"href": "#/core/saveas"
                 },
                 {
                         "divider": true
                 },
                 {
-                        "text": "Delete",
+                        "text": localizedMessageService.getLocalizedMessage('navbar.dropdown.delete'),
                         "click": "deleteNetwork()"
                 }
 	];
@@ -49,14 +49,14 @@ app
 	$scope.deleteNetwork = function()
 	{
 		networksService.deleteNetwork($cookies.get('activeNetworkID')).success(function(data) {
-			$alert({title: 'Network deleted', content: 'Network deleted successfully', placement: 'top', type: 'info', show: true});
+			$alert({title: localizedMessageService.getLocalizedMessage('navbar.alert.deleteOK.title'), content: localizedMessageService.getLocalizedMessage('navbar.alert.deleteOK.content'), placement: 'top', type: 'info', show: true});
 			$cookies.remove('activeNetworkID');
 			$scope.xmlNetwork = commonDataService;
 			$scope.xmlNetwork = '';
 			$location.path('/core/load');
 		}).
 		error(function(err) {
-			$alert({title: 'Unable to delete network', content: err, placement: 'top', type: 'danger', show: true});
+			$alert({title: localizedMessageService.getLocalizedMessage('navbar.alert.deleteNOK.title'), content: err, placement: 'top', type: 'danger', show: true});
 		});
 	}
 	
