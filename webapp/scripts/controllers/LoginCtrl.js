@@ -46,6 +46,7 @@ app.controller('LoginCtrl', ['$scope', '$http', '$alert', '$rootScope', '$locati
 				$rootScope.authorized = true;
 
 				$location.path('/core/workbench');
+				$rootScope.$broadcast('change.the.language', 'foo');
 				})
 			.error(function(data, status, headers, config)
 			{
