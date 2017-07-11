@@ -226,6 +226,22 @@ app
 				return "nowa nazwa";
 			case "saveas.saveButton":
 				return "Zapisz";
+			case "workbench.input":
+				return "Wejścia";
+			case "workbench.output":
+				return "Wyjścia";
+			case "workbench.upload":
+				return "Wstaw vartości wejść"
+			case "workbench.download":
+				return "Pobierz wartości wyjść";
+			case "workbench.runButton":
+				return "Uruchom";
+			case "workbench.alert.runNOK.title":
+				return "Nie można uruchomić sieci";
+			case "workbench.alert.tooBig":
+				return "Sieć została załadowana, ale jest zbyt duża by mogła zostać wyświetlona";
+			case "workbench.alert.reloadNOK":
+				return "Nie można załadować sieci";
 		}
 
 		return "Localization service error getting Polish value";
