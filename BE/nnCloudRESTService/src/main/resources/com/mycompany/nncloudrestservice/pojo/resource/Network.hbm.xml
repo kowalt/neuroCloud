@@ -7,7 +7,7 @@
           <generator class="native"/>
       </id>
       <property name="name" column="name" type="string"/>
-      <property name="creation" column="creation" type="date"/>
+      <property name="creation" column="creation" type="timestamp"/>
       <property name="state" column="state" type="string"/>
       <property name="trainingIterationsMax" column="trainingIterationsMax" type="int" not-null="false"/>
       <property name="trainingIterationsDone" column="trainingIterationsDone" type="int" not-null="false"/>
