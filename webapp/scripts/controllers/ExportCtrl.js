@@ -1,7 +1,16 @@
 'use strict';
 
 angular.module('nncloud')
-  .controller('ExportCtrl', ['$scope','commonDataService', function ($scope, commonDataService) {
+  .controller('ExportCtrl', ['$scope','commonDataService','localizedMessageService', function ($scope, commonDataService, localizedMessageService) {
+	  
+	  setLabels();
+	  
+	  function setLabels()
+	  {
+		  $scope.headerLabel = localizedMessageService.getLocalizedMessage('export.header');
+		  $scope.downloadButtonLabel = localizedMessageService.getLocalizedMessage('export.downloadButton');
+	  }
+	  
 	  $scope.formats = [{name:"XML"}];
 	  $scope.download = function()
 	  {

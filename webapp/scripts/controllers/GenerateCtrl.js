@@ -1,10 +1,21 @@
 'use strict';
 
 app
-  .controller('GenerateCtrl', ['$scope', '$http', '$alert','networksService', function ($scope, $http, $alert, networksService) {
-		$scope.tooltipNeuronsPerLayer = {"title": "Insert numbers separated by spacebar e.g. 4 3 2 2. Every number defines the amount of neurons on the corresponding layer."};
-		$scope.tooltipActivationFunction = {"title": "Insert the activation function and domain rules in format function<=>domain_rule1,domain_rule2. Domain rules are optional."};
+  .controller('GenerateCtrl', ['$scope', '$http', '$alert','networksService','localizedMessageService', function ($scope, $http, $alert, networksService, localizedMessageService) {
+		$scope.tooltipNeuronsPerLayer = {"title": localizedMessageService.getLocalizedMessage('generate.tooltip.tooltipNPL.title')};
+		$scope.tooltipActivationFunction = {"title": localizedMessageService.getLocalizedMessage('generate.tooltip.tooltipAF.title')};
 
+		setLabels();
+		
+		function setLabels()
+		{
+			$scope.headerLabel = localizedMessageService.getLocalizedMessage('generate.header');
+			$scope.nameLabel = localizedMessageService.getLocalizedMessage('generate.name');
+			$scope.nplLabel = localizedMessageService.getLocalizedMessage('generate.npl');
+			$scope.afLabel = localizedMessageService.getLocalizedMessage('generate.af');
+			$scope.generateButtonLabel = localizedMessageService.getLocalizedMessage('generate.generateButton');			
+		}
+		
 		$scope.generate = function()
 		{
 			if(!validate())
@@ -15,9 +26,9 @@ app
 			});
 			
 			networksService.generate($scope.network.name, neuPerLay, $scope.network.activationFunction).success(function(data){
-				$alert({title: 'Network generated', content: 'Network generation successfull', placement: 'top', type: 'info', show: true});
+				$alert({title: localizedMessageService.getLocalizedMessage('generate.alert.generatedOK.title'), content: localizedMessageService.getLocalizedMessage('generate.alert.generatedOK.content'), placement: 'top', type: 'info', show: true});
 			}).error(function(err) {
-				$alert({title: 'Unable to generate', content: data, placement: 'top', type: 'danger', show: true});
+				$alert({title: localizedMessageService.getLocalizedMessage('generate.alert.generatedNOK.title'), content: data, placement: 'top', type: 'danger', show: true});
 			});
 		}
 
@@ -32,15 +43,15 @@ app
 			var error_message = "";
 
 			if($scope.name == "")
-				error_message = "Name must not be empty!"
+				error_message = localizedMessageService.getLocalizedMessage('generate.alert.validationErrorMessage.nameMustNotBeEmpty')
 			$scope.network.neuronsPerLayer.split(" ").map(function(item) {
 				if(!isPositiveInt(item))
-					error_message = "Incorrect amount of neurons"
+					error_message = localizedMessageService.getLocalizedMessage('generate.alert.validationErrorMessage.incorrectAmountOfNeurons');
 			});
 
 			if(error_message != "")
 			{
-				$alert({title: 'Cannot register: ', content: error_message, placement: 'top', type: 'danger', show: true});
+				$alert({title: localizedMessageService.getLocalizedMessage('generate.alert.validationErrorMessage.title'), content: error_message, placement: 'top', type: 'danger', show: true});
 				return false;
 			}
 			return true;

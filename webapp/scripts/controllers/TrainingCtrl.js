@@ -1,9 +1,22 @@
 'use strict';
 
 app
-  .controller('TrainingCtrl', ['$scope', '$alert', 'networksService','commonDataService','$interval', function ($scope, $alert,networksService,commonDataService,$interval) {
+  .controller('TrainingCtrl', ['$scope', '$alert', 'networksService','commonDataService','$interval','localizedMessageService', function ($scope, $alert,networksService,commonDataService,$interval,localizedMessageService) {
+	
+	setLabels();
+
+	function setLabels()
+	{
+		$scope.headerLabel = localizedMessageService.getLocalizedMessage('training.header');
+		$scope.lcLabel = localizedMessageService.getLocalizedMessage('training.lc');
+		$scope.inputSetFileLabel = localizedMessageService.getLocalizedMessage('training.inputSetFile');
+		$scope.outputSetFileLabel = localizedMessageService.getLocalizedMessage('training.outputSetFile');
+		$scope.iterationsLabel = localizedMessageService.getLocalizedMessage('training.iterations');
+		$scope.trainingButtonLabel = localizedMessageService.getLocalizedMessage('training.trainingButton');	
+	}
+	
 	$scope.trainingProps = {};
-	$scope.tooltipTraining = {"title":"File with floating-point values partitioned by comma. Vectors' separator is crlf"};
+	$scope.tooltipTraining = {"title":localizedMessageService.getLocalizedMessage('training.tooltip.title')};
 	$scope.isCurrentlyTrained = false;
 	$scope.progressMessage = "";
 	$scope.percentage;
@@ -33,7 +46,7 @@ app
 			$scope.percentage = iterationsDone/iterationsMax * 100;
 			$scope.progressMessage = $scope.percentage.toString().substring(0,5)+"%("+iterationsDone+"/"+iterationsMax+")";
 		}).error(function(err){
-			$alert({title: 'Unable to check if network is currently trained', content: err, placement: 'top', type: 'danger', show: true });
+			$alert({title: localizedMessageService.getLocalizedMessage('training.alert.unableCheckCurrentlyTrained.title'), content: err, placement: 'top', type: 'danger', show: true });
 		});
 	}
 	
@@ -56,12 +69,12 @@ app
 		$scope.trainingProps.iterations = parseInt($scope.trainingProps.iterations);
 		$scope.trainingProps.learningCoefficient = parseFloat($scope.trainingProps.learningCoefficient);
 		networksService.train($scope.trainingProps).success(function(data) {
-			$alert({title: 'Network sent for training', content: data, placement: 'top', type: 'info', show: true });
+			$alert({title: localizedMessageService.getLocalizedMessage('training.alert.sentOK.title'), content: data, placement: 'top', type: 'info', show: true });
 		}).error(function(err){
-			$alert({title: 'Unable to train network', content: err, placement: 'top', type: 'danger', show: true });
+			$alert({title: localizedMessageService.getLocalizedMessage('training.alert.sentNOK.title'), content: err, placement: 'top', type: 'danger', show: true });
 		});
 	}
-	
+
 	$scope.$on("$destroy", function(){
         $interval.cancel($scope.progressCheckInterval);
     });

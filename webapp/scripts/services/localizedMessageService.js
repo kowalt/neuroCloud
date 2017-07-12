@@ -135,6 +135,56 @@ app
 				return "Network loaded, but it is too big to be displayed";
 			case "workbench.alert.reloadNOK":
 				return "Unable to load network";
+			case "generate.header":
+				return "Generate";
+			case "generate.name":
+				return "Name";
+			case "generate.npl":
+				return "Neurons per layer";
+			case "generate.af":
+				return "Activation function";
+			case "generate.generateButton":
+				return "Generate";
+			case "generate.tooltip.tooltipNPL.title":
+				return "Insert numbers separated by spacebar e.g. 4 3 2 2. Every number defines the amount of neurons on the corresponding layer.";
+			case "generate.tooltip.tooltipAF.title":
+				return "Insert the activation function and domain rules in format function<=>domain_rule1,domain_rule2. Domain rules are optional.";
+			case "generate.alert.generatedOK.title":
+				return "Network generated";
+			case "generate.alert.generatedOK.content":
+				return "Network generation successfull";
+			case "generate.alert.generatedNOK.title":
+				return "Unable to generate: ";
+			case "generate.alert.validationErrorMessage.nameMustNotBeEmpty":
+				return "Name must not be empty";
+			case "generate.alert.validationErrorMessage.incorrectAmountOfNeurons":
+				return "Incorrect amount of neurons";
+			case "generate.alert.validationErrorMessage.title":
+				return "Cannot validate: ";
+			case "export.header":
+				return "Export";
+			case "export.downloadButton":
+				return "Download";
+			case "training.header":
+				return "Training with EBP algorithm";
+			case "training.lc":
+				return "Learning coefficient";
+			case "training.inputSetFile":
+				return "Input";
+			case "training.outputSetFile":
+				return "Output";
+			case "training.iterations":
+				return "Iterations";
+			case "training.trainingButton":
+				return "Train";
+			case "training.tooltip.title":
+				return "File with floating-point values partitioned by comma. Vectors' separator is crlf";
+			case "training.alert.unableCheckCurrentlyTrained.title":
+				return "Unable to check if network is currently trained";
+			case "training.alert.sentOK.title":
+				return "Network sent for training";
+			case "training.alert.sentNOK.title":
+				return "Unable to train network";
 		}
 
 		return "Localization service error getting English value";
@@ -242,6 +292,56 @@ app
 				return "Sieć została załadowana, ale jest zbyt duża by mogła zostać wyświetlona";
 			case "workbench.alert.reloadNOK":
 				return "Nie można załadować sieci";
+			case "generate.header":
+				return "Generuj nową, losową sieć";
+			case "generate.name":
+				return "Nazwa";
+			case "generate.npl":
+				return "Neurony na warstwę";
+			case "generate.af":
+				return "Funkcja aktywacji";
+			case "generate.generateButton":
+				return "Generuj";
+			case "generate.tooltip.tooltipNPL.title":
+				return "Wstaw liczby naturalne odseparowane spacją, np. \"4 3 2 2\". Każda z tych liczb określa ilość neuronów na odpowiadającej warstwie.";
+			case "generate.tooltip.tooltipAF.title":
+				return "Wstaw funkcje aktywacji i reguły domenowe w formacie \"funkcja<=>reguła_1,reguła_2,...reguła_n\". Reguły domenowe są opcjonalne.";
+			case "generate.alert.generatedOK.title":
+				return "Wygenerowano sieć";
+			case "generate.alert.generatedOK.content":
+				return "Generacja sieci przebiegła pomyślnie";
+			case "generate.alert.generatedNOK.title":
+				return "Nie można wygenerować sieci: ";
+			case "generate.alert.validationErrorMessage.nameMustNotBeEmpty":
+				return "Nazwa nie może być pusta";
+			case "generate.alert.validationErrorMessage.incorrectAmountOfNeurons":
+				return "Nieprawidłowa liczba neuronów";
+			case "generate.alert.validationErrorMessage.title":
+				return "Błąd walidacji: ";
+			case "export.header":
+				return "Eksport";
+			case "export.downloadButton":
+				return "Pobierz";
+			case "training.header":
+				return "Trening algorytmem propagacji wstecznej";
+			case "training.lc":
+				return "Współczynnik uczenia";
+			case "training.inputSetFile":
+				return "Plik z danymi wejściowymi";
+			case "training.outputSetFile":
+				return "Plik z danymi wyjściowymi";
+			case "training.iterations":
+				return "Liczba iteracji";
+			case "training.trainingButton":
+				return "Trenuj";
+			case "training.tooltip.title":
+				return "Plik z liczbami zmiennoprzecinkowymi odseparowanymi przecinkiem. Separatorem poszczególnych wektorów jest crlf.";
+			case "training.alert.unableCheckCurrentlyTrained.title":
+				return "Nie można sprawdzić, czy sieć jest obecnie trenowana";
+			case "training.alert.sentOK.title":
+				return "Sieć wysłana do treningu";
+			case "training.alert.sentNOK.title":
+				return "Nie można wytrenować sieci";			
 		}
 
 		return "Localization service error getting Polish value";
