@@ -16,7 +16,8 @@
 					</tr>
 					<tr>
 						<td>
-							<button ng-click="uploadInput()" class="btn btn-default btn-sm" upload-input-file-reader>{{ uploadLabel }}</button>
+							<label for="uploadInput" class="btn btn-default btn-sm btn-file">{{ uploadLabel }}</label>
+							<input id="uploadInput" style="display: none;" type="file" upload-input-file-reader>
 						</td>
 						<td>
 							<button ng-click="downloadOutput()" class="btn btn-default btn-sm">{{ downloadLabel }}</button>
