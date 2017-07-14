@@ -88,7 +88,7 @@ app
 		return false;
 	}
 	
-	$scope.downloadOutput()
+	$scope.downloadOutput = function()
 	{
 			var fileContent = "";
 			var ov = $scope.inoutContainer.output_vector;
