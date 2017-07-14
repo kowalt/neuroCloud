@@ -11,4 +11,9 @@ angular.module('nncloud')
 		$scope.nameLabel = localizedMessageService.getLocalizedMessage('saveas.name');
 		$scope.saveButtonLabel = localizedMessageService.getLocalizedMessage('saveas.saveButton');
 	}
+	
+	$scope.saveAs = function()
+	{
+		
+	}
 }]);

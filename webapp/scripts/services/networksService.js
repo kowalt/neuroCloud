@@ -7,7 +7,8 @@ app.factory('networksService', ['$http', '$cookies', function($http, $cookies) {
 		runNetwork: runNetwork,
 		generate: generate,
 		train: train,
-		getProgress: getProgress
+		getProgress: getProgress,
+		sendNewNetwork: sendNewNetwork
 	}
 	return exposedAPI;
 

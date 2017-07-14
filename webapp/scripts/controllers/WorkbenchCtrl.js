@@ -87,4 +87,25 @@ app
 			return true;
 		return false;
 	}
+	
+	$scope.downloadOutput()
+	{
+			var fileContent = "";
+			var ov = $scope.inoutContainer.output_vector;
+			for(var i=0;i<ov.length;i++)
+			{
+				if(i != ov.length-1)
+					fileContent+=ov+",";
+				else
+					fileContent+=ov;
+			}
+
+			var element = document.createElement('a');
+			element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(fileContent));
+			element.setAttribute('download', 'output.csv');
+			element.style.display = 'none';
+			document.body.appendChild(element);
+			element.click();
+			document.body.removeChild(element);
+	}
 }]);
