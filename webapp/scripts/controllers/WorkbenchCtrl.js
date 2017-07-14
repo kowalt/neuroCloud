@@ -95,9 +95,9 @@ app
 			for(var i=0;i<ov.length;i++)
 			{
 				if(i != ov.length-1)
-					fileContent+=ov+",";
+					fileContent+=ov[i]+",";
 				else
-					fileContent+=ov;
+					fileContent+=ov[i];
 			}
 
 			var element = document.createElement('a');
