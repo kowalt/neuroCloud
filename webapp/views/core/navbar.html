@@ -16,11 +16,9 @@
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 			<ul class="nav navbar-nav">
 				<li>
-					<div class="dropdown">
-						<button type="button" data-animation="am-flip-x" bs-dropdown="networks_dropdown">
-							{{ networksLabel }}
-						</button>
-					</div>
+					<button type="button" class="btn btn-lg btn-primary" data-animation="am-flip-x" bs-dropdown="networks_dropdown">
+						{{ networksLabel }}
+					</button>
 				</li>		
 				<li ng-class="{ active: isActive('/core/workbench')}">
 					<a href="#/core/workbench">{{ workspaceLabel }}</a>
