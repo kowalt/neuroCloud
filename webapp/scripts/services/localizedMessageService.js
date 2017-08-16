@@ -185,6 +185,10 @@ app
 				return "Network sent for training";
 			case "training.alert.sentNOK.title":
 				return "Unable to train network";
+			case "workbench.tooltip.upload":
+				return "Upload file with values separated by comma";
+			case "workbench.tooltip.download":
+				return "Download file with values separated by comma";
 		}
 
 		return "Localization service error getting English value";
@@ -341,7 +345,11 @@ app
 			case "training.alert.sentOK.title":
 				return "Sieć wysłana do treningu";
 			case "training.alert.sentNOK.title":
-				return "Nie można wytrenować sieci";			
+				return "Nie można wytrenować sieci";
+			case "workbench.tooltip.upload":
+				return "Podaj plik z wartościami odseparowanymi przecinkiem";
+			case "workbench.tooltip.download":
+				return "Pobierz plik z wartościami odseparowanymi przecinkiem";				
 		}
 
 		return "Localization service error getting Polish value";

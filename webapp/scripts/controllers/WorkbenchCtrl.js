@@ -2,7 +2,9 @@
 
 app
   .controller('WorkbenchCtrl', ['$scope', '$cookies', '$alert', '$location', 'networksService','commonDataService','localizedMessageService', function ($scope, $cookies, $alert, $location,networksService,commonDataService,localizedMessageService) {
-	
+	$scope.tooltipUpload = {"title": localizedMessageService.getLocalizedMessage('workbench.tooltip.upload')};
+	$scope.tooltipDownload = {"title": localizedMessageService.getLocalizedMessage('workbench.tooltip.download')};
+
 	setLabels();
 	function setLabels()
 	{

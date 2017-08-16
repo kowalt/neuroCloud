@@ -17,10 +17,10 @@
 					<tr>
 						<td>
 							<label for="uploadInput" class="btn btn-default btn-sm btn-file">{{ uploadLabel }}</label>
-							<input id="uploadInput" style="display: none;" type="file" upload-input-file-reader>
+							<input id="uploadInput" style="display: none;" type="file" bs-tooltip="tooltipUpload" upload-input-file-reader>
 						</td>
 						<td>
-							<button ng-click="downloadOutput()" class="btn btn-default btn-sm">{{ downloadLabel }}</button>
+							<button ng-click="downloadOutput()" class="btn btn-default btn-sm" bs-tooltip="tooltipDownload">{{ downloadLabel }}</button>
 						</td>
 					</tr>
 				</tbody>
