@@ -5,7 +5,7 @@
         <RollingFile name="rollingfile" fileName="nnCloudRESTServiceXML.log" filePattern="nnCloudRESTServiceXML-%d{yyyyMMddHHmmss}.log">
             <PatternLayout>
                 <pattern>
-                    [%-5level] %d{yyyy-MM-dd HH:mm:ss} [%t] %M- %msg%n
+                    [%-5level] %d{yyyy-MM-dd HH:mm:ss} %r [%t] %c %M- %msg%n 
                 </pattern>
             </PatternLayout>
             <Policies>
