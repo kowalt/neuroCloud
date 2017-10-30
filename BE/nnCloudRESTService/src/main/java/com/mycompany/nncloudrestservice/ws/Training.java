@@ -10,13 +10,18 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 @Path("training")
 public class Training {
+    private static final Logger logger = LogManager.getLogger(Training.class);
+
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     public Response training(String x)
     {
+        logger.info("Request received");
         TrainingManager trainingManager = new TrainingManager();
         trainingManager.train(x);
     	return Response.status(202).build();
@@ -27,6 +32,7 @@ public class Training {
     @Produces(MediaType.APPLICATION_JSON)
     public Response obtainProgress(@PathParam("id") String id)
     {
+        logger.info("Request received");
         TrainingProgressManager progressManager = new TrainingProgressManager();
         return Response.status(Response.Status.OK).entity(progressManager.getProgress(id).toString()).build();
     }

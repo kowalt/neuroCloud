@@ -8,9 +8,12 @@ package com.mycompany.nncloudrestservice.logic;
 import com.mycompany.nncloudrestservice.daos.NetworkDAO;
 import com.mycompany.nncloudrestservice.pojo.Network;
 import com.mycompany.nncloudrestservice.training.ebp.EBP;
+import com.mycompany.nncloudrestservice.ws.Training;
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 import java.util.ArrayList;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -19,6 +22,7 @@ import org.json.JSONObject;
  * @author Tomasz
  */
 public class TrainingManager {
+    private static final Logger logger = LogManager.getLogger(TrainingManager.class);
     public void train(String x)
     {
         JSONObject rawData = new JSONObject(x);
@@ -32,18 +36,19 @@ public class TrainingManager {
         network.setTrainingIterationsDone(0);
         ndao.updateItem(network);
         Double learningCoefficient = (Double) rawData.get("learningCoefficient");
-
+        
         JSONArray learningSetArrRaw = new JSONArray(rawData.get("learningSet").toString());
         JSONArray trainingSetArrRaw = new JSONArray(rawData.get("trainingSet").toString());
         List<Double[]> learningSet = new ArrayList<>();
         List<Double[]> trainingSet = new ArrayList<>();
-        
+
         for(int i=0; i<learningSetArrRaw.length(); i++)
         {
             learningSet.add(convertJSONArray(learningSetArrRaw.getJSONArray(i)));
             trainingSet.add(convertJSONArray(trainingSetArrRaw.getJSONArray(i)));
         }
-
+        
+        logger.info("Parsing training parameters complete. Trying to start the EBP algorithm...");
         EBP ebp = new EBP(network, learningCoefficient, iterations, learningSet, trainingSet);
         new Thread(ebp).start();
     }
@@ -52,7 +57,7 @@ public class TrainingManager {
     {
         Double[] rbuf = new Double[arr.length()];
         for(int i=0; i<arr.length(); i++)
-        {       
+        {
             if(arr.get(i) instanceof Integer)
                 rbuf[i] = ((Integer)arr.get(i)).doubleValue();
             else

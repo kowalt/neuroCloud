@@ -44,6 +44,7 @@ public class EBP implements Runnable {
         for(Neuron neuron: output_layer.getNeurons())
         {
             neuron.setError_value(expected_vector[i] - output_vector[i]);
+            LOGGER.trace("neuron id="+String.valueOf(neuron.getId())+" error_value="+String.valueOf(neuron.getError_value()));
             i++;
         }
     }
@@ -52,10 +53,15 @@ public class EBP implements Runnable {
     {
         List<Layer> layers = network.getLayers();
         Collections.sort(layers, new LayerDescendingComparator());
+        LOGGER.debug("Calculating inner errors");
+        
         for(Layer l: layers)
         {
             if(l.getRelative_number() == layers.size())
+            {   
+                LOGGER.trace("Last layer, no inner error calculation");
                 continue;
+            }
 
             for(Neuron neuron: l.getNeurons())
             {
@@ -64,6 +70,7 @@ public class EBP implements Runnable {
                 for(Synapse synapse: synapses_out)
                     error_value += synapse.getNeuron_out().getError_value() * synapse.getWeight();
                 neuron.setError_value(error_value);
+                LOGGER.trace("Error value for neuron with id="+String.valueOf(neuron.getId())+" is "+String.valueOf(error_value));
             }
         }
         Collections.sort(layers, new LayerAscendingComparator());
@@ -75,15 +82,22 @@ public class EBP implements Runnable {
 
         for(Layer layer: network.getLayers())
         {
+            LOGGER.debug("Processing layer id="+String.valueOf(layer.getId()));
             for(Neuron neuron: layer.getNeurons())
             {
+                LOGGER.debug("Processing neuron id="+String.valueOf(neuron.getId()));
                 Double e = 0.0;
                 for(Synapse synin: neuron.getSynapses_in())
+                {    
+                    LOGGER.trace("Processing synapse synin with id="+String.valueOf(synin.getId()));
                     e += synin.getValue()*synin.getWeight();
+                    LOGGER.trace("e="+String.valueOf(e));
+                }
 
                 for(Synapse synin: neuron.getSynapses_in())
                 {
                     Double delta = learning_factor*neuron.getError_value()*vc.calculateValue(neuron.getActivation_functions(), e, true)*synin.getValue();
+                    LOGGER.trace("Delta for synapse synin with id="+String.valueOf(synin.getId())+" is delta="+String.valueOf(delta));
                     synin.setWeight(synin.getWeight() + delta);
                 }
             }
@@ -96,22 +110,29 @@ public class EBP implements Runnable {
         RunManager runManager = new RunManager(network);
         for(int i=0; i<iterations; i++)
         {
+            LOGGER.debug("Training with iteration="+String.valueOf(i));
             for(int j=0; j<learning_set.size(); j++)
-            {    
+            {   
+                LOGGER.debug("Processing learning set row number="+String.valueOf(j));
                 double[] output_vector = runManager.run(ArrayUtils.toPrimitive(learning_set.get(j)));
                 double[] expected_vector = ArrayUtils.toPrimitive(training_set.get(j));
+                LOGGER.debug("Calculating output errors");
                 calculateAndSetOutputErrors(output_vector, expected_vector);
+                LOGGER.debug("Calculating inner errors");
                 calculateInnerErrors();
+                LOGGER.debug("Updating weights");
                 updateWeights();
             }
+            LOGGER.debug("Iteration done");
             network.setTrainingIterationsDone(i+1);
             ndao.updateItem(network);
         }
 
-        LOGGER.info("training network "+network.getName()+" finished");
+        LOGGER.info("training network name="+network.getName()+" finished");
         network.setState("IDLE");
         ndao.updateItem(network);
 
+        LOGGER.info("Sending mail");
         MailSender postman = new MailSender();
         postman.sendNofificationAfterTraining(network.getName());
     }
