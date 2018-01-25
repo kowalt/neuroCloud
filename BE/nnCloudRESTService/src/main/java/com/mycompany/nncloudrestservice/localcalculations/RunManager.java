@@ -10,16 +10,21 @@ import com.mycompany.nncloudrestservice.localcalculations.multithreadcpu.RunProc
 import com.mycompany.nncloudrestservice.pojo.Layer;
 import com.mycompany.nncloudrestservice.pojo.Network;
 import com.mycompany.nncloudrestservice.pojo.Neuron;
+import java.util.Arrays;
 import java.util.List;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 /**
  *
  * @author Tomasz
  */
 public class RunManager{
- 
+
+    private final Logger LOGGER = LogManager.getLogger(RunManager.class);
+    
     private final Network n;
-    private Mode mode = Mode.MULTITHREAD;
+    private Mode mode = Mode.SINGLETHREAD;
     
     public enum Mode
     {
@@ -28,6 +33,7 @@ public class RunManager{
     
     public RunManager(int id)
     {
+        LOGGER.debug("Initializing RunManager");
         NetworkDAO ndao = new NetworkDAO();
         ndao.setLazyLoadMode(false);
         n = ndao.getItem(String.valueOf(id));
@@ -40,18 +46,28 @@ public class RunManager{
 
     public double[] run(double[] input) {
         List<Layer> lList = n.getLayers();
-        
+ 
         IRunProcessor np;
 
         if(mode == Mode.MULTITHREAD)
+        {
+            LOGGER.debug("Multithread mode on");
             np = new com.mycompany.nncloudrestservice.localcalculations.multithreadcpu.RunProcessor(n);
+        }
         else
+        {
+            LOGGER.debug("Singlethread mode on");
             np = new com.mycompany.nncloudrestservice.localcalculations.singlethreaded.RunProcessor(n);
+        }
         
+        LOGGER.debug("Setting input: " + Arrays.toString(input));
         np.setInput(input);
-        
+
         for(Layer l: lList)
+        {
+            LOGGER.debug("Invoking runLayer for layer number " + String.valueOf(l.getRelative_number()));
             np.runLayer(l);
+        }
 
         List<Neuron> outNeuList = n.getLayers().get(n.getLayers().size()-1).getNeurons();
         double [] output_vector = new double[outNeuList.size()];

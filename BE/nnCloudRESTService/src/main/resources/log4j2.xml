@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<Configuration status="TRACE">
+<Configuration status="INFO">
     <Appenders>
         <RollingFile name="rollingfile" fileName="nnCloudRESTServiceXML.log" filePattern="nnCloudRESTServiceXML-%d{yyyyMMddHHmmss}.log">
             <PatternLayout>
@@ -14,8 +14,8 @@
         </RollingFile>
     </Appenders>
     <Loggers>
-        <Root level="TRACE">
-            <AppenderRef ref="rollingfile" level="debug"/>
+        <Root level="INFO">
+            <AppenderRef ref="rollingfile" level="INFO"/>
         </Root>
     </Loggers>
 </Configuration>

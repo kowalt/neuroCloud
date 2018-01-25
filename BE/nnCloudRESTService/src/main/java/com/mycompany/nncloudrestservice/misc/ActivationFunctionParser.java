@@ -27,9 +27,12 @@ public class ActivationFunctionParser
 
     public List<ActivationFunction> parse(String raw)
     {
-        StringTokenizer rulesTok = new StringTokenizer(raw, ";");
+        logger.debug("Parsing expression: "+raw);
+        //delete spaces and blank characters
+        String raw2 = raw.replaceAll("\\s+","");
+        logger.debug("Parsing expression after deleting blank characters: "+raw2);
+        StringTokenizer rulesTok = new StringTokenizer(raw2, ";");
 
-        
         List<ActivationFunction> af = new ArrayList<>();
         ActivationFunction afun;
         
@@ -44,13 +47,15 @@ public class ActivationFunctionParser
             
             afun = new ActivationFunction();
 
+            logger.debug("Creating activation function with function "+function+" and domain "+ domain);
+
             afun.setFunction(function);
             afun.setDomain_rule(domain);
             afun.setFirst_derivative(calculateDerivative(function));
 
             af.add(afun);
         }
-        
+
         return af;
     }
     

@@ -19,7 +19,7 @@ import org.perf4j.log4j.Log4JStopWatch;
 public class RunProcessor implements IRunProcessor
 {
     private Network n;
-    private static final Logger logger = LogManager.getLogger(RunProcessor.class);
+    private static final Logger LOGGER = LogManager.getLogger(RunProcessor.class);
 
     public RunProcessor(Network n)
     {
@@ -46,17 +46,19 @@ public class RunProcessor implements IRunProcessor
 
         StopWatch stopWatch = new Log4JStopWatch("Starting network run on " + String.valueOf(threads)+" threads.");
         
+        LOGGER.info("Starting network run on " + String.valueOf(threads)+" threads. 2nd message");
+
     	for(int i=0; i<threads; i++)
     	{
             chunks.add(new ArrayList<Neuron>());
-            if((i*delta+delta) < nList.size())
+            if((i*delta+delta) < nList.size()) //if
                 chunks.get(i).addAll(nList.subList(i*delta, i*delta+delta));
             else
             {    
                 chunks.get(i).addAll(nList.subList(i*delta, nList.size()));
                 break;
             }
-            if(i == (threads - 1))
+            if(i == (threads - 1)) //if last thread
                 chunks.get(i).addAll(nList.subList(i*delta+delta, nList.size()));
     	}
         
@@ -74,7 +76,7 @@ public class RunProcessor implements IRunProcessor
             try {
                 thread.join();
             } catch (InterruptedException ex) {
-                logger.error("Thread interrupted");
+                LOGGER.error("Thread interrupted");
             }
         }
         stopWatch.stop();
