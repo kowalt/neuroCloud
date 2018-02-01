@@ -58,7 +58,7 @@ public class EBP implements Runnable {
         for(Layer l: layers)
         {
             if(l.getRelative_number() == layers.size())
-            {   
+            {
                 LOGGER.trace("Last layer, no inner error calculation");
                 continue;
             }
@@ -73,7 +73,7 @@ public class EBP implements Runnable {
                 LOGGER.trace("Error value for neuron with id="+String.valueOf(neuron.getId())+" is "+String.valueOf(error_value));
             }
         }
-        Collections.sort(layers, new LayerAscendingComparator());
+        Collections.sort(layers, new LayerAscendingComparator()); // Concurrency issue?
     }
     
     private void updateWeights()

@@ -63,8 +63,10 @@ public class ActivationFunctionParser
     {
         if(function.equals("Tanh(x)"))
             return "Sech(x)^2";
+        if(function.equals("x"))
+            return "1.0";
         if(!function.contains("x"))
-            return "0";
+            return "0.0";
         logger.error("No derivative for function="+function);
         return "";
     }
