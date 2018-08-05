@@ -32,7 +32,7 @@ public class Login
     {
         com.mycompany.nncloudrestservice.logic.Login lc = new com.mycompany.nncloudrestservice.logic.Login();
         JSONObject request = new JSONObject(x);
-                
+
         NewCookie c1;
         String uuid;
         
