@@ -41,10 +41,10 @@ def mapSafety(x):
 	
 def mapClassToNumber(x):
 	return {
-		'vgood': 0.99999,
-		'good': 0.66666,
-		'acc': 0.33333,
-		'unacc': 0.0
+		'vgood': [0.0,0.0,0.0,1.0],
+		'good': [0.0,0.0,1.0,0.0],
+		'acc': [0.0,1.0,0.0,0.0],
+		'unacc': [1.0,0.0,0.0,0.0]
 	}[x]
 
 def handleMapping(x, column):
@@ -62,18 +62,23 @@ def handleMapping(x, column):
 	return "Error"
 
 def writeToInfile(tokens):
-	for i in range(0, len(tokens)-2):
-		if i != len(tokens)-3:
-			print('invoking mapping for token ' + str(tokens[i]) + ' for index ' + str(i)) 
+	for i in range(0, len(tokens)-1):
+		if i != len(tokens)-2:
 			infile.write(handleMapping(tokens[i],i)+',')
 		else:
 			infile.write(handleMapping(tokens[i],i))
 	infile.write('\n')
 
+def stringifyOutputRow(arrRow):
+	rBuf = '';
+	for number in arrRow:
+		rBuf += str(number)+','
+	return rBuf[:-1]
+		
 def writeToOutfile(tokens):
 	carClass = tokens[len(tokens)-1]
 	carClass = carClass.strip('\n')
-	outfile.write(str(mapClassToNumber(carClass))+'\n')
+	outfile.write(stringifyOutputRow(mapClassToNumber(carClass))+'\n')
 
 lines = orgFile.readlines()
 
